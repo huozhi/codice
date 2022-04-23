@@ -7,7 +7,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "bunchee lib/index.mjs --no-sourcemap"
+    "build": "bunchee lib/index.mjs --no-sourcemap",
+    "prepublishOnly": "rm -rf dist && npm run build"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",
