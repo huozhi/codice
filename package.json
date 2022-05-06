@@ -1,6 +1,6 @@
 {
   "name": "codice",
-  "version": "0.0.5",
+  "version": "0.0.8",
   "exports": "./dist/index.mjs",
   "author": "huozhi",
   "files": [
