@@ -8,7 +8,7 @@
   --sh-jsxliterals: #989bed;
   --editor-text-color: transparent;
   --editor-background-color: transparent;
-  --editor-control-color: hsla(0, 0%, 85%, 0.34);
+  --editor-control-color: transparent;
 }
 
 * {
@@ -73,12 +73,15 @@ textarea {
   height: 100%;
   border: 1px solid rgba(163, 169, 165, 0.2);
   transition: border 0.2s ease-in-out;
+  overflow: hidden;
 }
+textarea::-webkit-scrollbar,
+textarea:focus::-webkit-scrollbar,
 textarea:hover::-webkit-scrollbar {
   width: 0;
 }
 textarea:focus {
-  border: 2px solid rgba(226, 255, 234, 0.3);
+  border: 1px solid rgba(226, 255, 234, 0.3);
 }
 
 code {

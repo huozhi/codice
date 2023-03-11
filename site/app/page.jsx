@@ -1,30 +1,26 @@
 'use client'
 
+import { Editor } from 'codice'
 import { useState } from 'react'
 import { highlight } from 'sugar-high'
-import { Editor } from 'codice'
 
 const defaultCode = `\
 import { useState } from 'react'
 import { highlight } from 'sugar-high'
 import { Editor } from 'codice'
 
+const defaultText = 'console.log("hello world")'
+
 export default function Page() {
-  const [files, setFiles] = useState({
-    'index.js': defaultCode,
-  })
+  const [code, setCode] = useState(defaultText)
 
   return (
     <div>
       <Editor
-        highlight={highlight}
+        value={code}
         className='editor'
-        value={files['index.js']}
-        onChange={(code) => {
-          setFiles({
-            ['index.js']: code,
-          })
-        }}
+        highlight={text => highlight(text)}
+        onChange={(text) => setCode(text)}
       />
     </div>
   )
@@ -33,21 +29,15 @@ export default function Page() {
 `
 
 export default function Page() {
-  const [files, setFiles] = useState({
-    'index.js': defaultCode,
-  })
+  const [code, setCode] = useState(defaultCode)
 
   return (
     <div>
       <Editor
-        highlight={highlight}
+        value={code}
         className='editor'
-        value={files['index.js']}
-        onChange={(code) => {
-          setFiles({
-            ['index.js']: code,
-          })
-        }}
+        highlight={text => highlight(text)}
+        onChange={(text) => setCode(text)}
       />
     </div>
   )
