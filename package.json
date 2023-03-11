@@ -1,13 +1,15 @@
 {
   "name": "codice",
   "version": "0.0.10",
+  "type": "module",
   "exports": "./dist/index.mjs",
   "author": "huozhi",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "bunchee lib/index.mjs --no-sourcemap",
+    "build": "bunchee ./lib/index.js",
+    "dev": "next dev site",
     "prepublishOnly": "rm -rf dist && npm run build"
   },
   "peerDependencies": {
@@ -16,6 +18,11 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "bunchee": "^1.8.3"
+    "bunchee": "^2.2.1",
+    "next": "^13.2.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sugar-high": "^0.4.6",
+    "codice": "link:./"
   }
 }
