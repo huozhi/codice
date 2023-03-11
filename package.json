@@ -8,6 +8,7 @@
     "dist"
   ],
   "scripts": {
+    "build:site": "yarn build && next build site",
     "build": "bunchee ./lib/index.js",
     "dev": "next dev site",
     "prepublishOnly": "rm -rf dist && npm run build"
