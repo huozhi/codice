@@ -8,7 +8,7 @@
   --sh-jsxliterals: #989bed;
   --editor-text-color: transparent;
   --editor-background-color: transparent;
-  --editor-control-color: transparent;
+  --editor-control-color: #8d8989;
 }
 
 * {
@@ -102,15 +102,16 @@ code {
 
 .editor-title {
   flex: 1 0;
+  height: 1rem;
   text-align: center;
   color: hsla(0, 0%, 87%, 0.34);
 }
 
 .editor-controls__control {
   display: flex;
-  width: 12px;
-  height: 12px;
-  margin: 4px;
+  width: 0.8rem;
+  height: 0.8rem;
+  margin: 0.2rem;
   border-radius: 50%;
 }
 .editor-controls {

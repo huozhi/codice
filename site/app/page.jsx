@@ -19,6 +19,7 @@ export default function Page() {
       <Editor
         value={code}
         className='editor'
+        title='index.js'
         highlight={text => highlight(text)}
         onChange={(text) => setCode(text)}
       />
@@ -36,6 +37,7 @@ export default function Page() {
       <Editor
         value={code}
         className='editor'
+        title='index.js'
         highlight={text => highlight(text)}
         onChange={(text) => setCode(text)}
       />
