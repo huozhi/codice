@@ -1,20 +1,24 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@types/react': ^18.0.33
   bunchee: ^3.0.0
   codice: link:./
   next: ^13.2.3
   react: ^18.2.0
   react-dom: ^18.2.0
   sugar-high: ^0.4.6
+  typescript: ^5.0.4
 
 devDependencies:
-  bunchee: 3.0.0
+  '@types/react': 18.0.33
+  bunchee: 3.0.0_typescript@5.0.4
   codice: 'link:'
   next: 13.3.0_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   sugar-high: 0.4.6
+  typescript: 5.0.4
 
 packages:
 
@@ -341,8 +345,24 @@ packages:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
     dev: true
 
+  /@types/prop-types/15.7.5:
+    resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
+    dev: true
+
+  /@types/react/18.0.33:
+    resolution: {integrity: sha512-sHxzVxeanvQyQ1lr8NSHaj0kDzcNiGpILEVt69g9S31/7PfMvNCKLKcsHw4lYKjs3cGNJjXSP4mYzX43QlnjNA==}
+    dependencies:
+      '@types/prop-types': 15.7.5
+      '@types/scheduler': 0.16.3
+      csstype: 3.1.2
+    dev: true
+
   /@types/resolve/1.20.2:
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
+    dev: true
+
+  /@types/scheduler/0.16.3:
+    resolution: {integrity: sha512-5cJ8CB4yAx7BH1oMvdU0Jh9lrEXyPkar6F9G/ERswkCuvP4KQZfZkSjcMbAICCpQTN4OuZn8tz0HiKv9TGZgrQ==}
     dev: true
 
   /ansi-styles/3.2.1:
@@ -372,7 +392,7 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /bunchee/3.0.0:
+  /bunchee/3.0.0_typescript@5.0.4:
     resolution: {integrity: sha512-WNFCIq7/cwFX39CT6JTDAqXRawYjo6nEIMUZCtH+WEFmpxX4OHKEB7zMieoVVZlaQDlkXP06a50pmNNMcVImlA==}
     engines: {node: '>= 16'}
     hasBin: true
@@ -390,10 +410,11 @@ packages:
       arg: 5.0.2
       publint: 0.1.11
       rollup: 3.20.2
-      rollup-plugin-dts: 5.3.0_rollup@3.20.2
+      rollup-plugin-dts: 5.3.0_4uaj55xah35he2rmgneoluguqy
       rollup-plugin-preserve-shebang: 1.0.1
       rollup-plugin-swc3: 0.8.1_iait6swlpvraxbg2ddt3o6fvky
       tslib: 2.5.0
+      typescript: 5.0.4
     transitivePeerDependencies:
       - '@swc/helpers'
     dev: true
@@ -437,6 +458,10 @@ packages:
 
   /commondir/1.0.1:
     resolution: {integrity: sha512-W9pAhw0ja1Edb5GVdIF1mjZw/ASI0AlShXM83UUGe2DVr5TdAPEA1OA8m/g8zWp9x6On7gqufY+FatDbC3MDQg==}
+    dev: true
+
+  /csstype/3.1.2:
+    resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
     dev: true
 
   /deepmerge/4.3.1:
@@ -719,7 +744,7 @@ packages:
       supports-preserve-symlinks-flag: 1.0.0
     dev: true
 
-  /rollup-plugin-dts/5.3.0_rollup@3.20.2:
+  /rollup-plugin-dts/5.3.0_4uaj55xah35he2rmgneoluguqy:
     resolution: {integrity: sha512-8FXp0ZkyZj1iU5klkIJYLjIq/YZSwBoERu33QBDxm/1yw5UU4txrEtcmMkrq+ZiKu3Q4qvPCNqc3ovX6rjqzbQ==}
     engines: {node: '>=v14'}
     peerDependencies:
@@ -728,6 +753,7 @@ packages:
     dependencies:
       magic-string: 0.30.0
       rollup: 3.20.2
+      typescript: 5.0.4
     optionalDependencies:
       '@babel/code-frame': 7.21.4
     dev: true
@@ -824,6 +850,12 @@ packages:
 
   /tslib/2.5.0:
     resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
+    dev: true
+
+  /typescript/5.0.4:
+    resolution: {integrity: sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==}
+    engines: {node: '>=12.20'}
+    hasBin: true
     dev: true
 
   /wrappy/1.0.2:

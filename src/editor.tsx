@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, CSSProperties } from 'react'
 
-const styles = {
+const styles: Record<string, CSSProperties> = {
   pad: {
     display: 'inline-block',
     overflowWrap: 'break-word',
@@ -35,13 +35,16 @@ const preStyle = {
 }
 
 
-export function Editor({ title, value = '', onChange = () => {}, highlight = () => {}, ...props }) {
+export function Editor(
+  { title, value = '', onChange = () => {}, highlight = () => '', ...props }:
+  { title?: string, value?: string, onChange?: (code: string) => void, highlight?: (code: string) => string } & React.HTMLAttributes<HTMLDivElement>
+) {
   const [text, setText] = useState(value)
   const [output, setOutput] = useState(() => highlight(text))
   const codeRef = useRef()
   const textareaRef = useRef()
 
-  function update(code) {
+  function update(code: string) {
     const highlighted = highlight(code)
     setText(code)
     setOutput(highlighted)
