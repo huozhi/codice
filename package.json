@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build:site": "yarn build && next build site",
-    "build": "bunchee ./lib/index.js",
+    "build": "bunchee",
     "dev": "next dev site",
     "prepublishOnly": "rm -rf dist && npm run build"
   },
@@ -19,11 +19,11 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "bunchee": "^2.2.1",
+    "bunchee": "^3.0.0",
+    "codice": "link:./",
     "next": "^13.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sugar-high": "^0.4.6",
-    "codice": "link:./"
+    "sugar-high": "^0.4.6"
   }
 }
