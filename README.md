@@ -14,16 +14,20 @@ To use the `Editor` component from the Codice package, follow these steps:
 
 1. Import the `Editor` component:
 
-import { Editor } from 'codice';
+```tsx
+import { Editor } from 'codice'
+```
 
 2. Use the `Editor` component in your React application:
 
+```tsx
 <Editor
   title="My Code Editor"
   value="const hello = 'world';"
   onChange={(code) => console.log(code)}
   highlight={(code) => code}
 />
+```
 
 ## Props
 

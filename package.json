@@ -3,6 +3,7 @@
   "version": "0.0.10",
   "type": "module",
   "exports": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "author": "huozhi",
   "files": [
     "dist"
