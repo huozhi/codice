@@ -28,5 +28,6 @@
     "react-dom": "^18.2.0",
     "sugar-high": "^0.4.6",
     "typescript": "^5.0.4"
-  }
+  },
+  "packageManager": "pnpm@7.24.3"
 }
