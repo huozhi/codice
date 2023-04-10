@@ -1,6 +1,6 @@
 {
   "name": "codice",
-  "version": "0.0.10",
+  "version": "0.1.0",
   "type": "module",
   "exports": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
