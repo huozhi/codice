@@ -9,10 +9,10 @@
     "dist"
   ],
   "scripts": {
-    "build:site": "yarn build && next build site",
+    "build:site": "pnpm build && next build site",
     "build": "bunchee",
     "dev": "next dev site",
-    "prepublishOnly": "rm -rf dist && npm run build"
+    "prepublishOnly": "rm -rf dist && pnpm run build"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",
