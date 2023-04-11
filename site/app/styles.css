@@ -60,6 +60,7 @@ code, textarea {
   border-radius: 8px;
   border: none;
   outline: none;
+  width: 100%;
 }
 textarea {
   position: absolute;
