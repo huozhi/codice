@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, CSSProperties } from 'react'
+import { useEffect, useState, useRef, CSSProperties } from 'react'
 
 const styles: Record<string, CSSProperties> = {
   pad: {
@@ -18,9 +18,6 @@ const styles: Record<string, CSSProperties> = {
   root: {
     position: 'relative',
   },
-  codeControl: {
-    backgroundColor: 'var(--editor-control-color)',
-  }
 }
 
 const inputStyle = {
@@ -64,9 +61,9 @@ export function Editor(
     <div {...props}>
       <div className="editor-header">
         <div className="editor-controls">
-          <span className='editor-controls__control' style={styles.codeControl} />
-          <span className='editor-controls__control' style={styles.codeControl} />
-          <span className='editor-controls__control' style={styles.codeControl} />
+          <span className='editor-controls__control editor-controls__control--close' />
+          <span className='editor-controls__control editor-controls__control--minimize' />
+          <span className='editor-controls__control editor-controls__control--maximize' />
         </div>
         <div className="editor-title">{title || ''}</div>
       </div>
