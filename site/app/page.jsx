@@ -3,6 +3,9 @@
 import { Editor } from 'codice'
 import { useState } from 'react'
 import { highlight } from 'sugar-high'
+import { useSearchParams } from 'next/navigation'
+
+const CODE_QUERY_KEY = 'c'
 
 const defaultCode = `\
 import { useState } from 'react'
@@ -30,7 +33,10 @@ export default function Page() {
 `
 
 export default function Page() {
-  const [code, setCode] = useState(defaultCode)
+  const searchParams = useSearchParams()
+  const codeQuery = searchParams.get(CODE_QUERY_KEY)
+  const initialCode = codeQuery ? atob(codeQuery) : defaultCode
+  const [code, setCode] = useState(initialCode)
 
   return (
     <div>

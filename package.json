@@ -21,12 +21,12 @@
   "license": "MIT",
   "devDependencies": {
     "@types/react": "^18.0.33",
-    "bunchee": "^3.0.1",
+    "bunchee": "^3.7.1",
     "codice": "link:./",
-    "next": "^13.2.3",
+    "next": "13.4.20-canary.23",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sugar-high": "^0.4.6",
+    "sugar-high": "^0.4.7",
     "typescript": "^5.0.4"
   },
   "packageManager": "pnpm@7.24.3"

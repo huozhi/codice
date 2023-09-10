@@ -46,7 +46,6 @@ To customize the appearance of the editor, you can modify the CSS variables used
 
 - `--editor-text-color`: The color of the editor text.
 - `--editor-background-color`: The background color of the editor.
-- `--editor-control-color`: The color of the editor controls.
 
 For example, you can set the following CSS in your application:
 
@@ -54,11 +53,18 @@ For example, you can set the following CSS in your application:
 :root {
   --editor-text-color: #333;
   --editor-background-color: #f5f5f5;
-  --editor-control-color: #ccc;
 }
 ```
 
 This will style the editor with a light gray background, darker gray text, and even lighter gray controls.
+
+### CSS Class Names
+
+- `editor-controls__control`: The class name for the controls in the editor.
+  - `editor-controls__control--close`: The class name for the close button.
+  - `editor-controls__control--minimize`: The class name for the minimize button.
+  - `editor-controls__control--maximize`: The class name for the maximize button.
+
 
 ### License
 

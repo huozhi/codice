@@ -8,7 +8,6 @@
   --sh-jsxliterals: #989bed;
   --editor-text-color: transparent;
   --editor-background-color: transparent;
-  --editor-control-color: #8d8989;
 }
 
 * {
@@ -119,4 +118,19 @@ code {
   align-items: center;
   justify-content: center;
   transform: translate(16px, -50%);
+}
+
+.editor-controls__control {
+  background-color: #8d8989;;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.editor-controls__control--close:hover {
+  background-color: #f47067;
+}
+.editor-controls__control--minimize:hover {
+  background-color: #fdbc40;
+}
+.editor-controls__control--maximize:hover {
+  background-color: #34d399;
 }
