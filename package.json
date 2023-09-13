@@ -21,9 +21,9 @@
   "license": "MIT",
   "devDependencies": {
     "@types/react": "^18.0.33",
-    "bunchee": "^3.7.1",
+    "bunchee": "^3.7.2",
     "codice": "link:./",
-    "next": "13.4.20-canary.23",
+    "next": "13.4.20-canary.27",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sugar-high": "^0.4.7",
