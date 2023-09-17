@@ -7,7 +7,7 @@ specifiers:
   next: 13.4.20-canary.27
   react: ^18.2.0
   react-dom: ^18.2.0
-  sugar-high: ^0.4.7
+  sugar-high: ^0.5.1
   typescript: ^5.0.4
 
 devDependencies:
@@ -17,7 +17,7 @@ devDependencies:
   next: 13.4.20-canary.27_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  sugar-high: 0.4.7
+  sugar-high: 0.5.1
   typescript: 5.0.4
 
 packages:
@@ -1014,8 +1014,8 @@ packages:
       react: 18.2.0
     dev: true
 
-  /sugar-high/0.4.7:
-    resolution: {integrity: sha512-vCg55qNhUBbBylR1DNWAYvqlwSVPebBJPh+fNzknN70b9CIyS1xoCRa0CnRzrAw4RYiqprteDfZg8ZeToZqqug==}
+  /sugar-high/0.5.1:
+    resolution: {integrity: sha512-VkqH9LTtZ+6gGg/gglI0uBx2dcbynbMksXIu+xaDZhSVHZPnt62/4PaI051eu4/dVnkwZdIebXG+26SlLbbK9g==}
     dev: true
 
   /supports-color/5.5.0:
