@@ -1,4 +1,5 @@
-import { useEffect, useState, useRef, CSSProperties } from 'react'
+import { useEffect, useState, useRef, forwardRef } from 'react'
+import type { CSSProperties } from 'react'
 
 const styles: Record<string, CSSProperties> = {
   pad: {
@@ -31,10 +32,22 @@ const preStyle = {
   ...styles.pre,
 }
 
+function composeRefs(...refs) {
+  return (node) => {
+    refs.forEach((ref) => {
+      if (typeof ref === 'function') {
+        ref(node)
+      } else if (ref) {
+        ref.current = node
+      }
+    })
+  }
+}
 
-export function Editor(
+const Editor = forwardRef(function EditorComponent(
   { title, value = '', onChange = () => {}, highlight = () => '', ...props }:
-  { title?: string, value?: string, onChange?: (code: string) => void, highlight?: (code: string) => string } & React.HTMLAttributes<HTMLDivElement>
+  { title?: string, value?: string, onChange?: (code: string) => void, highlight?: (code: string) => string } & React.HTMLAttributes<HTMLDivElement>,
+  ref: React.Ref<HTMLDivElement>
 ) {
   const [text, setText] = useState(value)
   const [output, setOutput] = useState(() => highlight(text))
@@ -71,8 +84,15 @@ export function Editor(
         <pre style={preStyle}>
           <code style={codeStyle} ref={codeRef} dangerouslySetInnerHTML={{ __html: output }} />
         </pre>
-        <textarea ref={textareaRef} style={inputStyle} value={text} onChange={onInput} />
+        <textarea
+          ref={composeRefs(ref, textareaRef)}
+          style={inputStyle}
+          value={text}
+          onChange={onInput}
+        />
       </div>
     </div>
   )
-}
+})
+
+export { Editor }
