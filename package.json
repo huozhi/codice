@@ -21,7 +21,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/react": "^18.0.33",
-    "bunchee": "^3.7.2",
+    "bunchee": "^3.8.0",
     "codice": "link:./",
     "next": "13.4.20-canary.27",
     "react": "^18.2.0",

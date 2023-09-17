@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@types/react': ^18.0.33
-  bunchee: ^3.7.2
+  bunchee: ^3.8.0
   codice: link:./
   next: 13.4.20-canary.27
   react: ^18.2.0
@@ -12,7 +12,7 @@ specifiers:
 
 devDependencies:
   '@types/react': 18.0.33
-  bunchee: 3.7.2_typescript@5.0.4
+  bunchee: 3.8.0_typescript@5.0.4
   codice: 'link:'
   next: 13.4.20-canary.27_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
@@ -551,8 +551,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /bunchee/3.7.2_typescript@5.0.4:
-    resolution: {integrity: sha512-Ta45K5ibPnsEAPXI9W8FL3F57h95aDwd9w3dGnvfVU3uFdoWyPkCzUZhgzeFfNAgF3humvZ1uXEjwNVdih+hDg==}
+  /bunchee/3.8.0_typescript@5.0.4:
+    resolution: {integrity: sha512-8W3DC/mC5GIx6N3Rn67/Dqo6TRS+nvB12XsBIgO4S1ZEsipdv8E/ytZ9XWfFGibw7jlsmAwSTaEIgc1jcQg1zg==}
     engines: {node: '>= 16'}
     hasBin: true
     peerDependencies:
