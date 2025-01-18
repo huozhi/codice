@@ -46,9 +46,7 @@ function marker() {
 
       <CodeExampleItem title="Simple Code Block">
         <Code className="code code--simple">{CODE_SIMPLE_SNIPPET_HTML}</Code>
-      </CodeExampleItem>
-
-      
+      </CodeExampleItem>      
     </div>
   )
 }
