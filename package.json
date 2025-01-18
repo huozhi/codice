@@ -23,7 +23,7 @@
     "@types/react": "^19.0.7",
     "bunchee": "^6.3.2",
     "codice": "link:./",
-    "next": "15.1.5",
+    "next": "15.2.0-canary.15",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sugar-high": "^0.8.1",
