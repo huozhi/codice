@@ -15,7 +15,6 @@ export const css = `
   font-size: 1rem;
   line-height: 1.25em;
   caret-color: var(--codice-editor-caret-color);
-  border-radius: 8px;
   border: none;
   outline: none;
   width: 100%;
@@ -48,8 +47,6 @@ export const css = `
   left: 0;
   right: 0;
   height: 100%;
-  border: 1px solid rgba(163, 169, 165, 0.2);
-  transition: border 0.2s ease-in-out;
   overflow: hidden;
 }
 `

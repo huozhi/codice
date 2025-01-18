@@ -26,7 +26,6 @@ describe('Code', () => {
         font-size: 1rem;
         line-height: 1.25em;
         caret-color: var(--codice-editor-caret-color);
-        border-radius: 8px;
         border: none;
         outline: none;
         width: 100%;
@@ -59,8 +58,6 @@ describe('Code', () => {
         left: 0;
         right: 0;
         height: 100%;
-        border: 1px solid rgba(163, 169, 165, 0.2);
-        transition: border 0.2s ease-in-out;
         overflow: hidden;
       }
       </style><div data-codice-editor-header="true"><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><span data-codice-editor-controls-placeholder="true"></span></div><div data-codice-editor-content="true"><div data-codice-code="true"><style>
@@ -102,7 +99,7 @@ describe('Code', () => {
         border-radius: 50%;
         background-color: var(--codice-editor-control-color);
       }
-      </style><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"
+      </style><div data-codice-editor-header="true"><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><span data-codice-editor-controls-placeholder="true"></span></div><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"
     `)
   })
 
@@ -129,7 +126,6 @@ describe('Code', () => {
         font-size: 1rem;
         line-height: 1.25em;
         caret-color: var(--codice-editor-caret-color);
-        border-radius: 8px;
         border: none;
         outline: none;
         width: 100%;
@@ -162,8 +158,6 @@ describe('Code', () => {
         left: 0;
         right: 0;
         height: 100%;
-        border: 1px solid rgba(163, 169, 165, 0.2);
-        transition: border 0.2s ease-in-out;
         overflow: hidden;
       }
       </style><div data-codice-editor-header="true"><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><div data-codice-editor-title="true">file.js</div><span data-codice-editor-controls-placeholder="true"></span></div><div data-codice-editor-content="true"><div data-codice-code="true"><style>
@@ -205,7 +199,7 @@ describe('Code', () => {
         border-radius: 50%;
         background-color: var(--codice-editor-control-color);
       }
-      </style><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"
+      </style><div data-codice-editor-header="true"><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><span data-codice-editor-controls-placeholder="true"></span></div><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"
     `)
   ))
 
@@ -232,7 +226,6 @@ describe('Code', () => {
         font-size: 1rem;
         line-height: 1.25em;
         caret-color: var(--codice-editor-caret-color);
-        border-radius: 8px;
         border: none;
         outline: none;
         width: 100%;
@@ -265,8 +258,6 @@ describe('Code', () => {
         left: 0;
         right: 0;
         height: 100%;
-        border: 1px solid rgba(163, 169, 165, 0.2);
-        transition: border 0.2s ease-in-out;
         overflow: hidden;
       }
       </style><div data-codice-editor-header="true"><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><span data-codice-editor-controls-placeholder="true"></span></div><div data-codice-editor-content="true"><div data-codice-code="true"><style>
@@ -308,7 +299,7 @@ describe('Code', () => {
         border-radius: 50%;
         background-color: var(--codice-editor-control-color);
       }
-      </style><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"
+      </style><div data-codice-editor-header="true"><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><span data-codice-editor-controls-placeholder="true"></span></div><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"
     `)
   ))
 })

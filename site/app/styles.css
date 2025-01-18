@@ -119,6 +119,11 @@ input[type=radio] {
   max-width: 640px;
   border: 1px transparent solid;
 }
+.editor[data-codice-editor] textarea {
+  border-radius: 8px;
+  border: 1px solid rgba(163, 169, 165, 0.2);
+  transition: border 0.2s ease-in-out;
+}
 [data-codice-editor-title] {
   color: hsla(0, 0%, 87%, 0.34);
 }
