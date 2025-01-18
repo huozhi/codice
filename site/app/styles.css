@@ -11,6 +11,7 @@
   --codice-editor-text-color: transparent;
   --codice-editor-background-color: transparent;
   --codice-editor-caret-color: #d5efea;
+  --codice-editor-control-color: #8d8989;
 }
 
 * {
@@ -121,17 +122,19 @@ input[type=radio] {
 [data-codice-editor-title] {
   color: hsla(0, 0%, 87%, 0.34);
 }
-[data-codice-editor-controls] span {
-  background-color: #8d8989;;
+:nth
+[data-codice-editor-control] {
   transition: background-color 0.2s ease-in-out;
 }
-[data-codice-editor-controls-close]:hover {
+[data-codice-editor-control]:nth-child(1):hover {
   background-color: #f47067;
 }
-[data-codice-editor-controls-minimize]:hover {
+[data-codice-editor-control]:nth-child(2):hover {
   background-color: #fdbc40;
 }
-[data-codice-editor-controls-maximize]:hover {
+[data-codice-editor-control]:nth-child(3):hover {
   background-color: #34d399;
 }
-
+.code [data-codice-code-content] {
+  padding: 16px;
+}

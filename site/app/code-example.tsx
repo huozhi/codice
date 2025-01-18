@@ -6,7 +6,7 @@ const CODE_SIMPLE_SNIPPET_HTML = highlight(`console.log("hello world")`)
 const CODE_ULTIMATE_SNIPPET_HTML = highlight(`\
 import { Code } from 'codice'
 
-<Code controls filename="app/index.js">
+<Code controls title="app/index.js">
   {'<div>Hello World</div>'}
 </Code>
 `)
@@ -30,13 +30,13 @@ export function CodeExamples() {
   return (
     <div className="code-example">
       <CodeExampleItem title="Ultimate Code Block">
-        <Code className="code code--controls" controls filename="app/index.js">
+        <Code className="code" controls title="app/index.js">
           {CODE_ULTIMATE_SNIPPET_HTML}
         </Code>
       </CodeExampleItem>
 
-      <CodeExampleItem title="Code Block with filename">
-        <Code className="code code--filename" filename="app/index.js">
+      <CodeExampleItem title="Code Block with title">
+        <Code className="code" title="app/index.js">
           {highlight(`\
 function marker() {
   return "long live sugar-high"
@@ -45,7 +45,7 @@ function marker() {
       </CodeExampleItem>
 
       <CodeExampleItem title="Simple Code Block">
-        <Code className="code code--simple">{CODE_SIMPLE_SNIPPET_HTML}</Code>
+        <Code className="code">{CODE_SIMPLE_SNIPPET_HTML}</Code>
       </CodeExampleItem>      
     </div>
   )

@@ -20,11 +20,13 @@ const Editor = forwardRef(function EditorComponent(
   {
     title,
     value = '',
+    controls = true,
     onChange = () => {},
     highlight = () => '',
   }: {
     title?: string
     value?: string
+    controls?: boolean
     onChange?: (code: string) => void
     highlight?: (code: string) => string
   } & React.HTMLAttributes<HTMLDivElement>,
@@ -53,9 +55,9 @@ const Editor = forwardRef(function EditorComponent(
   return (
     <>
       {/* Display the header outside of the matched textarea and code */}
-      <CodeHeader filename={title} controls />
+      <CodeHeader title={title} controls={controls} />
       <div data-codice-editor-content>
-        <Code filename={null} controls={false}>
+        <Code title={null} controls={false}>
           {output}
         </Code>
         <textarea ref={composeRefs(ref, textareaRef)} value={text} onChange={onInput} />

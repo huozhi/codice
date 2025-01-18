@@ -2,7 +2,6 @@ export const css = `
 [data-codice-code] pre {
   white-space: pre-wrap;
   margin: 0;
-  padding: 16px;
 }
 [data-codice-code] code {
   counter-reset: sh-line-number;
@@ -30,11 +29,12 @@ export const css = `
 [data-codice-editor-controls-placeholder] {
   width: 52px;
 }
-[data-codice-editor-controls] span {
+[data-codice-editor-control] {
   display: flex;
   width: 11px;
   height: 11px;
   margin: 3px;
   border-radius: 50%;
+  background-color: var(--codice-editor-control-color);
 }
 `

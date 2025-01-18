@@ -33,9 +33,10 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile --prefer-offline
 
-      - name: Build
+      - name: Build and Test
         run: |
           pnpm build
+          pnpm test
 
 
   release:

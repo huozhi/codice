@@ -11,6 +11,7 @@
   "scripts": {
     "prepare": "bunchee",
     "build": "bunchee",
+    "test": "vitest",
     "dev": "bunchee --watch",
     "site": "next dev site",
     "prepublishOnly": "rm -rf dist && pnpm run build"
@@ -23,7 +24,9 @@
     "@types/react": "^19.0.7",
     "bunchee": "^6.3.2",
     "next": "15.1.5",
-    "typescript": "^5.7.3"
+    "react-dom": "^19.0.0",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.2"
   },
   "packageManager": "pnpm@9.15.4"
 }
