@@ -20,7 +20,6 @@ const Editor = forwardRef(function EditorComponent(
     value = '',
     onChange = () => {},
     highlight = () => '',
-    ...props
   }: {
     title?: string
     value?: string
@@ -51,7 +50,7 @@ const Editor = forwardRef(function EditorComponent(
   }
 
   return (
-    <div {...props} data-codice-editor>
+    <>
       <div data-codice-editor-header>
         <div data-codice-editor-controls>
           <span data-codice-editor-controls-close />
@@ -76,7 +75,7 @@ const Editor = forwardRef(function EditorComponent(
           onChange={onInput}
         />
       </div>
-    </div>
+    </>
   )
 })
 

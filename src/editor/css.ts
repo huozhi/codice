@@ -1,3 +1,4 @@
+export const css = `
 [data-codice-editor] {
   position: relative;
   overflow-y: scroll;
@@ -6,21 +7,17 @@
   justify-content: stretch;
   scrollbar-width: none;
 }
-
-/* Controls */
 [data-codice-editor-header] {
   position: relative;
   display: flex;
   padding: 16px 22px;
   align-items: center;
 }
-
 [data-codice-editor-title] {
   display: inline-block;
   flex: 1 0;
   text-align: center;
 }
-
 [data-codice-editor-controls] {
   display: inline-flex;
   align-self: center;
@@ -35,7 +32,6 @@
   margin: 3px;
   border-radius: 50%;
 }
-
 [data-codice-editor] code, 
 [data-codice-editor] textarea {
   font-family: Consolas, Monaco, monospace;
@@ -48,17 +44,6 @@
   border: none;
   outline: none;
   width: 100%;
-}
-[data-codice-editor] textarea {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  border: 1px solid rgba(163, 169, 165, 0.2);
-  transition: border 0.2s ease-in-out;
-  overflow: hidden;
 }
 [data-codice-editor] textarea::-webkit-scrollbar,
 [data-codice-editor] textarea:focus::-webkit-scrollbar,
@@ -88,4 +73,14 @@
   display: block;
   color: var(--codice-editor-text-color);
   background-color: var(--codice-editor-background-color);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  border: 1px solid rgba(163, 169, 165, 0.2);
+  transition: border 0.2s ease-in-out;
+  overflow: hidden;
 }
+`
