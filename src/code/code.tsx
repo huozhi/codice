@@ -22,9 +22,12 @@ export function Code({
   children: code,
   title,
   controls,
+  preformatted = true,
   ...props
 }: {
   children: string
+  /** Whether to use a preformatted block <pre><code> */
+  preformatted?: boolean
   title?: string
   controls?: boolean
 } & React.HTMLAttributes<HTMLDivElement>) {
@@ -32,9 +35,13 @@ export function Code({
     <div {...props} data-codice-code>
       <style key='codice-code-style'>{css}</style>
       <CodeHeader title={title} controls={controls} />
-      <pre>
-        <code dangerouslySetInnerHTML={{ __html: code }} />
-      </pre>
+      {preformatted ? (
+        <pre data-codice-code-content>
+          <code dangerouslySetInnerHTML={{ __html: code }} />
+        </pre>
+      ) : (
+        <div data-codice-code-content>{code}</div>
+      )}
     </div>
   )
 }

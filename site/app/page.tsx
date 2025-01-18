@@ -20,7 +20,7 @@ export default async function Page(props) {
           <p>
             Codice is a simple code editor and code block component for React. It is a zero-dependency library that provides a simple and easy-to-use code editor and code block component.
           </p>
-          <Code className='code--default'>
+          <Code className='code code--default'>
             {`npm install codice`}
           </Code>
         </div>

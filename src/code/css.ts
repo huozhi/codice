@@ -2,7 +2,6 @@ export const css = `
 [data-codice-code] pre {
   white-space: pre-wrap;
   margin: 0;
-  padding: 16px;
 }
 [data-codice-code] code {
   counter-reset: sh-line-number;
