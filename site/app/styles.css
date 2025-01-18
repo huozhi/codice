@@ -121,7 +121,7 @@ input[type=radio] {
 [data-codice-editor-title] {
   color: hsla(0, 0%, 87%, 0.34);
 }
-[data-codice-editor-controls] span {
+[data-codice-editor-control] {
   background-color: #8d8989;;
   transition: background-color 0.2s ease-in-out;
 }
