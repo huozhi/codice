@@ -1,6 +1,0 @@
-{
-  "type": "commonjs",
-  "devDependencies": {
-    "@types/node": "22.10.7"
-  }
-}
