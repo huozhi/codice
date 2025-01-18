@@ -53,7 +53,7 @@ const Editor = forwardRef(function EditorComponent(
   return (
     <>
       {/* Display the header outside of the matched textarea and code */}
-      <CodeHeader title={title} controls />
+      <CodeHeader filename={title} controls />
       <div data-codice-editor-content>
         <Code filename={null} controls={false}>
           {output}

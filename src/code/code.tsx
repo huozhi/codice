@@ -1,7 +1,7 @@
 import { css } from './css'
 
-export function CodeHeader({ title, controls = false }: { title: string; controls: boolean }) {
-  if (!title && !controls) return null
+export function CodeHeader({ filename, controls = false }: { filename?: string; controls: boolean }) {
+  if (!filename && !controls) return null
   // TODO: migrate inline css
   return (
     <div data-codice-editor-header>
@@ -12,24 +12,26 @@ export function CodeHeader({ title, controls = false }: { title: string; control
           <span data-codice-editor-controls-close-maximize />
         </div>
       ) : null}
-      {title ? <div data-codice-editor-title>{title}</div> : null}
+      {filename ? <div data-codice-editor-title>{filename}</div> : null}
+      {controls ? <span data-codice-editor-controls-placeholder /> : null}
     </div>
   )
 }
 
 export function Code({
-  filename,
   children: code,
+  filename,
   controls,
+  ...props
 }: {
-  filename: string
   children: string
+  filename?: string
   controls?: boolean
-}) {
+} & React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div data-codice-code>
+    <div {...props} data-codice-code>
       <style key='codice-code-style'>{css}</style>
-      <CodeHeader title={filename} controls={controls} />
+      <CodeHeader filename={filename} controls={controls} />
       <pre>
         <code dangerouslySetInnerHTML={{ __html: code }} />
       </pre>

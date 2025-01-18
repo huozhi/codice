@@ -19,38 +19,102 @@
 
 html {
   font-family: "Inter",-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 1.4;
 }
 @media screen and (max-width: 480px) {
   html {
-    font-size: 12px;
+    font-size: 13px;
+  }
+  body {
+    width: 100%;
   }
 }
 body {
-  max-width: 960px;
+  max-width: 600px;
   margin: auto;
-  padding: 4rem 1rem;
-  display: flex;
-  justify-content: center;
-  background-color: #252525;
+  padding: 0;
+  background-color: #343434;
+  color: #ffeceb;
 }
+a, a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
 input[type=radio] {
   display: none;
 }
-.features {
-  margin: 1rem 0;
+.description {
+  margin: 2rem 0;
+}
+.code--default {
+  background-color: #242424;
 }
 
-code {
-  min-height: 400px;
-}
 ::selection {
   background-color: rgba(226, 255, 234, 0.2);
 }
 
+/* Components */
+.titles {
+  margin-bottom: 6rem;
+}
+.huge-title {
+  font-size: 6rem;
+  font-weight: 700;
+  color: #f47067;
+  margin-bottom: 1rem;
+  text-shadow: -2px 1px 6px #5c5c5c;
+  transition: text-shadow 0.1s ease-in-out;
+}
+.huge-title:hover {
+  text-shadow: 0 0 10px #f47067;
+}
+.subtitle {
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  transition: text-shadow 0.1s ease-in-out;
+}
+.main {
+  padding: 4rem 1rem;
+  width: 100%;
+}
+.section {
+  margin: 4rem 0;
+}
+
+/* Code Example */
+.code-example [data-codice-code] {
+  background-color: #343434;
+  color: #d5d5d5;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 1rem 0;
+}
+
+.code-example pre code {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.code-example__item {
+  padding: 1rem;
+  background-color: #3d3d3d;
+  border-radius: 0.5rem;
+  margin: 3rem 0;
+  border: 1px solid rgba(163, 169, 165, 0.2);
+}
+.code-example__item__title {
+  margin: 0 0 2rem;
+}
+
 /* Codice Styling */
 [data-codice-editor] {
-  width: 100vw;
+  max-width: 100%;
   max-width: 640px;
   border: 1px transparent solid;
 }
@@ -70,3 +134,4 @@ code {
 [data-codice-editor-controls-maximize]:hover {
   background-color: #34d399;
 }
+
