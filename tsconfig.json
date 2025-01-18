@@ -2,8 +2,11 @@
   "compilerOptions": {
     "target": "ES2018",
     "moduleResolution": "node",
-    "module": "ES6",
+    "module": "ESNext",
     "jsx": "react-jsx",
-    "allowSyntheticDefaultImports": true
-  }
+    "allowSyntheticDefaultImports": true,
+  },
+  "include": [
+    "src"
+  ],
 }
