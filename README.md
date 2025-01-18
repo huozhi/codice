@@ -46,6 +46,7 @@ To customize the appearance of the editor, you can modify the CSS variables used
 
 - `--codice-editor-text-color`: The color of the editor text.
 - `--codice-editor-background-color`: The background color of the editor.
+- `--codice-editor-caret-color`: The color of the caret in the editor.
 
 For example, you can set the following CSS in your application:
 
@@ -53,6 +54,7 @@ For example, you can set the following CSS in your application:
 :root {
   --codice-editor-text-color: #333;
   --codice-editor-background-color: #f5f5f5;
+  --codice-editor-caret-color: #d5efea;
 }
 ```
 
