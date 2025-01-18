@@ -8,13 +8,14 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "15.1.5",
     "codice": "link:../",
+    "next": "15.1.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sugar-high": "^0.8.1"
   },
   "devDependencies": {
+    "@types/node": "22.10.7",
     "typescript": "^5.7.3"
   }
 }
