@@ -1,36 +1,6 @@
+'use client'
+
 import { useEffect, useState, useRef, forwardRef } from 'react'
-import type { CSSProperties } from 'react'
-
-const styles: Record<string, CSSProperties> = {
-  pad: {
-    display: 'inline-block',
-    overflowWrap: 'break-word',
-  },
-  pre: {
-    margin: '0px',
-    whiteSpace: 'pre-wrap',
-  },
-  input: {
-    resize: 'none',
-    display: 'block',
-    color: 'var(--editor-text-color)',
-    backgroundColor: 'var(--editor-background-color)',
-  },
-  root: {
-    position: 'relative',
-  },
-}
-
-const inputStyle = {
-  ...styles.pad,
-  ...styles.input,
-}
-const codeStyle = {
-  ...styles.pad,
-}
-const preStyle = {
-  ...styles.pre,
-}
 
 function composeRefs(...refs) {
   return (node) => {
@@ -45,14 +15,24 @@ function composeRefs(...refs) {
 }
 
 const Editor = forwardRef(function EditorComponent(
-  { title, value = '', onChange = () => {}, highlight = () => '', ...props }:
-  { title?: string, value?: string, onChange?: (code: string) => void, highlight?: (code: string) => string } & React.HTMLAttributes<HTMLDivElement>,
+  {
+    title,
+    value = '',
+    onChange = () => {},
+    highlight = () => '',
+    ...props
+  }: {
+    title?: string
+    value?: string
+    onChange?: (code: string) => void
+    highlight?: (code: string) => string
+  } & React.HTMLAttributes<HTMLDivElement>,
   ref: React.Ref<HTMLDivElement>
 ) {
   const [text, setText] = useState(value)
   const [output, setOutput] = useState(() => highlight(text))
-  const codeRef = useRef()
-  const textareaRef = useRef()
+  const codeRef = useRef(null)
+  const textareaRef = useRef(null)
 
   function update(code: string) {
     const highlighted = highlight(code)
@@ -71,22 +51,27 @@ const Editor = forwardRef(function EditorComponent(
   }
 
   return (
-    <div {...props}>
-      <div className="editor-header">
-        <div className="editor-controls">
-          <span className='editor-controls__control editor-controls__control--close' />
-          <span className='editor-controls__control editor-controls__control--minimize' />
-          <span className='editor-controls__control editor-controls__control--maximize' />
+    <div {...props} data-codice-editor>
+      <div data-codice-editor-header>
+        <div data-codice-editor-controls>
+          <span data-codice-editor-controls-close />
+          <span data-codice-editor-controls-close />
+          <span data-codice-editor-controls-close-maximize />
         </div>
-        <div className="editor-title">{title || ''}</div>
+        <div data-codice-editor-title>{title || ''}</div>
       </div>
-      <div style={styles.root}>
-        <pre style={preStyle}>
-          <code style={codeStyle} ref={codeRef} dangerouslySetInnerHTML={{ __html: output }} />
+      <div data-codice-editor-content>
+        {/* Unique elements don't need special data attributes,
+        they can be styled using the class attribute. e.g. [data-codice-editor] code { ... }
+         */}
+        <pre>
+          <code
+            ref={codeRef}
+            dangerouslySetInnerHTML={{ __html: output }}
+          />
         </pre>
         <textarea
           ref={composeRefs(ref, textareaRef)}
-          style={inputStyle}
           value={text}
           onChange={onInput}
         />

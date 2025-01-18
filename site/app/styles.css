@@ -6,8 +6,11 @@
   --sh-keyword: #f47067;
   --sh-comment: #a19595;
   --sh-jsxliterals: #989bed;
-  --editor-text-color: transparent;
-  --editor-background-color: transparent;
+  --sh-entity: #e9edc5;
+  --sh-property: #7be5f2;
+  --codice-editor-text-color: transparent;
+  --codice-editor-background-color: transparent;
+  --codice-editor-caret-color: #d5efea;
 }
 
 * {
@@ -29,7 +32,7 @@ body {
   padding: 4rem 1rem;
   display: flex;
   justify-content: center;
-  background-color: #101010;
+  background-color: #252525;
 }
 input[type=radio] {
   display: none;
@@ -37,101 +40,33 @@ input[type=radio] {
 .features {
   margin: 1rem 0;
 }
-.editor {
-  width: 100vw;
-  max-width: 640px;
-  position: relative;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
-  scrollbar-width: none;
-  border: 1px transparent solid;
-}
-
-code, textarea {
-  font-family: Consolas, Monaco, monospace;
-  padding: 1.5rem 2.2rem;
-  font-size: 1rem;
-  line-height: 1.25em;
-  caret-color: #d5efea;
-  scrollbar-width: none;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  width: 100%;
-}
-textarea {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  border: 1px solid rgba(163, 169, 165, 0.2);
-  transition: border 0.2s ease-in-out;
-  overflow: hidden;
-}
-textarea::-webkit-scrollbar,
-textarea:focus::-webkit-scrollbar,
-textarea:hover::-webkit-scrollbar {
-  width: 0;
-}
-textarea:focus {
-  border: 1px solid rgba(226, 255, 234, 0.3);
-}
 
 code {
-  border: none;
-  counter-reset: sh-line-number;
-  width: 100%;
   min-height: 400px;
 }
 ::selection {
   background-color: rgba(226, 255, 234, 0.2);
 }
 
-.editor-header {
-  position: relative;
-  display: flex;
-  padding: 16px 22px;
+/* Codice Styling */
+[data-codice-editor] {
+  width: 100vw;
+  max-width: 640px;
+  border: 1px transparent solid;
 }
-
-.editor-title {
-  flex: 1 0;
-  height: 1rem;
-  text-align: center;
+[data-codice-editor-title] {
   color: hsla(0, 0%, 87%, 0.34);
 }
-
-.editor-controls__control {
-  display: flex;
-  width: 0.8rem;
-  height: 0.8rem;
-  margin: 0.2rem;
-  border-radius: 50%;
-}
-.editor-controls {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: translate(16px, -50%);
-}
-
-.editor-controls__control {
+[data-codice-editor-controls] span {
   background-color: #8d8989;;
   transition: background-color 0.2s ease-in-out;
 }
-
-.editor-controls__control--close:hover {
+[data-codice-editor-controls-close]:hover {
   background-color: #f47067;
 }
-.editor-controls__control--minimize:hover {
+[data-codice-editor-controls-minimize]:hover {
   background-color: #fdbc40;
 }
-.editor-controls__control--maximize:hover {
+[data-codice-editor-controls-maximize]:hover {
   background-color: #34d399;
 }

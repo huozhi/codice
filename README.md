@@ -44,15 +44,15 @@ Additionally, you can pass any other props to the `Editor` component, which will
 
 To customize the appearance of the editor, you can modify the CSS variables used in the `styles` object in the provided code:
 
-- `--editor-text-color`: The color of the editor text.
-- `--editor-background-color`: The background color of the editor.
+- `--codice-editor-text-color`: The color of the editor text.
+- `--codice-editor-background-color`: The background color of the editor.
 
 For example, you can set the following CSS in your application:
 
 ```css
 :root {
-  --editor-text-color: #333;
-  --editor-background-color: #f5f5f5;
+  --codice-editor-text-color: #333;
+  --codice-editor-background-color: #f5f5f5;
 }
 ```
 
@@ -60,10 +60,10 @@ This will style the editor with a light gray background, darker gray text, and e
 
 ### CSS Class Names
 
-- `editor-controls__control`: The class name for the controls in the editor.
-  - `editor-controls__control--close`: The class name for the close button.
-  - `editor-controls__control--minimize`: The class name for the minimize button.
-  - `editor-controls__control--maximize`: The class name for the maximize button.
+- `[data-codice-editor-controls]`: The class name for the controls in the editor.
+  - `[data-codice-editor-controls-close]`: The class name for the close button.
+  - `[data-codice-editor-controls-minimize]`: The class name for the minimize button.
+  - `[data-codice-editor-controls-maximize]`: The class name for the maximize button.
 
 
 ### License
