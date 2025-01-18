@@ -41,7 +41,7 @@ Additionally, you can pass any other props to the `Editor` component, which will
 ```tsx
 import { Code } from 'codice'
 
-<Code controls filename="app/index.js">
+<Code controls title="app/index.js">
   {'<div>Hello World</div>'}
 </Code>
 ```
@@ -49,7 +49,7 @@ import { Code } from 'codice'
 #### Props
 
 - `controls` (optional): A boolean value indicating whether to display the controls for the code block.
-- `filename` (optional): A string representing the filename of the code block.
+- `title` (optional): A string representing the title of the code block.
 
 ### Styling
 
