@@ -9,7 +9,7 @@
     "dist"
   ],
   "scripts": {
-    "build:site": "pnpm build && pnpm --filter=\"site\" run build",
+    "prepare": "bunchee",
     "build": "bunchee",
     "dev": "bunchee --watch",
     "site": "next dev site",

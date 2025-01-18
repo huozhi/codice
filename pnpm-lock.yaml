@@ -28,7 +28,7 @@ importers:
   site:
     dependencies:
       codice:
-        specifier: workspace:*
+        specifier: link:../
         version: link:..
       next:
         specifier: 15.1.5
