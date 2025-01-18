@@ -1,6 +1,8 @@
 'use client'
 
 import { useEffect, useState, useRef, forwardRef } from 'react'
+import { Code } from '../code'
+import { CodeHeader } from '../code/code'
 
 function composeRefs(...refs) {
   return (node) => {
@@ -30,7 +32,6 @@ const Editor = forwardRef(function EditorComponent(
 ) {
   const [text, setText] = useState(value)
   const [output, setOutput] = useState(() => highlight(text))
-  const codeRef = useRef(null)
   const textareaRef = useRef(null)
 
   function update(code: string) {
@@ -51,29 +52,13 @@ const Editor = forwardRef(function EditorComponent(
 
   return (
     <>
-      <div data-codice-editor-header>
-        <div data-codice-editor-controls>
-          <span data-codice-editor-controls-close />
-          <span data-codice-editor-controls-close />
-          <span data-codice-editor-controls-close-maximize />
-        </div>
-        <div data-codice-editor-title>{title || ''}</div>
-      </div>
+      {/* Display the header outside of the matched textarea and code */}
+      <CodeHeader filename={title} controls />
       <div data-codice-editor-content>
-        {/* Unique elements don't need special data attributes,
-        they can be styled using the class attribute. e.g. [data-codice-editor] code { ... }
-         */}
-        <pre>
-          <code
-            ref={codeRef}
-            dangerouslySetInnerHTML={{ __html: output }}
-          />
-        </pre>
-        <textarea
-          ref={composeRefs(ref, textareaRef)}
-          value={text}
-          onChange={onInput}
-        />
+        <Code filename={null} controls={false}>
+          {output}
+        </Code>
+        <textarea ref={composeRefs(ref, textareaRef)} value={text} onChange={onInput} />
       </div>
     </>
   )

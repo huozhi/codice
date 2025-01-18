@@ -1,26 +1,20 @@
 # Codice
 
-Codice is a lightweight, customizable code editor component for React applications. It provides a simple interface for users to input code with syntax highlighting.
+Codice is a slim React components suite for code editing and displaying story. It provides an editor component and a code block component with syntax highlighting.
 
 ## Installation
 
-To install the package, run the following command:
-
+```bash
 npm install codice
+```
 
 ## Usage
 
-To use the `Editor` component from the Codice package, follow these steps:
-
-1. Import the `Editor` component:
+### Editor
 
 ```tsx
 import { Editor } from 'codice'
-```
 
-2. Use the `Editor` component in your React application:
-
-```tsx
 <Editor
   title="My Code Editor"
   value="const hello = 'world';"
@@ -29,7 +23,8 @@ import { Editor } from 'codice'
 />
 ```
 
-## Props
+
+#### Props
 
 The following props are supported by the `Editor` component:
 
@@ -40,12 +35,31 @@ The following props are supported by the `Editor` component:
 
 Additionally, you can pass any other props to the `Editor` component, which will be applied to the root `div` element.
 
-## Customization
+
+### Code Block
+
+```tsx
+import { Code } from 'codice'
+
+<Code controls filename="app/index.js">
+  {'<div>Hello World</div>'}
+</Code>
+```
+
+#### Props
+
+- `controls` (optional): A boolean value indicating whether to display the controls for the code block.
+- `filename` (optional): A string representing the filename of the code block.
+
+### Styling
+
+#### CSS Variables
 
 To customize the appearance of the editor, you can modify the CSS variables used in the `styles` object in the provided code:
 
 - `--codice-editor-text-color`: The color of the editor text.
 - `--codice-editor-background-color`: The background color of the editor.
+- `--codice-editor-caret-color`: The color of the caret in the editor.
 
 For example, you can set the following CSS in your application:
 
@@ -53,12 +67,15 @@ For example, you can set the following CSS in your application:
 :root {
   --codice-editor-text-color: #333;
   --codice-editor-background-color: #f5f5f5;
+  --codice-editor-caret-color: #d5efea;
 }
 ```
 
 This will style the editor with a light gray background, darker gray text, and even lighter gray controls.
 
-### CSS Class Names
+#### CSS Attributes
+
+You can also customize the appearance of the editor by overriding the CSS attributes of the code block:
 
 - `[data-codice-editor-controls]`: The class name for the controls in the editor.
   - `[data-codice-editor-controls-close]`: The class name for the close button.
@@ -66,6 +83,6 @@ This will style the editor with a light gray background, darker gray text, and e
   - `[data-codice-editor-controls-maximize]`: The class name for the maximize button.
 
 
-### License
+## License
 
 Codice is released under the MIT License. For more details, see the LICENSE file included in this repository.

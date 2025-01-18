@@ -3,7 +3,17 @@ import './styles.css'
 export default function layout({ children }) {
   return (
     <html>
-      <body>{children}</body>
+      <body>
+        <div className='main'>
+          {children}
+          <footer>
+            <p>
+              © {new Date().getFullYear()},{` `}
+              <a href={'https://github.com/huozhi'}>Huozhi</a>
+            </p>
+          </footer>
+        </div>
+      </body>
     </html>
   )
 }

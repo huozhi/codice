@@ -7,44 +7,25 @@ export const css = `
   justify-content: stretch;
   scrollbar-width: none;
 }
-[data-codice-editor-header] {
-  position: relative;
-  display: flex;
-  padding: 16px 22px;
-  align-items: center;
-}
-[data-codice-editor-title] {
-  display: inline-block;
-  flex: 1 0;
-  text-align: center;
-}
-[data-codice-editor-controls] {
-  display: inline-flex;
-  align-self: center;
-  justify-self: start;
-  align-items: center;
-  justify-content: center;
-}
-[data-codice-editor-controls] span {
-  display: flex;
-  width: 6px;
-  height: 6px;
-  margin: 3px;
-  border-radius: 50%;
-}
-[data-codice-editor] code, 
+[data-codice-editor] code,
 [data-codice-editor] textarea {
-  font-family: Consolas, Monaco, monospace;
+  overflow-wrap: break-word;
+  scrollbar-width: none;
   padding: 1.5rem 2.2rem;
   font-size: 1rem;
   line-height: 1.25em;
   caret-color: var(--codice-editor-caret-color);
-  scrollbar-width: none;
   border-radius: 8px;
   border: none;
   outline: none;
   width: 100%;
+  font-family: Consolas, Monaco, monospace;
 }
+[data-codice-editor] code {
+  display: inline-block;
+  width: 100%;
+}
+
 [data-codice-editor] textarea::-webkit-scrollbar,
 [data-codice-editor] textarea:focus::-webkit-scrollbar,
 [data-codice-editor] textarea:hover::-webkit-scrollbar {
@@ -56,19 +37,7 @@ export const css = `
 [data-codice-editor-content] {
   position: relative;
 }
-[data-codice-editor] pre {
-  margin: 0;
-  white-space: pre-wrap;
-}
-[data-codice-editor] code {
-  display: inline-block;
-  overflow-wrap: break-word;
-  border: none;
-  counter-reset: sh-line-number;
-  width: 100%;
-}
 [data-codice-editor] textarea {
-  overflow-wrap: break-word;
   resize: none;
   display: block;
   color: var(--codice-editor-text-color);
