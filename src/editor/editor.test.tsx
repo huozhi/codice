@@ -60,7 +60,7 @@ describe('Code', () => {
         height: 100%;
         overflow: hidden;
       }
-      </style><div data-codice-editor-header="true"><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><span data-codice-editor-controls-placeholder="true"></span></div><div data-codice-editor-content="true"><div data-codice-code="true"><style>
+      </style><div data-codice-editor-content="true"><div data-codice-code="true"><style>
       [data-codice-code] pre {
         white-space: pre-wrap;
         margin: 0;
@@ -160,7 +160,7 @@ describe('Code', () => {
         height: 100%;
         overflow: hidden;
       }
-      </style><div data-codice-editor-header="true"><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><div data-codice-editor-title="true">file.js</div><span data-codice-editor-controls-placeholder="true"></span></div><div data-codice-editor-content="true"><div data-codice-code="true"><style>
+      </style><div data-codice-editor-header="true"><div data-codice-editor-title="true">file.js</div></div><div data-codice-editor-content="true"><div data-codice-code="true"><style>
       [data-codice-code] pre {
         white-space: pre-wrap;
         margin: 0;

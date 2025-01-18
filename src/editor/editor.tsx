@@ -20,7 +20,7 @@ const Editor = forwardRef(function EditorComponent(
   {
     title,
     value = '',
-    controls = true,
+    controls,
     onChange = () => {},
     highlight = () => '',
   }: {
@@ -57,7 +57,7 @@ const Editor = forwardRef(function EditorComponent(
       {/* Display the header outside of the matched textarea and code */}
       <CodeHeader title={title} controls={controls} />
       <div data-codice-editor-content>
-        <Code title={null} controls={controls ?? false}>
+        <Code title={null} controls={controls ?? true}>
           {output}
         </Code>
         <textarea ref={composeRefs(ref, textareaRef)} value={text} onChange={onInput} />
