@@ -1,0 +1,20 @@
+{
+  "name": "site",
+  "type": "commonjs",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "15.1.5",
+    "codice": "workspace:*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sugar-high": "^0.8.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}
