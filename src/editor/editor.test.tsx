@@ -103,7 +103,7 @@ describe('Code', () => {
           counter-increment: codice-code-line-number 1;
           content: counter(codice-code-line-number);
           display: inline-block;
-          width: 24px;
+          min-width: 24px;
           margin-right: 18px;
           margin-left: -42px;
           text-align: right;
@@ -214,7 +214,7 @@ describe('Code', () => {
           counter-increment: codice-code-line-number 1;
           content: counter(codice-code-line-number);
           display: inline-block;
-          width: 24px;
+          min-width: 24px;
           margin-right: 18px;
           margin-left: -42px;
           text-align: right;
@@ -294,7 +294,7 @@ describe('Code', () => {
           counter-increment: codice-code-line-number 1;
           content: counter(codice-code-line-number);
           display: inline-block;
-          width: 24px;
+          min-width: 24px;
           margin-right: 18px;
           margin-left: -42px;
           text-align: right;
