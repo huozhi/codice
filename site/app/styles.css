@@ -24,9 +24,6 @@ html {
   line-height: 1.4;
 }
 @media screen and (max-width: 480px) {
-  html {
-    font-size: 13px;
-  }
   body {
     width: 100%;
   }
@@ -122,6 +119,7 @@ input[type=radio] {
   border-radius: 8px;
   border: 1px solid rgba(163, 169, 165, 0.2);
   transition: border 0.2s ease-in-out;
+  padding-top: 64px; /* TODO: dynamic padding-top with controls */
 }
 [data-codice-editor-title] {
   color: hsla(0, 0%, 87%, 0.34);
