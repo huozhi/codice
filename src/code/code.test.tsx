@@ -5,45 +5,15 @@ import { renderToString } from 'react-dom/server'
 describe('Code', () => {
   it('default props', () => {
     expect(renderToString(<Code>test</Code>)).toMatchInlineSnapshot(`
-      "<div data-codice-code="true"><style>
+      "<div data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
+        --codice-editor-line-number-color: #a4a4a4;
+      }
       [data-codice-code] pre {
         white-space: pre-wrap;
         margin: 0;
       }
       [data-codice-code] code {
-        counter-reset: sh-line-number;
         border: none;
-      }
-      [data-codice-editor-header] {
-        position: relative;
-        display: flex;
-        padding: 16px 22px 8px;
-        align-items: center;
-      }
-      [data-codice-editor-title] {
-        display: inline-block;
-        flex: 1 0;
-        text-align: center;
-        line-height: 1;
-      }
-      [data-codice-editor-controls] {
-        display: inline-flex;
-        align-self: center;
-        justify-self: start;
-        align-items: center;
-        justify-content: center;
-      }
-      [data-codice-editor-controls],
-      [data-codice-editor-controls-placeholder] {
-        width: 52px;
-      }
-      [data-codice-editor-control] {
-        display: flex;
-        width: 10px;
-        height: 10px;
-        margin: 3px;
-        border-radius: 50%;
-        background-color: var(--codice-editor-control-color);
       }
       </style><pre data-codice-code-content="true"><code>test</code></pre></div>"
     `)
@@ -51,39 +21,40 @@ describe('Code', () => {
 
   it('with title', () => {
     expect(renderToString(<Code title="file.js">test</Code>)).toMatchInlineSnapshot(`
-      "<div data-codice-code="true"><style>
+      "<div data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
+        --codice-editor-line-number-color: #a4a4a4;
+      }
       [data-codice-code] pre {
         white-space: pre-wrap;
         margin: 0;
       }
       [data-codice-code] code {
-        counter-reset: sh-line-number;
         border: none;
       }
-      [data-codice-editor-header] {
+      </style><div data-codice-editor-header="true"><style data-codice-style="true">[data-codice-editor-header] {
         position: relative;
         display: flex;
         padding: 16px 22px 8px;
         align-items: center;
       }
-      [data-codice-editor-title] {
+      [data-codice-editor-header] [data-codice-editor-title] {
         display: inline-block;
         flex: 1 0;
         text-align: center;
         line-height: 1;
       }
-      [data-codice-editor-controls] {
+      [data-codice-editor-header] [data-codice-editor-controls] {
         display: inline-flex;
         align-self: center;
         justify-self: start;
         align-items: center;
         justify-content: center;
       }
-      [data-codice-editor-controls],
-      [data-codice-editor-controls-placeholder] {
+      [data-codice-editor-header] [data-codice-editor-controls],
+      [data-codice-editor-header] [data-codice-editor-controls-placeholder] {
         width: 52px;
       }
-      [data-codice-editor-control] {
+      [data-codice-editor-header] [data-codice-editor-control] {
         display: flex;
         width: 10px;
         height: 10px;
@@ -91,45 +62,46 @@ describe('Code', () => {
         border-radius: 50%;
         background-color: var(--codice-editor-control-color);
       }
-      </style><div data-codice-editor-header="true"><div data-codice-editor-title="true">file.js</div></div><pre data-codice-code-content="true"><code>test</code></pre></div>"
+      </style><div data-codice-editor-title="true">file.js</div></div><pre data-codice-code-content="true"><code>test</code></pre></div>"
     `)
   })
 
   it('with controls', () => {
     expect(renderToString(<Code controls>test</Code>)).toMatchInlineSnapshot(`
-      "<div data-codice-code="true"><style>
+      "<div data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
+        --codice-editor-line-number-color: #a4a4a4;
+      }
       [data-codice-code] pre {
         white-space: pre-wrap;
         margin: 0;
       }
       [data-codice-code] code {
-        counter-reset: sh-line-number;
         border: none;
       }
-      [data-codice-editor-header] {
+      </style><div data-codice-editor-header="true"><style data-codice-style="true">[data-codice-editor-header] {
         position: relative;
         display: flex;
         padding: 16px 22px 8px;
         align-items: center;
       }
-      [data-codice-editor-title] {
+      [data-codice-editor-header] [data-codice-editor-title] {
         display: inline-block;
         flex: 1 0;
         text-align: center;
         line-height: 1;
       }
-      [data-codice-editor-controls] {
+      [data-codice-editor-header] [data-codice-editor-controls] {
         display: inline-flex;
         align-self: center;
         justify-self: start;
         align-items: center;
         justify-content: center;
       }
-      [data-codice-editor-controls],
-      [data-codice-editor-controls-placeholder] {
+      [data-codice-editor-header] [data-codice-editor-controls],
+      [data-codice-editor-header] [data-codice-editor-controls-placeholder] {
         width: 52px;
       }
-      [data-codice-editor-control] {
+      [data-codice-editor-header] [data-codice-editor-control] {
         display: flex;
         width: 10px;
         height: 10px;
@@ -137,7 +109,7 @@ describe('Code', () => {
         border-radius: 50%;
         background-color: var(--codice-editor-control-color);
       }
-      </style><div data-codice-editor-header="true"><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><span data-codice-editor-controls-placeholder="true"></span></div><pre data-codice-code-content="true"><code>test</code></pre></div>"
+      </style><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><span data-codice-editor-controls-placeholder="true"></span></div><pre data-codice-code-content="true"><code>test</code></pre></div>"
     `)
   })
 })

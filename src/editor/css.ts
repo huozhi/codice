@@ -26,14 +26,10 @@ ${R} code {
   display: inline-block;
   width: 100%;
 }
-
 ${R} textarea::-webkit-scrollbar,
 ${R} textarea:focus::-webkit-scrollbar,
 ${R} textarea:hover::-webkit-scrollbar {
   width: 0;
-}
-${R} textarea:focus {
-  border: 1px solid hsla(137, 100.00%, 94.30%, 0.30);
 }
 ${R} [data-codice-editor-content] {
   position: relative;
