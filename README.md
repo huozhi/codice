@@ -83,6 +83,15 @@ You can also customize the appearance of the editor by overriding the CSS attrib
 - `[data-codice-editor-controls]`: The class name for the controls in the editor.
 - `[data-codice-editor-control]`: The class name of control items, there're 3 of them.
 
+### **Projects Powered by Codice**
+
+Codice serves as the backbone for a growing ecosystem of packages that rely on its code editing and presenting capabilities. These projects showcase the versatility and performance Codice brings to modern development workflows:
+
+- **[sugar-high](https://sugar-high.vercel.app/)**: A fast and lightweight syntax highlighter, leveraging Codice for live editing integration on website.
+- **[remark-sugar-high](https://remark-sugar-high.vercel.app/)**: A Remark plugin for adding syntax-highlighted code blocks to Markdown content, powered by Codice for precise and visually appealing outputs.  
+- **[devjar](https://devjar.vercel.app/)**: A tool for bundling interactive React code sandbox, using Codice to running the editor experience on website..  
+
+These projects and many more are built on Codice, demonstrating its ability to adapt to a wide range of use cases, from syntax highlighting in Markdown to powering interactive coding experiences. Codice isn’t just a library—it’s a foundation for modern, code-first solutions.
 
 ## License
 
