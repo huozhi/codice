@@ -1,5 +1,6 @@
-export const css = `
-[data-codice-editor] {
+const R = '[data-codice-editor]'
+export const css = `\
+${R} {
   position: relative;
   overflow-y: scroll;
   display: flex;
@@ -7,36 +8,33 @@ export const css = `
   justify-content: stretch;
   scrollbar-width: none;
 }
-[data-codice-editor] code,
-[data-codice-editor] textarea {
+${R} code,
+${R} textarea {
+  font-family: Consolas, Monaco, monospace;
+  line-break: anywhere;
   overflow-wrap: break-word;
   scrollbar-width: none;
-  padding: 1.5rem 2.2rem;
-  font-size: 1rem;
-  line-height: 1.25em;
+  padding: 24px 36px;
+  font-size: 16px;
+  line-height: 20px;
   caret-color: var(--codice-editor-caret-color);
   border: none;
   outline: none;
   width: 100%;
-  font-family: Consolas, Monaco, monospace;
 }
-[data-codice-editor] code {
+${R} code {
   display: inline-block;
   width: 100%;
 }
-
-[data-codice-editor] textarea::-webkit-scrollbar,
-[data-codice-editor] textarea:focus::-webkit-scrollbar,
-[data-codice-editor] textarea:hover::-webkit-scrollbar {
+${R} textarea::-webkit-scrollbar,
+${R} textarea:focus::-webkit-scrollbar,
+${R} textarea:hover::-webkit-scrollbar {
   width: 0;
 }
-[data-codice-editor] textarea:focus {
-  border: 1px solid rgba(226, 255, 234, 0.3);
-}
-[data-codice-editor-content] {
+${R} [data-codice-editor-content] {
   position: relative;
 }
-[data-codice-editor] textarea {
+${R} textarea {
   resize: none;
   display: block;
   color: var(--codice-editor-text-color);

@@ -9,8 +9,7 @@ describe('Code', () => {
         <Editor>test</Editor>
       )
     ).toMatchInlineSnapshot(`
-      "<div data-codice-editor="true"><style>
-      [data-codice-editor] {
+      "<div data-codice-editor="true" data-codice-editor-title="" data-codice-editor-controls="false" data-codice-editor-line-numbers="false"><style data-codice-style="true">[data-codice-editor] {
         position: relative;
         overflow-y: scroll;
         display: flex;
@@ -20,31 +19,28 @@ describe('Code', () => {
       }
       [data-codice-editor] code,
       [data-codice-editor] textarea {
+        font-family: Consolas, Monaco, monospace;
+        line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
-        padding: 1.5rem 2.2rem;
-        font-size: 1rem;
-        line-height: 1.25em;
+        padding: 24px 36px;
+        font-size: 16px;
+        line-height: 20px;
         caret-color: var(--codice-editor-caret-color);
         border: none;
         outline: none;
         width: 100%;
-        font-family: Consolas, Monaco, monospace;
       }
       [data-codice-editor] code {
         display: inline-block;
         width: 100%;
       }
-
       [data-codice-editor] textarea::-webkit-scrollbar,
       [data-codice-editor] textarea:focus::-webkit-scrollbar,
       [data-codice-editor] textarea:hover::-webkit-scrollbar {
         width: 0;
       }
-      [data-codice-editor] textarea:focus {
-        border: 1px solid rgba(226, 255, 234, 0.3);
-      }
-      [data-codice-editor-content] {
+      [data-codice-editor] [data-codice-editor-content] {
         position: relative;
       }
       [data-codice-editor] textarea {
@@ -60,45 +56,59 @@ describe('Code', () => {
         height: 100%;
         overflow: hidden;
       }
-      </style><div data-codice-editor-header="true"><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><span data-codice-editor-controls-placeholder="true"></span></div><div data-codice-editor-content="true"><div data-codice-code="true"><style>
-      [data-codice-code] pre {
-        white-space: pre-wrap;
-        margin: 0;
-      }
-      [data-codice-code] code {
-        counter-reset: sh-line-number;
-        border: none;
-      }
-      [data-codice-editor-header] {
+      </style><div data-codice-editor-header="true"><style data-codice-style="true">[data-codice-editor-header] {
         position: relative;
         display: flex;
         padding: 16px 22px 8px;
         align-items: center;
       }
-      [data-codice-editor-title] {
+      [data-codice-editor-header] [data-codice-editor-title] {
         display: inline-block;
         flex: 1 0;
         text-align: center;
         line-height: 1;
       }
-      [data-codice-editor-controls] {
+      [data-codice-editor-header] [data-codice-editor-controls] {
         display: inline-flex;
         align-self: center;
         justify-self: start;
         align-items: center;
         justify-content: center;
       }
-      [data-codice-editor-controls],
-      [data-codice-editor-controls-placeholder] {
+      [data-codice-editor-header] [data-codice-editor-controls],
+      [data-codice-editor-header] [data-codice-editor-controls-placeholder] {
         width: 52px;
       }
-      [data-codice-editor-control] {
+      [data-codice-editor-header] [data-codice-editor-control] {
         display: flex;
         width: 10px;
         height: 10px;
         margin: 3px;
         border-radius: 50%;
         background-color: var(--codice-editor-control-color);
+      }
+      </style><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><span data-codice-editor-controls-placeholder="true"></span></div><div data-codice-editor-content="true"><div data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
+        --codice-editor-line-number-color: #a4a4a4;
+      }
+      [data-codice-code] pre {
+        white-space: pre-wrap;
+        margin: 0;
+      }
+      [data-codice-code] code {
+        border: none;
+      }
+      @scope {
+        code { counter-reset: codice-code-line-number; }
+        .sh__line::before {
+          counter-increment: codice-code-line-number 1;
+          content: counter(codice-code-line-number);
+          display: inline-block;
+          width: 24px;
+          margin-right: 18px;
+          margin-left: -42px;
+          text-align: right;
+          color: var(--codice-editor-line-number-color);
+        }
       }
       </style><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"
     `)
@@ -110,8 +120,7 @@ describe('Code', () => {
         <Editor title="file.js">test</Editor>
       )
     ).toMatchInlineSnapshot(`
-      "<div data-codice-editor="true"><style>
-      [data-codice-editor] {
+      "<div data-codice-editor="true" data-codice-editor-title="file.js" data-codice-editor-controls="false" data-codice-editor-line-numbers="false"><style data-codice-style="true">[data-codice-editor] {
         position: relative;
         overflow-y: scroll;
         display: flex;
@@ -121,31 +130,28 @@ describe('Code', () => {
       }
       [data-codice-editor] code,
       [data-codice-editor] textarea {
+        font-family: Consolas, Monaco, monospace;
+        line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
-        padding: 1.5rem 2.2rem;
-        font-size: 1rem;
-        line-height: 1.25em;
+        padding: 24px 36px;
+        font-size: 16px;
+        line-height: 20px;
         caret-color: var(--codice-editor-caret-color);
         border: none;
         outline: none;
         width: 100%;
-        font-family: Consolas, Monaco, monospace;
       }
       [data-codice-editor] code {
         display: inline-block;
         width: 100%;
       }
-
       [data-codice-editor] textarea::-webkit-scrollbar,
       [data-codice-editor] textarea:focus::-webkit-scrollbar,
       [data-codice-editor] textarea:hover::-webkit-scrollbar {
         width: 0;
       }
-      [data-codice-editor] textarea:focus {
-        border: 1px solid rgba(226, 255, 234, 0.3);
-      }
-      [data-codice-editor-content] {
+      [data-codice-editor] [data-codice-editor-content] {
         position: relative;
       }
       [data-codice-editor] textarea {
@@ -161,45 +167,59 @@ describe('Code', () => {
         height: 100%;
         overflow: hidden;
       }
-      </style><div data-codice-editor-header="true"><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><div data-codice-editor-title="true">file.js</div><span data-codice-editor-controls-placeholder="true"></span></div><div data-codice-editor-content="true"><div data-codice-code="true"><style>
-      [data-codice-code] pre {
-        white-space: pre-wrap;
-        margin: 0;
-      }
-      [data-codice-code] code {
-        counter-reset: sh-line-number;
-        border: none;
-      }
-      [data-codice-editor-header] {
+      </style><div data-codice-editor-header="true"><style data-codice-style="true">[data-codice-editor-header] {
         position: relative;
         display: flex;
         padding: 16px 22px 8px;
         align-items: center;
       }
-      [data-codice-editor-title] {
+      [data-codice-editor-header] [data-codice-editor-title] {
         display: inline-block;
         flex: 1 0;
         text-align: center;
         line-height: 1;
       }
-      [data-codice-editor-controls] {
+      [data-codice-editor-header] [data-codice-editor-controls] {
         display: inline-flex;
         align-self: center;
         justify-self: start;
         align-items: center;
         justify-content: center;
       }
-      [data-codice-editor-controls],
-      [data-codice-editor-controls-placeholder] {
+      [data-codice-editor-header] [data-codice-editor-controls],
+      [data-codice-editor-header] [data-codice-editor-controls-placeholder] {
         width: 52px;
       }
-      [data-codice-editor-control] {
+      [data-codice-editor-header] [data-codice-editor-control] {
         display: flex;
         width: 10px;
         height: 10px;
         margin: 3px;
         border-radius: 50%;
         background-color: var(--codice-editor-control-color);
+      }
+      </style><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><div data-codice-editor-title="true">file.js</div><span data-codice-editor-controls-placeholder="true"></span></div><div data-codice-editor-content="true"><div data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
+        --codice-editor-line-number-color: #a4a4a4;
+      }
+      [data-codice-code] pre {
+        white-space: pre-wrap;
+        margin: 0;
+      }
+      [data-codice-code] code {
+        border: none;
+      }
+      @scope {
+        code { counter-reset: codice-code-line-number; }
+        .sh__line::before {
+          counter-increment: codice-code-line-number 1;
+          content: counter(codice-code-line-number);
+          display: inline-block;
+          width: 24px;
+          margin-right: 18px;
+          margin-left: -42px;
+          text-align: right;
+          color: var(--codice-editor-line-number-color);
+        }
       }
       </style><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"
     `)
@@ -211,8 +231,7 @@ describe('Code', () => {
         <Editor controls={false} className="editor">test</Editor>
       )
     ).toMatchInlineSnapshot(`
-      "<div class="editor" data-codice-editor="true"><style>
-      [data-codice-editor] {
+      "<div class="editor" data-codice-editor="true" data-codice-editor-title="" data-codice-editor-controls="false" data-codice-editor-line-numbers="false"><style data-codice-style="true">[data-codice-editor] {
         position: relative;
         overflow-y: scroll;
         display: flex;
@@ -222,31 +241,28 @@ describe('Code', () => {
       }
       [data-codice-editor] code,
       [data-codice-editor] textarea {
+        font-family: Consolas, Monaco, monospace;
+        line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
-        padding: 1.5rem 2.2rem;
-        font-size: 1rem;
-        line-height: 1.25em;
+        padding: 24px 36px;
+        font-size: 16px;
+        line-height: 20px;
         caret-color: var(--codice-editor-caret-color);
         border: none;
         outline: none;
         width: 100%;
-        font-family: Consolas, Monaco, monospace;
       }
       [data-codice-editor] code {
         display: inline-block;
         width: 100%;
       }
-
       [data-codice-editor] textarea::-webkit-scrollbar,
       [data-codice-editor] textarea:focus::-webkit-scrollbar,
       [data-codice-editor] textarea:hover::-webkit-scrollbar {
         width: 0;
       }
-      [data-codice-editor] textarea:focus {
-        border: 1px solid rgba(226, 255, 234, 0.3);
-      }
-      [data-codice-editor-content] {
+      [data-codice-editor] [data-codice-editor-content] {
         position: relative;
       }
       [data-codice-editor] textarea {
@@ -262,45 +278,28 @@ describe('Code', () => {
         height: 100%;
         overflow: hidden;
       }
-      </style><div data-codice-editor-content="true"><div data-codice-code="true"><style>
+      </style><div data-codice-editor-content="true"><div data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
+        --codice-editor-line-number-color: #a4a4a4;
+      }
       [data-codice-code] pre {
         white-space: pre-wrap;
         margin: 0;
       }
       [data-codice-code] code {
-        counter-reset: sh-line-number;
         border: none;
       }
-      [data-codice-editor-header] {
-        position: relative;
-        display: flex;
-        padding: 16px 22px 8px;
-        align-items: center;
-      }
-      [data-codice-editor-title] {
-        display: inline-block;
-        flex: 1 0;
-        text-align: center;
-        line-height: 1;
-      }
-      [data-codice-editor-controls] {
-        display: inline-flex;
-        align-self: center;
-        justify-self: start;
-        align-items: center;
-        justify-content: center;
-      }
-      [data-codice-editor-controls],
-      [data-codice-editor-controls-placeholder] {
-        width: 52px;
-      }
-      [data-codice-editor-control] {
-        display: flex;
-        width: 10px;
-        height: 10px;
-        margin: 3px;
-        border-radius: 50%;
-        background-color: var(--codice-editor-control-color);
+      @scope {
+        code { counter-reset: codice-code-line-number; }
+        .sh__line::before {
+          counter-increment: codice-code-line-number 1;
+          content: counter(codice-code-line-number);
+          display: inline-block;
+          width: 24px;
+          margin-right: 18px;
+          margin-left: -42px;
+          text-align: right;
+          color: var(--codice-editor-line-number-color);
+        }
       }
       </style><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"
     `)

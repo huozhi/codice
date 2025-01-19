@@ -26,8 +26,6 @@ export default function Page() {
 
 export function EditorExample({ searchParams } : { searchParams: { c?: string } }) {
   return (
-    <div>
-      <LiveEditor searchParams={searchParams} defaultCode={defaultCode} />
-    </div>
+    <LiveEditor searchParams={searchParams} defaultCode={defaultCode} />
   )
 }
