@@ -108,6 +108,36 @@ input[type=radio] {
 .code-example__item__title {
   margin: 0 0 2rem;
 }
+.controls-manager {
+  margin: 2rem 0;
+}
+.controls-manager label {
+  display: inline-block;
+  padding: 2px 4px;
+  color: #fff;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  border: 1px solid #fdb9b5;
+  transition: all 0.2s ease-in-out;
+}
+.controls-manager label[data-checked="true"] {
+  background-color: #fdb9b5;
+  color: #343434;
+}
+.controls-manager label span {
+  font-size: 12px;
+}
+.controls-manager label:hover {
+  border: 1px solid #f47067;
+}
+.controls-manager .control-button {
+  margin: 4px;
+}
+
+.controls-manager input[type="checkbox"] {
+  /* make it looks fancy */
+  display: none;
+}
 
 /* Codice Styling */
 [data-codice-editor] {
@@ -119,7 +149,6 @@ input[type=radio] {
   border-radius: 8px;
   border: 1px solid rgba(163, 169, 165, 0.2);
   transition: border 0.2s ease-in-out;
-  padding-top: 64px; /* TODO: dynamic padding-top with controls */
 }
 [data-codice-editor-title] {
   color: hsla(0, 0%, 87%, 0.34);

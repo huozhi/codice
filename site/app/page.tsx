@@ -2,7 +2,11 @@ import { EditorExample } from './editor-example'
 import { CodeExamples } from './code-example'
 import { Code } from 'codice'
 
-export default async function Page(props) {
+type SearchParams = {
+  c?: string // default code
+}
+
+export default async function Page(props: { searchParams: Promise<SearchParams> }) {
   const searchParams = await props.searchParams
 
   return (
@@ -28,7 +32,7 @@ export default async function Page(props) {
       </div>
 
       <div className='section'>
-        <h2>Editor Examples</h2>
+        <h2>Editor Example</h2>
         <EditorExample searchParams={searchParams} />
       </div>
 
