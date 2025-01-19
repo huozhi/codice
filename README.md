@@ -28,10 +28,11 @@ import { Editor } from 'codice'
 
 The following props are supported by the `Editor` component:
 
-- `title` (optional): A string representing the title of the editor.
 - `value` (optional): A string representing the initial code value of the editor.
 - `onChange` (optional): A function called when the code in the editor changes. The function will receive the updated code as its argument.
+- `title` (optional): A string representing the title of the editor.
 - `controls` (optional): A boolean value indicating whether to display the controls for the editor.
+- `lineNumbers` (optional): A boolean value indicating whether to display line numbers in the editor.
 - `highlight` (optional): A function used to provide syntax highlighting for the code. It should accept the code as an argument and return the highlighted code as an HTML string. You can use any syntax highlighting library (e.g., [Prism](https://prismjs.com/)) to implement this functionality.
 
 Additionally, you can pass any other props to the `Editor` component, which will be applied to the root `div` element.
@@ -49,8 +50,9 @@ import { Code } from 'codice'
 
 #### Props
 
-- `controls` (optional): A boolean value indicating whether to display the controls for the code block.
 - `title` (optional): A string representing the title of the code block.
+- `controls` (optional): A boolean value indicating whether to display the controls for the code block.
+- `lineNumbers` (optional): A boolean value indicating whether to display line numbers in the code block.
 - `preformatted` (optional): A boolean value indicating whether the code should be displayed as preformatted text. If `true`, the code will be displayed in a `pre` and a `code` element. If `false`, the code will be displayed in a `div` element.
 
 ### Styling
