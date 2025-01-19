@@ -6,7 +6,12 @@ import { highlight } from 'sugar-high'
 
 const CODE_QUERY_KEY = 'c'
 
-function ControlButton({ id, checked, onChange, name }) {
+function ControlButton({ id, checked, onChange, propName }: {
+  id: string
+  checked: boolean
+  onChange: (checked: boolean) => void
+  propName: string
+}) {
   return (
     <span className='control-button'>
       <input
@@ -16,7 +21,7 @@ function ControlButton({ id, checked, onChange, name }) {
         onChange={(event) => onChange(event.target.checked)}
       />
       <label data-checked={checked} htmlFor={id}>
-        {`${name}={`}<span>{checked ? '●' : '○'}</span>{`}`}
+        {`${propName}={`}<span>{checked ? '●' : '○'}</span>{`}`}
       </label>
     </span>
   )
@@ -34,23 +39,29 @@ export function LiveEditor({
   const [code, setCode] = useState(initialCode)
   const [title, setTitle] = useState<'index.js' | ''>('index.js')
   const [controls, setControls] = useState(true)
+  const [lineNumbers, setLineNumbers] = useState(true)
 
   return (
     <div>
-      {/* Controls to for displaying the `title` and `controls` */}
+      {/* Controls to for displaying the `title`, `controls`, `lineNumbers` */}
       <div className="controls-manager">
         <ControlButton
-          id="title-control"
+          id="control-title"
           checked={!!title}
           onChange={(checked) => setTitle(checked ? 'index.js' : '')}
-          name="title"
+          propName="title"
         />
-
         <ControlButton
-          id="controls-control"
+          id="control-control"
           checked={controls}
           onChange={setControls}
-          name="controls"
+          propName="controls"
+        />
+        <ControlButton
+          id="control-line-numbers"
+          checked={lineNumbers}
+          onChange={setLineNumbers}
+          propName="lineNumbers"
         />
       </div>
 
@@ -59,6 +70,7 @@ export function LiveEditor({
         className="editor"
         title={title}
         controls={controls}
+        lineNumbers={lineNumbers}
         highlight={(text) => highlight(text)}
         onChange={(text) => setCode(text)}
       />
