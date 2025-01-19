@@ -17,6 +17,7 @@ export const css = `
   display: inline-block;
   flex: 1 0;
   text-align: center;
+  line-height: 1;
 }
 [data-codice-editor-controls] {
   display: inline-flex;
@@ -31,8 +32,8 @@ export const css = `
 }
 [data-codice-editor-control] {
   display: flex;
-  width: 11px;
-  height: 11px;
+  width: 10px;
+  height: 10px;
   margin: 3px;
   border-radius: 50%;
   background-color: var(--codice-editor-control-color);

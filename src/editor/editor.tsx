@@ -54,10 +54,11 @@ const Editor = forwardRef(function EditorComponent(
 
   return (
     <>
-      {/* Display the header outside of the matched textarea and code */}
-      <CodeHeader title={title} controls={controls} />
+      {/* Display the header outside of the matched textarea and code, by default display controls */}
+      <CodeHeader title={title} controls={controls ?? true} />
       <div data-codice-editor-content>
-        <Code title={null} controls={controls ?? true}>
+        {/* hide controls component inside Code to keep content matched with textarea */}
+        <Code title={null} controls={false}>
           {output}
         </Code>
         <textarea ref={composeRefs(ref, textareaRef)} value={text} onChange={onInput} />
