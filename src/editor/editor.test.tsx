@@ -56,6 +56,9 @@ describe('Code', () => {
         height: 100%;
         overflow: hidden;
       }
+      [data-codice-editor][data-codice-editor-line-numbers="true"] textarea {
+        padding-left: 51px;
+      }
       </style><div data-codice-editor-header="true"><style data-codice-style="true">[data-codice-editor-header] {
         position: relative;
         display: flex;
@@ -167,6 +170,9 @@ describe('Code', () => {
         height: 100%;
         overflow: hidden;
       }
+      [data-codice-editor][data-codice-editor-line-numbers="true"] textarea {
+        padding-left: 51px;
+      }
       </style><div data-codice-editor-header="true"><style data-codice-style="true">[data-codice-editor-header] {
         position: relative;
         display: flex;
@@ -277,6 +283,9 @@ describe('Code', () => {
         right: 0;
         height: 100%;
         overflow: hidden;
+      }
+      [data-codice-editor][data-codice-editor-line-numbers="true"] textarea {
+        padding-left: 51px;
       }
       </style><div data-codice-editor-content="true"><div data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
         --codice-editor-line-number-color: #a4a4a4;
