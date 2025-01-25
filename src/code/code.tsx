@@ -66,18 +66,18 @@ export function CodeHeader({ title, controls = false }: { title?: string; contro
 
   return (
     <div 
-      data-codice-editor-header
-      data-codice-editor-header-controls={controls}
+      data-codice-header
+      data-codice-header-controls={controls}
     >
       <style data-codice-style>{headerCss}</style>
       {controls ? (
-        <div data-codice-editor-controls>
-          <span data-codice-editor-control />
-          <span data-codice-editor-control />
-          <span data-codice-editor-control />
+        <div data-codice-controls>
+          <span data-codice-control />
+          <span data-codice-control />
+          <span data-codice-control />
         </div>
       ) : null}
-      {title ? <div data-codice-editor-title>{title}</div> : null}
+      {title ? <div data-codice-title>{title}</div> : null}
     </div>
   )
 }
@@ -106,7 +106,8 @@ export function Code({
   ) 
 
   return (
-    <div {...props} data-codice-code>
+    // Add both attribute because it's both root component and child component (of editor)
+    <div {...props} data-codice="code" data-codice-code>
       <style data-codice-style>
         {css}
       </style>

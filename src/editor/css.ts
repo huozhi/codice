@@ -1,4 +1,4 @@
-const R = '[data-codice-editor]'
+const R = '[data-codice="editor"]'
 export const css = `\
 ${R} {
   position: relative;
@@ -7,6 +7,10 @@ ${R} {
   flex-direction: column;
   justify-content: stretch;
   scrollbar-width: none;
+
+  --codice-text-color: transparent;
+  --codice-background-color: transparent;
+  --codice-caret-color: inherit;
 }
 ${R} code,
 ${R} textarea {
@@ -17,7 +21,7 @@ ${R} textarea {
   padding: 24px 16px;
   font-size: 16px;
   line-height: 20px;
-  caret-color: var(--codice-editor-caret-color);
+  caret-color: var(--codice-caret-color);
   border: none;
   outline: none;
   width: 100%;
@@ -31,14 +35,14 @@ ${R} textarea:focus::-webkit-scrollbar,
 ${R} textarea:hover::-webkit-scrollbar {
   width: 0;
 }
-${R} [data-codice-editor-content] {
+${R} [data-codice-content] {
   position: relative;
 }
 ${R} textarea {
   resize: none;
   display: block;
-  color: var(--codice-editor-text-color);
-  background-color: var(--codice-editor-background-color);
+  color: var(--codice-text-color);
+  background-color: var(--codice-background-color);
   position: absolute;
   top: 0;
   bottom: 0;
@@ -47,7 +51,7 @@ ${R} textarea {
   height: 100%;
   overflow: hidden;
 }
-${R}[data-codice-editor-line-numbers="true"] textarea {
+${R}[data-codice-line-numbers="true"] textarea {
   padding-left: 55px;
 }
 `

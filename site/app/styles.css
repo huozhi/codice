@@ -8,10 +8,8 @@
   --sh-jsxliterals: #989bed;
   --sh-entity: #e9edc5;
   --sh-property: #7be5f2;
-  --codice-editor-text-color: transparent;
-  --codice-editor-background-color: transparent;
-  --codice-editor-caret-color: #d5efea;
-  --codice-editor-control-color: #8d8989;
+  --codice-control-color: #8d8989;
+  --codice-caret-color: #d5efea;
 }
 
 * {
@@ -127,9 +125,6 @@ input[type=radio] {
 .controls-manager label span {
   font-size: 12px;
 }
-.controls-manager label:hover {
-  border: 1px solid #f47067;
-}
 .controls-manager .control-button {
   margin: 4px;
 }
@@ -140,33 +135,33 @@ input[type=radio] {
 }
 
 /* Codice Styling */
-[data-codice-editor] {
+[data-codice="editor"] {
   max-width: 100%;
   max-width: 640px;
   border: 1px transparent solid;
 }
-.editor[data-codice-editor] textarea {
+.editor[data-codice="editor"] textarea {
   border-radius: 8px;
   border: 1px solid rgba(163, 169, 165, 0.2);
   transition: border 0.2s ease-in-out;
 }
-.editor[data-codice-editor] textarea:focus {
+.editor[data-codice="editor"] textarea:focus {
   border: 1px solid hsla(137, 100.00%, 94.30%, 0.30);
 }
-[data-codice-editor-title] {
+[data-codice-title] {
   color: hsla(0, 0%, 87%, 0.34);
 }
 
-[data-codice-editor-control] {
+[data-codice-control] {
   transition: background-color 0.2s ease-in-out;
 }
-[data-codice-editor-control]:nth-child(1):hover {
+[data-codice-control]:nth-child(1):hover {
   background-color: #f47067;
 }
-[data-codice-editor-control]:nth-child(2):hover {
+[data-codice-control]:nth-child(2):hover {
   background-color: #fdbc40;
 }
-[data-codice-editor-control]:nth-child(3):hover {
+[data-codice-control]:nth-child(3):hover {
   background-color: #34d399;
 }
 .code [data-codice-code-content] {
