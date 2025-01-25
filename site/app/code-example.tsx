@@ -1,9 +1,8 @@
 import { Code } from 'codice'
-import { highlight } from 'sugar-high'
 
-const CODE_SIMPLE_SNIPPET_HTML = highlight(`console.log("hello world")`)
+const CODE_SIMPLE_SNIPPET_HTML = (`console.log("hello world")`)
 
-const CODE_ULTIMATE_SNIPPET_HTML = highlight(`\
+const CODE_ULTIMATE_SNIPPET_HTML = (`\
 import { Code } from 'codice'
 
 <Code controls title="app/index.js">
@@ -29,18 +28,30 @@ function CodeExampleItem({
 export function CodeExamples() {
   return (
     <div className="code-example">
-      <CodeExampleItem title="Ultimate Code Block">
+      <CodeExampleItem title="Code Block with Controls and Title">
         <Code className="code" controls title="app/index.js">
           {CODE_ULTIMATE_SNIPPET_HTML}
         </Code>
       </CodeExampleItem>
 
-      <CodeExampleItem title="Code Block with title">
-        <Code className="code" title="app/index.js">
-          {highlight(`\
+      <CodeExampleItem title="Code Block with Highlighted Lines">
+        <Code 
+          className="code" title="app/index.js" 
+          highlightLines={[1, [4,5]]}
+          lineNumbers={true}
+        >
+          {`\
+import { highlight } from 'sugar-high'
+
 function marker() {
-  return "long live sugar-high"
-}`)}
+  const code = "return 'long live sugar-high'"
+  return highlight(code)
+}
+
+const html = marker()
+
+render(html)
+`}
         </Code>
       </CodeExampleItem>
 

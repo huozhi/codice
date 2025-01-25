@@ -3,7 +3,8 @@ const H = `[data-codice-editor-header]`
 
 export const baseCss = `\
 ${C} {
-  --codice-editor-line-number-color: #a4a4a4;
+  --codice-code-line-number-color: #a4a4a4;
+  --codice-code-highlight-color: #555555;
 }
 ${C} pre {
   white-space: pre-wrap;
@@ -11,6 +12,13 @@ ${C} pre {
 }
 ${C} code {
   border: none;
+}
+${C} .sh__line {
+  display: inline-block;
+  width: 100%;
+}
+${C} .sh__line[data-highlight] {
+  background-color: var(--codice-code-highlight-color);
 }
 `
 
@@ -50,16 +58,19 @@ ${H} [data-codice-editor-control] {
 
 export const lineNumbersCss = `\
 @scope {
-  code { counter-reset: codice-code-line-number; }
-  .sh__line::before {
+  code { 
+    counter-reset: codice-code-line-number; 
+    padding-left
+  }
+  [data-codice-code-line-number] {
     counter-increment: codice-code-line-number 1;
     content: counter(codice-code-line-number);
     display: inline-block;
     min-width: 24px;
-    margin-right: 18px;
-    margin-left: -42px;
+    margin-right: 16px;
     text-align: right;
-    color: var(--codice-editor-line-number-color);
+    user-select: none;
+    color: var(--codice-code-line-number-color);
   }
 }
 `

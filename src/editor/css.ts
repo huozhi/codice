@@ -14,7 +14,7 @@ ${R} textarea {
   line-break: anywhere;
   overflow-wrap: break-word;
   scrollbar-width: none;
-  padding: 24px 36px;
+  padding: 24px 16px;
   font-size: 16px;
   line-height: 20px;
   caret-color: var(--codice-editor-caret-color);
@@ -48,6 +48,7 @@ ${R} textarea {
   overflow: hidden;
 }
 ${R}[data-codice-editor-line-numbers="true"] textarea {
-  padding-left: 51px;
+  padding-left: 55px;
 }
 `
+// line number padding-left is [[width 24px] margin-right 16px] + 15px

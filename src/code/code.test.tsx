@@ -6,7 +6,8 @@ describe('Code', () => {
   it('default props', () => {
     expect(renderToString(<Code>test</Code>)).toMatchInlineSnapshot(`
       "<div data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
-        --codice-editor-line-number-color: #a4a4a4;
+        --codice-code-line-number-color: #a4a4a4;
+        --codice-code-highlight-color: #555555;
       }
       [data-codice-code] pre {
         white-space: pre-wrap;
@@ -15,14 +16,22 @@ describe('Code', () => {
       [data-codice-code] code {
         border: none;
       }
-      </style><pre data-codice-code-content="true"><code>test</code></pre></div>"
+      [data-codice-code] .sh__line {
+        display: inline-block;
+        width: 100%;
+      }
+      [data-codice-code] .sh__line[data-highlight] {
+        background-color: var(--codice-code-highlight-color);
+      }
+      </style><pre data-codice-code-content="true"><code><span class="sh__line"><span class="sh__token--identifier" style="color:var(--sh-identifier)">test</span></span></code></pre></div>"
     `)
   })
 
   it('with title', () => {
     expect(renderToString(<Code title="file.js">test</Code>)).toMatchInlineSnapshot(`
       "<div data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
-        --codice-editor-line-number-color: #a4a4a4;
+        --codice-code-line-number-color: #a4a4a4;
+        --codice-code-highlight-color: #555555;
       }
       [data-codice-code] pre {
         white-space: pre-wrap;
@@ -30,6 +39,13 @@ describe('Code', () => {
       }
       [data-codice-code] code {
         border: none;
+      }
+      [data-codice-code] .sh__line {
+        display: inline-block;
+        width: 100%;
+      }
+      [data-codice-code] .sh__line[data-highlight] {
+        background-color: var(--codice-code-highlight-color);
       }
       </style><div data-codice-editor-header="true"><style data-codice-style="true">[data-codice-editor-header] {
         position: relative;
@@ -62,14 +78,15 @@ describe('Code', () => {
         border-radius: 50%;
         background-color: var(--codice-editor-control-color);
       }
-      </style><div data-codice-editor-title="true">file.js</div></div><pre data-codice-code-content="true"><code>test</code></pre></div>"
+      </style><div data-codice-editor-title="true">file.js</div></div><pre data-codice-code-content="true"><code><span class="sh__line"><span class="sh__token--identifier" style="color:var(--sh-identifier)">test</span></span></code></pre></div>"
     `)
   })
 
   it('with controls', () => {
     expect(renderToString(<Code controls>test</Code>)).toMatchInlineSnapshot(`
       "<div data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
-        --codice-editor-line-number-color: #a4a4a4;
+        --codice-code-line-number-color: #a4a4a4;
+        --codice-code-highlight-color: #555555;
       }
       [data-codice-code] pre {
         white-space: pre-wrap;
@@ -77,6 +94,13 @@ describe('Code', () => {
       }
       [data-codice-code] code {
         border: none;
+      }
+      [data-codice-code] .sh__line {
+        display: inline-block;
+        width: 100%;
+      }
+      [data-codice-code] .sh__line[data-highlight] {
+        background-color: var(--codice-code-highlight-color);
       }
       </style><div data-codice-editor-header="true"><style data-codice-style="true">[data-codice-editor-header] {
         position: relative;
@@ -109,7 +133,7 @@ describe('Code', () => {
         border-radius: 50%;
         background-color: var(--codice-editor-control-color);
       }
-      </style><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><span data-codice-editor-controls-placeholder="true"></span></div><pre data-codice-code-content="true"><code>test</code></pre></div>"
+      </style><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><span data-codice-editor-controls-placeholder="true"></span></div><pre data-codice-code-content="true"><code><span class="sh__line"><span class="sh__token--identifier" style="color:var(--sh-identifier)">test</span></span></code></pre></div>"
     `)
   })
 })
