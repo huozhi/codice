@@ -1,13 +1,32 @@
 import { tokenize, generate } from 'sugar-high'
 import { baseCss, headerCss, lineNumbersCss } from './css'
+import * as presets from '../presets'
 import { useMemo } from 'react'
+
+const getPresetByExt = (ext: string) => {
+  switch (ext) {
+    case 'sass':
+    case 'scss':
+    case 'less':
+    case 'css':
+      return presets.css
+    case 'py':
+      return presets.python
+    default:
+      return undefined
+  }
+}
 
 function generateHighlightedLines(
   codeText: string,
   highlightLines: ([number, number] | number)[],
-  lineNumbers: boolean
+  lineNumbers: boolean,
+  title: string | undefined,
 ) {
-  const childrenLines = generate(tokenize(codeText))
+
+  const ext = (title || '').split('.').pop() || ''
+  const preset = getPresetByExt(ext)
+  const childrenLines = generate(tokenize(codeText, preset))
 
   // each line will contain class name 'sh__line',
   // if it's highlighted, it will contain [data-highlight]
@@ -101,9 +120,9 @@ export function Code({
 } & React.HTMLAttributes<HTMLDivElement>) {
   const css = baseCss + (lineNumbers ? lineNumbersCss : '')
   const lineElements = useMemo(() => 
-    generateHighlightedLines(code, highlightLines, lineNumbers), 
-    [code, highlightLines, lineNumbers]
-  ) 
+    generateHighlightedLines(code, highlightLines, lineNumbers, title), 
+    [code, highlightLines, lineNumbers, title]
+  )
 
   return (
     // Add both attribute because it's both root component and child component (of editor)
