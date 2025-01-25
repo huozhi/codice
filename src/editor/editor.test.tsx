@@ -23,7 +23,7 @@ describe('Code', () => {
         line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
-        padding: 24px 36px;
+        padding: 24px 16px;
         font-size: 16px;
         line-height: 20px;
         caret-color: var(--codice-editor-caret-color);
@@ -57,7 +57,7 @@ describe('Code', () => {
         overflow: hidden;
       }
       [data-codice-editor][data-codice-editor-line-numbers="true"] textarea {
-        padding-left: 51px;
+        padding-left: 55px;
       }
       </style><div data-codice-editor-header="true"><style data-codice-style="true">[data-codice-editor-header] {
         position: relative;
@@ -91,7 +91,8 @@ describe('Code', () => {
         background-color: var(--codice-editor-control-color);
       }
       </style><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><span data-codice-editor-controls-placeholder="true"></span></div><div data-codice-editor-content="true"><div data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
-        --codice-editor-line-number-color: #a4a4a4;
+        --codice-code-line-number-color: #a4a4a4;
+        --codice-code-highlight-color: #555555;
       }
       [data-codice-code] pre {
         white-space: pre-wrap;
@@ -100,17 +101,27 @@ describe('Code', () => {
       [data-codice-code] code {
         border: none;
       }
+      [data-codice-code] .sh__line {
+        display: inline-block;
+        width: 100%;
+      }
+      [data-codice-code] .sh__line[data-highlight] {
+        background-color: var(--codice-code-highlight-color);
+      }
       @scope {
-        code { counter-reset: codice-code-line-number; }
-        .sh__line::before {
+        code { 
+          counter-reset: codice-code-line-number; 
+          padding-left
+        }
+        [data-codice-code-line-number] {
           counter-increment: codice-code-line-number 1;
           content: counter(codice-code-line-number);
           display: inline-block;
           min-width: 24px;
-          margin-right: 18px;
-          margin-left: -42px;
+          margin-right: 16px;
           text-align: right;
-          color: var(--codice-editor-line-number-color);
+          user-select: none;
+          color: var(--codice-code-line-number-color);
         }
       }
       </style><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"
@@ -137,7 +148,7 @@ describe('Code', () => {
         line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
-        padding: 24px 36px;
+        padding: 24px 16px;
         font-size: 16px;
         line-height: 20px;
         caret-color: var(--codice-editor-caret-color);
@@ -171,7 +182,7 @@ describe('Code', () => {
         overflow: hidden;
       }
       [data-codice-editor][data-codice-editor-line-numbers="true"] textarea {
-        padding-left: 51px;
+        padding-left: 55px;
       }
       </style><div data-codice-editor-header="true"><style data-codice-style="true">[data-codice-editor-header] {
         position: relative;
@@ -205,7 +216,8 @@ describe('Code', () => {
         background-color: var(--codice-editor-control-color);
       }
       </style><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><div data-codice-editor-title="true">file.js</div><span data-codice-editor-controls-placeholder="true"></span></div><div data-codice-editor-content="true"><div data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
-        --codice-editor-line-number-color: #a4a4a4;
+        --codice-code-line-number-color: #a4a4a4;
+        --codice-code-highlight-color: #555555;
       }
       [data-codice-code] pre {
         white-space: pre-wrap;
@@ -214,17 +226,27 @@ describe('Code', () => {
       [data-codice-code] code {
         border: none;
       }
+      [data-codice-code] .sh__line {
+        display: inline-block;
+        width: 100%;
+      }
+      [data-codice-code] .sh__line[data-highlight] {
+        background-color: var(--codice-code-highlight-color);
+      }
       @scope {
-        code { counter-reset: codice-code-line-number; }
-        .sh__line::before {
+        code { 
+          counter-reset: codice-code-line-number; 
+          padding-left
+        }
+        [data-codice-code-line-number] {
           counter-increment: codice-code-line-number 1;
           content: counter(codice-code-line-number);
           display: inline-block;
           min-width: 24px;
-          margin-right: 18px;
-          margin-left: -42px;
+          margin-right: 16px;
           text-align: right;
-          color: var(--codice-editor-line-number-color);
+          user-select: none;
+          color: var(--codice-code-line-number-color);
         }
       }
       </style><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"
@@ -251,7 +273,7 @@ describe('Code', () => {
         line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
-        padding: 24px 36px;
+        padding: 24px 16px;
         font-size: 16px;
         line-height: 20px;
         caret-color: var(--codice-editor-caret-color);
@@ -285,10 +307,11 @@ describe('Code', () => {
         overflow: hidden;
       }
       [data-codice-editor][data-codice-editor-line-numbers="true"] textarea {
-        padding-left: 51px;
+        padding-left: 55px;
       }
       </style><div data-codice-editor-content="true"><div data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
-        --codice-editor-line-number-color: #a4a4a4;
+        --codice-code-line-number-color: #a4a4a4;
+        --codice-code-highlight-color: #555555;
       }
       [data-codice-code] pre {
         white-space: pre-wrap;
@@ -297,17 +320,27 @@ describe('Code', () => {
       [data-codice-code] code {
         border: none;
       }
+      [data-codice-code] .sh__line {
+        display: inline-block;
+        width: 100%;
+      }
+      [data-codice-code] .sh__line[data-highlight] {
+        background-color: var(--codice-code-highlight-color);
+      }
       @scope {
-        code { counter-reset: codice-code-line-number; }
-        .sh__line::before {
+        code { 
+          counter-reset: codice-code-line-number; 
+          padding-left
+        }
+        [data-codice-code-line-number] {
           counter-increment: codice-code-line-number 1;
           content: counter(codice-code-line-number);
           display: inline-block;
           min-width: 24px;
-          margin-right: 18px;
-          margin-left: -42px;
+          margin-right: 16px;
           text-align: right;
-          color: var(--codice-editor-line-number-color);
+          user-select: none;
+          color: var(--codice-code-line-number-color);
         }
       }
       </style><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"

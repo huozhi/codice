@@ -19,7 +19,6 @@ import { Editor } from 'codice'
   title="My Code Editor"
   value="const hello = 'world';"
   onChange={(code) => console.log(code)}
-  highlight={(code) => code}
 />
 ```
 
@@ -33,7 +32,6 @@ The following props are supported by the `Editor` component:
 - `title` (optional): A string representing the title of the editor.
 - `controls` (optional): A boolean value indicating whether to display the controls for the editor.
 - `lineNumbers` (optional): A boolean value indicating whether to display line numbers in the editor.
-- `highlight` (optional): A function used to provide syntax highlighting for the code. It should accept the code as an argument and return the highlighted code as an HTML string. You can use any syntax highlighting library (e.g., [Prism](https://prismjs.com/)) to implement this functionality.
 
 Additionally, you can pass any other props to the `Editor` component, which will be applied to the root `div` element.
 

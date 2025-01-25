@@ -4,13 +4,17 @@ import { useEffect, useState, useRef, forwardRef } from 'react'
 import { Code } from '../code'
 import { CodeHeader } from '../code/code'
 
-function composeRefs(...refs) {
-  return (node) => {
+function composeRefs(...refs: React.Ref<HTMLElement>[]) {
+  return (node: HTMLElement | null) => {
     refs.forEach((ref) => {
       if (typeof ref === 'function') {
-        ref(node)
+        if (node) {
+          ref(node)
+        }
       } else if (ref) {
-        ref.current = node
+        if (node) {
+          ref.current = node
+        }
       }
     })
   }
@@ -23,35 +27,32 @@ const Editor = forwardRef(function EditorComponent(
     controls,
     lineNumbers,
     onChange = () => {},
-    highlight = () => '',
   }: {
     title?: string
     value?: string
     controls?: boolean
     lineNumbers?: boolean
     onChange?: (code: string) => void
-    highlight?: (code: string) => string
   } & React.HTMLAttributes<HTMLDivElement>,
   ref: React.Ref<HTMLDivElement>
 ) {
-  const [text, setText] = useState(value)
-  const [output, setOutput] = useState(() => highlight(text))
+  const [code, setCode] = useState(value)
   const textareaRef = useRef(null)
 
-  function update(code: string) {
-    const highlighted = highlight(code)
-    setText(code)
-    setOutput(highlighted)
-    onChange(code)
+  function update(textContent: string) {
+    setCode(textContent)
+    onChange(textContent)
   }
 
   useEffect(() => {
-    update(value)
-  }, [value])
+    if (value !== code) {
+      update(value)
+    }
+  }, [value, code])
 
-  function onInput(event) {
-    const code = event.target.value || ''
-    update(code)
+  function onInput(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    const textContent = event.target.value || ''
+    update(textContent)
   }
 
   return (
@@ -65,9 +66,9 @@ const Editor = forwardRef(function EditorComponent(
           controls={false}
           lineNumbers={lineNumbers ?? true}
         >
-          {output}
+          {code}
         </Code>
-        <textarea ref={composeRefs(ref, textareaRef)} value={text} onChange={onInput} />
+        <textarea ref={composeRefs(ref, textareaRef)} value={code} onChange={onInput} />
       </div>
     </>
   )

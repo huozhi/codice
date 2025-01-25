@@ -16,7 +16,6 @@ export default function Page() {
         value={code}
         className='editor'
         title='index.js'
-        highlight={text => highlight(text)}
         onChange={(text) => setCode(text)}
       />
     </div>

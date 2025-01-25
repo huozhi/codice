@@ -2,7 +2,6 @@
 
 import { Editor } from 'codice'
 import { useState } from 'react'
-import { highlight } from 'sugar-high'
 
 const CODE_QUERY_KEY = 'c'
 
@@ -71,7 +70,6 @@ export function LiveEditor({
         title={title}
         controls={controls}
         lineNumbers={lineNumbers}
-        highlight={(text) => highlight(text)}
         onChange={(text) => setCode(text)}
       />
     </div>
