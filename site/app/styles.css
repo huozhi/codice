@@ -153,12 +153,6 @@ input[type=radio] {
 .editor[data-codice-editor] textarea:focus {
   border: 1px solid hsla(137, 100.00%, 94.30%, 0.30);
 }
-/* .editor[data-codice-editor-line-numbers="false"] [data-codice-editor-content] {
-  padding-left: 0;
-} */
-/* .editor[data-codice-editor-line-numbers="true"] [data-codice-editor-content] {
-  padding-left: 16px;
-} */
 [data-codice-editor-title] {
   color: hsla(0, 0%, 87%, 0.34);
 }
