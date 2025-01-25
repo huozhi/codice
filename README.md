@@ -58,6 +58,8 @@ import { Code } from 'codice'
 - `controls` (optional): A boolean value indicating whether to display the controls for the code block.
 - `lineNumbers` (optional): A boolean value indicating whether to display line numbers in the code block.
 - `preformatted` (optional): A boolean value indicating whether the code should be displayed as preformatted text. If `true`, the code will be displayed in a `pre` and a `code` element. If `false`, the code will be displayed in a `div` element.
+- `asMarkup` (optional): A boolean value indicating whether the code should be displayed as markup. If `true`, the code will be displayed with HTML entities escaped. If `false`, the code will be displayed as plain text. default is `false`.
+- `children`: The code content to be displayed in the code block.
 
 ### Styling
 

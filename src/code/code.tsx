@@ -101,6 +101,25 @@ export function CodeHeader({ title, controls = false }: { title?: string; contro
   )
 }
 
+function CodeFrame({ 
+  children, 
+  preformatted,
+  asMarkup
+}: { 
+  children: React.ReactNode
+  preformatted: boolean
+  asMarkup: boolean
+}) {
+  const props = asMarkup ? { dangerouslySetInnerHTML: { __html: children } } : { children}
+  return preformatted ? (
+    <pre data-codice-code-content>
+      <code {...props} />
+    </pre>
+  ) : (
+    <div {...props} data-codice-code-content  />
+  )
+}
+
 export function Code({
   children: code,
   title,
@@ -108,6 +127,7 @@ export function Code({
   preformatted = true,
   lineNumbers = false,
   highlightLines,
+  asMarkup = false,
   ...props
 }: {
   children: string
@@ -117,6 +137,7 @@ export function Code({
   controls?: boolean
   lineNumbers?: boolean
   highlightLines?: ([number, number] | number)[]
+  asMarkup?: boolean
 } & React.HTMLAttributes<HTMLDivElement>) {
   const css = baseCss + (lineNumbers ? lineNumbersCss : '')
   const lineElements = useMemo(() => 
@@ -131,17 +152,9 @@ export function Code({
         {css}
       </style>
       <CodeHeader title={title} controls={controls} />
-      {preformatted ? (
-        <pre data-codice-code-content>
-          <code>
-            <>
-              {lineElements}
-            </>
-          </code>
-        </pre>
-      ) : (
-        <div data-codice-code-content>{lineElements}</div>
-      )}
+      <CodeFrame preformatted={preformatted} asMarkup={asMarkup}>
+        {lineElements}
+      </CodeFrame>
     </div>
   )
 }
