@@ -110,7 +110,7 @@ function CodeFrame({
   preformatted: boolean
   asMarkup: boolean
 }) {
-  const props = asMarkup ? { dangerouslySetInnerHTML: { __html: children } } : { children}
+  const props = asMarkup ? { dangerouslySetInnerHTML: { __html: children } } : { children }
   return preformatted ? (
     <pre data-codice-code-content>
       <code {...props} />
@@ -141,8 +141,10 @@ export function Code({
 } & React.HTMLAttributes<HTMLDivElement>) {
   const css = baseCss + (lineNumbers ? lineNumbersCss : '')
   const lineElements = useMemo(() => 
-    generateHighlightedLines(code, highlightLines, lineNumbers, title), 
-    [code, highlightLines, lineNumbers, title]
+    asMarkup 
+      ? code
+      : generateHighlightedLines(code, highlightLines, lineNumbers, title),
+    [code, highlightLines, lineNumbers, title, asMarkup]
   )
 
   return (

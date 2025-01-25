@@ -73,7 +73,7 @@ input[type=radio] {
   transition: text-shadow 0.1s ease-in-out;
 }
 .main {
-  padding: 4rem 1rem;
+  padding: 4rem 0.5rem;
   width: 100%;
 }
 .section {
@@ -166,4 +166,10 @@ input[type=radio] {
 }
 .code [data-codice-code-content] {
   padding: 16px;
+}
+
+@media screen and (max-width: 640px) {
+  .code-example__item {
+    padding: 0.5rem;
+  }
 }
