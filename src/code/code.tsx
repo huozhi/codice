@@ -32,13 +32,12 @@ function generateHighlightedLines(
       const { tagName: Line, properties: lineProperties } = line
       const tokens = line.children
         .map((child, childIndex) => {
-          const { tagName: Token, children, properties } = child
+          const { tagName: Token, type, children, properties } = child
           return (
             <Token 
+              data-sh-token-type={type}
               key={childIndex} 
-              className={properties.className}
-              // TODO: improve the properties of the token
-              style={{ color: properties.style.replace('color: ', '') }}
+              {...properties}
             >
               {(children[0].value)}
             </Token>
