@@ -59,7 +59,7 @@ const Editor = forwardRef(function EditorComponent(
     <>
       {/* Display the header outside of the matched textarea and code, by default display controls */}
       <CodeHeader title={title} controls={controls ?? true} />
-      <div data-codice-editor-content>
+      <div data-codice-content>
         {/* hide controls component inside Code to keep content matched with textarea */}
         <Code
           title={null}

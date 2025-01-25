@@ -5,9 +5,10 @@ import { renderToString } from 'react-dom/server'
 describe('Code', () => {
   it('default props', () => {
     expect(renderToString(<Code>test</Code>)).toMatchInlineSnapshot(`
-      "<div data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
+      "<div data-codice="code" data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
+        --codice-control-color: #8d8989;
       }
       [data-codice-code] pre {
         white-space: pre-wrap;
@@ -23,15 +24,16 @@ describe('Code', () => {
       [data-codice-code] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
       }
-      </style><pre data-codice-code-content="true"><code><span class="sh__line"><span class="sh__token--identifier" style="color:var(--sh-identifier)">test</span></span></code></pre></div>"
+      </style><pre data-codice-code-content="true"><code><span class="sh__line"><span data-sh-token-type="element" class="sh__token--identifier" style="color:var(--sh-identifier)">test</span></span></code></pre></div>"
     `)
   })
 
   it('with title', () => {
     expect(renderToString(<Code title="file.js">test</Code>)).toMatchInlineSnapshot(`
-      "<div data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
+      "<div data-codice="code" data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
+        --codice-control-color: #8d8989;
       }
       [data-codice-code] pre {
         white-space: pre-wrap;
@@ -47,49 +49,49 @@ describe('Code', () => {
       [data-codice-code] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
       }
-      </style><div data-codice-editor-header="true" data-codice-editor-header-controls="false"><style data-codice-style="true">[data-codice-editor-header] {
+      </style><div data-codice-header="true" data-codice-header-controls="false"><style data-codice-style="true">[data-codice-header] {
         position: relative;
         display: flex;
         padding: 16px 22px 8px;
         align-items: center;
       }
-      [data-codice-editor-header] [data-codice-editor-title] {
+      [data-codice-header] [data-codice-title] {
         display: inline-block;
         flex: 1 0;
         text-align: center;
         line-height: 1;
       }
-      [data-codice-editor-header] [data-codice-editor-controls] {
+      [data-codice-header] [data-codice-controls] {
         display: inline-flex;
         align-self: center;
         justify-self: start;
         align-items: center;
         justify-content: center;
       }
-      [data-codice-editor-header] [data-codice-editor-controls],
-      [data-codice-editor-header] [data-codice-editor-controls-placeholder] {
+      [data-codice-header] [data-codice-controls] {
         width: 52px;
       }
-      [data-codice-editor-header-controls="true"] [data-codice-editor-title] {
+      [data-codice-header-controls="true"] [data-codice-title] {
         padding-right: 52px;
       }
-      [data-codice-editor-header] [data-codice-editor-control] {
+      [data-codice-header] [data-codice-control] {
         display: flex;
         width: 10px;
         height: 10px;
         margin: 3px;
         border-radius: 50%;
-        background-color: var(--codice-editor-control-color);
+        background-color: var(--codice-control-color);
       }
-      </style><div data-codice-editor-title="true">file.js</div></div><pre data-codice-code-content="true"><code><span class="sh__line"><span class="sh__token--identifier" style="color:var(--sh-identifier)">test</span></span></code></pre></div>"
+      </style><div data-codice-title="true">file.js</div></div><pre data-codice-code-content="true"><code><span class="sh__line"><span data-sh-token-type="element" class="sh__token--identifier" style="color:var(--sh-identifier)">test</span></span></code></pre></div>"
     `)
   })
 
   it('with controls', () => {
     expect(renderToString(<Code controls>test</Code>)).toMatchInlineSnapshot(`
-      "<div data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
+      "<div data-codice="code" data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
+        --codice-control-color: #8d8989;
       }
       [data-codice-code] pre {
         white-space: pre-wrap;
@@ -105,41 +107,40 @@ describe('Code', () => {
       [data-codice-code] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
       }
-      </style><div data-codice-editor-header="true" data-codice-editor-header-controls="true"><style data-codice-style="true">[data-codice-editor-header] {
+      </style><div data-codice-header="true" data-codice-header-controls="true"><style data-codice-style="true">[data-codice-header] {
         position: relative;
         display: flex;
         padding: 16px 22px 8px;
         align-items: center;
       }
-      [data-codice-editor-header] [data-codice-editor-title] {
+      [data-codice-header] [data-codice-title] {
         display: inline-block;
         flex: 1 0;
         text-align: center;
         line-height: 1;
       }
-      [data-codice-editor-header] [data-codice-editor-controls] {
+      [data-codice-header] [data-codice-controls] {
         display: inline-flex;
         align-self: center;
         justify-self: start;
         align-items: center;
         justify-content: center;
       }
-      [data-codice-editor-header] [data-codice-editor-controls],
-      [data-codice-editor-header] [data-codice-editor-controls-placeholder] {
+      [data-codice-header] [data-codice-controls] {
         width: 52px;
       }
-      [data-codice-editor-header-controls="true"] [data-codice-editor-title] {
+      [data-codice-header-controls="true"] [data-codice-title] {
         padding-right: 52px;
       }
-      [data-codice-editor-header] [data-codice-editor-control] {
+      [data-codice-header] [data-codice-control] {
         display: flex;
         width: 10px;
         height: 10px;
         margin: 3px;
         border-radius: 50%;
-        background-color: var(--codice-editor-control-color);
+        background-color: var(--codice-control-color);
       }
-      </style><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div></div><pre data-codice-code-content="true"><code><span class="sh__line"><span class="sh__token--identifier" style="color:var(--sh-identifier)">test</span></span></code></pre></div>"
+      </style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div></div><pre data-codice-code-content="true"><code><span class="sh__line"><span data-sh-token-type="element" class="sh__token--identifier" style="color:var(--sh-identifier)">test</span></span></code></pre></div>"
     `)
   })
 })

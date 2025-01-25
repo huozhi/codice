@@ -10,12 +10,12 @@ export function Editor(props: EditorProps) {
   return (
     <div 
       {...restProps} 
-      data-codice-editor
+      data-codice="editor"
       // DOM attributes for selecting the stateful editor easily.
-      // e.g. [data-codice-editor-line-numbers="true"]
-      data-codice-editor-title={title || ''}
-      data-codice-editor-controls={!!controls}
-      data-codice-editor-line-numbers={!!lineNumbers}
+      // e.g. [data-codice-line-numbers="true"]
+      data-codice-title={title || ''}
+      data-codice-controls={!!controls}
+      data-codice-line-numbers={!!lineNumbers}
     >
       <style data-codice-style>{css}</style>
       <EditorClient {...editorProps} />

@@ -1,10 +1,11 @@
 const C = `[data-codice-code]`
-const H = `[data-codice-editor-header]`
+const H = `[data-codice-header]`
 
 export const baseCss = `\
 ${C} {
   --codice-code-line-number-color: #a4a4a4;
   --codice-code-highlight-color: #555555;
+  --codice-control-color: #8d8989;
 }
 ${C} pre {
   white-space: pre-wrap;
@@ -29,33 +30,32 @@ ${H} {
   padding: 16px 22px 8px;
   align-items: center;
 }
-${H} [data-codice-editor-title] {
+${H} [data-codice-title] {
   display: inline-block;
   flex: 1 0;
   text-align: center;
   line-height: 1;
 }
-${H} [data-codice-editor-controls] {
+${H} [data-codice-controls] {
   display: inline-flex;
   align-self: center;
   justify-self: start;
   align-items: center;
   justify-content: center;
 }
-${H} [data-codice-editor-controls],
-${H} [data-codice-editor-controls-placeholder] {
+${H} [data-codice-controls] {
   width: 52px;
 }
-[data-codice-editor-header-controls="true"] [data-codice-editor-title] {
+[data-codice-header-controls="true"] [data-codice-title] {
   padding-right: 52px;
 }
-${H} [data-codice-editor-control] {
+${H} [data-codice-control] {
   display: flex;
   width: 10px;
   height: 10px;
   margin: 3px;
   border-radius: 50%;
-  background-color: var(--codice-editor-control-color);
+  background-color: var(--codice-control-color);
 }
 `
 
