@@ -64,9 +64,12 @@ function generateHighlightedLines(
 
 export function CodeHeader({ title, controls = false }: { title?: string; controls: boolean }) {
   if (!title && !controls) return null
-  // TODO: migrate inline css
+
   return (
-    <div data-codice-editor-header>
+    <div 
+      data-codice-editor-header
+      data-codice-editor-header-controls={controls}
+    >
       <style data-codice-style>{headerCss}</style>
       {controls ? (
         <div data-codice-editor-controls>
@@ -76,7 +79,6 @@ export function CodeHeader({ title, controls = false }: { title?: string; contro
         </div>
       ) : null}
       {title ? <div data-codice-editor-title>{title}</div> : null}
-      {controls ? <span data-codice-editor-controls-placeholder /> : null}
     </div>
   )
 }

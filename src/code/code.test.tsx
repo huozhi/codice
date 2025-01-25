@@ -47,7 +47,7 @@ describe('Code', () => {
       [data-codice-code] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
       }
-      </style><div data-codice-editor-header="true"><style data-codice-style="true">[data-codice-editor-header] {
+      </style><div data-codice-editor-header="true" data-codice-editor-header-controls="false"><style data-codice-style="true">[data-codice-editor-header] {
         position: relative;
         display: flex;
         padding: 16px 22px 8px;
@@ -69,6 +69,9 @@ describe('Code', () => {
       [data-codice-editor-header] [data-codice-editor-controls],
       [data-codice-editor-header] [data-codice-editor-controls-placeholder] {
         width: 52px;
+      }
+      [data-codice-editor-header-controls="true"] [data-codice-editor-title] {
+        padding-right: 52px;
       }
       [data-codice-editor-header] [data-codice-editor-control] {
         display: flex;
@@ -102,7 +105,7 @@ describe('Code', () => {
       [data-codice-code] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
       }
-      </style><div data-codice-editor-header="true"><style data-codice-style="true">[data-codice-editor-header] {
+      </style><div data-codice-editor-header="true" data-codice-editor-header-controls="true"><style data-codice-style="true">[data-codice-editor-header] {
         position: relative;
         display: flex;
         padding: 16px 22px 8px;
@@ -125,6 +128,9 @@ describe('Code', () => {
       [data-codice-editor-header] [data-codice-editor-controls-placeholder] {
         width: 52px;
       }
+      [data-codice-editor-header-controls="true"] [data-codice-editor-title] {
+        padding-right: 52px;
+      }
       [data-codice-editor-header] [data-codice-editor-control] {
         display: flex;
         width: 10px;
@@ -133,7 +139,7 @@ describe('Code', () => {
         border-radius: 50%;
         background-color: var(--codice-editor-control-color);
       }
-      </style><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><span data-codice-editor-controls-placeholder="true"></span></div><pre data-codice-code-content="true"><code><span class="sh__line"><span class="sh__token--identifier" style="color:var(--sh-identifier)">test</span></span></code></pre></div>"
+      </style><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div></div><pre data-codice-code-content="true"><code><span class="sh__line"><span class="sh__token--identifier" style="color:var(--sh-identifier)">test</span></span></code></pre></div>"
     `)
   })
 })

@@ -59,7 +59,7 @@ describe('Code', () => {
       [data-codice-editor][data-codice-editor-line-numbers="true"] textarea {
         padding-left: 55px;
       }
-      </style><div data-codice-editor-header="true"><style data-codice-style="true">[data-codice-editor-header] {
+      </style><div data-codice-editor-header="true" data-codice-editor-header-controls="true"><style data-codice-style="true">[data-codice-editor-header] {
         position: relative;
         display: flex;
         padding: 16px 22px 8px;
@@ -82,6 +82,9 @@ describe('Code', () => {
       [data-codice-editor-header] [data-codice-editor-controls-placeholder] {
         width: 52px;
       }
+      [data-codice-editor-header-controls="true"] [data-codice-editor-title] {
+        padding-right: 52px;
+      }
       [data-codice-editor-header] [data-codice-editor-control] {
         display: flex;
         width: 10px;
@@ -90,7 +93,7 @@ describe('Code', () => {
         border-radius: 50%;
         background-color: var(--codice-editor-control-color);
       }
-      </style><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><span data-codice-editor-controls-placeholder="true"></span></div><div data-codice-editor-content="true"><div data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
+      </style><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div></div><div data-codice-editor-content="true"><div data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
       }
@@ -184,7 +187,7 @@ describe('Code', () => {
       [data-codice-editor][data-codice-editor-line-numbers="true"] textarea {
         padding-left: 55px;
       }
-      </style><div data-codice-editor-header="true"><style data-codice-style="true">[data-codice-editor-header] {
+      </style><div data-codice-editor-header="true" data-codice-editor-header-controls="true"><style data-codice-style="true">[data-codice-editor-header] {
         position: relative;
         display: flex;
         padding: 16px 22px 8px;
@@ -207,6 +210,9 @@ describe('Code', () => {
       [data-codice-editor-header] [data-codice-editor-controls-placeholder] {
         width: 52px;
       }
+      [data-codice-editor-header-controls="true"] [data-codice-editor-title] {
+        padding-right: 52px;
+      }
       [data-codice-editor-header] [data-codice-editor-control] {
         display: flex;
         width: 10px;
@@ -215,7 +221,7 @@ describe('Code', () => {
         border-radius: 50%;
         background-color: var(--codice-editor-control-color);
       }
-      </style><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><div data-codice-editor-title="true">file.js</div><span data-codice-editor-controls-placeholder="true"></span></div><div data-codice-editor-content="true"><div data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
+      </style><div data-codice-editor-controls="true"><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span><span data-codice-editor-control="true"></span></div><div data-codice-editor-title="true">file.js</div></div><div data-codice-editor-content="true"><div data-codice-code="true"><style data-codice-style="true">[data-codice-code] {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
       }

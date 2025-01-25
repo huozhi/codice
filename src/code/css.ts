@@ -46,6 +46,9 @@ ${H} [data-codice-editor-controls],
 ${H} [data-codice-editor-controls-placeholder] {
   width: 52px;
 }
+[data-codice-editor-header-controls="true"] [data-codice-editor-title] {
+  padding-right: 52px;
+}
 ${H} [data-codice-editor-control] {
   display: flex;
   width: 10px;
