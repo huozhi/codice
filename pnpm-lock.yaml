@@ -12,8 +12,8 @@ importers:
         specifier: ^17.0.0 || ^18.0.0 || ^19.0.0
         version: 19.0.0
       sugar-high:
-        specifier: ^0.8.3
-        version: 0.8.3
+        specifier: ^0.8.4
+        version: 0.8.4
     devDependencies:
       '@types/react':
         specifier: ^19.0.7
@@ -1194,6 +1194,9 @@ packages:
   sugar-high@0.8.3:
     resolution: {integrity: sha512-RwewMVg92h7Ezjnhh5lADcimwDjeaWrXwfEdoz1WlKCzHTuz35SDatMOeJ4X7HUmFUd7PI49TXAcnU4KDoX+8Q==}
 
+  sugar-high@0.8.4:
+    resolution: {integrity: sha512-A/oWx/LxaZHccNCasj+DdMJXy2Cqi/x8CZja8t+jYvTdSCp2fDG57zOPi/EnLYH05uGzdMprsHDGfyW3qf59sg==}
+
   supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
@@ -2271,6 +2274,8 @@ snapshots:
       react: 19.0.0
 
   sugar-high@0.8.3: {}
+
+  sugar-high@0.8.4: {}
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
