@@ -4,7 +4,7 @@ import { css } from './css'
 export type EditorProps = React.HTMLAttributes<HTMLDivElement> & Parameters<typeof EditorClient>[0]
 
 export function Editor(props: EditorProps) {
-  const { title, value, onChange, controls, lineNumbers, ...restProps } = props
+  const { title, value, onChange, controls = true, lineNumbers = true, ...restProps } = props
   const editorProps = { title, value, onChange, controls, lineNumbers }
 
   return (

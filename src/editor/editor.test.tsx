@@ -9,7 +9,7 @@ describe('Code', () => {
         <Editor>test</Editor>
       )
     ).toMatchInlineSnapshot(`
-      "<div data-codice="editor" data-codice-title="" data-codice-controls="false" data-codice-line-numbers="false"><style data-codice-style="true">[data-codice="editor"] {
+      "<div data-codice="editor" data-codice-title="" data-codice-controls="true" data-codice-line-numbers="true"><style data-codice-style="true">[data-codice="editor"] {
         position: relative;
         overflow-y: scroll;
         display: flex;
@@ -141,7 +141,7 @@ describe('Code', () => {
         <Editor title="file.js">test</Editor>
       )
     ).toMatchInlineSnapshot(`
-      "<div data-codice="editor" data-codice-title="file.js" data-codice-controls="false" data-codice-line-numbers="false"><style data-codice-style="true">[data-codice="editor"] {
+      "<div data-codice="editor" data-codice-title="file.js" data-codice-controls="true" data-codice-line-numbers="true"><style data-codice-style="true">[data-codice="editor"] {
         position: relative;
         overflow-y: scroll;
         display: flex;
@@ -273,7 +273,7 @@ describe('Code', () => {
         <Editor controls={false} className="editor">test</Editor>
       )
     ).toMatchInlineSnapshot(`
-      "<div class="editor" data-codice="editor" data-codice-title="" data-codice-controls="false" data-codice-line-numbers="false"><style data-codice-style="true">[data-codice="editor"] {
+      "<div class="editor" data-codice="editor" data-codice-title="" data-codice-controls="false" data-codice-line-numbers="true"><style data-codice-style="true">[data-codice="editor"] {
         position: relative;
         overflow-y: scroll;
         display: flex;
