@@ -112,6 +112,9 @@ describe('Code', () => {
         display: inline-block;
         width: 100%;
       }
+      [data-codice-code] .sh__line:has(> [data-codice-code-line-number]) {
+        padding-left: 40px;
+      }
       [data-codice-code] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
       }
@@ -125,6 +128,7 @@ describe('Code', () => {
           content: counter(codice-code-line-number);
           display: inline-block;
           min-width: 24px;
+          margin-left: -40px;
           margin-right: 16px;
           text-align: right;
           user-select: none;
@@ -244,6 +248,9 @@ describe('Code', () => {
         display: inline-block;
         width: 100%;
       }
+      [data-codice-code] .sh__line:has(> [data-codice-code-line-number]) {
+        padding-left: 40px;
+      }
       [data-codice-code] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
       }
@@ -257,6 +264,7 @@ describe('Code', () => {
           content: counter(codice-code-line-number);
           display: inline-block;
           min-width: 24px;
+          margin-left: -40px;
           margin-right: 16px;
           text-align: right;
           user-select: none;
@@ -343,6 +351,9 @@ describe('Code', () => {
         display: inline-block;
         width: 100%;
       }
+      [data-codice-code] .sh__line:has(> [data-codice-code-line-number]) {
+        padding-left: 40px;
+      }
       [data-codice-code] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
       }
@@ -356,6 +367,7 @@ describe('Code', () => {
           content: counter(codice-code-line-number);
           display: inline-block;
           min-width: 24px;
+          margin-left: -40px;
           margin-right: 16px;
           text-align: right;
           user-select: none;

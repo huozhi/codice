@@ -21,6 +21,9 @@ describe('Code', () => {
         display: inline-block;
         width: 100%;
       }
+      [data-codice-code] .sh__line:has(> [data-codice-code-line-number]) {
+        padding-left: 40px;
+      }
       [data-codice-code] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
       }
@@ -45,6 +48,9 @@ describe('Code', () => {
       [data-codice-code] .sh__line {
         display: inline-block;
         width: 100%;
+      }
+      [data-codice-code] .sh__line:has(> [data-codice-code-line-number]) {
+        padding-left: 40px;
       }
       [data-codice-code] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
@@ -103,6 +109,9 @@ describe('Code', () => {
       [data-codice-code] .sh__line {
         display: inline-block;
         width: 100%;
+      }
+      [data-codice-code] .sh__line:has(> [data-codice-code-line-number]) {
+        padding-left: 40px;
       }
       [data-codice-code] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);

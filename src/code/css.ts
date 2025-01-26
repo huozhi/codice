@@ -18,6 +18,9 @@ ${C} .sh__line {
   display: inline-block;
   width: 100%;
 }
+${C} .sh__line:has(> [data-codice-code-line-number]) {
+  padding-left: 40px;
+}
 ${C} .sh__line[data-highlight] {
   background-color: var(--codice-code-highlight-color);
 }
@@ -70,6 +73,7 @@ export const lineNumbersCss = `\
     content: counter(codice-code-line-number);
     display: inline-block;
     min-width: 24px;
+    margin-left: -40px;
     margin-right: 16px;
     text-align: right;
     user-select: none;
