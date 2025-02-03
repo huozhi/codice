@@ -1,6 +1,6 @@
 import { tokenize, generate } from 'sugar-high'
 import { baseCss, headerCss, lineNumbersCss } from './css'
-import * as presets from '../presets'
+import * as presets from 'sugar-high/presets'
 import { useMemo } from 'react'
 
 const getPresetByExt = (ext: string) => {
@@ -12,6 +12,8 @@ const getPresetByExt = (ext: string) => {
       return presets.css
     case 'py':
       return presets.python
+    case 'rs':
+      return presets.rust 
     default:
       return undefined
   }
