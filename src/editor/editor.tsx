@@ -26,12 +26,14 @@ const Editor = forwardRef(function EditorComponent(
     value = '',
     controls,
     lineNumbers,
+    fontSize,
     onChange = () => {},
   }: {
     title?: string
     value?: string
     controls?: boolean
     lineNumbers?: boolean
+    fontSize?: string | number
     onChange?: (code: string) => void
   } & React.HTMLAttributes<HTMLDivElement>,
   ref: React.Ref<HTMLDivElement>
@@ -65,6 +67,8 @@ const Editor = forwardRef(function EditorComponent(
           title={null}
           controls={false}
           lineNumbers={lineNumbers}
+          // Do not pass fontSize to Code in Editor.
+          // It will control both the textarea and code font size.
         >
           {code}
         </Code>

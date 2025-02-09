@@ -1,16 +1,23 @@
-const R = '[data-codice="editor"]'
-export const css = `\
+import { fontSizeCss } from '../code/css'
+
+const R = ':scope [data-codice="editor"]'
+export const css = ({
+  fontSize
+}: {
+  fontSize?: string | number
+}) => `\
 ${R} {
+  --codice-text-color: transparent;
+  --codice-background-color: transparent;
+  --codice-caret-color: inherit;
+  --codice-font-size: ${fontSizeCss(fontSize)};
+
   position: relative;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
   justify-content: stretch;
   scrollbar-width: none;
-
-  --codice-text-color: transparent;
-  --codice-background-color: transparent;
-  --codice-caret-color: inherit;
 }
 ${R} code,
 ${R} textarea {
@@ -19,8 +26,8 @@ ${R} textarea {
   overflow-wrap: break-word;
   scrollbar-width: none;
   padding: 24px 16px;
-  font-size: 16px;
-  line-height: 20px;
+  line-height: 1.5;
+  font-size: var(--codice-font-size);
   caret-color: var(--codice-caret-color);
   border: none;
   outline: none;

@@ -1,10 +1,19 @@
 import { Editor as EditorClient } from './editor'
 import { css } from './css'
 
-export type EditorProps = React.HTMLAttributes<HTMLDivElement> & Parameters<typeof EditorClient>[0]
+export type EditorProps = React.HTMLAttributes<HTMLDivElement> 
+  & Parameters<typeof EditorClient>[0]
 
 export function Editor(props: EditorProps) {
-  const { title, value, onChange, controls = true, lineNumbers = true, ...restProps } = props
+  const { 
+    title, 
+    value, 
+    onChange, 
+    controls = true, 
+    lineNumbers = true,
+    fontSize,
+    ...restProps
+  } = props
   const editorProps = { title, value, onChange, controls, lineNumbers }
 
   return (
@@ -17,7 +26,9 @@ export function Editor(props: EditorProps) {
       data-codice-controls={!!controls}
       data-codice-line-numbers={!!lineNumbers}
     >
-      <style data-codice-style>{css}</style>
+      <style data-codice-style>
+        {css({ fontSize })}
+      </style>
       <EditorClient {...editorProps} />
     </div>
   )
