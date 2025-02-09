@@ -1,5 +1,5 @@
 import { tokenize, generate } from 'sugar-high'
-import { baseCss, headerCss, lineNumbersCss, fontCss } from './css'
+import { baseCss, headerCss, lineNumbersCss, variables } from './css'
 import * as presets from 'sugar-high/presets'
 import { useMemo } from 'react'
 
@@ -143,7 +143,8 @@ export function Code({
   lineNumbers?: boolean
   asMarkup?: boolean
 } & React.HTMLAttributes<HTMLDivElement>) {
-  const css = baseCss + (lineNumbers ? lineNumbersCss : '') + fontCss(fontSize)
+  const css = variables({ fontSize }) + baseCss + (lineNumbers ? lineNumbersCss : '')
+  
   const lineElements = useMemo(() => 
     asMarkup 
       ? code

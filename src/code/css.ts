@@ -2,11 +2,6 @@ const C = `:scope [data-codice-code]`
 const H = `:scope [data-codice-header]`
 
 export const baseCss = `\
-${C} {
-  --codice-code-line-number-color: #a4a4a4;
-  --codice-code-highlight-color: #555555;
-  --codice-control-color: #8d8989;
-}
 ${C} pre {
   white-space: pre-wrap;
   margin: 0;
@@ -70,7 +65,7 @@ export const lineNumbersCss = `\
   counter-increment: codice-code-line-number 1;
   content: counter(codice-code-line-number);
   display: inline-block;
-  min-width: 24px;
+  min-width: calc(2rem - 6px);
   margin-left: -40px;
   margin-right: 16px;
   text-align: right;
@@ -79,6 +74,23 @@ export const lineNumbersCss = `\
 }
 `
 
-export const fontCss = (fontSize: string | number | undefined) => `\
-:scope { font-size: ${fontSize ?? 'inherit'}${typeof fontSize === 'number' ? 'px' : ''}; }
+export const fontSizeCss = (fontSize: string | number | undefined): string => {
+  const fz = `${fontSize ?? 'inherit'}${typeof fontSize === 'number' ? 'px' : ''}`
+  return fz
+}
+
+export const variables = ({
+  fontSize
+}: {
+  fontSize: string | number | undefined
+}): string => {
+  const fz = fontSizeCss(fontSize)
+  return `\
+:scope {
+  --codice-code-line-number-color: #a4a4a4;
+  --codice-code-highlight-color: #555555;
+  --codice-control-color: #8d8989;
+  --codice-font-size: ${fz};
+}
 `
+}

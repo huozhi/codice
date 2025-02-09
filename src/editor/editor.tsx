@@ -67,7 +67,8 @@ const Editor = forwardRef(function EditorComponent(
           title={null}
           controls={false}
           lineNumbers={lineNumbers}
-          fontSize={fontSize}
+          // Do not pass fontSize to Code in Editor.
+          // It will control both the textarea and code font size.
         >
           {code}
         </Code>

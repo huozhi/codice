@@ -10,7 +10,7 @@
   --sh-property: #7be5f2;
   --codice-control-color: #8d8989;
   --codice-caret-color: #d5efea;
-  --codice-font-size: 14px;
+  /* --codice-font-size: 14px; */
 }
 
 * {
@@ -91,12 +91,7 @@ input[type=radio] {
   border-radius: 0.5rem;
   overflow-x: auto;
   font-size: 1rem;
-  line-height: 1.5;
   margin: 1rem 0;
-}
-
-.code-example pre code {
-  line-height: 1.5;
 }
 
 .code-example__item {
@@ -112,7 +107,7 @@ input[type=radio] {
 .controls-manager {
   margin: 2rem 0;
 }
-.controls-manager label {
+.controls-manager-label {
   display: inline-block;
   padding: 2px 4px;
   color: #fff;
@@ -121,9 +116,34 @@ input[type=radio] {
   border: 1px solid #fdb9b5;
   transition: all 0.2s ease-in-out;
 }
+.controls-manager-label--checked,
 .controls-manager label[data-checked="true"] {
   background-color: #fdb9b5;
   color: #343434;
+}
+.font-size-control {
+  margin: 2rem 4px;
+}
+.font-size-control label {
+  margin-right: 8px;
+}
+.font-size-control input[type="range"],
+.font-size-control input[type="range"]::-webkit-slider-runnable-track {
+  appearance: none;
+  -webkit-appearance: none;
+  background: #fdb9b5;
+  height: 0.5rem;
+  border-radius: 999px;
+}
+.font-size-control input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1rem;
+  height: 1rem;
+  background-color: #e8e8e8;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translateY(-0.25rem);
 }
 .controls-manager label span {
   font-size: 12px;

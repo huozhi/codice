@@ -9,12 +9,12 @@ describe('Code', () => {
         <Editor>test</Editor>
       )
     ).toMatchInlineSnapshot(`
-      "<div data-codice="editor" data-codice-title="" data-codice-controls="true" data-codice-line-numbers="true"><style data-codice-style="true">:scope {
+      "<div data-codice="editor" data-codice-title="" data-codice-controls="true" data-codice-line-numbers="true"><style data-codice-style="true">:scope [data-codice="editor"] {
         --codice-text-color: transparent;
         --codice-background-color: transparent;
         --codice-caret-color: inherit;
-      }
-      :scope {
+        --codice-font-size: inherit;
+
         position: relative;
         overflow-y: scroll;
         display: flex;
@@ -22,33 +22,33 @@ describe('Code', () => {
         justify-content: stretch;
         scrollbar-width: none;
       }
-      :scope code,
-      :scope textarea {
+      :scope [data-codice="editor"] code,
+      :scope [data-codice="editor"] textarea {
         font-family: Consolas, Monaco, monospace;
         line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
         padding: 24px 16px;
-        line-height: 20px;
+        line-height: 1.5;
         font-size: var(--codice-font-size);
         caret-color: var(--codice-caret-color);
         border: none;
         outline: none;
         width: 100%;
       }
-      :scope code {
+      :scope [data-codice="editor"] code {
         display: inline-block;
         width: 100%;
       }
-      :scope textarea::-webkit-scrollbar,
-      :scope textarea:focus::-webkit-scrollbar,
-      :scope textarea:hover::-webkit-scrollbar {
+      :scope [data-codice="editor"] textarea::-webkit-scrollbar,
+      :scope [data-codice="editor"] textarea:focus::-webkit-scrollbar,
+      :scope [data-codice="editor"] textarea:hover::-webkit-scrollbar {
         width: 0;
       }
-      :scope [data-codice-content] {
+      :scope [data-codice="editor"] [data-codice-content] {
         position: relative;
       }
-      :scope textarea {
+      :scope [data-codice="editor"] textarea {
         resize: none;
         display: block;
         color: var(--codice-text-color);
@@ -61,7 +61,7 @@ describe('Code', () => {
         height: 100%;
         overflow: hidden;
       }
-      :scope [data-codice-line-numbers="true"] textarea {
+      :scope [data-codice="editor"][data-codice-line-numbers="true"] textarea {
         padding-left: 55px;
       }
       </style><div data-codice-header="true" data-codice-header-controls="true"><style data-codice-style="true">:scope [data-codice-header] {
@@ -97,10 +97,11 @@ describe('Code', () => {
         border-radius: 50%;
         background-color: var(--codice-control-color);
       }
-      </style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div></div><div data-codice-content="true"><div data-codice="code" data-codice-code="true"><style data-codice-style="true">:scope [data-codice-code] {
+      </style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div></div><div data-codice-content="true"><div data-codice="code" data-codice-code="true"><style data-codice-style="true">:scope {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
+        --codice-font-size: inherit;
       }
       :scope [data-codice-code] pre {
         white-space: pre-wrap;
@@ -126,14 +127,13 @@ describe('Code', () => {
         counter-increment: codice-code-line-number 1;
         content: counter(codice-code-line-number);
         display: inline-block;
-        min-width: 24px;
+        min-width: calc(2rem - 6px);
         margin-left: -40px;
         margin-right: 16px;
         text-align: right;
         user-select: none;
         color: var(--codice-code-line-number-color);
       }
-      :scope { font-size: inherit; }
       </style><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"
     `)
   })
@@ -144,12 +144,12 @@ describe('Code', () => {
         <Editor title="file.js">test</Editor>
       )
     ).toMatchInlineSnapshot(`
-      "<div data-codice="editor" data-codice-title="file.js" data-codice-controls="true" data-codice-line-numbers="true"><style data-codice-style="true">:scope {
+      "<div data-codice="editor" data-codice-title="file.js" data-codice-controls="true" data-codice-line-numbers="true"><style data-codice-style="true">:scope [data-codice="editor"] {
         --codice-text-color: transparent;
         --codice-background-color: transparent;
         --codice-caret-color: inherit;
-      }
-      :scope {
+        --codice-font-size: inherit;
+
         position: relative;
         overflow-y: scroll;
         display: flex;
@@ -157,33 +157,33 @@ describe('Code', () => {
         justify-content: stretch;
         scrollbar-width: none;
       }
-      :scope code,
-      :scope textarea {
+      :scope [data-codice="editor"] code,
+      :scope [data-codice="editor"] textarea {
         font-family: Consolas, Monaco, monospace;
         line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
         padding: 24px 16px;
-        line-height: 20px;
+        line-height: 1.5;
         font-size: var(--codice-font-size);
         caret-color: var(--codice-caret-color);
         border: none;
         outline: none;
         width: 100%;
       }
-      :scope code {
+      :scope [data-codice="editor"] code {
         display: inline-block;
         width: 100%;
       }
-      :scope textarea::-webkit-scrollbar,
-      :scope textarea:focus::-webkit-scrollbar,
-      :scope textarea:hover::-webkit-scrollbar {
+      :scope [data-codice="editor"] textarea::-webkit-scrollbar,
+      :scope [data-codice="editor"] textarea:focus::-webkit-scrollbar,
+      :scope [data-codice="editor"] textarea:hover::-webkit-scrollbar {
         width: 0;
       }
-      :scope [data-codice-content] {
+      :scope [data-codice="editor"] [data-codice-content] {
         position: relative;
       }
-      :scope textarea {
+      :scope [data-codice="editor"] textarea {
         resize: none;
         display: block;
         color: var(--codice-text-color);
@@ -196,7 +196,7 @@ describe('Code', () => {
         height: 100%;
         overflow: hidden;
       }
-      :scope [data-codice-line-numbers="true"] textarea {
+      :scope [data-codice="editor"][data-codice-line-numbers="true"] textarea {
         padding-left: 55px;
       }
       </style><div data-codice-header="true" data-codice-header-controls="true"><style data-codice-style="true">:scope [data-codice-header] {
@@ -232,10 +232,11 @@ describe('Code', () => {
         border-radius: 50%;
         background-color: var(--codice-control-color);
       }
-      </style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div><div data-codice-title="true">file.js</div></div><div data-codice-content="true"><div data-codice="code" data-codice-code="true"><style data-codice-style="true">:scope [data-codice-code] {
+      </style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div><div data-codice-title="true">file.js</div></div><div data-codice-content="true"><div data-codice="code" data-codice-code="true"><style data-codice-style="true">:scope {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
+        --codice-font-size: inherit;
       }
       :scope [data-codice-code] pre {
         white-space: pre-wrap;
@@ -261,14 +262,13 @@ describe('Code', () => {
         counter-increment: codice-code-line-number 1;
         content: counter(codice-code-line-number);
         display: inline-block;
-        min-width: 24px;
+        min-width: calc(2rem - 6px);
         margin-left: -40px;
         margin-right: 16px;
         text-align: right;
         user-select: none;
         color: var(--codice-code-line-number-color);
       }
-      :scope { font-size: inherit; }
       </style><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"
     `)
   ))
@@ -279,12 +279,12 @@ describe('Code', () => {
         <Editor controls={false} className="editor">test</Editor>
       )
     ).toMatchInlineSnapshot(`
-      "<div class="editor" data-codice="editor" data-codice-title="" data-codice-controls="false" data-codice-line-numbers="true"><style data-codice-style="true">:scope {
+      "<div class="editor" data-codice="editor" data-codice-title="" data-codice-controls="false" data-codice-line-numbers="true"><style data-codice-style="true">:scope [data-codice="editor"] {
         --codice-text-color: transparent;
         --codice-background-color: transparent;
         --codice-caret-color: inherit;
-      }
-      :scope {
+        --codice-font-size: inherit;
+
         position: relative;
         overflow-y: scroll;
         display: flex;
@@ -292,33 +292,33 @@ describe('Code', () => {
         justify-content: stretch;
         scrollbar-width: none;
       }
-      :scope code,
-      :scope textarea {
+      :scope [data-codice="editor"] code,
+      :scope [data-codice="editor"] textarea {
         font-family: Consolas, Monaco, monospace;
         line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
         padding: 24px 16px;
-        line-height: 20px;
+        line-height: 1.5;
         font-size: var(--codice-font-size);
         caret-color: var(--codice-caret-color);
         border: none;
         outline: none;
         width: 100%;
       }
-      :scope code {
+      :scope [data-codice="editor"] code {
         display: inline-block;
         width: 100%;
       }
-      :scope textarea::-webkit-scrollbar,
-      :scope textarea:focus::-webkit-scrollbar,
-      :scope textarea:hover::-webkit-scrollbar {
+      :scope [data-codice="editor"] textarea::-webkit-scrollbar,
+      :scope [data-codice="editor"] textarea:focus::-webkit-scrollbar,
+      :scope [data-codice="editor"] textarea:hover::-webkit-scrollbar {
         width: 0;
       }
-      :scope [data-codice-content] {
+      :scope [data-codice="editor"] [data-codice-content] {
         position: relative;
       }
-      :scope textarea {
+      :scope [data-codice="editor"] textarea {
         resize: none;
         display: block;
         color: var(--codice-text-color);
@@ -331,13 +331,14 @@ describe('Code', () => {
         height: 100%;
         overflow: hidden;
       }
-      :scope [data-codice-line-numbers="true"] textarea {
+      :scope [data-codice="editor"][data-codice-line-numbers="true"] textarea {
         padding-left: 55px;
       }
-      </style><div data-codice-content="true"><div data-codice="code" data-codice-code="true"><style data-codice-style="true">:scope [data-codice-code] {
+      </style><div data-codice-content="true"><div data-codice="code" data-codice-code="true"><style data-codice-style="true">:scope {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
+        --codice-font-size: inherit;
       }
       :scope [data-codice-code] pre {
         white-space: pre-wrap;
@@ -363,14 +364,13 @@ describe('Code', () => {
         counter-increment: codice-code-line-number 1;
         content: counter(codice-code-line-number);
         display: inline-block;
-        min-width: 24px;
+        min-width: calc(2rem - 6px);
         margin-left: -40px;
         margin-right: 16px;
         text-align: right;
         user-select: none;
         color: var(--codice-code-line-number-color);
       }
-      :scope { font-size: inherit; }
       </style><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"
     `)
   ))

@@ -5,10 +5,11 @@ import { renderToString } from 'react-dom/server'
 describe('Code', () => {
   it('default props', () => {
     expect(renderToString(<Code>test</Code>)).toMatchInlineSnapshot(`
-      "<div data-codice="code" data-codice-code="true"><style data-codice-style="true">:scope [data-codice-code] {
+      "<div data-codice="code" data-codice-code="true"><style data-codice-style="true">:scope {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
+        --codice-font-size: inherit;
       }
       :scope [data-codice-code] pre {
         white-space: pre-wrap;
@@ -27,17 +28,17 @@ describe('Code', () => {
       :scope [data-codice-code] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
       }
-      :scope { font-size: inherit; }
       </style><pre data-codice-code-content="true"><code><span class="sh__line"><span data-sh-token-type="element" class="sh__token--identifier" style="color:var(--sh-identifier)">test</span></span></code></pre></div>"
     `)
   })
 
   it('with title', () => {
     expect(renderToString(<Code title="file.js">test</Code>)).toMatchInlineSnapshot(`
-      "<div data-codice="code" data-codice-code="true"><style data-codice-style="true">:scope [data-codice-code] {
+      "<div data-codice="code" data-codice-code="true"><style data-codice-style="true">:scope {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
+        --codice-font-size: inherit;
       }
       :scope [data-codice-code] pre {
         white-space: pre-wrap;
@@ -56,7 +57,6 @@ describe('Code', () => {
       :scope [data-codice-code] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
       }
-      :scope { font-size: inherit; }
       </style><div data-codice-header="true" data-codice-header-controls="false"><style data-codice-style="true">:scope [data-codice-header] {
         position: relative;
         display: flex;
@@ -96,10 +96,11 @@ describe('Code', () => {
 
   it('with controls', () => {
     expect(renderToString(<Code controls>test</Code>)).toMatchInlineSnapshot(`
-      "<div data-codice="code" data-codice-code="true"><style data-codice-style="true">:scope [data-codice-code] {
+      "<div data-codice="code" data-codice-code="true"><style data-codice-style="true">:scope {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
+        --codice-font-size: inherit;
       }
       :scope [data-codice-code] pre {
         white-space: pre-wrap;
@@ -118,7 +119,6 @@ describe('Code', () => {
       :scope [data-codice-code] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
       }
-      :scope { font-size: inherit; }
       </style><div data-codice-header="true" data-codice-header-controls="true"><style data-codice-style="true">:scope [data-codice-header] {
         position: relative;
         display: flex;
@@ -158,10 +158,11 @@ describe('Code', () => {
 
   it('with fontSize', () => {
     expect(renderToString(<Code fontSize={14}>test</Code>)).toMatchInlineSnapshot(`
-      "<div data-codice="code" data-codice-code="true"><style data-codice-style="true">:scope [data-codice-code] {
+      "<div data-codice="code" data-codice-code="true"><style data-codice-style="true">:scope {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
+        --codice-font-size: 14px;
       }
       :scope [data-codice-code] pre {
         white-space: pre-wrap;
@@ -180,15 +181,15 @@ describe('Code', () => {
       :scope [data-codice-code] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
       }
-      :scope { font-size: 14px; }
       </style><pre data-codice-code-content="true"><code><span class="sh__line"><span data-sh-token-type="element" class="sh__token--identifier" style="color:var(--sh-identifier)">test</span></span></code></pre></div>"
     `)
 
     expect(renderToString(<Code fontSize={'1rem'}>test</Code>)).toMatchInlineSnapshot(`
-      "<div data-codice="code" data-codice-code="true"><style data-codice-style="true">:scope [data-codice-code] {
+      "<div data-codice="code" data-codice-code="true"><style data-codice-style="true">:scope {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
+        --codice-font-size: 1rem;
       }
       :scope [data-codice-code] pre {
         white-space: pre-wrap;
@@ -207,7 +208,6 @@ describe('Code', () => {
       :scope [data-codice-code] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
       }
-      :scope { font-size: 1rem; }
       </style><pre data-codice-code-content="true"><code><span class="sh__line"><span data-sh-token-type="element" class="sh__token--identifier" style="color:var(--sh-identifier)">test</span></span></code></pre></div>"
     `)
   })

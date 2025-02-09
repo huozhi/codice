@@ -14,7 +14,7 @@ export function Editor(props: EditorProps) {
     fontSize,
     ...restProps
   } = props
-  const editorProps = { title, value, onChange, controls, lineNumbers, fontSize }
+  const editorProps = { title, value, onChange, controls, lineNumbers }
 
   return (
     <div 
@@ -27,7 +27,7 @@ export function Editor(props: EditorProps) {
       data-codice-line-numbers={!!lineNumbers}
     >
       <style data-codice-style>
-        {css}
+        {css({ fontSize })}
       </style>
       <EditorClient {...editorProps} />
     </div>
