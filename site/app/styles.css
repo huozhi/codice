@@ -10,6 +10,7 @@
   --sh-property: #7be5f2;
   --codice-control-color: #8d8989;
   --codice-caret-color: #d5efea;
+  --codice-font-size: 14px;
 }
 
 * {
@@ -79,6 +80,9 @@ input[type=radio] {
 .section {
   margin: 4rem 0;
 }
+.section h2 {
+  margin: 0;
+}
 
 /* Code Example */
 .code-example [data-codice-code] {
@@ -92,7 +96,6 @@ input[type=radio] {
 }
 
 .code-example pre code {
-  font-size: 1rem;
   line-height: 1.5;
 }
 
@@ -100,7 +103,7 @@ input[type=radio] {
   padding: 1rem;
   background-color: #3d3d3d;
   border-radius: 0.5rem;
-  margin: 3rem 0;
+  margin: 2rem 0;
   border: 1px solid rgba(163, 169, 165, 0.2);
 }
 .code-example__item__title {

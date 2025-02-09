@@ -1,5 +1,5 @@
-const C = `[data-codice-code]`
-const H = `[data-codice-header]`
+const C = `:scope [data-codice-code]`
+const H = `:scope [data-codice-header]`
 
 export const baseCss = `\
 ${C} {
@@ -63,21 +63,22 @@ ${H} [data-codice-control] {
 `
 
 export const lineNumbersCss = `\
-@scope {
-  code { 
-    counter-reset: codice-code-line-number; 
-    padding-left
-  }
-  [data-codice-code-line-number] {
-    counter-increment: codice-code-line-number 1;
-    content: counter(codice-code-line-number);
-    display: inline-block;
-    min-width: 24px;
-    margin-left: -40px;
-    margin-right: 16px;
-    text-align: right;
-    user-select: none;
-    color: var(--codice-code-line-number-color);
-  }
+:scope code {
+  counter-reset: codice-code-line-number;
 }
+:scope [data-codice-code-line-number] {
+  counter-increment: codice-code-line-number 1;
+  content: counter(codice-code-line-number);
+  display: inline-block;
+  min-width: 24px;
+  margin-left: -40px;
+  margin-right: 16px;
+  text-align: right;
+  user-select: none;
+  color: var(--codice-code-line-number-color);
+}
+`
+
+export const fontCss = (fontSize: number | undefined) => `\
+:scope { font-size: ${fontSize || 'inherit'}; }
 `

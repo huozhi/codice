@@ -1,5 +1,5 @@
 import { tokenize, generate } from 'sugar-high'
-import { baseCss, headerCss, lineNumbersCss } from './css'
+import { baseCss, headerCss, lineNumbersCss, fontCss } from './css'
 import * as presets from 'sugar-high/presets'
 import { useMemo } from 'react'
 
@@ -126,22 +126,24 @@ export function Code({
   children: code,
   title,
   controls,
+  fontSize,
+  highlightLines,
   preformatted = true,
   lineNumbers = false,
-  highlightLines,
   asMarkup = false,
   ...props
 }: {
   children: string
   /** Whether to use a preformatted block <pre><code> */
   preformatted?: boolean
+  fontSize?: number
+  highlightLines?: ([number, number] | number)[]
   title?: string
   controls?: boolean
   lineNumbers?: boolean
-  highlightLines?: ([number, number] | number)[]
   asMarkup?: boolean
 } & React.HTMLAttributes<HTMLDivElement>) {
-  const css = baseCss + (lineNumbers ? lineNumbersCss : '')
+  const css = baseCss + (lineNumbers ? lineNumbersCss : '') + fontCss(fontSize)
   const lineElements = useMemo(() => 
     asMarkup 
       ? code

@@ -69,6 +69,7 @@ export function LiveEditor({
         className="editor"
         title={title}
         controls={controls}
+        fontSize={'14px'}
         lineNumbers={lineNumbers}
         onChange={(text) => setCode(text)}
       />

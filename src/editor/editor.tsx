@@ -26,12 +26,14 @@ const Editor = forwardRef(function EditorComponent(
     value = '',
     controls,
     lineNumbers,
+    fontSize,
     onChange = () => {},
   }: {
     title?: string
     value?: string
     controls?: boolean
     lineNumbers?: boolean
+    fontSize?: number
     onChange?: (code: string) => void
   } & React.HTMLAttributes<HTMLDivElement>,
   ref: React.Ref<HTMLDivElement>
@@ -65,6 +67,7 @@ const Editor = forwardRef(function EditorComponent(
           title={null}
           controls={false}
           lineNumbers={lineNumbers}
+          fontSize={fontSize}
         >
           {code}
         </Code>
