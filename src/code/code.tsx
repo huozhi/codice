@@ -136,7 +136,7 @@ export function Code({
   children: string
   /** Whether to use a preformatted block <pre><code> */
   preformatted?: boolean
-  fontSize?: number
+  fontSize?: string | number
   highlightLines?: ([number, number] | number)[]
   title?: string
   controls?: boolean

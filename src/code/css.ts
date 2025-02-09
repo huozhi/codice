@@ -79,6 +79,6 @@ export const lineNumbersCss = `\
 }
 `
 
-export const fontCss = (fontSize: number | undefined) => `\
-:scope { font-size: ${fontSize || 'inherit'}; }
+export const fontCss = (fontSize: string | number | undefined) => `\
+:scope { font-size: ${fontSize ?? 'inherit'}${typeof fontSize === 'number' ? 'px' : ''}; }
 `

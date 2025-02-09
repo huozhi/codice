@@ -11,7 +11,7 @@ ${R} {
   display: flex;
   flex-direction: column;
   justify-content: stretch;
-  scrollbar-width: none;  
+  scrollbar-width: none;
 }
 ${R} code,
 ${R} textarea {

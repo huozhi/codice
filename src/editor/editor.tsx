@@ -33,7 +33,7 @@ const Editor = forwardRef(function EditorComponent(
     value?: string
     controls?: boolean
     lineNumbers?: boolean
-    fontSize?: number
+    fontSize?: string | number
     onChange?: (code: string) => void
   } & React.HTMLAttributes<HTMLDivElement>,
   ref: React.Ref<HTMLDivElement>
