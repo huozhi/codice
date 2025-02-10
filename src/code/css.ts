@@ -1,7 +1,8 @@
-const C = `:scope [data-codice-code]`
-const H = `:scope [data-codice-header]`
+import { fontSizeCss } from '../style'
 
-export const baseCss = `\
+const baseCss = (id: string) => {
+  const C = `[data-codice-code="${id}"]`
+  return `\
 ${C} pre {
   white-space: pre-wrap;
   margin: 0;
@@ -20,8 +21,11 @@ ${C} .sh__line[data-highlight] {
   background-color: var(--codice-code-highlight-color);
 }
 `
+}
 
-export const headerCss = `\
+export const headerCss = (id: string) => {
+  const H = `[data-codice-header="${id}"]`
+  return `\
 ${H} {
   position: relative;
   display: flex;
@@ -44,7 +48,7 @@ ${H} [data-codice-controls] {
 ${H} [data-codice-controls] {
   width: 52px;
 }
-[data-codice-header-controls="true"] [data-codice-title] {
+${H}[data-codice-header-controls="true"] [data-codice-title] {
   padding-right: 52px;
 }
 ${H} [data-codice-control] {
@@ -56,12 +60,13 @@ ${H} [data-codice-control] {
   background-color: var(--codice-control-color);
 }
 `
+}
 
-export const lineNumbersCss = `\
-:scope code {
+const lineNumbersCss = (id: string) => `\
+[data-codice-code="${id}"] code {
   counter-reset: codice-code-line-number;
 }
-:scope [data-codice-code-line-number] {
+[data-codice-code="${id}"] [data-codice-code-line-number] {
   counter-increment: codice-code-line-number 1;
   content: counter(codice-code-line-number);
   display: inline-block;
@@ -74,23 +79,25 @@ export const lineNumbersCss = `\
 }
 `
 
-export const fontSizeCss = (fontSize: string | number | undefined): string => {
-  const fz = `${fontSize ?? 'inherit'}${typeof fontSize === 'number' ? 'px' : ''}`
-  return fz
-}
 
-export const variables = ({
-  fontSize
+export const css = (id: string, {
+  fontSize,
+  lineNumbers,
 }: {
   fontSize: string | number | undefined
+  lineNumbers: boolean
 }): string => {
+  const U = `[data-codice-code="${id}"]`
   const fz = fontSizeCss(fontSize)
   return `\
-:scope {
+${U} {
   --codice-code-line-number-color: #a4a4a4;
   --codice-code-highlight-color: #555555;
   --codice-control-color: #8d8989;
   --codice-font-size: ${fz};
 }
+${baseCss(id)}
+${headerCss(id)}
+${lineNumbers ? lineNumbersCss(id) : ''}
 `
 }

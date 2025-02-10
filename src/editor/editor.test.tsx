@@ -9,7 +9,7 @@ describe('Code', () => {
         <Editor>test</Editor>
       )
     ).toMatchInlineSnapshot(`
-      "<div data-codice="editor" data-codice-title="" data-codice-controls="true" data-codice-line-numbers="true"><style data-codice-style="true">:scope [data-codice="editor"] {
+      "<div data-codice="editor" data-codice-editor="_RA:" data-codice-title="" data-codice-controls="true" data-codice-line-numbers="true"><style data-codice-style="true">[data-codice-editor="_RA:"] {
         --codice-text-color: transparent;
         --codice-background-color: transparent;
         --codice-caret-color: inherit;
@@ -22,8 +22,8 @@ describe('Code', () => {
         justify-content: stretch;
         scrollbar-width: none;
       }
-      :scope [data-codice="editor"] code,
-      :scope [data-codice="editor"] textarea {
+      [data-codice-editor="_RA:"] code,
+      [data-codice-editor="_RA:"] textarea {
         font-family: Consolas, Monaco, monospace;
         line-break: anywhere;
         overflow-wrap: break-word;
@@ -36,19 +36,19 @@ describe('Code', () => {
         outline: none;
         width: 100%;
       }
-      :scope [data-codice="editor"] code {
+      [data-codice-editor="_RA:"] code {
         display: inline-block;
         width: 100%;
       }
-      :scope [data-codice="editor"] textarea::-webkit-scrollbar,
-      :scope [data-codice="editor"] textarea:focus::-webkit-scrollbar,
-      :scope [data-codice="editor"] textarea:hover::-webkit-scrollbar {
+      [data-codice-editor="_RA:"] textarea::-webkit-scrollbar,
+      [data-codice-editor="_RA:"] textarea:focus::-webkit-scrollbar,
+      [data-codice-editor="_RA:"] textarea:hover::-webkit-scrollbar {
         width: 0;
       }
-      :scope [data-codice="editor"] [data-codice-content] {
+      [data-codice-editor="_RA:"] [data-codice-content] {
         position: relative;
       }
-      :scope [data-codice="editor"] textarea {
+      [data-codice-editor="_RA:"] textarea {
         resize: none;
         display: block;
         color: var(--codice-text-color);
@@ -61,35 +61,35 @@ describe('Code', () => {
         height: 100%;
         overflow: hidden;
       }
-      :scope [data-codice="editor"][data-codice-line-numbers="true"] textarea {
+      [data-codice-editor="_RA:"] [data-codice-line-numbers="true"] textarea {
         padding-left: 55px;
       }
-      </style><div data-codice-header="true" data-codice-header-controls="true"><style data-codice-style="true">:scope [data-codice-header] {
+      </style><div data-codice-header="_RA:" data-codice-header-controls="true"><style data-codice-style="true">[data-codice-header="_RA:"] {
         position: relative;
         display: flex;
         padding: 16px 22px 8px;
         align-items: center;
       }
-      :scope [data-codice-header] [data-codice-title] {
+      [data-codice-header="_RA:"] [data-codice-title] {
         display: inline-block;
         flex: 1 0;
         text-align: center;
         line-height: 1;
       }
-      :scope [data-codice-header] [data-codice-controls] {
+      [data-codice-header="_RA:"] [data-codice-controls] {
         display: inline-flex;
         align-self: center;
         justify-self: start;
         align-items: center;
         justify-content: center;
       }
-      :scope [data-codice-header] [data-codice-controls] {
+      [data-codice-header="_RA:"] [data-codice-controls] {
         width: 52px;
       }
-      [data-codice-header-controls="true"] [data-codice-title] {
+      [data-codice-header="_RA:"][data-codice-header-controls="true"] [data-codice-title] {
         padding-right: 52px;
       }
-      :scope [data-codice-header] [data-codice-control] {
+      [data-codice-header="_RA:"] [data-codice-control] {
         display: flex;
         width: 10px;
         height: 10px;
@@ -97,33 +97,68 @@ describe('Code', () => {
         border-radius: 50%;
         background-color: var(--codice-control-color);
       }
-      </style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div></div><div data-codice-content="true"><div data-codice="code" data-codice-code="true"><style data-codice-style="true">:scope {
+      </style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div></div><div data-codice-content="true"><div data-codice="code" data-codice-code=":R1l:"><style data-codice-style="true">[data-codice-code=":R1l:"] {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
         --codice-font-size: inherit;
       }
-      :scope [data-codice-code] pre {
+      [data-codice-code=":R1l:"] pre {
         white-space: pre-wrap;
         margin: 0;
       }
-      :scope [data-codice-code] code {
+      [data-codice-code=":R1l:"] code {
         border: none;
       }
-      :scope [data-codice-code] .sh__line {
+      [data-codice-code=":R1l:"] .sh__line {
         display: inline-block;
         width: 100%;
       }
-      :scope [data-codice-code] .sh__line:has(> [data-codice-code-line-number]) {
+      [data-codice-code=":R1l:"] .sh__line:has(> [data-codice-code-line-number]) {
         padding-left: 40px;
       }
-      :scope [data-codice-code] .sh__line[data-highlight] {
+      [data-codice-code=":R1l:"] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
       }
-      :scope code {
+
+      [data-codice-header=":R1l:"] {
+        position: relative;
+        display: flex;
+        padding: 16px 22px 8px;
+        align-items: center;
+      }
+      [data-codice-header=":R1l:"] [data-codice-title] {
+        display: inline-block;
+        flex: 1 0;
+        text-align: center;
+        line-height: 1;
+      }
+      [data-codice-header=":R1l:"] [data-codice-controls] {
+        display: inline-flex;
+        align-self: center;
+        justify-self: start;
+        align-items: center;
+        justify-content: center;
+      }
+      [data-codice-header=":R1l:"] [data-codice-controls] {
+        width: 52px;
+      }
+      [data-codice-header=":R1l:"][data-codice-header-controls="true"] [data-codice-title] {
+        padding-right: 52px;
+      }
+      [data-codice-header=":R1l:"] [data-codice-control] {
+        display: flex;
+        width: 10px;
+        height: 10px;
+        margin: 3px;
+        border-radius: 50%;
+        background-color: var(--codice-control-color);
+      }
+
+      [data-codice-code=":R1l:"] code {
         counter-reset: codice-code-line-number;
       }
-      :scope [data-codice-code-line-number] {
+      [data-codice-code=":R1l:"] [data-codice-code-line-number] {
         counter-increment: codice-code-line-number 1;
         content: counter(codice-code-line-number);
         display: inline-block;
@@ -134,6 +169,7 @@ describe('Code', () => {
         user-select: none;
         color: var(--codice-code-line-number-color);
       }
+
       </style><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"
     `)
   })
@@ -144,7 +180,7 @@ describe('Code', () => {
         <Editor title="file.js">test</Editor>
       )
     ).toMatchInlineSnapshot(`
-      "<div data-codice="editor" data-codice-title="file.js" data-codice-controls="true" data-codice-line-numbers="true"><style data-codice-style="true">:scope [data-codice="editor"] {
+      "<div data-codice="editor" data-codice-editor="_RA:" data-codice-title="file.js" data-codice-controls="true" data-codice-line-numbers="true"><style data-codice-style="true">[data-codice-editor="_RA:"] {
         --codice-text-color: transparent;
         --codice-background-color: transparent;
         --codice-caret-color: inherit;
@@ -157,8 +193,8 @@ describe('Code', () => {
         justify-content: stretch;
         scrollbar-width: none;
       }
-      :scope [data-codice="editor"] code,
-      :scope [data-codice="editor"] textarea {
+      [data-codice-editor="_RA:"] code,
+      [data-codice-editor="_RA:"] textarea {
         font-family: Consolas, Monaco, monospace;
         line-break: anywhere;
         overflow-wrap: break-word;
@@ -171,19 +207,19 @@ describe('Code', () => {
         outline: none;
         width: 100%;
       }
-      :scope [data-codice="editor"] code {
+      [data-codice-editor="_RA:"] code {
         display: inline-block;
         width: 100%;
       }
-      :scope [data-codice="editor"] textarea::-webkit-scrollbar,
-      :scope [data-codice="editor"] textarea:focus::-webkit-scrollbar,
-      :scope [data-codice="editor"] textarea:hover::-webkit-scrollbar {
+      [data-codice-editor="_RA:"] textarea::-webkit-scrollbar,
+      [data-codice-editor="_RA:"] textarea:focus::-webkit-scrollbar,
+      [data-codice-editor="_RA:"] textarea:hover::-webkit-scrollbar {
         width: 0;
       }
-      :scope [data-codice="editor"] [data-codice-content] {
+      [data-codice-editor="_RA:"] [data-codice-content] {
         position: relative;
       }
-      :scope [data-codice="editor"] textarea {
+      [data-codice-editor="_RA:"] textarea {
         resize: none;
         display: block;
         color: var(--codice-text-color);
@@ -196,35 +232,35 @@ describe('Code', () => {
         height: 100%;
         overflow: hidden;
       }
-      :scope [data-codice="editor"][data-codice-line-numbers="true"] textarea {
+      [data-codice-editor="_RA:"] [data-codice-line-numbers="true"] textarea {
         padding-left: 55px;
       }
-      </style><div data-codice-header="true" data-codice-header-controls="true"><style data-codice-style="true">:scope [data-codice-header] {
+      </style><div data-codice-header="_RA:" data-codice-header-controls="true"><style data-codice-style="true">[data-codice-header="_RA:"] {
         position: relative;
         display: flex;
         padding: 16px 22px 8px;
         align-items: center;
       }
-      :scope [data-codice-header] [data-codice-title] {
+      [data-codice-header="_RA:"] [data-codice-title] {
         display: inline-block;
         flex: 1 0;
         text-align: center;
         line-height: 1;
       }
-      :scope [data-codice-header] [data-codice-controls] {
+      [data-codice-header="_RA:"] [data-codice-controls] {
         display: inline-flex;
         align-self: center;
         justify-self: start;
         align-items: center;
         justify-content: center;
       }
-      :scope [data-codice-header] [data-codice-controls] {
+      [data-codice-header="_RA:"] [data-codice-controls] {
         width: 52px;
       }
-      [data-codice-header-controls="true"] [data-codice-title] {
+      [data-codice-header="_RA:"][data-codice-header-controls="true"] [data-codice-title] {
         padding-right: 52px;
       }
-      :scope [data-codice-header] [data-codice-control] {
+      [data-codice-header="_RA:"] [data-codice-control] {
         display: flex;
         width: 10px;
         height: 10px;
@@ -232,33 +268,68 @@ describe('Code', () => {
         border-radius: 50%;
         background-color: var(--codice-control-color);
       }
-      </style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div><div data-codice-title="true">file.js</div></div><div data-codice-content="true"><div data-codice="code" data-codice-code="true"><style data-codice-style="true">:scope {
+      </style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div><div data-codice-title="true">file.js</div></div><div data-codice-content="true"><div data-codice="code" data-codice-code=":R1l:"><style data-codice-style="true">[data-codice-code=":R1l:"] {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
         --codice-font-size: inherit;
       }
-      :scope [data-codice-code] pre {
+      [data-codice-code=":R1l:"] pre {
         white-space: pre-wrap;
         margin: 0;
       }
-      :scope [data-codice-code] code {
+      [data-codice-code=":R1l:"] code {
         border: none;
       }
-      :scope [data-codice-code] .sh__line {
+      [data-codice-code=":R1l:"] .sh__line {
         display: inline-block;
         width: 100%;
       }
-      :scope [data-codice-code] .sh__line:has(> [data-codice-code-line-number]) {
+      [data-codice-code=":R1l:"] .sh__line:has(> [data-codice-code-line-number]) {
         padding-left: 40px;
       }
-      :scope [data-codice-code] .sh__line[data-highlight] {
+      [data-codice-code=":R1l:"] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
       }
-      :scope code {
+
+      [data-codice-header=":R1l:"] {
+        position: relative;
+        display: flex;
+        padding: 16px 22px 8px;
+        align-items: center;
+      }
+      [data-codice-header=":R1l:"] [data-codice-title] {
+        display: inline-block;
+        flex: 1 0;
+        text-align: center;
+        line-height: 1;
+      }
+      [data-codice-header=":R1l:"] [data-codice-controls] {
+        display: inline-flex;
+        align-self: center;
+        justify-self: start;
+        align-items: center;
+        justify-content: center;
+      }
+      [data-codice-header=":R1l:"] [data-codice-controls] {
+        width: 52px;
+      }
+      [data-codice-header=":R1l:"][data-codice-header-controls="true"] [data-codice-title] {
+        padding-right: 52px;
+      }
+      [data-codice-header=":R1l:"] [data-codice-control] {
+        display: flex;
+        width: 10px;
+        height: 10px;
+        margin: 3px;
+        border-radius: 50%;
+        background-color: var(--codice-control-color);
+      }
+
+      [data-codice-code=":R1l:"] code {
         counter-reset: codice-code-line-number;
       }
-      :scope [data-codice-code-line-number] {
+      [data-codice-code=":R1l:"] [data-codice-code-line-number] {
         counter-increment: codice-code-line-number 1;
         content: counter(codice-code-line-number);
         display: inline-block;
@@ -269,6 +340,7 @@ describe('Code', () => {
         user-select: none;
         color: var(--codice-code-line-number-color);
       }
+
       </style><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"
     `)
   ))
@@ -279,7 +351,7 @@ describe('Code', () => {
         <Editor controls={false} className="editor">test</Editor>
       )
     ).toMatchInlineSnapshot(`
-      "<div class="editor" data-codice="editor" data-codice-title="" data-codice-controls="false" data-codice-line-numbers="true"><style data-codice-style="true">:scope [data-codice="editor"] {
+      "<div class="editor" data-codice="editor" data-codice-editor="_RA:" data-codice-title="" data-codice-controls="false" data-codice-line-numbers="true"><style data-codice-style="true">[data-codice-editor="_RA:"] {
         --codice-text-color: transparent;
         --codice-background-color: transparent;
         --codice-caret-color: inherit;
@@ -292,8 +364,8 @@ describe('Code', () => {
         justify-content: stretch;
         scrollbar-width: none;
       }
-      :scope [data-codice="editor"] code,
-      :scope [data-codice="editor"] textarea {
+      [data-codice-editor="_RA:"] code,
+      [data-codice-editor="_RA:"] textarea {
         font-family: Consolas, Monaco, monospace;
         line-break: anywhere;
         overflow-wrap: break-word;
@@ -306,19 +378,19 @@ describe('Code', () => {
         outline: none;
         width: 100%;
       }
-      :scope [data-codice="editor"] code {
+      [data-codice-editor="_RA:"] code {
         display: inline-block;
         width: 100%;
       }
-      :scope [data-codice="editor"] textarea::-webkit-scrollbar,
-      :scope [data-codice="editor"] textarea:focus::-webkit-scrollbar,
-      :scope [data-codice="editor"] textarea:hover::-webkit-scrollbar {
+      [data-codice-editor="_RA:"] textarea::-webkit-scrollbar,
+      [data-codice-editor="_RA:"] textarea:focus::-webkit-scrollbar,
+      [data-codice-editor="_RA:"] textarea:hover::-webkit-scrollbar {
         width: 0;
       }
-      :scope [data-codice="editor"] [data-codice-content] {
+      [data-codice-editor="_RA:"] [data-codice-content] {
         position: relative;
       }
-      :scope [data-codice="editor"] textarea {
+      [data-codice-editor="_RA:"] textarea {
         resize: none;
         display: block;
         color: var(--codice-text-color);
@@ -331,36 +403,71 @@ describe('Code', () => {
         height: 100%;
         overflow: hidden;
       }
-      :scope [data-codice="editor"][data-codice-line-numbers="true"] textarea {
+      [data-codice-editor="_RA:"] [data-codice-line-numbers="true"] textarea {
         padding-left: 55px;
       }
-      </style><div data-codice-content="true"><div data-codice="code" data-codice-code="true"><style data-codice-style="true">:scope {
+      </style><div data-codice-content="true"><div data-codice="code" data-codice-code=":R1l:"><style data-codice-style="true">[data-codice-code=":R1l:"] {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
         --codice-font-size: inherit;
       }
-      :scope [data-codice-code] pre {
+      [data-codice-code=":R1l:"] pre {
         white-space: pre-wrap;
         margin: 0;
       }
-      :scope [data-codice-code] code {
+      [data-codice-code=":R1l:"] code {
         border: none;
       }
-      :scope [data-codice-code] .sh__line {
+      [data-codice-code=":R1l:"] .sh__line {
         display: inline-block;
         width: 100%;
       }
-      :scope [data-codice-code] .sh__line:has(> [data-codice-code-line-number]) {
+      [data-codice-code=":R1l:"] .sh__line:has(> [data-codice-code-line-number]) {
         padding-left: 40px;
       }
-      :scope [data-codice-code] .sh__line[data-highlight] {
+      [data-codice-code=":R1l:"] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
       }
-      :scope code {
+
+      [data-codice-header=":R1l:"] {
+        position: relative;
+        display: flex;
+        padding: 16px 22px 8px;
+        align-items: center;
+      }
+      [data-codice-header=":R1l:"] [data-codice-title] {
+        display: inline-block;
+        flex: 1 0;
+        text-align: center;
+        line-height: 1;
+      }
+      [data-codice-header=":R1l:"] [data-codice-controls] {
+        display: inline-flex;
+        align-self: center;
+        justify-self: start;
+        align-items: center;
+        justify-content: center;
+      }
+      [data-codice-header=":R1l:"] [data-codice-controls] {
+        width: 52px;
+      }
+      [data-codice-header=":R1l:"][data-codice-header-controls="true"] [data-codice-title] {
+        padding-right: 52px;
+      }
+      [data-codice-header=":R1l:"] [data-codice-control] {
+        display: flex;
+        width: 10px;
+        height: 10px;
+        margin: 3px;
+        border-radius: 50%;
+        background-color: var(--codice-control-color);
+      }
+
+      [data-codice-code=":R1l:"] code {
         counter-reset: codice-code-line-number;
       }
-      :scope [data-codice-code-line-number] {
+      [data-codice-code=":R1l:"] [data-codice-code-line-number] {
         counter-increment: codice-code-line-number 1;
         content: counter(codice-code-line-number);
         display: inline-block;
@@ -371,6 +478,7 @@ describe('Code', () => {
         user-select: none;
         color: var(--codice-code-line-number-color);
       }
+
       </style><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"
     `)
   ))
