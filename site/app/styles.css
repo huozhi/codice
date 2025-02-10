@@ -10,7 +10,9 @@
   --sh-property: #7be5f2;
   --codice-control-color: #8d8989;
   --codice-caret-color: #d5efea;
-  /* --codice-font-size: 14px; */
+  
+  --control-bg-color: #242424;
+  --control-color: #c8c6c6;
 }
 
 * {
@@ -88,16 +90,21 @@ input[type=radio] {
 .code-example [data-codice-code] {
   background-color: #343434;
   color: #d5d5d5;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   overflow-x: auto;
   font-size: 1rem;
   margin: 1rem 0;
 }
 
+#editor-canvas {
+  padding: 0 0.5rem 0.5rem;
+  background-color: #343434;
+}
+
 .code-example__item {
   padding: 1rem;
   background-color: #3d3d3d;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   margin: 2rem 0;
   border: 1px solid rgba(163, 169, 165, 0.2);
 }
@@ -109,17 +116,36 @@ input[type=radio] {
 }
 .controls-manager-label {
   display: inline-block;
-  padding: 2px 4px;
-  color: #fff;
-  border-radius: 0.5rem;
+  padding: 3px 8px;
+  border-radius: 8px;
   cursor: pointer;
-  border: 1px solid #fdb9b5;
+  border: 1px solid var(--control-bg-color);
   transition: all 0.2s ease-in-out;
+  background-color: var(--control-bg-color);
+  user-select: none;
 }
 .controls-manager-label--checked,
 .controls-manager label[data-checked="true"] {
-  background-color: #fdb9b5;
-  color: #343434;
+  color: var(--control-color);
+}
+.controls-manager-input {
+  display: inline-block;
+  min-width: 2ch;
+  margin: 0;
+  padding: 0 4px;
+  background-color: transparent;
+  color: var(--control-color);
+  font-size: 1rem;
+  font-weight: 600;
+  resize:horizontal;
+  outline-color: var(--control-color);
+  width: 68px;
+  border-radius: 2px;
+  line-height: 1;
+  border: none;
+}
+.controls-manager-input::selection {
+  background-color: #565656;
 }
 .font-size-control {
   margin: 2rem 4px;
@@ -131,7 +157,7 @@ input[type=radio] {
 .font-size-control input[type="range"]::-webkit-slider-runnable-track {
   appearance: none;
   -webkit-appearance: none;
-  background: #fdb9b5;
+  background: var(--control-bg-color);
   height: 0.5rem;
   border-radius: 999px;
 }
@@ -140,7 +166,7 @@ input[type=radio] {
   -webkit-appearance: none;
   width: 1rem;
   height: 1rem;
-  background-color: #e8e8e8;
+  background-color: var(--control-color);
   border-radius: 50%;
   cursor: pointer;
   transform: translateY(-0.25rem);
@@ -155,6 +181,24 @@ input[type=radio] {
 .controls-manager input[type="checkbox"] {
   /* make it looks fancy */
   display: none;
+}
+
+.editor-layout {
+  position: relative;
+}
+.editor-layout .copy-image {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  color: #8d8989;
+  cursor: pointer;
+  z-index: 1;
+  padding: 4px 8px;
+}
+.editor-layout .copy-image:hover {
+  color: #b0acac;
 }
 
 /* Codice Styling */
