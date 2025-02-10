@@ -60,7 +60,7 @@ ${R} textarea {
   height: 100%;
   overflow: hidden;
 }
-${R} [data-codice-line-numbers="true"] textarea {
+${R}[data-codice-line-numbers="true"] textarea {
   padding-left: 55px;
 }
 `

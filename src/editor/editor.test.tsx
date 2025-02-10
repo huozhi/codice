@@ -61,7 +61,7 @@ describe('Code', () => {
         height: 100%;
         overflow: hidden;
       }
-      [data-codice-editor="_RA:"] [data-codice-line-numbers="true"] textarea {
+      [data-codice-editor="_RA:"][data-codice-line-numbers="true"] textarea {
         padding-left: 55px;
       }
       </style><div data-codice-header="_RA:" data-codice-header-controls="true"><style data-codice-style="true">[data-codice-header="_RA:"] {
@@ -232,7 +232,7 @@ describe('Code', () => {
         height: 100%;
         overflow: hidden;
       }
-      [data-codice-editor="_RA:"] [data-codice-line-numbers="true"] textarea {
+      [data-codice-editor="_RA:"][data-codice-line-numbers="true"] textarea {
         padding-left: 55px;
       }
       </style><div data-codice-header="_RA:" data-codice-header-controls="true"><style data-codice-style="true">[data-codice-header="_RA:"] {
@@ -403,7 +403,7 @@ describe('Code', () => {
         height: 100%;
         overflow: hidden;
       }
-      [data-codice-editor="_RA:"] [data-codice-line-numbers="true"] textarea {
+      [data-codice-editor="_RA:"][data-codice-line-numbers="true"] textarea {
         padding-left: 55px;
       }
       </style><div data-codice-content="true"><div data-codice="code" data-codice-code=":R1l:"><style data-codice-style="true">[data-codice-code=":R1l:"] {
