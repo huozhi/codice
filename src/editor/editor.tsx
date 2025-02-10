@@ -22,18 +22,18 @@ function composeRefs(...refs: React.Ref<HTMLElement>[]) {
 
 const Editor = forwardRef(function EditorComponent(
   {
+    id,
     title,
     value = '',
     controls,
     lineNumbers,
-    fontSize,
     onChange = () => {},
   }: {
+    id?: string
     title?: string
     value?: string
     controls?: boolean
     lineNumbers?: boolean
-    fontSize?: string | number
     onChange?: (code: string) => void
   } & React.HTMLAttributes<HTMLDivElement>,
   ref: React.Ref<HTMLDivElement>
@@ -60,7 +60,7 @@ const Editor = forwardRef(function EditorComponent(
   return (
     <>
       {/* Display the header outside of the matched textarea and code, by default display controls */}
-      <CodeHeader title={title} controls={controls} />
+      <CodeHeader id={id} title={title} controls={controls} />
       <div data-codice-content>
         {/* hide controls component inside Code to keep content matched with textarea */}
         <Code

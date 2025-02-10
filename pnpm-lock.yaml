@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       react:
-        specifier: ^17.0.0 || ^18.0.0 || ^19.0.0
+        specifier: ^18.0.0 || ^19.0.0
         version: 19.0.0
       sugar-high:
         specifier: ^0.9.2

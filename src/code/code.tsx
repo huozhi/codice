@@ -1,7 +1,8 @@
 import { tokenize, generate } from 'sugar-high'
-import { baseCss, headerCss, lineNumbersCss, variables } from './css'
+import { css, headerCss } from './css'
 import * as presets from 'sugar-high/presets'
-import { useMemo } from 'react'
+import { useId, useMemo } from 'react'
+import { Style } from '../style'
 
 const getPresetByExt = (ext: string) => {
   switch (ext) {
@@ -71,6 +72,7 @@ function generateHighlightedLines(
           {...lineProperties}
           // Add data-highlight attribute if line is highlighted
           {...(isHighlighted ? {'data-highlight': true} : {})}
+          data-codice-code-line
           key={index}
         >
           {lineNumbers ? <span key='ln' data-codice-code-line-number>{index + 1}</span> : null}
@@ -82,15 +84,22 @@ function generateHighlightedLines(
   return lines
 }
 
-export function CodeHeader({ title, controls = false }: { title?: string; controls: boolean }) {
+export function CodeHeader({ 
+  id, 
+  title, 
+  controls = false
+}: {
+  id: string
+  title?: string
+  controls: boolean
+}) {
   if (!title && !controls) return null
-
   return (
     <div 
-      data-codice-header
+      data-codice-header={id}
       data-codice-header-controls={controls}
     >
-      <style data-codice-style>{headerCss}</style>
+      <Style css={headerCss(id)} />
       {controls ? (
         <div data-codice-controls>
           <span data-codice-control />
@@ -143,7 +152,8 @@ export function Code({
   lineNumbers?: boolean
   asMarkup?: boolean
 } & React.HTMLAttributes<HTMLDivElement>) {
-  const css = variables({ fontSize }) + baseCss + (lineNumbers ? lineNumbersCss : '')
+  const id = useId()
+  const styles = css(id, { fontSize, lineNumbers })
   
   const lineElements = useMemo(() => 
     asMarkup 
@@ -154,11 +164,9 @@ export function Code({
 
   return (
     // Add both attribute because it's both root component and child component (of editor)
-    <div {...props} data-codice="code" data-codice-code>
-      <style data-codice-style>
-        {css}
-      </style>
-      <CodeHeader title={title} controls={controls} />
+    <div {...props} data-codice="code" data-codice-code={id}>
+      <Style css={styles} />
+      <CodeHeader title={title} controls={controls} id={id} />
       <CodeFrame preformatted={preformatted} asMarkup={asMarkup}>
         {lineElements}
       </CodeFrame>
