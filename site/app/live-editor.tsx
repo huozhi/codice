@@ -40,7 +40,7 @@ function RangeSelector({
     <div className={className}>
       <label 
         className='controls-manager-label controls-manager-label--checked' 
-        htmlFor="font-size">{`fontSize={`}<span>{value}</span>{`}`}
+        htmlFor="font-size">{`fontSize={`}<b><span>{value}</span></b>{`}`}
       </label>
       <input
         {...props}

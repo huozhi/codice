@@ -33,6 +33,7 @@ The following props are supported by the `Editor` component:
 - `title` (optional): A string representing the title of the editor.
 - `controls` (optional): A boolean value indicating whether to display the controls for the editor.
 - `lineNumbers` (optional): A boolean value indicating whether to display line numbers in the editor.
+- `fontSize` (optional): A string representing the font size of the editor. The default value is `inherit`.
 
 Additionally, you can pass any other props to the `Editor` component, which will be applied to the root `div` element.
 
@@ -59,6 +60,7 @@ import { Code } from 'codice'
 - `lineNumbers` (optional): A boolean value indicating whether to display line numbers in the code block.
 - `preformatted` (optional): A boolean value indicating whether the code should be displayed as preformatted text. If `true`, the code will be displayed in a `pre` and a `code` element. If `false`, the code will be displayed in a `div` element.
 - `asMarkup` (optional): A boolean value indicating whether the code should be displayed as markup. If `true`, the code will be displayed with HTML entities escaped. If `false`, the code will be displayed as plain text. default is `false`.
+- `fontSize` (optional): A string representing the font size of the editor. The default value is `inherit`.
 - `children`: The code content to be displayed in the code block.
 
 ### Styling
