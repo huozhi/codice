@@ -1,10 +1,13 @@
 import { fontSizeCss } from '../style'
 
-
 export const css = (id: string, {
-  fontSize
+  fontSize,
+  lineNumbersWidth = '2.5rem',
+  padding = '1rem',
 }: {
   fontSize?: string | number
+  lineNumbersWidth: string
+  padding: string
 }) => {
   const R = `[data-codice-editor="${id}"]`
   return `\
@@ -13,6 +16,8 @@ ${R} {
   --codice-background-color: transparent;
   --codice-caret-color: inherit;
   --codice-font-size: ${fontSizeCss(fontSize)};
+  --codice-code-line-number-width: ${lineNumbersWidth};
+  --codice-code-padding: ${padding};
 
   position: relative;
   overflow-y: scroll;
@@ -27,7 +32,7 @@ ${R} textarea {
   line-break: anywhere;
   overflow-wrap: break-word;
   scrollbar-width: none;
-  padding: 24px 16px;
+  padding: calc(var(--codice-code-padding) * 1.5) var(--codice-code-padding);
   line-height: 1.5;
   font-size: var(--codice-font-size);
   caret-color: var(--codice-caret-color);
@@ -61,7 +66,7 @@ ${R} textarea {
   overflow: hidden;
 }
 ${R}[data-codice-line-numbers="true"] textarea {
-  padding-left: 55px;
+  padding-left: calc(var(--codice-code-line-number-width) + var(--codice-code-padding));
 }
 `
 // line number padding-left is [[width 24px] margin-right 16px] + 15px

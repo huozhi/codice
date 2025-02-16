@@ -15,7 +15,7 @@ ${C} .sh__line {
   width: 100%;
 }
 ${C} .sh__line:has(> [data-codice-code-line-number]) {
-  padding-left: 40px;
+  padding-left: var(--codice-code-line-number-width);
 }
 ${C} .sh__line[data-highlight] {
   background-color: var(--codice-code-highlight-color);
@@ -71,7 +71,8 @@ const lineNumbersCss = (id: string) => `\
   content: counter(codice-code-line-number);
   display: inline-block;
   min-width: calc(2rem - 6px);
-  margin-left: -40px;
+  width: var(--codice-code-line-number-width);
+  margin-left: calc(var(--codice-code-line-number-width) * -1);
   margin-right: 16px;
   text-align: right;
   user-select: none;
@@ -79,13 +80,16 @@ const lineNumbersCss = (id: string) => `\
 }
 `
 
-
 export const css = (id: string, {
   fontSize,
   lineNumbers,
+  lineNumbersWidth = '2.5rem',
+  padding = '1rem',
 }: {
   fontSize: string | number | undefined
   lineNumbers: boolean
+  lineNumbersWidth: string
+  padding: string
 }): string => {
   const U = `[data-codice-code="${id}"]`
   const fz = fontSizeCss(fontSize)
@@ -95,6 +99,8 @@ ${U} {
   --codice-code-highlight-color: #555555;
   --codice-control-color: #8d8989;
   --codice-font-size: ${fz};
+  --codice-code-line-number-width: ${lineNumbersWidth};
+  --codice-code-padding: ${padding};
 }
 ${baseCss(id)}
 ${headerCss(id)}
