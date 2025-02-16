@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, forwardRef } from 'react'
 import { Code } from '../code'
-import { CodeHeader } from '../code/code'
+import { CodeHeader, getExtension } from '../code/code'
 
 function composeRefs(...refs: React.Ref<HTMLElement>[]) {
   return (node: HTMLElement | null) => {
@@ -69,6 +69,7 @@ const Editor = forwardRef(function EditorComponent(
         {/* hide controls component inside Code to keep content matched with textarea */}
         <Code
           title={null}
+          extension={getExtension(title)}
           controls={false}
           lineNumbers={lineNumbers}
           lineNumbersWidth={lineNumbersWidth}
