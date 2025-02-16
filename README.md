@@ -33,6 +33,8 @@ The following props are supported by the `Editor` component:
 - `title` (optional): A string representing the title of the editor.
 - `controls` (optional): A boolean value indicating whether to display the controls for the editor.
 - `lineNumbers` (optional): A boolean value indicating whether to display line numbers in the editor.
+- `lineNumbersWidth` (optional): A string representing the width of the line numbers column. The default value is `2.5rem`.
+- `padding` (optional): A string representing the padding of the code block. The default value is `1rem`.
 - `fontSize` (optional): A string representing the font size of the editor. The default value is `inherit`.
 
 Additionally, you can pass any other props to the `Editor` component, which will be applied to the root `div` element.
@@ -57,10 +59,12 @@ import { Code } from 'codice'
 
 - `title` (optional): A string representing the title of the code block.
 - `controls` (optional): A boolean value indicating whether to display the controls for the code block.
-- `lineNumbers` (optional): A boolean value indicating whether to display line numbers in the code block.
 - `preformatted` (optional): A boolean value indicating whether the code should be displayed as preformatted text. If `true`, the code will be displayed in a `pre` and a `code` element. If `false`, the code will be displayed in a `div` element.
 - `asMarkup` (optional): A boolean value indicating whether the code should be displayed as markup. If `true`, the code will be displayed with HTML entities escaped. If `false`, the code will be displayed as plain text. default is `false`.
 - `fontSize` (optional): A string representing the font size of the editor. The default value is `inherit`.
+- `lineNumbers` (optional): A boolean value indicating whether to display line numbers in the code block.
+- `lineNumbersWidth` (optional): A string representing the width of the line numbers column. The default value is `2.5rem`.
+- `padding` (optional): A string representing the padding of the code block. The default value is `1rem`.
 - `children`: The code content to be displayed in the code block.
 
 ### Styling
@@ -73,7 +77,6 @@ Usually you don't need to style the editor, it comes with a default theme. Howev
 - `--codice-background-color`: The background color of the editor. (default: `transparent`)
 - `--codice-caret-color`: The color of the caret in the editor. (default: `inherit`)
 - `--codice-control-color`: The color of the control items in the code frame and editor. (default: `#8d8989`)
-
 
 For example, you can define the following CSS variables in your stylesheet to customize the appearance:
 ```css

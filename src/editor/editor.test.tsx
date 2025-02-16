@@ -14,6 +14,8 @@ describe('Code', () => {
         --codice-background-color: transparent;
         --codice-caret-color: inherit;
         --codice-font-size: inherit;
+        --codice-code-line-number-width: 2.5rem;
+        --codice-code-padding: 1rem;
 
         position: relative;
         overflow-y: scroll;
@@ -28,7 +30,7 @@ describe('Code', () => {
         line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
-        padding: 24px 16px;
+        padding: calc(var(--codice-code-padding) * 1.5) var(--codice-code-padding);
         line-height: 1.5;
         font-size: var(--codice-font-size);
         caret-color: var(--codice-caret-color);
@@ -62,7 +64,7 @@ describe('Code', () => {
         overflow: hidden;
       }
       [data-codice-editor="_RA:"][data-codice-line-numbers="true"] textarea {
-        padding-left: 55px;
+        padding-left: calc(var(--codice-code-line-number-width) + var(--codice-code-padding));
       }
       </style><div data-codice-header="_RA:" data-codice-header-controls="true"><style data-codice-style="true">[data-codice-header="_RA:"] {
         position: relative;
@@ -102,6 +104,8 @@ describe('Code', () => {
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
         --codice-font-size: inherit;
+        --codice-code-line-number-width: 2.5rem;
+        --codice-code-padding: 1rem;
       }
       [data-codice-code=":R1l:"] pre {
         white-space: pre-wrap;
@@ -115,7 +119,7 @@ describe('Code', () => {
         width: 100%;
       }
       [data-codice-code=":R1l:"] .sh__line:has(> [data-codice-code-line-number]) {
-        padding-left: 40px;
+        padding-left: var(--codice-code-line-number-width);
       }
       [data-codice-code=":R1l:"] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
@@ -163,7 +167,8 @@ describe('Code', () => {
         content: counter(codice-code-line-number);
         display: inline-block;
         min-width: calc(2rem - 6px);
-        margin-left: -40px;
+        width: var(--codice-code-line-number-width);
+        margin-left: calc(var(--codice-code-line-number-width) * -1);
         margin-right: 16px;
         text-align: right;
         user-select: none;
@@ -185,6 +190,8 @@ describe('Code', () => {
         --codice-background-color: transparent;
         --codice-caret-color: inherit;
         --codice-font-size: inherit;
+        --codice-code-line-number-width: 2.5rem;
+        --codice-code-padding: 1rem;
 
         position: relative;
         overflow-y: scroll;
@@ -199,7 +206,7 @@ describe('Code', () => {
         line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
-        padding: 24px 16px;
+        padding: calc(var(--codice-code-padding) * 1.5) var(--codice-code-padding);
         line-height: 1.5;
         font-size: var(--codice-font-size);
         caret-color: var(--codice-caret-color);
@@ -233,7 +240,7 @@ describe('Code', () => {
         overflow: hidden;
       }
       [data-codice-editor="_RA:"][data-codice-line-numbers="true"] textarea {
-        padding-left: 55px;
+        padding-left: calc(var(--codice-code-line-number-width) + var(--codice-code-padding));
       }
       </style><div data-codice-header="_RA:" data-codice-header-controls="true"><style data-codice-style="true">[data-codice-header="_RA:"] {
         position: relative;
@@ -273,6 +280,8 @@ describe('Code', () => {
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
         --codice-font-size: inherit;
+        --codice-code-line-number-width: 2.5rem;
+        --codice-code-padding: 1rem;
       }
       [data-codice-code=":R1l:"] pre {
         white-space: pre-wrap;
@@ -286,7 +295,7 @@ describe('Code', () => {
         width: 100%;
       }
       [data-codice-code=":R1l:"] .sh__line:has(> [data-codice-code-line-number]) {
-        padding-left: 40px;
+        padding-left: var(--codice-code-line-number-width);
       }
       [data-codice-code=":R1l:"] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
@@ -334,7 +343,8 @@ describe('Code', () => {
         content: counter(codice-code-line-number);
         display: inline-block;
         min-width: calc(2rem - 6px);
-        margin-left: -40px;
+        width: var(--codice-code-line-number-width);
+        margin-left: calc(var(--codice-code-line-number-width) * -1);
         margin-right: 16px;
         text-align: right;
         user-select: none;
@@ -356,6 +366,8 @@ describe('Code', () => {
         --codice-background-color: transparent;
         --codice-caret-color: inherit;
         --codice-font-size: inherit;
+        --codice-code-line-number-width: 2.5rem;
+        --codice-code-padding: 1rem;
 
         position: relative;
         overflow-y: scroll;
@@ -370,7 +382,7 @@ describe('Code', () => {
         line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
-        padding: 24px 16px;
+        padding: calc(var(--codice-code-padding) * 1.5) var(--codice-code-padding);
         line-height: 1.5;
         font-size: var(--codice-font-size);
         caret-color: var(--codice-caret-color);
@@ -404,13 +416,15 @@ describe('Code', () => {
         overflow: hidden;
       }
       [data-codice-editor="_RA:"][data-codice-line-numbers="true"] textarea {
-        padding-left: 55px;
+        padding-left: calc(var(--codice-code-line-number-width) + var(--codice-code-padding));
       }
       </style><div data-codice-content="true"><div data-codice="code" data-codice-code=":R1l:"><style data-codice-style="true">[data-codice-code=":R1l:"] {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
         --codice-font-size: inherit;
+        --codice-code-line-number-width: 2.5rem;
+        --codice-code-padding: 1rem;
       }
       [data-codice-code=":R1l:"] pre {
         white-space: pre-wrap;
@@ -424,7 +438,7 @@ describe('Code', () => {
         width: 100%;
       }
       [data-codice-code=":R1l:"] .sh__line:has(> [data-codice-code-line-number]) {
-        padding-left: 40px;
+        padding-left: var(--codice-code-line-number-width);
       }
       [data-codice-code=":R1l:"] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
@@ -472,7 +486,8 @@ describe('Code', () => {
         content: counter(codice-code-line-number);
         display: inline-block;
         min-width: calc(2rem - 6px);
-        margin-left: -40px;
+        width: var(--codice-code-line-number-width);
+        margin-left: calc(var(--codice-code-line-number-width) * -1);
         margin-right: 16px;
         text-align: right;
         user-select: none;
