@@ -204,9 +204,9 @@ export function LiveEditor({
           text="lineNumbersWidth"
           className="range-control" 
           value={lineNumbersWidth}
-          min={1}
-          max={2}
-          step={0.2}
+          min={2}
+          max={3}
+          step={0.1}
           onChange={setLineNumbersWidth}
         />
       </div>

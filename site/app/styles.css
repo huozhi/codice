@@ -92,7 +92,7 @@ input[type=radio] {
   color: #d5d5d5;
   border-radius: 8px;
   overflow-x: auto;
-  font-size: 1rem;
+  font-size: 14px;
   margin: 1rem 0;
 }
 
@@ -107,9 +107,6 @@ input[type=radio] {
   border-radius: 8px;
   margin: 2rem 0;
   border: 1px solid rgba(163, 169, 165, 0.2);
-}
-.code-example__item code {
-  font-size: 14px;
 }
 .code-example__item__title {
   margin: 0 0 2rem;

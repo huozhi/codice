@@ -43,6 +43,7 @@ ${R} textarea {
 ${R} code {
   display: inline-block;
   width: 100%;
+  margin-left: calc(var(--codice-code-line-number-width) - 2.5rem); ${/* 2.5rem is the default line number width */''}
 }
 ${R} textarea::-webkit-scrollbar,
 ${R} textarea:focus::-webkit-scrollbar,

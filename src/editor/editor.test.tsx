@@ -41,6 +41,7 @@ describe('Code', () => {
       [data-codice-editor="_RA:"] code {
         display: inline-block;
         width: 100%;
+        margin-left: calc(var(--codice-code-line-number-width) - 2.5rem); 
       }
       [data-codice-editor="_RA:"] textarea::-webkit-scrollbar,
       [data-codice-editor="_RA:"] textarea:focus::-webkit-scrollbar,
@@ -216,6 +217,7 @@ describe('Code', () => {
       [data-codice-editor="_RA:"] code {
         display: inline-block;
         width: 100%;
+        margin-left: calc(var(--codice-code-line-number-width) - 2.5rem); 
       }
       [data-codice-editor="_RA:"] textarea::-webkit-scrollbar,
       [data-codice-editor="_RA:"] textarea:focus::-webkit-scrollbar,
@@ -391,6 +393,7 @@ describe('Code', () => {
       [data-codice-editor="_RA:"] code {
         display: inline-block;
         width: 100%;
+        margin-left: calc(var(--codice-code-line-number-width) - 2.5rem); 
       }
       [data-codice-editor="_RA:"] textarea::-webkit-scrollbar,
       [data-codice-editor="_RA:"] textarea:focus::-webkit-scrollbar,
