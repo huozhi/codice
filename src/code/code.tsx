@@ -1,7 +1,7 @@
 import { tokenize, generate } from 'sugar-high'
 import { css, headerCss } from './css'
 import * as presets from 'sugar-high/presets'
-import { useId, useMemo } from 'react'
+import { useMemo } from 'react'
 import { Style } from '../style'
 
 const getPresetByExt = (ext: string) => {
@@ -90,21 +90,19 @@ function generateHighlightedLines(
 }
 
 export function CodeHeader({ 
-  id, 
   title, 
   controls = false
 }: {
-  id: string
   title?: string
   controls: boolean
 }) {
   if (!title && !controls) return null
   return (
     <div 
-      data-codice-header={id}
+      data-codice-header
       data-codice-header-controls={controls}
     >
-      <Style css={headerCss(id)} />
+      <Style css={headerCss()} />
       {controls ? (
         <div data-codice-controls>
           <span data-codice-control />
@@ -163,8 +161,7 @@ export function Code({
   asMarkup?: boolean
   extension?: string
 } & React.HTMLAttributes<HTMLDivElement>) {
-  const id = useId()
-  const styles = css(id, { fontSize, lineNumbers, lineNumbersWidth, padding })
+  const styles = css({ fontSize, lineNumbers, lineNumbersWidth, padding })
   
   const lineElements = useMemo(() => 
     asMarkup 
@@ -175,9 +172,9 @@ export function Code({
 
   return (
     // Add both attribute because it's both root component and child component (of editor)
-    <div {...props} data-codice="code" data-codice-code={id}>
+    <div {...props} data-codice="code" data-codice-code>
       <Style css={styles} />
-      <CodeHeader title={title} controls={controls} id={id} />
+      <CodeHeader title={title} controls={controls} />
       <CodeFrame preformatted={preformatted} asMarkup={asMarkup}>
         {lineElements}
       </CodeFrame>

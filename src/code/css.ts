@@ -1,7 +1,9 @@
 import { fontSizeCss } from '../style'
 
-const baseCss = (id: string) => {
-  const C = `[data-codice-code="${id}"]`
+const C = `:scope[data-codice-code]`
+const H = `:scope[data-codice-header]`
+
+const baseCss = () => {
   return `\
 ${C} pre {
   white-space: pre-wrap;
@@ -23,8 +25,7 @@ ${C} .sh__line[data-highlight] {
 `
 }
 
-export const headerCss = (id: string) => {
-  const H = `[data-codice-header="${id}"]`
+export const headerCss = () => {
   return `\
 ${H} {
   position: relative;
@@ -62,11 +63,11 @@ ${H} [data-codice-control] {
 `
 }
 
-const lineNumbersCss = (id: string) => `\
-[data-codice-code="${id}"] code {
+const lineNumbersCss = () => `\
+${C} code {
   counter-reset: codice-code-line-number;
 }
-[data-codice-code="${id}"] [data-codice-code-line-number] {
+${C} [data-codice-code-line-number] {
   counter-increment: codice-code-line-number 1;
   content: counter(codice-code-line-number);
   display: inline-block;
@@ -79,7 +80,7 @@ const lineNumbersCss = (id: string) => `\
 }
 `
 
-export const css = (id: string, {
+export const css = ({
   fontSize,
   lineNumbers,
   lineNumbersWidth = '2.5rem',
@@ -90,10 +91,9 @@ export const css = (id: string, {
   lineNumbersWidth: string
   padding: string
 }): string => {
-  const U = `[data-codice-code="${id}"]`
   const fz = fontSizeCss(fontSize)
   return `\
-${U} {
+${C} {
   --codice-code-line-number-color: #a4a4a4;
   --codice-code-highlight-color: #555555;
   --codice-control-color: #8d8989;
@@ -101,8 +101,8 @@ ${U} {
   --codice-code-line-number-width: ${lineNumbersWidth};
   --codice-code-padding: ${padding};
 }
-${baseCss(id)}
-${headerCss(id)}
-${lineNumbers ? lineNumbersCss(id) : ''}
+${baseCss()}
+${headerCss()}
+${lineNumbers ? lineNumbersCss() : ''}
 `
 }

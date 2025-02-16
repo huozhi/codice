@@ -1,7 +1,7 @@
 export function Style({ css }: { css: string }) {
   return (
     <style data-codice-style>
-      {css}
+      {`@scope {\n${css}\n}`}
     </style>
   )
 }
