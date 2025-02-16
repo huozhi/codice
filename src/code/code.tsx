@@ -20,14 +20,19 @@ const getPresetByExt = (ext: string) => {
   }
 }
 
+/** utils */
+export function getExtension(title: string | undefined) {
+  return (title || '').split('.').pop() || ''
+}
+
 function generateHighlightedLines(
   codeText: string,
   highlightLines: ([number, number] | number)[],
   lineNumbers: boolean,
   title: string | undefined,
+  extension: string | undefined
 ) {
-
-  const ext = (title || '').split('.').pop() || ''
+  const ext = extension || getExtension(title)
   const preset = getPresetByExt(ext)
   const childrenLines = generate(tokenize(codeText, preset))
 
@@ -115,7 +120,7 @@ export function CodeHeader({
 function CodeFrame({ 
   children, 
   preformatted,
-  asMarkup
+  asMarkup,
 }: { 
   children: React.ReactNode
   preformatted: boolean
@@ -142,6 +147,7 @@ export function Code({
   lineNumbersWidth,
   padding,
   asMarkup = false,
+  extension,
   ...props
 }: {
   children: string
@@ -155,6 +161,7 @@ export function Code({
   lineNumbersWidth?: string
   padding?: string
   asMarkup?: boolean
+  extension?: string
 } & React.HTMLAttributes<HTMLDivElement>) {
   const id = useId()
   const styles = css(id, { fontSize, lineNumbers, lineNumbersWidth, padding })
@@ -162,8 +169,8 @@ export function Code({
   const lineElements = useMemo(() => 
     asMarkup 
       ? code
-      : generateHighlightedLines(code, highlightLines, lineNumbers, title),
-    [code, highlightLines, lineNumbers, title, asMarkup]
+      : generateHighlightedLines(code, highlightLines, lineNumbers, title, extension),
+    [code, highlightLines, lineNumbers, title, extension, asMarkup]
   )
 
   return (
