@@ -1,6 +1,8 @@
 import { fontSizeCss } from '../style'
 
-export const css = (id: string, {
+const R = `:scope[data-codice-editor]`
+
+export const css = ({
   fontSize,
   lineNumbersWidth = '2.5rem',
   padding = '1rem',
@@ -11,7 +13,6 @@ export const css = (id: string, {
   padding: string
   fontFamily: string
 }) => {
-  const R = `[data-codice-editor="${id}"]`
   return `\
 ${R} {
   --codice-text-color: transparent;
@@ -69,7 +70,7 @@ ${R} textarea {
   height: 100%;
   overflow: hidden;
 }
-${R}[data-codice-line-numbers="true"] textarea {
+${R} [data-codice-line-numbers="true"] textarea {
   padding-left: calc(var(--codice-code-line-number-width) + var(--codice-code-padding));
 }
 `
