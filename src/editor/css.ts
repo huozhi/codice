@@ -4,10 +4,12 @@ export const css = (id: string, {
   fontSize,
   lineNumbersWidth = '2.5rem',
   padding = '1rem',
+  fontFamily = 'Consolas, Monaco, monospace',
 }: {
   fontSize?: string | number
   lineNumbersWidth: string
   padding: string
+  fontFamily: string
 }) => {
   const R = `[data-codice-editor="${id}"]`
   return `\
@@ -18,6 +20,7 @@ ${R} {
   --codice-font-size: ${fontSizeCss(fontSize)};
   --codice-code-line-number-width: ${lineNumbersWidth};
   --codice-code-padding: ${padding};
+  --codice-font-family: ${fontFamily};
 
   position: relative;
   overflow-y: scroll;
@@ -28,7 +31,7 @@ ${R} {
 }
 ${R} code,
 ${R} textarea {
-  font-family: Consolas, Monaco, monospace;
+  font-family: var(--codice-font-family);
   line-break: anywhere;
   overflow-wrap: break-word;
   scrollbar-width: none;

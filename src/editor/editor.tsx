@@ -28,6 +28,7 @@ const Editor = forwardRef(function EditorComponent(
     controls,
     lineNumbers,
     lineNumbersWidth,
+    extension,
     padding,
     onChange = () => {},
   }: {
@@ -38,6 +39,7 @@ const Editor = forwardRef(function EditorComponent(
     lineNumbers?: boolean
     lineNumbersWidth?: string
     padding?: string
+    extension?: string
     onChange?: (code: string) => void
   } & React.HTMLAttributes<HTMLDivElement>,
   ref: React.Ref<HTMLDivElement>
@@ -69,7 +71,7 @@ const Editor = forwardRef(function EditorComponent(
         {/* hide controls component inside Code to keep content matched with textarea */}
         <Code
           title={null}
-          extension={getExtension(title)}
+          extension={extension || getExtension(title)}
           controls={false}
           lineNumbers={lineNumbers}
           lineNumbersWidth={lineNumbersWidth}

@@ -16,6 +16,7 @@ describe('Code', () => {
         --codice-font-size: inherit;
         --codice-code-line-number-width: 2.5rem;
         --codice-code-padding: 1rem;
+        --codice-font-family: Consolas, Monaco, monospace;
 
         position: relative;
         overflow-y: scroll;
@@ -26,7 +27,7 @@ describe('Code', () => {
       }
       [data-codice-editor="_RA:"] code,
       [data-codice-editor="_RA:"] textarea {
-        font-family: Consolas, Monaco, monospace;
+        font-family: var(--codice-font-family);
         line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
@@ -192,6 +193,7 @@ describe('Code', () => {
         --codice-font-size: inherit;
         --codice-code-line-number-width: 2.5rem;
         --codice-code-padding: 1rem;
+        --codice-font-family: Consolas, Monaco, monospace;
 
         position: relative;
         overflow-y: scroll;
@@ -202,7 +204,7 @@ describe('Code', () => {
       }
       [data-codice-editor="_RA:"] code,
       [data-codice-editor="_RA:"] textarea {
-        font-family: Consolas, Monaco, monospace;
+        font-family: var(--codice-font-family);
         line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
@@ -368,6 +370,7 @@ describe('Code', () => {
         --codice-font-size: inherit;
         --codice-code-line-number-width: 2.5rem;
         --codice-code-padding: 1rem;
+        --codice-font-family: Consolas, Monaco, monospace;
 
         position: relative;
         overflow-y: scroll;
@@ -378,7 +381,7 @@ describe('Code', () => {
       }
       [data-codice-editor="_RA:"] code,
       [data-codice-editor="_RA:"] textarea {
-        font-family: Consolas, Monaco, monospace;
+        font-family: var(--codice-font-family);
         line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
