@@ -71,7 +71,6 @@ const lineNumbersCss = (id: string) => `\
   content: counter(codice-code-line-number);
   display: inline-block;
   min-width: calc(2rem - 6px);
-  width: var(--codice-code-line-number-width);
   margin-left: calc(var(--codice-code-line-number-width) * -1);
   margin-right: 16px;
   text-align: right;

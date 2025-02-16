@@ -108,6 +108,9 @@ input[type=radio] {
   margin: 2rem 0;
   border: 1px solid rgba(163, 169, 165, 0.2);
 }
+.code-example__item code {
+  font-size: 14px;
+}
 .code-example__item__title {
   margin: 0 0 2rem;
 }
@@ -170,6 +173,9 @@ input[type=radio] {
   cursor: pointer;
   transform: translateY(-0.25rem);
 }
+.controls {
+  margin: 2rem 0 4rem;
+}
 .controls-manager {
   display: flex;
   font-size: 14px;
@@ -192,7 +198,7 @@ input[type=radio] {
 }
 .editor-layout .copy-image {
   position: absolute;
-  top: 14px;
+  top: 12px;
   right: 16px;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;

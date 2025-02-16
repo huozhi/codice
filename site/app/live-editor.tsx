@@ -156,58 +156,60 @@ export function LiveEditor({
   return (
     <div>
       {/* Controls to for displaying the `title`, `controls`, `lineNumbers` */}
-      <div className="controls-manager">
-        <ControlButton
-          id="control-title"
-          checked={!!title}
-          propName="title"
-          content={
-            <Input
-              value={title}
-              onChange={v => { setTitle(v) }}
-            />
-          }
+      <div className='controls'>
+        <div className="controls-manager">
+          <ControlButton
+            id="control-title"
+            checked={!!title}
+            propName="title"
+            content={
+              <Input
+                value={title}
+                onChange={v => { setTitle(v) }}
+              />
+            }
+          />
+          <ControlButton
+            id="control-control"
+            checked={controls}
+            onChange={setControls}
+            propName="controls"
+          />
+          <ControlButton
+            id="control-line-numbers"
+            checked={lineNumbers}
+            onChange={setLineNumbers}
+            propName="lineNumbers"
+          />
+        </div>
+        <RangeSelector 
+          text="fontSize"
+          className="range-control"
+          min={12}
+          max={24}
+          step={2}
+          value={fontSize}
+          onChange={setFontSize}
         />
-        <ControlButton
-          id="control-control"
-          checked={controls}
-          onChange={setControls}
-          propName="controls"
+        <RangeSelector 
+          text="padding"
+          className="range-control" 
+          min={1}
+          max={2}
+          step={0.1}
+          value={padding} 
+          onChange={setPadding}
         />
-        <ControlButton
-          id="control-line-numbers"
-          checked={lineNumbers}
-          onChange={setLineNumbers}
-          propName="lineNumbers"
+        <RangeSelector 
+          text="lineNumbersWidth"
+          className="range-control" 
+          value={lineNumbersWidth}
+          min={1}
+          max={2}
+          step={0.2}
+          onChange={setLineNumbersWidth}
         />
       </div>
-      <RangeSelector 
-        text="fontSize"
-        className="range-control"
-        min={12}
-        max={24}
-        step={2}
-        value={fontSize}
-        onChange={setFontSize}
-      />
-      <RangeSelector 
-        text="padding"
-        className="range-control" 
-        min={1}
-        max={2}
-        step={0.1}
-        value={padding} 
-        onChange={setPadding}
-      />
-      <RangeSelector 
-        text="lineNumbersWidth"
-        className="range-control" 
-        value={lineNumbersWidth}
-        min={1}
-        max={2}
-        step={0.2}
-        onChange={setLineNumbersWidth}
-      />
 
       <div className='editor-layout'>
         <span
