@@ -16,10 +16,12 @@ export function Editor(props: EditorProps) {
     onChange, 
     controls = true, 
     lineNumbers = true,
+    lineNumbersWidth,
+    padding,
     fontSize,
     ...restProps
   } = props
-  const editorProps = { title, value, onChange, controls, lineNumbers }
+  const editorProps = { title, value, onChange, controls, lineNumbers, lineNumbersWidth, padding }
   const id = useId()
     .replace(':', '_')
     .replace(/[0-9]/g, (match) => String.fromCharCode(65 + Number(match)))
@@ -34,7 +36,7 @@ export function Editor(props: EditorProps) {
       data-codice-controls={!!controls}
       data-codice-line-numbers={!!lineNumbers}
     >
-      <Style css={css(id, { fontSize })} />
+      <Style css={css(id, { fontSize, padding, lineNumbersWidth })} />
       <EditorClient {...editorProps} id={id} />
     </div>
   )

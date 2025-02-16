@@ -111,11 +111,9 @@ input[type=radio] {
 .code-example__item__title {
   margin: 0 0 2rem;
 }
-.controls-manager {
-  margin: 2rem 0;
-}
 .controls-manager-label {
   display: inline-block;
+  width: 180px;
   padding: 3px 8px;
   border-radius: 8px;
   cursor: pointer;
@@ -147,21 +145,22 @@ input[type=radio] {
 .controls-manager-input::selection {
   background-color: #565656;
 }
-.font-size-control {
-  margin: 2rem 4px;
+.range-control {
+  font-size: 14px;
+  margin: 8px auto;
 }
-.font-size-control label {
+.range-control label {
   margin-right: 8px;
 }
-.font-size-control input[type="range"],
-.font-size-control input[type="range"]::-webkit-slider-runnable-track {
+.range-control input[type="range"],
+.range-control input[type="range"]::-webkit-slider-runnable-track {
   appearance: none;
   -webkit-appearance: none;
   background: var(--control-bg-color);
   height: 0.5rem;
   border-radius: 999px;
 }
-.font-size-control input[type="range"]::-webkit-slider-thumb {
+.range-control input[type="range"]::-webkit-slider-thumb {
   appearance: none;
   -webkit-appearance: none;
   width: 1rem;
@@ -171,11 +170,16 @@ input[type=radio] {
   cursor: pointer;
   transform: translateY(-0.25rem);
 }
+.controls-manager {
+  display: flex;
+  font-size: 14px;
+  margin: 0.5rem 0;
+}
 .controls-manager label span {
   font-size: 12px;
 }
 .controls-manager .control-button {
-  margin: 4px;
+  margin-right: auto;
 }
 
 .controls-manager input[type="checkbox"] {

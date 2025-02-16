@@ -139,6 +139,8 @@ export function Code({
   highlightLines,
   preformatted = true,
   lineNumbers = false,
+  lineNumbersWidth,
+  padding,
   asMarkup = false,
   ...props
 }: {
@@ -150,10 +152,12 @@ export function Code({
   title?: string
   controls?: boolean
   lineNumbers?: boolean
+  lineNumbersWidth?: string
+  padding?: string
   asMarkup?: boolean
 } & React.HTMLAttributes<HTMLDivElement>) {
   const id = useId()
-  const styles = css(id, { fontSize, lineNumbers })
+  const styles = css(id, { fontSize, lineNumbers, lineNumbersWidth, padding })
   
   const lineElements = useMemo(() => 
     asMarkup 

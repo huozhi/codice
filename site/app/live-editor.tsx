@@ -1,7 +1,7 @@
 'use client'
 
 import { Editor } from 'codice'
-import React, { useState } from 'react'
+import React, { useId, useState } from 'react'
 import domToImage from 'dom-to-image'
 
 const CODE_QUERY_KEY = 'c'
@@ -62,25 +62,35 @@ function Input({
 function RangeSelector({ 
   value, 
   onChange,
+  text,
+  min,
+  max,
+  step,
   className,
   ...props
 }: { 
   value: number; 
+  text: string;
+  min: number;
+  max: number;
+  step: number;
   onChange: (value: number) => void 
   className: string
 }) {
+  const id = useId()
   return (
     <div className={className}>
       <label 
         className='controls-manager-label controls-manager-label--checked' 
-        htmlFor="font-size">{`fontSize={`}<b><span>{value}</span></b>{`}`}
+        htmlFor={id}>{text}{`={`}<b><span>{value}</span></b>{`}`}
       </label>
       <input
         {...props}
+        id={id}
         type="range"
-        min="12"
-        max="24"
-        step="2"
+        min={min}
+        max={max}
+        step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
       />
@@ -140,6 +150,8 @@ export function LiveEditor({
   const [controls, setControls] = useState(true)
   const [lineNumbers, setLineNumbers] = useState(true)
   const [fontSize, setFontSize] = useState(14)
+  const [padding, setPadding] = useState(1) // rem
+  const [lineNumbersWidth, setLineNumbersWidth] = useState(2.5) // rem
 
   return (
     <div>
@@ -169,7 +181,33 @@ export function LiveEditor({
           propName="lineNumbers"
         />
       </div>
-      <RangeSelector className="font-size-control" value={fontSize} onChange={setFontSize} />
+      <RangeSelector 
+        text="fontSize"
+        className="range-control"
+        min={12}
+        max={24}
+        step={2}
+        value={fontSize}
+        onChange={setFontSize}
+      />
+      <RangeSelector 
+        text="padding"
+        className="range-control" 
+        min={1}
+        max={2}
+        step={0.1}
+        value={padding} 
+        onChange={setPadding}
+      />
+      <RangeSelector 
+        text="lineNumbersWidth"
+        className="range-control" 
+        value={lineNumbersWidth}
+        min={1}
+        max={2}
+        step={0.2}
+        onChange={setLineNumbersWidth}
+      />
 
       <div className='editor-layout'>
         <span
@@ -195,6 +233,8 @@ export function LiveEditor({
           controls={controls}
           fontSize={fontSize}
           lineNumbers={lineNumbers}
+          lineNumbersWidth={`${lineNumbersWidth}rem`}
+          padding={`${padding}rem`}
           onChange={(text) => setCode(text)}
         />
       </div>

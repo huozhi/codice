@@ -10,6 +10,8 @@ describe('Code', () => {
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
         --codice-font-size: inherit;
+        --codice-code-line-number-width: 2.5rem;
+        --codice-code-padding: 1rem;
       }
       [data-codice-code=":R0:"] pre {
         white-space: pre-wrap;
@@ -23,7 +25,7 @@ describe('Code', () => {
         width: 100%;
       }
       [data-codice-code=":R0:"] .sh__line:has(> [data-codice-code-line-number]) {
-        padding-left: 40px;
+        padding-left: var(--codice-code-line-number-width);
       }
       [data-codice-code=":R0:"] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
@@ -75,6 +77,8 @@ describe('Code', () => {
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
         --codice-font-size: inherit;
+        --codice-code-line-number-width: 2.5rem;
+        --codice-code-padding: 1rem;
       }
       [data-codice-code=":R0:"] pre {
         white-space: pre-wrap;
@@ -88,7 +92,7 @@ describe('Code', () => {
         width: 100%;
       }
       [data-codice-code=":R0:"] .sh__line:has(> [data-codice-code-line-number]) {
-        padding-left: 40px;
+        padding-left: var(--codice-code-line-number-width);
       }
       [data-codice-code=":R0:"] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
@@ -173,6 +177,8 @@ describe('Code', () => {
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
         --codice-font-size: inherit;
+        --codice-code-line-number-width: 2.5rem;
+        --codice-code-padding: 1rem;
       }
       [data-codice-code=":R0:"] pre {
         white-space: pre-wrap;
@@ -186,7 +192,7 @@ describe('Code', () => {
         width: 100%;
       }
       [data-codice-code=":R0:"] .sh__line:has(> [data-codice-code-line-number]) {
-        padding-left: 40px;
+        padding-left: var(--codice-code-line-number-width);
       }
       [data-codice-code=":R0:"] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
@@ -271,6 +277,8 @@ describe('Code', () => {
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
         --codice-font-size: 14px;
+        --codice-code-line-number-width: 2.5rem;
+        --codice-code-padding: 1rem;
       }
       [data-codice-code=":R0:"] pre {
         white-space: pre-wrap;
@@ -284,7 +292,7 @@ describe('Code', () => {
         width: 100%;
       }
       [data-codice-code=":R0:"] .sh__line:has(> [data-codice-code-line-number]) {
-        padding-left: 40px;
+        padding-left: var(--codice-code-line-number-width);
       }
       [data-codice-code=":R0:"] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
@@ -334,6 +342,8 @@ describe('Code', () => {
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
         --codice-font-size: 1rem;
+        --codice-code-line-number-width: 2.5rem;
+        --codice-code-padding: 1rem;
       }
       [data-codice-code=":R0:"] pre {
         white-space: pre-wrap;
@@ -347,7 +357,7 @@ describe('Code', () => {
         width: 100%;
       }
       [data-codice-code=":R0:"] .sh__line:has(> [data-codice-code-line-number]) {
-        padding-left: 40px;
+        padding-left: var(--codice-code-line-number-width);
       }
       [data-codice-code=":R0:"] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
