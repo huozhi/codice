@@ -15,13 +15,18 @@ ${R} {
   justify-content: stretch;
   scrollbar-width: none;
 }
+${R} [data-codice-content] {
+  padding: 0 calc(var(--codice-code-padding) / 2);
+}
+${R} textarea {
+  padding: calc(var(--codice-code-padding) * 0.5) calc(var(--codice-code-padding) / 2);
+}
 ${R} code,
 ${R} textarea {
   font-family: var(--codice-font-family);
   line-break: anywhere;
   overflow-wrap: break-word;
   scrollbar-width: none;
-  padding: calc(var(--codice-code-padding) / 2) var(--codice-code-padding);
   line-height: 1.5;
   font-size: var(--codice-font-size);
   caret-color: var(--codice-caret-color);
@@ -56,7 +61,7 @@ ${R} textarea {
   overflow: hidden;
 }
 ${R}[data-codice-line-numbers="true"] textarea {
-  padding-left: calc(var(--codice-code-line-number-width) + var(--codice-code-padding) + 2px);
+  padding-left: calc(var(--codice-code-line-number-width) + calc(var(--codice-code-padding) / 2) + 2px);
 }
 `
 // line number padding-left is [[width 24px] margin-right 16px] + 15px

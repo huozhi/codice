@@ -11,14 +11,16 @@ describe('Code', () => {
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
       }
+      :scope[data-codice-code] [data-codice-code-content] {
+        padding-bottom: var(--codice-code-padding);
+        padding-top: calc(var(--codice-code-padding) * 0.5);
+      }
       :scope[data-codice-code] pre {
         white-space: pre-wrap;
         margin: 0;
       }
       :scope[data-codice-code] code {
         display: block;
-        padding-bottom: var(--codice-code-padding);
-        padding-top: calc(var(--codice-code-padding) / 2);
         border: none;
       }
       :scope[data-codice-code] .sh__line {
@@ -32,8 +34,9 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: calc(var(--codice-code-padding) / 2) 
-          var(--codice-code-padding);
+        padding: calc(var(--codice-code-padding) * 0.75)
+          var(--codice-code-padding)
+          calc(var(--codice-code-padding) * 0.25);
         align-items: center;
       }
       :scope[data-codice-header] [data-codice-title] {
@@ -103,14 +106,16 @@ describe('Code', () => {
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
       }
+      :scope[data-codice-code] [data-codice-code-content] {
+        padding-bottom: var(--codice-code-padding);
+        padding-top: calc(var(--codice-code-padding) * 0.5);
+      }
       :scope[data-codice-code] pre {
         white-space: pre-wrap;
         margin: 0;
       }
       :scope[data-codice-code] code {
         display: block;
-        padding-bottom: var(--codice-code-padding);
-        padding-top: calc(var(--codice-code-padding) / 2);
         border: none;
       }
       :scope[data-codice-code] .sh__line {
@@ -124,8 +129,9 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: calc(var(--codice-code-padding) / 2) 
-          var(--codice-code-padding);
+        padding: calc(var(--codice-code-padding) * 0.75)
+          var(--codice-code-padding)
+          calc(var(--codice-code-padding) * 0.25);
         align-items: center;
       }
       :scope[data-codice-header] [data-codice-title] {
@@ -187,8 +193,9 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: calc(var(--codice-code-padding) / 2) 
-          var(--codice-code-padding);
+        padding: calc(var(--codice-code-padding) * 0.75)
+          var(--codice-code-padding)
+          calc(var(--codice-code-padding) * 0.25);
         align-items: center;
       }
       :scope[data-codice-header] [data-codice-title] {
@@ -231,14 +238,16 @@ describe('Code', () => {
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
       }
+      :scope[data-codice-code] [data-codice-code-content] {
+        padding-bottom: var(--codice-code-padding);
+        padding-top: calc(var(--codice-code-padding) * 0.5);
+      }
       :scope[data-codice-code] pre {
         white-space: pre-wrap;
         margin: 0;
       }
       :scope[data-codice-code] code {
         display: block;
-        padding-bottom: var(--codice-code-padding);
-        padding-top: calc(var(--codice-code-padding) / 2);
         border: none;
       }
       :scope[data-codice-code] .sh__line {
@@ -252,8 +261,9 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: calc(var(--codice-code-padding) / 2) 
-          var(--codice-code-padding);
+        padding: calc(var(--codice-code-padding) * 0.75)
+          var(--codice-code-padding)
+          calc(var(--codice-code-padding) * 0.25);
         align-items: center;
       }
       :scope[data-codice-header] [data-codice-title] {
@@ -315,8 +325,9 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: calc(var(--codice-code-padding) / 2) 
-          var(--codice-code-padding);
+        padding: calc(var(--codice-code-padding) * 0.75)
+          var(--codice-code-padding)
+          calc(var(--codice-code-padding) * 0.25);
         align-items: center;
       }
       :scope[data-codice-header] [data-codice-title] {
@@ -359,14 +370,16 @@ describe('Code', () => {
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
       }
+      :scope[data-codice-code] [data-codice-code-content] {
+        padding-bottom: var(--codice-code-padding);
+        padding-top: calc(var(--codice-code-padding) * 0.5);
+      }
       :scope[data-codice-code] pre {
         white-space: pre-wrap;
         margin: 0;
       }
       :scope[data-codice-code] code {
         display: block;
-        padding-bottom: var(--codice-code-padding);
-        padding-top: calc(var(--codice-code-padding) / 2);
         border: none;
       }
       :scope[data-codice-code] .sh__line {
@@ -380,8 +393,9 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: calc(var(--codice-code-padding) / 2) 
-          var(--codice-code-padding);
+        padding: calc(var(--codice-code-padding) * 0.75)
+          var(--codice-code-padding)
+          calc(var(--codice-code-padding) * 0.25);
         align-items: center;
       }
       :scope[data-codice-header] [data-codice-title] {
@@ -449,14 +463,16 @@ describe('Code', () => {
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
       }
+      :scope[data-codice-code] [data-codice-code-content] {
+        padding-bottom: var(--codice-code-padding);
+        padding-top: calc(var(--codice-code-padding) * 0.5);
+      }
       :scope[data-codice-code] pre {
         white-space: pre-wrap;
         margin: 0;
       }
       :scope[data-codice-code] code {
         display: block;
-        padding-bottom: var(--codice-code-padding);
-        padding-top: calc(var(--codice-code-padding) / 2);
         border: none;
       }
       :scope[data-codice-code] .sh__line {
@@ -470,8 +486,9 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: calc(var(--codice-code-padding) / 2) 
-          var(--codice-code-padding);
+        padding: calc(var(--codice-code-padding) * 0.75)
+          var(--codice-code-padding)
+          calc(var(--codice-code-padding) * 0.25);
         align-items: center;
       }
       :scope[data-codice-header] [data-codice-title] {

@@ -11,14 +11,16 @@ ${C} {
   --codice-code-highlight-color: #555555;
   --codice-control-color: #8d8989;
 }
+${C} [data-codice-code-content] {
+  padding-bottom: var(--codice-code-padding);
+  padding-top: calc(var(--codice-code-padding) * 0.5);
+}
 ${C} pre {
   white-space: pre-wrap;
   margin: 0;
 }
 ${C} code {
   display: block;
-  padding-bottom: var(--codice-code-padding);
-  padding-top: calc(var(--codice-code-padding) / 2);
   border: none;
 }
 ${C} .sh__line {
@@ -34,8 +36,9 @@ export const HEADER_CSS = `\
 ${H} {
   position: relative;
   display: flex;
-  padding: calc(var(--codice-code-padding) / 2) 
-    var(--codice-code-padding);
+  padding: calc(var(--codice-code-padding) * 0.75)
+    var(--codice-code-padding)
+    calc(var(--codice-code-padding) * 0.25);
   align-items: center;
 }
 ${H} [data-codice-title] {

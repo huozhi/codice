@@ -22,13 +22,18 @@ describe('Code', () => {
         justify-content: stretch;
         scrollbar-width: none;
       }
+      :scope[data-codice-editor] [data-codice-content] {
+        padding: 0 calc(var(--codice-code-padding) / 2);
+      }
+      :scope[data-codice-editor] textarea {
+        padding: calc(var(--codice-code-padding) * 0.5) calc(var(--codice-code-padding) / 2);
+      }
       :scope[data-codice-editor] code,
       :scope[data-codice-editor] textarea {
         font-family: var(--codice-font-family);
         line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
-        padding: calc(var(--codice-code-padding) / 2) var(--codice-code-padding);
         line-height: 1.5;
         font-size: var(--codice-font-size);
         caret-color: var(--codice-caret-color);
@@ -63,7 +68,7 @@ describe('Code', () => {
         overflow: hidden;
       }
       :scope[data-codice-editor][data-codice-line-numbers="true"] textarea {
-        padding-left: calc(var(--codice-code-line-number-width) + var(--codice-code-padding) + 2px);
+        padding-left: calc(var(--codice-code-line-number-width) + calc(var(--codice-code-padding) / 2) + 2px);
       }
 
       :scope[data-codice-editor] {
@@ -76,8 +81,9 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: calc(var(--codice-code-padding) / 2) 
-          var(--codice-code-padding);
+        padding: calc(var(--codice-code-padding) * 0.75)
+          var(--codice-code-padding)
+          calc(var(--codice-code-padding) * 0.25);
         align-items: center;
       }
       :scope[data-codice-header] [data-codice-title] {
@@ -114,14 +120,16 @@ describe('Code', () => {
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
       }
+      :scope[data-codice-code] [data-codice-code-content] {
+        padding-bottom: var(--codice-code-padding);
+        padding-top: calc(var(--codice-code-padding) * 0.5);
+      }
       :scope[data-codice-code] pre {
         white-space: pre-wrap;
         margin: 0;
       }
       :scope[data-codice-code] code {
         display: block;
-        padding-bottom: var(--codice-code-padding);
-        padding-top: calc(var(--codice-code-padding) / 2);
         border: none;
       }
       :scope[data-codice-code] .sh__line {
@@ -135,8 +143,9 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: calc(var(--codice-code-padding) / 2) 
-          var(--codice-code-padding);
+        padding: calc(var(--codice-code-padding) * 0.75)
+          var(--codice-code-padding)
+          calc(var(--codice-code-padding) * 0.25);
         align-items: center;
       }
       :scope[data-codice-header] [data-codice-title] {
@@ -217,13 +226,18 @@ describe('Code', () => {
         justify-content: stretch;
         scrollbar-width: none;
       }
+      :scope[data-codice-editor] [data-codice-content] {
+        padding: 0 calc(var(--codice-code-padding) / 2);
+      }
+      :scope[data-codice-editor] textarea {
+        padding: calc(var(--codice-code-padding) * 0.5) calc(var(--codice-code-padding) / 2);
+      }
       :scope[data-codice-editor] code,
       :scope[data-codice-editor] textarea {
         font-family: var(--codice-font-family);
         line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
-        padding: calc(var(--codice-code-padding) / 2) var(--codice-code-padding);
         line-height: 1.5;
         font-size: var(--codice-font-size);
         caret-color: var(--codice-caret-color);
@@ -258,7 +272,7 @@ describe('Code', () => {
         overflow: hidden;
       }
       :scope[data-codice-editor][data-codice-line-numbers="true"] textarea {
-        padding-left: calc(var(--codice-code-line-number-width) + var(--codice-code-padding) + 2px);
+        padding-left: calc(var(--codice-code-line-number-width) + calc(var(--codice-code-padding) / 2) + 2px);
       }
 
       :scope[data-codice-editor] {
@@ -271,8 +285,9 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: calc(var(--codice-code-padding) / 2) 
-          var(--codice-code-padding);
+        padding: calc(var(--codice-code-padding) * 0.75)
+          var(--codice-code-padding)
+          calc(var(--codice-code-padding) * 0.25);
         align-items: center;
       }
       :scope[data-codice-header] [data-codice-title] {
@@ -309,14 +324,16 @@ describe('Code', () => {
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
       }
+      :scope[data-codice-code] [data-codice-code-content] {
+        padding-bottom: var(--codice-code-padding);
+        padding-top: calc(var(--codice-code-padding) * 0.5);
+      }
       :scope[data-codice-code] pre {
         white-space: pre-wrap;
         margin: 0;
       }
       :scope[data-codice-code] code {
         display: block;
-        padding-bottom: var(--codice-code-padding);
-        padding-top: calc(var(--codice-code-padding) / 2);
         border: none;
       }
       :scope[data-codice-code] .sh__line {
@@ -330,8 +347,9 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: calc(var(--codice-code-padding) / 2) 
-          var(--codice-code-padding);
+        padding: calc(var(--codice-code-padding) * 0.75)
+          var(--codice-code-padding)
+          calc(var(--codice-code-padding) * 0.25);
         align-items: center;
       }
       :scope[data-codice-header] [data-codice-title] {
@@ -412,13 +430,18 @@ describe('Code', () => {
         justify-content: stretch;
         scrollbar-width: none;
       }
+      :scope[data-codice-editor] [data-codice-content] {
+        padding: 0 calc(var(--codice-code-padding) / 2);
+      }
+      :scope[data-codice-editor] textarea {
+        padding: calc(var(--codice-code-padding) * 0.5) calc(var(--codice-code-padding) / 2);
+      }
       :scope[data-codice-editor] code,
       :scope[data-codice-editor] textarea {
         font-family: var(--codice-font-family);
         line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
-        padding: calc(var(--codice-code-padding) / 2) var(--codice-code-padding);
         line-height: 1.5;
         font-size: var(--codice-font-size);
         caret-color: var(--codice-caret-color);
@@ -453,7 +476,7 @@ describe('Code', () => {
         overflow: hidden;
       }
       :scope[data-codice-editor][data-codice-line-numbers="true"] textarea {
-        padding-left: calc(var(--codice-code-line-number-width) + var(--codice-code-padding) + 2px);
+        padding-left: calc(var(--codice-code-line-number-width) + calc(var(--codice-code-padding) / 2) + 2px);
       }
 
       :scope[data-codice-editor] {
@@ -468,14 +491,16 @@ describe('Code', () => {
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
       }
+      :scope[data-codice-code] [data-codice-code-content] {
+        padding-bottom: var(--codice-code-padding);
+        padding-top: calc(var(--codice-code-padding) * 0.5);
+      }
       :scope[data-codice-code] pre {
         white-space: pre-wrap;
         margin: 0;
       }
       :scope[data-codice-code] code {
         display: block;
-        padding-bottom: var(--codice-code-padding);
-        padding-top: calc(var(--codice-code-padding) / 2);
         border: none;
       }
       :scope[data-codice-code] .sh__line {
@@ -489,8 +514,9 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: calc(var(--codice-code-padding) / 2) 
-          var(--codice-code-padding);
+        padding: calc(var(--codice-code-padding) * 0.75)
+          var(--codice-code-padding)
+          calc(var(--codice-code-padding) * 0.25);
         align-items: center;
       }
       :scope[data-codice-header] [data-codice-title] {
