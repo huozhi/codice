@@ -1,8 +1,9 @@
 'use client'
 
 import { useEffect, useState, useRef, forwardRef } from 'react'
-import { Code } from '../code'
-import { CodeHeader, getExtension } from '../code/code'
+import { CodeHeader, getExtension, Code } from '../code/code'
+import { ScopedStyle } from '../style'
+import { css } from './css'
 
 function composeRefs(...refs: React.Ref<HTMLElement>[]) {
   return (node: HTMLElement | null) => {
@@ -20,16 +21,19 @@ function composeRefs(...refs: React.Ref<HTMLElement>[]) {
   }
 }
 
-const Editor = forwardRef(function EditorComponent(
+export const Editor = forwardRef(function Editor(
   {
     title,
     value = '',
-    controls,
-    lineNumbers,
+    controls = true,
+    lineNumbers = true,
     lineNumbersWidth,
     extension,
     padding,
     onChange = () => {},
+    fontSize,
+    fontFamily,
+    ...props
   }: {
     title?: string
     value?: string
@@ -39,6 +43,9 @@ const Editor = forwardRef(function EditorComponent(
     padding?: string
     extension?: string
     onChange?: (code: string) => void
+  } & {
+    fontSize?: string | number
+    fontFamily?: string
   } & React.HTMLAttributes<HTMLDivElement>,
   ref: React.Ref<HTMLDivElement>
 ) {
@@ -62,7 +69,17 @@ const Editor = forwardRef(function EditorComponent(
   }
 
   return (
-    <>
+    <div
+      {...props}
+      data-codice="editor"
+      data-codice-editor
+      // DOM attributes for selecting the stateful editor easily.
+      // e.g. [data-codice-line-numbers="true"]
+      data-codice-title={title || ''}
+      data-codice-controls={!!controls}
+      data-codice-line-numbers={!!lineNumbers}
+    >
+      <ScopedStyle css={css({ fontSize, padding, lineNumbersWidth, fontFamily })} />
       {/* Display the header outside of the matched textarea and code, by default display controls */}
       <CodeHeader title={title} controls={controls} />
       <div data-codice-content>
@@ -81,8 +98,6 @@ const Editor = forwardRef(function EditorComponent(
         </Code>
         <textarea ref={composeRefs(ref, textareaRef)} value={code} onChange={onInput} />
       </div>
-    </>
+    </div>
   )
 })
-
-export { Editor }

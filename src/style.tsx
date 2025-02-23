@@ -1,4 +1,4 @@
-export function Style({ css }: { css: string }) {
+export function ScopedStyle({ css }: { css: string }) {
   return (
     <style data-codice-style>
       {`@scope {\n${css}\n}`}
