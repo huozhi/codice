@@ -15,11 +15,14 @@ ${R} {
   justify-content: stretch;
   scrollbar-width: none;
 }
-${R} [data-codice-content] {
-  padding: 0 calc(var(--codice-code-padding) / 2);
-}
 ${R} textarea {
   padding: calc(var(--codice-code-padding) * 0.75) calc(var(--codice-code-padding) * 0.5);
+}
+${R} [data-codice-code] {
+  padding: calc(var(--codice-code-padding) / 2);
+}
+${R}[data-codice-line-numbers="false"] textarea {
+  padding-left: var(--codice-code-padding);
 }
 ${R} code,
 ${R} textarea {

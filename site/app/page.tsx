@@ -25,7 +25,7 @@ export default async function Page(props: { searchParams: Promise<SearchParams> 
             Codice is a simple code editor and code block component for React. 
             It is a zero-dependency library that provides a slim code editor and code block component. <a href='https://github.com/huozhi/codice'>Source Code ↗</a>
           </p>
-          <Code className='code code--default'>
+          <Code className='code-install code-install--bash'>
             {`npm install codice`}
           </Code>
         </div>

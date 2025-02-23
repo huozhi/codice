@@ -22,11 +22,14 @@ describe('Code', () => {
         justify-content: stretch;
         scrollbar-width: none;
       }
-      :scope[data-codice-editor] [data-codice-content] {
-        padding: 0 calc(var(--codice-code-padding) / 2);
-      }
       :scope[data-codice-editor] textarea {
         padding: calc(var(--codice-code-padding) * 0.75) calc(var(--codice-code-padding) * 0.5);
+      }
+      :scope[data-codice-editor] [data-codice-code] {
+        padding: calc(var(--codice-code-padding) / 2);
+      }
+      :scope[data-codice-editor][data-codice-line-numbers="false"] textarea {
+        padding-left: var(--codice-code-padding);
       }
       :scope[data-codice-editor] code,
       :scope[data-codice-editor] textarea {
@@ -195,7 +198,7 @@ describe('Code', () => {
         color: var(--codice-code-line-number-color);
       }
       :scope[data-codice-line-numbers="false"] .sh__line {
-        padding-left: 0;
+        padding-left: calc(var(--codice-code-padding) * 0.5);
       }
 
       :scope[data-codice-code] {
@@ -227,11 +230,14 @@ describe('Code', () => {
         justify-content: stretch;
         scrollbar-width: none;
       }
-      :scope[data-codice-editor] [data-codice-content] {
-        padding: 0 calc(var(--codice-code-padding) / 2);
-      }
       :scope[data-codice-editor] textarea {
         padding: calc(var(--codice-code-padding) * 0.75) calc(var(--codice-code-padding) * 0.5);
+      }
+      :scope[data-codice-editor] [data-codice-code] {
+        padding: calc(var(--codice-code-padding) / 2);
+      }
+      :scope[data-codice-editor][data-codice-line-numbers="false"] textarea {
+        padding-left: var(--codice-code-padding);
       }
       :scope[data-codice-editor] code,
       :scope[data-codice-editor] textarea {
@@ -400,7 +406,7 @@ describe('Code', () => {
         color: var(--codice-code-line-number-color);
       }
       :scope[data-codice-line-numbers="false"] .sh__line {
-        padding-left: 0;
+        padding-left: calc(var(--codice-code-padding) * 0.5);
       }
 
       :scope[data-codice-code] {
@@ -432,11 +438,14 @@ describe('Code', () => {
         justify-content: stretch;
         scrollbar-width: none;
       }
-      :scope[data-codice-editor] [data-codice-content] {
-        padding: 0 calc(var(--codice-code-padding) / 2);
-      }
       :scope[data-codice-editor] textarea {
         padding: calc(var(--codice-code-padding) * 0.75) calc(var(--codice-code-padding) * 0.5);
+      }
+      :scope[data-codice-editor] [data-codice-code] {
+        padding: calc(var(--codice-code-padding) / 2);
+      }
+      :scope[data-codice-editor][data-codice-line-numbers="false"] textarea {
+        padding-left: var(--codice-code-padding);
       }
       :scope[data-codice-editor] code,
       :scope[data-codice-editor] textarea {
@@ -568,7 +577,7 @@ describe('Code', () => {
         color: var(--codice-code-line-number-color);
       }
       :scope[data-codice-line-numbers="false"] .sh__line {
-        padding-left: 0;
+        padding-left: calc(var(--codice-code-padding) * 0.5);
       }
 
       :scope[data-codice-code] {

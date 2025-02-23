@@ -50,10 +50,11 @@ input[type=radio] {
 .description {
   margin: 2rem 0;
 }
-.description .code {
+.description .code-install {
   border-radius: 8px;
 }
-.code--default {
+.code-install--bash {
+  padding: 0 0.5rem;
   background-color: #242424;
 }
 
