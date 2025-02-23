@@ -202,7 +202,6 @@ input[type=radio] {
 }
 .editor-layout .copy-image {
   position: absolute;
-  top: 3px;
   right: 16px;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
@@ -221,7 +220,8 @@ input[type=radio] {
   max-width: 640px;
   border: 1px transparent solid;
 }
-.editor[data-codice="editor"] textarea {
+.editor[data-codice="editor"] textarea,
+.editor[data-codice="editor"] [data-codice-content] {
   border-radius: 8px;
   border: 1px solid rgba(163, 169, 165, 0.2);
   transition: border 0.2s ease-in-out;

@@ -19,7 +19,7 @@ ${R} [data-codice-content] {
   padding: 0 calc(var(--codice-code-padding) / 2);
 }
 ${R} textarea {
-  padding: calc(var(--codice-code-padding) * 0.5) calc(var(--codice-code-padding) / 2);
+  padding: calc(var(--codice-code-padding) * 0.75) calc(var(--codice-code-padding) * 0.5);
 }
 ${R} code,
 ${R} textarea {

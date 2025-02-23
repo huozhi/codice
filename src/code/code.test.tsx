@@ -10,10 +10,11 @@ describe('Code', () => {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
+
+        padding: calc(var(--codice-code-padding) / 2) 0;
       }
       :scope[data-codice-code] [data-codice-code-content] {
-        padding-bottom: var(--codice-code-padding);
-        padding-top: calc(var(--codice-code-padding) * 0.5);
+        padding: calc(var(--codice-code-padding) * 0.25) 0;
       }
       :scope[data-codice-code] pre {
         white-space: pre-wrap;
@@ -34,7 +35,7 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: calc(var(--codice-code-padding) * 0.75)
+        padding: calc(var(--codice-code-padding) * 0.25)
           var(--codice-code-padding)
           calc(var(--codice-code-padding) * 0.25);
         align-items: center;
@@ -105,10 +106,11 @@ describe('Code', () => {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
+
+        padding: calc(var(--codice-code-padding) / 2) 0;
       }
       :scope[data-codice-code] [data-codice-code-content] {
-        padding-bottom: var(--codice-code-padding);
-        padding-top: calc(var(--codice-code-padding) * 0.5);
+        padding: calc(var(--codice-code-padding) * 0.25) 0;
       }
       :scope[data-codice-code] pre {
         white-space: pre-wrap;
@@ -129,7 +131,7 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: calc(var(--codice-code-padding) * 0.75)
+        padding: calc(var(--codice-code-padding) * 0.25)
           var(--codice-code-padding)
           calc(var(--codice-code-padding) * 0.25);
         align-items: center;
@@ -193,7 +195,7 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: calc(var(--codice-code-padding) * 0.75)
+        padding: calc(var(--codice-code-padding) * 0.25)
           var(--codice-code-padding)
           calc(var(--codice-code-padding) * 0.25);
         align-items: center;
@@ -237,10 +239,11 @@ describe('Code', () => {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
+
+        padding: calc(var(--codice-code-padding) / 2) 0;
       }
       :scope[data-codice-code] [data-codice-code-content] {
-        padding-bottom: var(--codice-code-padding);
-        padding-top: calc(var(--codice-code-padding) * 0.5);
+        padding: calc(var(--codice-code-padding) * 0.25) 0;
       }
       :scope[data-codice-code] pre {
         white-space: pre-wrap;
@@ -261,7 +264,7 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: calc(var(--codice-code-padding) * 0.75)
+        padding: calc(var(--codice-code-padding) * 0.25)
           var(--codice-code-padding)
           calc(var(--codice-code-padding) * 0.25);
         align-items: center;
@@ -325,7 +328,7 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: calc(var(--codice-code-padding) * 0.75)
+        padding: calc(var(--codice-code-padding) * 0.25)
           var(--codice-code-padding)
           calc(var(--codice-code-padding) * 0.25);
         align-items: center;
@@ -369,10 +372,11 @@ describe('Code', () => {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
+
+        padding: calc(var(--codice-code-padding) / 2) 0;
       }
       :scope[data-codice-code] [data-codice-code-content] {
-        padding-bottom: var(--codice-code-padding);
-        padding-top: calc(var(--codice-code-padding) * 0.5);
+        padding: calc(var(--codice-code-padding) * 0.25) 0;
       }
       :scope[data-codice-code] pre {
         white-space: pre-wrap;
@@ -393,7 +397,7 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: calc(var(--codice-code-padding) * 0.75)
+        padding: calc(var(--codice-code-padding) * 0.25)
           var(--codice-code-padding)
           calc(var(--codice-code-padding) * 0.25);
         align-items: center;
@@ -462,10 +466,11 @@ describe('Code', () => {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
+
+        padding: calc(var(--codice-code-padding) / 2) 0;
       }
       :scope[data-codice-code] [data-codice-code-content] {
-        padding-bottom: var(--codice-code-padding);
-        padding-top: calc(var(--codice-code-padding) * 0.5);
+        padding: calc(var(--codice-code-padding) * 0.25) 0;
       }
       :scope[data-codice-code] pre {
         white-space: pre-wrap;
@@ -486,7 +491,7 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: calc(var(--codice-code-padding) * 0.75)
+        padding: calc(var(--codice-code-padding) * 0.25)
           var(--codice-code-padding)
           calc(var(--codice-code-padding) * 0.25);
         align-items: center;
