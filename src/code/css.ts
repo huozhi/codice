@@ -90,7 +90,7 @@ ${L} [data-codice-code-line-number] {
   color: var(--codice-code-line-number-color);
 }
 ${FL} .sh__line {
-  padding-left: var(--codice-code-padding);
+  padding-left: 0;
 }
 `
 
