@@ -1,8 +1,10 @@
+'use client'
+
 import { tokenize, generate } from 'sugar-high'
-import { css, headerCss } from './css'
+import { css, HEADER_CSS } from './css'
 import * as presets from 'sugar-high/presets'
 import { useMemo } from 'react'
-import { Style } from '../style'
+import { ScopedStyle } from '../style'
 
 const getPresetByExt = (ext: string) => {
   switch (ext) {
@@ -102,7 +104,7 @@ export function CodeHeader({
       data-codice-header
       data-codice-header-controls={controls}
     >
-      <Style css={headerCss()} />
+      <ScopedStyle css={HEADER_CSS} />
       {controls ? (
         <div data-codice-controls>
           <span data-codice-control />
@@ -161,8 +163,6 @@ export function Code({
   asMarkup?: boolean
   extension?: string
 } & React.HTMLAttributes<HTMLDivElement>) {
-  const styles = css({ fontSize, lineNumbers, lineNumbersWidth, padding })
-  
   const lineElements = useMemo(() => 
     asMarkup 
       ? code
@@ -172,8 +172,13 @@ export function Code({
 
   return (
     // Add both attribute because it's both root component and child component (of editor)
-    <div {...props} data-codice="code" data-codice-code>
-      <Style css={styles} />
+    <div
+      {...props} 
+      data-codice="code" 
+      data-codice-code 
+      data-codice-line-numbers={lineNumbers}
+    >
+      <ScopedStyle css={css({ fontSize, lineNumbersWidth, padding })} />
       <CodeHeader title={title} controls={controls} />
       <CodeFrame preformatted={preformatted} asMarkup={asMarkup}>
         {lineElements}

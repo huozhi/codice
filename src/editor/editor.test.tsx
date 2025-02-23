@@ -14,10 +14,6 @@ describe('Code', () => {
         --codice-text-color: transparent;
         --codice-background-color: transparent;
         --codice-caret-color: inherit;
-        --codice-font-size: inherit;
-        --codice-code-line-number-width: 2.5rem;
-        --codice-code-padding: 1rem;
-        --codice-font-family: Consolas, Monaco, monospace;
 
         position: relative;
         overflow-y: scroll;
@@ -26,13 +22,18 @@ describe('Code', () => {
         justify-content: stretch;
         scrollbar-width: none;
       }
+      :scope[data-codice-editor] [data-codice-content] {
+        padding: 0 calc(var(--codice-code-padding) / 2);
+      }
+      :scope[data-codice-editor] textarea {
+        padding: calc(var(--codice-code-padding) * 0.5) calc(var(--codice-code-padding) / 2);
+      }
       :scope[data-codice-editor] code,
       :scope[data-codice-editor] textarea {
         font-family: var(--codice-font-family);
         line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
-        padding: calc(var(--codice-code-padding) * 1.5) var(--codice-code-padding);
         line-height: 1.5;
         font-size: var(--codice-font-size);
         caret-color: var(--codice-caret-color);
@@ -66,15 +67,23 @@ describe('Code', () => {
         height: 100%;
         overflow: hidden;
       }
-      :scope[data-codice-editor] [data-codice-line-numbers="true"] textarea {
-        padding-left: calc(var(--codice-code-line-number-width) + var(--codice-code-padding));
+      :scope[data-codice-editor][data-codice-line-numbers="true"] textarea {
+        padding-left: calc(var(--codice-code-line-number-width) + calc(var(--codice-code-padding) / 2) + 2px);
       }
 
+      :scope[data-codice-editor] {
+        --codice-font-size: inherit;
+        --codice-code-line-number-width: 2.5rem;
+        --codice-code-padding: 1rem;
+        --codice-font-family: Consolas, Monaco, monospace;
+      }
       }</style><div data-codice-header="true" data-codice-header-controls="true"><style data-codice-style="true">@scope {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: 16px 22px 8px;
+        padding: calc(var(--codice-code-padding) * 0.75)
+          var(--codice-code-padding)
+          calc(var(--codice-code-padding) * 0.25);
         align-items: center;
       }
       :scope[data-codice-header] [data-codice-title] {
@@ -105,28 +114,27 @@ describe('Code', () => {
         background-color: var(--codice-control-color);
       }
 
-      }</style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div></div><div data-codice-content="true"><div data-codice="code" data-codice-code="true"><style data-codice-style="true">@scope {
+      }</style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div></div><div data-codice-content="true"><div data-codice="code" data-codice-code="true" data-codice-line-numbers="true"><style data-codice-style="true">@scope {
       :scope[data-codice-code] {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
-        --codice-font-size: inherit;
-        --codice-code-line-number-width: 2.5rem;
-        --codice-code-padding: 1rem;
+      }
+      :scope[data-codice-code] [data-codice-code-content] {
+        padding-bottom: var(--codice-code-padding);
+        padding-top: calc(var(--codice-code-padding) * 0.5);
       }
       :scope[data-codice-code] pre {
         white-space: pre-wrap;
         margin: 0;
       }
       :scope[data-codice-code] code {
+        display: block;
         border: none;
       }
       :scope[data-codice-code] .sh__line {
         display: inline-block;
         width: 100%;
-      }
-      :scope[data-codice-code] .sh__line:has(> [data-codice-code-line-number]) {
-        padding-left: var(--codice-code-line-number-width);
       }
       :scope[data-codice-code] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
@@ -135,7 +143,9 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: 16px 22px 8px;
+        padding: calc(var(--codice-code-padding) * 0.75)
+          var(--codice-code-padding)
+          calc(var(--codice-code-padding) * 0.25);
         align-items: center;
       }
       :scope[data-codice-header] [data-codice-title] {
@@ -166,10 +176,13 @@ describe('Code', () => {
         background-color: var(--codice-control-color);
       }
 
-      :scope[data-codice-code] code {
+      :scope[data-codice-line-numbers="true"] code {
         counter-reset: codice-code-line-number;
       }
-      :scope[data-codice-code] [data-codice-code-line-number] {
+      :scope[data-codice-line-numbers="true"] .sh__line:has(> [data-codice-code-line-number]) {
+        padding-left: var(--codice-code-line-number-width);
+      }
+      :scope[data-codice-line-numbers="true"] [data-codice-code-line-number] {
         counter-increment: codice-code-line-number 1;
         content: counter(codice-code-line-number);
         display: inline-block;
@@ -180,7 +193,15 @@ describe('Code', () => {
         user-select: none;
         color: var(--codice-code-line-number-color);
       }
+      :scope[data-codice-line-numbers="false"] .sh__line {
+        padding-left: var(--codice-code-padding);
+      }
 
+      :scope[data-codice-code] {
+        --codice-font-size: inherit;
+        --codice-code-line-number-width: 2.5rem;
+        --codice-code-padding: 1rem;
+      }
 
       }</style><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"
     `)
@@ -197,10 +218,6 @@ describe('Code', () => {
         --codice-text-color: transparent;
         --codice-background-color: transparent;
         --codice-caret-color: inherit;
-        --codice-font-size: inherit;
-        --codice-code-line-number-width: 2.5rem;
-        --codice-code-padding: 1rem;
-        --codice-font-family: Consolas, Monaco, monospace;
 
         position: relative;
         overflow-y: scroll;
@@ -209,13 +226,18 @@ describe('Code', () => {
         justify-content: stretch;
         scrollbar-width: none;
       }
+      :scope[data-codice-editor] [data-codice-content] {
+        padding: 0 calc(var(--codice-code-padding) / 2);
+      }
+      :scope[data-codice-editor] textarea {
+        padding: calc(var(--codice-code-padding) * 0.5) calc(var(--codice-code-padding) / 2);
+      }
       :scope[data-codice-editor] code,
       :scope[data-codice-editor] textarea {
         font-family: var(--codice-font-family);
         line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
-        padding: calc(var(--codice-code-padding) * 1.5) var(--codice-code-padding);
         line-height: 1.5;
         font-size: var(--codice-font-size);
         caret-color: var(--codice-caret-color);
@@ -249,15 +271,23 @@ describe('Code', () => {
         height: 100%;
         overflow: hidden;
       }
-      :scope[data-codice-editor] [data-codice-line-numbers="true"] textarea {
-        padding-left: calc(var(--codice-code-line-number-width) + var(--codice-code-padding));
+      :scope[data-codice-editor][data-codice-line-numbers="true"] textarea {
+        padding-left: calc(var(--codice-code-line-number-width) + calc(var(--codice-code-padding) / 2) + 2px);
       }
 
+      :scope[data-codice-editor] {
+        --codice-font-size: inherit;
+        --codice-code-line-number-width: 2.5rem;
+        --codice-code-padding: 1rem;
+        --codice-font-family: Consolas, Monaco, monospace;
+      }
       }</style><div data-codice-header="true" data-codice-header-controls="true"><style data-codice-style="true">@scope {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: 16px 22px 8px;
+        padding: calc(var(--codice-code-padding) * 0.75)
+          var(--codice-code-padding)
+          calc(var(--codice-code-padding) * 0.25);
         align-items: center;
       }
       :scope[data-codice-header] [data-codice-title] {
@@ -288,28 +318,27 @@ describe('Code', () => {
         background-color: var(--codice-control-color);
       }
 
-      }</style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div><div data-codice-title="true">file.js</div></div><div data-codice-content="true"><div data-codice="code" data-codice-code="true"><style data-codice-style="true">@scope {
+      }</style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div><div data-codice-title="true">file.js</div></div><div data-codice-content="true"><div data-codice="code" data-codice-code="true" data-codice-line-numbers="true"><style data-codice-style="true">@scope {
       :scope[data-codice-code] {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
-        --codice-font-size: inherit;
-        --codice-code-line-number-width: 2.5rem;
-        --codice-code-padding: 1rem;
+      }
+      :scope[data-codice-code] [data-codice-code-content] {
+        padding-bottom: var(--codice-code-padding);
+        padding-top: calc(var(--codice-code-padding) * 0.5);
       }
       :scope[data-codice-code] pre {
         white-space: pre-wrap;
         margin: 0;
       }
       :scope[data-codice-code] code {
+        display: block;
         border: none;
       }
       :scope[data-codice-code] .sh__line {
         display: inline-block;
         width: 100%;
-      }
-      :scope[data-codice-code] .sh__line:has(> [data-codice-code-line-number]) {
-        padding-left: var(--codice-code-line-number-width);
       }
       :scope[data-codice-code] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
@@ -318,7 +347,9 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: 16px 22px 8px;
+        padding: calc(var(--codice-code-padding) * 0.75)
+          var(--codice-code-padding)
+          calc(var(--codice-code-padding) * 0.25);
         align-items: center;
       }
       :scope[data-codice-header] [data-codice-title] {
@@ -349,10 +380,13 @@ describe('Code', () => {
         background-color: var(--codice-control-color);
       }
 
-      :scope[data-codice-code] code {
+      :scope[data-codice-line-numbers="true"] code {
         counter-reset: codice-code-line-number;
       }
-      :scope[data-codice-code] [data-codice-code-line-number] {
+      :scope[data-codice-line-numbers="true"] .sh__line:has(> [data-codice-code-line-number]) {
+        padding-left: var(--codice-code-line-number-width);
+      }
+      :scope[data-codice-line-numbers="true"] [data-codice-code-line-number] {
         counter-increment: codice-code-line-number 1;
         content: counter(codice-code-line-number);
         display: inline-block;
@@ -363,7 +397,15 @@ describe('Code', () => {
         user-select: none;
         color: var(--codice-code-line-number-color);
       }
+      :scope[data-codice-line-numbers="false"] .sh__line {
+        padding-left: var(--codice-code-padding);
+      }
 
+      :scope[data-codice-code] {
+        --codice-font-size: inherit;
+        --codice-code-line-number-width: 2.5rem;
+        --codice-code-padding: 1rem;
+      }
 
       }</style><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"
     `)
@@ -380,10 +422,6 @@ describe('Code', () => {
         --codice-text-color: transparent;
         --codice-background-color: transparent;
         --codice-caret-color: inherit;
-        --codice-font-size: inherit;
-        --codice-code-line-number-width: 2.5rem;
-        --codice-code-padding: 1rem;
-        --codice-font-family: Consolas, Monaco, monospace;
 
         position: relative;
         overflow-y: scroll;
@@ -392,13 +430,18 @@ describe('Code', () => {
         justify-content: stretch;
         scrollbar-width: none;
       }
+      :scope[data-codice-editor] [data-codice-content] {
+        padding: 0 calc(var(--codice-code-padding) / 2);
+      }
+      :scope[data-codice-editor] textarea {
+        padding: calc(var(--codice-code-padding) * 0.5) calc(var(--codice-code-padding) / 2);
+      }
       :scope[data-codice-editor] code,
       :scope[data-codice-editor] textarea {
         font-family: var(--codice-font-family);
         line-break: anywhere;
         overflow-wrap: break-word;
         scrollbar-width: none;
-        padding: calc(var(--codice-code-padding) * 1.5) var(--codice-code-padding);
         line-height: 1.5;
         font-size: var(--codice-font-size);
         caret-color: var(--codice-caret-color);
@@ -432,32 +475,37 @@ describe('Code', () => {
         height: 100%;
         overflow: hidden;
       }
-      :scope[data-codice-editor] [data-codice-line-numbers="true"] textarea {
-        padding-left: calc(var(--codice-code-line-number-width) + var(--codice-code-padding));
+      :scope[data-codice-editor][data-codice-line-numbers="true"] textarea {
+        padding-left: calc(var(--codice-code-line-number-width) + calc(var(--codice-code-padding) / 2) + 2px);
       }
 
-      }</style><div data-codice-content="true"><div data-codice="code" data-codice-code="true"><style data-codice-style="true">@scope {
+      :scope[data-codice-editor] {
+        --codice-font-size: inherit;
+        --codice-code-line-number-width: 2.5rem;
+        --codice-code-padding: 1rem;
+        --codice-font-family: Consolas, Monaco, monospace;
+      }
+      }</style><div data-codice-content="true"><div data-codice="code" data-codice-code="true" data-codice-line-numbers="true"><style data-codice-style="true">@scope {
       :scope[data-codice-code] {
         --codice-code-line-number-color: #a4a4a4;
         --codice-code-highlight-color: #555555;
         --codice-control-color: #8d8989;
-        --codice-font-size: inherit;
-        --codice-code-line-number-width: 2.5rem;
-        --codice-code-padding: 1rem;
+      }
+      :scope[data-codice-code] [data-codice-code-content] {
+        padding-bottom: var(--codice-code-padding);
+        padding-top: calc(var(--codice-code-padding) * 0.5);
       }
       :scope[data-codice-code] pre {
         white-space: pre-wrap;
         margin: 0;
       }
       :scope[data-codice-code] code {
+        display: block;
         border: none;
       }
       :scope[data-codice-code] .sh__line {
         display: inline-block;
         width: 100%;
-      }
-      :scope[data-codice-code] .sh__line:has(> [data-codice-code-line-number]) {
-        padding-left: var(--codice-code-line-number-width);
       }
       :scope[data-codice-code] .sh__line[data-highlight] {
         background-color: var(--codice-code-highlight-color);
@@ -466,7 +514,9 @@ describe('Code', () => {
       :scope[data-codice-header] {
         position: relative;
         display: flex;
-        padding: 16px 22px 8px;
+        padding: calc(var(--codice-code-padding) * 0.75)
+          var(--codice-code-padding)
+          calc(var(--codice-code-padding) * 0.25);
         align-items: center;
       }
       :scope[data-codice-header] [data-codice-title] {
@@ -497,10 +547,13 @@ describe('Code', () => {
         background-color: var(--codice-control-color);
       }
 
-      :scope[data-codice-code] code {
+      :scope[data-codice-line-numbers="true"] code {
         counter-reset: codice-code-line-number;
       }
-      :scope[data-codice-code] [data-codice-code-line-number] {
+      :scope[data-codice-line-numbers="true"] .sh__line:has(> [data-codice-code-line-number]) {
+        padding-left: var(--codice-code-line-number-width);
+      }
+      :scope[data-codice-line-numbers="true"] [data-codice-code-line-number] {
         counter-increment: codice-code-line-number 1;
         content: counter(codice-code-line-number);
         display: inline-block;
@@ -511,7 +564,15 @@ describe('Code', () => {
         user-select: none;
         color: var(--codice-code-line-number-color);
       }
+      :scope[data-codice-line-numbers="false"] .sh__line {
+        padding-left: var(--codice-code-padding);
+      }
 
+      :scope[data-codice-code] {
+        --codice-font-size: inherit;
+        --codice-code-line-number-width: 2.5rem;
+        --codice-code-padding: 1rem;
+      }
 
       }</style><pre data-codice-code-content="true"><code></code></pre></div><textarea></textarea></div></div>"
     `)
