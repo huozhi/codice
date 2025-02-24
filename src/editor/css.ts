@@ -18,12 +18,6 @@ ${R} {
 ${R} textarea {
   padding: calc(var(--codice-code-padding) * 0.75) calc(var(--codice-code-padding) * 0.5);
 }
-${R} [data-codice-code] {
-  padding: calc(var(--codice-code-padding) / 2);
-}
-${R}[data-codice-line-numbers="false"] textarea {
-  padding-left: var(--codice-code-padding);
-}
 ${R} code,
 ${R} textarea {
   font-family: var(--codice-font-family);
@@ -64,7 +58,10 @@ ${R} textarea {
   overflow: hidden;
 }
 ${R}[data-codice-line-numbers="true"] textarea {
-  padding-left: calc(var(--codice-code-line-number-width) + calc(var(--codice-code-padding) / 2) + 2px);
+  padding-left: calc(var(--codice-code-line-number-width) + 2px);
+}
+${R}[data-codice-line-numbers="false"] textarea {
+  padding-left: var(--codice-code-padding);
 }
 `
 // line number padding-left is [[width 24px] margin-right 16px] + 15px

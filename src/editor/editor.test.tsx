@@ -25,12 +25,6 @@ describe('Code', () => {
       :scope[data-codice-editor] textarea {
         padding: calc(var(--codice-code-padding) * 0.75) calc(var(--codice-code-padding) * 0.5);
       }
-      :scope[data-codice-editor] [data-codice-code] {
-        padding: calc(var(--codice-code-padding) / 2);
-      }
-      :scope[data-codice-editor][data-codice-line-numbers="false"] textarea {
-        padding-left: var(--codice-code-padding);
-      }
       :scope[data-codice-editor] code,
       :scope[data-codice-editor] textarea {
         font-family: var(--codice-font-family);
@@ -71,7 +65,10 @@ describe('Code', () => {
         overflow: hidden;
       }
       :scope[data-codice-editor][data-codice-line-numbers="true"] textarea {
-        padding-left: calc(var(--codice-code-line-number-width) + calc(var(--codice-code-padding) / 2) + 2px);
+        padding-left: calc(var(--codice-code-line-number-width) + 2px);
+      }
+      :scope[data-codice-editor][data-codice-line-numbers="false"] textarea {
+        padding-left: var(--codice-code-padding);
       }
 
       :scope[data-codice-editor] {
@@ -198,7 +195,7 @@ describe('Code', () => {
         color: var(--codice-code-line-number-color);
       }
       :scope[data-codice-line-numbers="false"] .sh__line {
-        padding-left: calc(var(--codice-code-padding) * 0.5);
+        padding-left: var(--codice-code-padding);
       }
 
       :scope[data-codice-code] {
@@ -232,12 +229,6 @@ describe('Code', () => {
       }
       :scope[data-codice-editor] textarea {
         padding: calc(var(--codice-code-padding) * 0.75) calc(var(--codice-code-padding) * 0.5);
-      }
-      :scope[data-codice-editor] [data-codice-code] {
-        padding: calc(var(--codice-code-padding) / 2);
-      }
-      :scope[data-codice-editor][data-codice-line-numbers="false"] textarea {
-        padding-left: var(--codice-code-padding);
       }
       :scope[data-codice-editor] code,
       :scope[data-codice-editor] textarea {
@@ -279,7 +270,10 @@ describe('Code', () => {
         overflow: hidden;
       }
       :scope[data-codice-editor][data-codice-line-numbers="true"] textarea {
-        padding-left: calc(var(--codice-code-line-number-width) + calc(var(--codice-code-padding) / 2) + 2px);
+        padding-left: calc(var(--codice-code-line-number-width) + 2px);
+      }
+      :scope[data-codice-editor][data-codice-line-numbers="false"] textarea {
+        padding-left: var(--codice-code-padding);
       }
 
       :scope[data-codice-editor] {
@@ -406,7 +400,7 @@ describe('Code', () => {
         color: var(--codice-code-line-number-color);
       }
       :scope[data-codice-line-numbers="false"] .sh__line {
-        padding-left: calc(var(--codice-code-padding) * 0.5);
+        padding-left: var(--codice-code-padding);
       }
 
       :scope[data-codice-code] {
@@ -440,12 +434,6 @@ describe('Code', () => {
       }
       :scope[data-codice-editor] textarea {
         padding: calc(var(--codice-code-padding) * 0.75) calc(var(--codice-code-padding) * 0.5);
-      }
-      :scope[data-codice-editor] [data-codice-code] {
-        padding: calc(var(--codice-code-padding) / 2);
-      }
-      :scope[data-codice-editor][data-codice-line-numbers="false"] textarea {
-        padding-left: var(--codice-code-padding);
       }
       :scope[data-codice-editor] code,
       :scope[data-codice-editor] textarea {
@@ -487,7 +475,10 @@ describe('Code', () => {
         overflow: hidden;
       }
       :scope[data-codice-editor][data-codice-line-numbers="true"] textarea {
-        padding-left: calc(var(--codice-code-line-number-width) + calc(var(--codice-code-padding) / 2) + 2px);
+        padding-left: calc(var(--codice-code-line-number-width) + 2px);
+      }
+      :scope[data-codice-editor][data-codice-line-numbers="false"] textarea {
+        padding-left: var(--codice-code-padding);
       }
 
       :scope[data-codice-editor] {
@@ -577,7 +568,7 @@ describe('Code', () => {
         color: var(--codice-code-line-number-color);
       }
       :scope[data-codice-line-numbers="false"] .sh__line {
-        padding-left: calc(var(--codice-code-padding) * 0.5);
+        padding-left: var(--codice-code-padding);
       }
 
       :scope[data-codice-code] {

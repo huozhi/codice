@@ -86,7 +86,7 @@ describe('Code', () => {
         color: var(--codice-code-line-number-color);
       }
       :scope[data-codice-line-numbers="false"] .sh__line {
-        padding-left: calc(var(--codice-code-padding) * 0.5);
+        padding-left: var(--codice-code-padding);
       }
 
       :scope[data-codice-code] {
@@ -182,7 +182,7 @@ describe('Code', () => {
         color: var(--codice-code-line-number-color);
       }
       :scope[data-codice-line-numbers="false"] .sh__line {
-        padding-left: calc(var(--codice-code-padding) * 0.5);
+        padding-left: var(--codice-code-padding);
       }
 
       :scope[data-codice-code] {
@@ -315,7 +315,7 @@ describe('Code', () => {
         color: var(--codice-code-line-number-color);
       }
       :scope[data-codice-line-numbers="false"] .sh__line {
-        padding-left: calc(var(--codice-code-padding) * 0.5);
+        padding-left: var(--codice-code-padding);
       }
 
       :scope[data-codice-code] {
@@ -448,7 +448,7 @@ describe('Code', () => {
         color: var(--codice-code-line-number-color);
       }
       :scope[data-codice-line-numbers="false"] .sh__line {
-        padding-left: calc(var(--codice-code-padding) * 0.5);
+        padding-left: var(--codice-code-padding);
       }
 
       :scope[data-codice-code] {
@@ -542,7 +542,7 @@ describe('Code', () => {
         color: var(--codice-code-line-number-color);
       }
       :scope[data-codice-line-numbers="false"] .sh__line {
-        padding-left: calc(var(--codice-code-padding) * 0.5);
+        padding-left: var(--codice-code-padding);
       }
 
       :scope[data-codice-code] {
