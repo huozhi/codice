@@ -132,13 +132,12 @@ input[type=radio] {
 .controls-manager-label {
   display: inline-block;
   width: 180px;
-  padding: 3px 8px;
-  border-radius: 8px;
+  padding: 0.2rem 0.5rem;
   cursor: pointer;
-  border: 1px solid var(--control-bg-color);
   transition: all 0.2s ease-in-out;
   background-color: var(--control-bg-color);
   user-select: none;
+  border-radius: 6px;
 }
 .controls-manager-label--checked,
 .controls-manager label[data-checked="true"] {
@@ -156,7 +155,6 @@ input[type=radio] {
   resize:horizontal;
   outline-color: var(--control-color);
   width: 68px;
-  border-radius: 2px;
   line-height: 1;
   border: none;
 }
@@ -165,42 +163,44 @@ input[type=radio] {
 }
 .range-control {
   font-size: 14px;
-  margin: 8px auto;
+  display: inline-flex;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 0 0.3rem;
+  border-radius: 6px;
+  background-color: var(--control-bg-color);
 }
-.range-control label {
-  margin-right: 8px;
-}
-.range-control input[type="range"],
-.range-control input[type="range"]::-webkit-slider-runnable-track {
-  appearance: none;
-  -webkit-appearance: none;
-  background: var(--control-bg-color);
-  height: 0.5rem;
-  border-radius: 999px;
-}
-.range-control input[type="range"]::-webkit-slider-thumb {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 1rem;
-  height: 1rem;
-  background-color: var(--control-color);
-  border-radius: 50%;
+.range-control button {
+  background-color: transparent;
+  border: none;
+  color: var(--control-color);
   cursor: pointer;
-  transform: translateY(-0.25rem);
+  padding: 0;
 }
+/* < decrease button style */
+.range-control button:first-child {
+  
+  transition: background-color 0.2s ease-in-out;
+}
+/* > increase button style */
+.range-control button:last-child {
+  transition: background-color 0.2s ease-in-out;
+}
+
 .controls {
-  margin: 2rem 0 4rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  margin-bottom: 2.5rem;
 }
 .controls-manager {
   display: flex;
   font-size: 14px;
-  margin: 0.5rem 0;
+  gap: 0.5rem;
 }
 .controls-manager label span {
   font-size: 12px;
-}
-.controls-manager .control-button {
-  margin-right: auto;
 }
 
 .controls-manager input[type="checkbox"] {

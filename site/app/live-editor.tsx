@@ -40,7 +40,6 @@ function RangeSelector({
   max,
   step,
   className,
-  ...props
 }: {
   value: number
   text: string
@@ -53,6 +52,10 @@ function RangeSelector({
   const id = useId()
   return (
     <div className={className}>
+      {/* left decrease < button */}
+      <button className="range-button" onClick={() => onChange(Math.max(min, value - step))} disabled={value <= min}>
+        {'<'}
+      </button>
       <label className="controls-manager-label controls-manager-label--checked" htmlFor={id}>
         {text}
         {`={`}
@@ -61,16 +64,10 @@ function RangeSelector({
         </b>
         {`}`}
       </label>
-      <input
-        {...props}
-        id={id}
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
-      />
+      {/* right increase button */}
+      <button className="range-button" onClick={() => onChange(Math.min(max, value + step))} disabled={value >= max}>
+        {'>'}
+      </button>
     </div>
   )
 }
@@ -120,16 +117,13 @@ function CameraIcon({ ...props }: React.SVGProps<SVGSVGElement>) {
 }
 
 function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<boolean> }) {
-  const [actionState, dispatch, isPending] = useActionState<
-    { state: 'idle' | 'succeed' | 'error' },
-    'reset' | 'copy'
-  >(
+  const [actionState, dispatch, isPending] = useActionState<{ state: 'idle' | 'succeed' | 'error' }, 'reset' | 'copy'>(
     (state, action) => {
       if (action === 'reset') {
         return { state: 'idle' }
       } else if (action === 'copy') {
-        return onCopyImage().then(succeed => {
-          return { state: succeed ? 'succeed': 'error' }
+        return onCopyImage().then((succeed) => {
+          return { state: succeed ? 'succeed' : 'error' }
         })
       }
       return state
@@ -215,7 +209,7 @@ export function LiveEditor({
             content={<span>{theme === 'dark' ? '🌙' : '☀️'}</span>}
           />
         </div>
-        
+
         <RangeSelector
           text="fontSize"
           className="range-control"
