@@ -224,11 +224,12 @@ input[type=radio] {
 .editor[data-codice="editor"] textarea,
 .editor[data-codice="editor"] [data-codice-content] {
   border-radius: 8px;
-  border: 1px solid rgba(163, 169, 165, 0.2);
+  border: 1px solid;
+  border-color: rgba(163, 169, 165, 0.2);
   transition: border 0.2s ease-in-out;
 }
 .editor[data-codice="editor"] textarea:focus {
-  border: 1px solid hsla(137, 100.00%, 94.30%, 0.30);
+  border-color: hsla(137, 100.00%, 94.30%, 0.30);
 }
 [data-codice-title] {
   color: hsla(0, 0%, 87%, 0.34);
