@@ -169,7 +169,7 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<boolean>
       ) : currentState === 'error' ? (
         <span className="error-icon">✖</span>
       ) : (
-        <CameraIcon width={16} height={16} fill="none" stroke="currentColor" strokeWidth="1.5" />
+        <CameraIcon width={20} height={20} fill="none" stroke="currentColor" strokeWidth="1.5" />
       )}
     </span>
   )
@@ -186,6 +186,7 @@ export function LiveEditor({
   const initialCode = codeQuery ? atob(codeQuery) : defaultCode
   const [code, setCode] = useState(initialCode)
   const [title, setTitle] = useState('Untitled')
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark')
   const [controls, setControls] = useState(true)
   const [lineNumbers, setLineNumbers] = useState(true)
   const [fontSize, setFontSize] = useState(14)
@@ -204,7 +205,16 @@ export function LiveEditor({
             onChange={setLineNumbers}
             propName="lineNumbers"
           />
+          {/* control of theme: light/dark */}
+          <ControlButton
+            id="control-theme"
+            checked={theme === 'dark'}
+            onChange={(checked) => setTheme(checked ? 'dark' : 'light')}
+            propName="theme"
+            content={<span>{theme === 'dark' ? '🌙' : '☀️'}</span>}
+          />
         </div>
+        
         <RangeSelector
           text="fontSize"
           className="range-control"
@@ -240,6 +250,7 @@ export function LiveEditor({
           id="editor-canvas"
           value={code}
           className="editor"
+          data-theme={theme}
           title={title}
           controls={controls}
           fontSize={fontSize}

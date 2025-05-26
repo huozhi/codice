@@ -51,6 +51,7 @@ ${H} [data-codice-title] {
   outline: none;
   border: none;
   caret-color: var(--codice-caret-color);
+  color: var(--codice-title-color);
 }
 ${H} [data-codice-controls] {
   display: inline-flex;
