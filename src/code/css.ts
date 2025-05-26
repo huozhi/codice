@@ -7,10 +7,6 @@ const FL = `:scope[data-codice-line-numbers="false"]`
 
 const BASE_CSS = `\
 ${C} {
-  --codice-code-line-number-color: #a4a4a4;
-  --codice-code-highlight-color: #555555;
-  --codice-control-color: #8d8989;
-
   padding: calc(var(--codice-code-padding) / 2) 0;
 }
 ${C} [data-codice-code-content] {

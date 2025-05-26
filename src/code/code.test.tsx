@@ -7,10 +7,6 @@ describe('Code', () => {
     expect(renderToString(<Code>test</Code>)).toMatchInlineSnapshot(`
       "<div data-codice="code" data-codice-code="true" data-codice-line-numbers="false"><style data-codice-style="true">@scope {
       :scope[data-codice-code] {
-        --codice-code-line-number-color: #a4a4a4;
-        --codice-code-highlight-color: #555555;
-        --codice-control-color: #8d8989;
-
         padding: calc(var(--codice-code-padding) / 2) 0;
       }
       :scope[data-codice-code] [data-codice-code-content] {
@@ -45,6 +41,11 @@ describe('Code', () => {
         flex: 1 0;
         text-align: center;
         line-height: 1;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        caret-color: var(--codice-caret-color);
+        color: var(--codice-title-color);
       }
       :scope[data-codice-header] [data-codice-controls] {
         display: inline-flex;
@@ -103,10 +104,6 @@ describe('Code', () => {
     expect(renderToString(<Code title="file.js">test</Code>)).toMatchInlineSnapshot(`
       "<div data-codice="code" data-codice-code="true" data-codice-line-numbers="false"><style data-codice-style="true">@scope {
       :scope[data-codice-code] {
-        --codice-code-line-number-color: #a4a4a4;
-        --codice-code-highlight-color: #555555;
-        --codice-control-color: #8d8989;
-
         padding: calc(var(--codice-code-padding) / 2) 0;
       }
       :scope[data-codice-code] [data-codice-code-content] {
@@ -141,6 +138,11 @@ describe('Code', () => {
         flex: 1 0;
         text-align: center;
         line-height: 1;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        caret-color: var(--codice-caret-color);
+        color: var(--codice-title-color);
       }
       :scope[data-codice-header] [data-codice-controls] {
         display: inline-flex;
@@ -205,6 +207,11 @@ describe('Code', () => {
         flex: 1 0;
         text-align: center;
         line-height: 1;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        caret-color: var(--codice-caret-color);
+        color: var(--codice-title-color);
       }
       :scope[data-codice-header] [data-codice-controls] {
         display: inline-flex;
@@ -228,7 +235,7 @@ describe('Code', () => {
         background-color: var(--codice-control-color);
       }
 
-      }</style><div data-codice-title="true">file.js</div></div><pre data-codice-code-content="true"><code><span class="sh__line" data-codice-code-line="true"><span data-sh-token-type="element" class="sh__token--identifier" style="color:var(--sh-identifier)">test</span></span></code></pre></div>"
+      }</style><input data-codice-title="true" readOnly="" value="file.js"/></div><pre data-codice-code-content="true"><code><span class="sh__line" data-codice-code-line="true"><span data-sh-token-type="element" class="sh__token--identifier" style="color:var(--sh-identifier)">test</span></span></code></pre></div>"
     `)
   })
 
@@ -236,10 +243,6 @@ describe('Code', () => {
     expect(renderToString(<Code controls>test</Code>)).toMatchInlineSnapshot(`
       "<div data-codice="code" data-codice-code="true" data-codice-line-numbers="false"><style data-codice-style="true">@scope {
       :scope[data-codice-code] {
-        --codice-code-line-number-color: #a4a4a4;
-        --codice-code-highlight-color: #555555;
-        --codice-control-color: #8d8989;
-
         padding: calc(var(--codice-code-padding) / 2) 0;
       }
       :scope[data-codice-code] [data-codice-code-content] {
@@ -274,6 +277,11 @@ describe('Code', () => {
         flex: 1 0;
         text-align: center;
         line-height: 1;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        caret-color: var(--codice-caret-color);
+        color: var(--codice-title-color);
       }
       :scope[data-codice-header] [data-codice-controls] {
         display: inline-flex;
@@ -338,6 +346,11 @@ describe('Code', () => {
         flex: 1 0;
         text-align: center;
         line-height: 1;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        caret-color: var(--codice-caret-color);
+        color: var(--codice-title-color);
       }
       :scope[data-codice-header] [data-codice-controls] {
         display: inline-flex;
@@ -361,7 +374,7 @@ describe('Code', () => {
         background-color: var(--codice-control-color);
       }
 
-      }</style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div></div><pre data-codice-code-content="true"><code><span class="sh__line" data-codice-code-line="true"><span data-sh-token-type="element" class="sh__token--identifier" style="color:var(--sh-identifier)">test</span></span></code></pre></div>"
+      }</style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div><input data-codice-title="true" readOnly=""/></div><pre data-codice-code-content="true"><code><span class="sh__line" data-codice-code-line="true"><span data-sh-token-type="element" class="sh__token--identifier" style="color:var(--sh-identifier)">test</span></span></code></pre></div>"
     `)
   })
 
@@ -369,10 +382,6 @@ describe('Code', () => {
     expect(renderToString(<Code fontSize={14}>test</Code>)).toMatchInlineSnapshot(`
       "<div data-codice="code" data-codice-code="true" data-codice-line-numbers="false"><style data-codice-style="true">@scope {
       :scope[data-codice-code] {
-        --codice-code-line-number-color: #a4a4a4;
-        --codice-code-highlight-color: #555555;
-        --codice-control-color: #8d8989;
-
         padding: calc(var(--codice-code-padding) / 2) 0;
       }
       :scope[data-codice-code] [data-codice-code-content] {
@@ -407,6 +416,11 @@ describe('Code', () => {
         flex: 1 0;
         text-align: center;
         line-height: 1;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        caret-color: var(--codice-caret-color);
+        color: var(--codice-title-color);
       }
       :scope[data-codice-header] [data-codice-controls] {
         display: inline-flex;
@@ -463,10 +477,6 @@ describe('Code', () => {
     expect(renderToString(<Code fontSize={'1rem'}>test</Code>)).toMatchInlineSnapshot(`
       "<div data-codice="code" data-codice-code="true" data-codice-line-numbers="false"><style data-codice-style="true">@scope {
       :scope[data-codice-code] {
-        --codice-code-line-number-color: #a4a4a4;
-        --codice-code-highlight-color: #555555;
-        --codice-control-color: #8d8989;
-
         padding: calc(var(--codice-code-padding) / 2) 0;
       }
       :scope[data-codice-code] [data-codice-code-content] {
@@ -501,6 +511,11 @@ describe('Code', () => {
         flex: 1 0;
         text-align: center;
         line-height: 1;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        caret-color: var(--codice-caret-color);
+        color: var(--codice-title-color);
       }
       :scope[data-codice-header] [data-codice-controls] {
         display: inline-flex;

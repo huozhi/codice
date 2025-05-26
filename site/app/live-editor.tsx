@@ -3,6 +3,7 @@
 import { Editor } from 'codice'
 import React, { startTransition, useActionState, useEffect, useId, useState } from 'react'
 import { toPng } from 'html-to-image'
+import { useTheme } from './theme-provider'
 
 const CODE_QUERY_KEY = 'c'
 
@@ -186,7 +187,7 @@ export function LiveEditor({
   const initialCode = codeQuery ? atob(codeQuery) : defaultCode
   const [code, setCode] = useState(initialCode)
   const [title, setTitle] = useState('Untitled')
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark')
+  const { theme, setTheme } = useTheme()
   const [controls, setControls] = useState(true)
   const [lineNumbers, setLineNumbers] = useState(true)
   const [fontSize, setFontSize] = useState(14)
@@ -250,7 +251,6 @@ export function LiveEditor({
           id="editor-canvas"
           value={code}
           className="editor"
-          data-theme={theme}
           title={title}
           controls={controls}
           fontSize={fontSize}

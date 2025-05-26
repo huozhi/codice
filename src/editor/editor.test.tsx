@@ -91,6 +91,11 @@ describe('Code', () => {
         flex: 1 0;
         text-align: center;
         line-height: 1;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        caret-color: var(--codice-caret-color);
+        color: var(--codice-title-color);
       }
       :scope[data-codice-header] [data-codice-controls] {
         display: inline-flex;
@@ -114,12 +119,8 @@ describe('Code', () => {
         background-color: var(--codice-control-color);
       }
 
-      }</style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div></div><div data-codice-content="true"><div data-codice="code" data-codice-code="true" data-codice-line-numbers="true"><style data-codice-style="true">@scope {
+      }</style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div><input data-codice-title="true"/></div><div data-codice-content="true"><div data-codice="code" data-codice-code="true" data-codice-line-numbers="true"><style data-codice-style="true">@scope {
       :scope[data-codice-code] {
-        --codice-code-line-number-color: #a4a4a4;
-        --codice-code-highlight-color: #555555;
-        --codice-control-color: #8d8989;
-
         padding: calc(var(--codice-code-padding) / 2) 0;
       }
       :scope[data-codice-code] [data-codice-code-content] {
@@ -154,6 +155,11 @@ describe('Code', () => {
         flex: 1 0;
         text-align: center;
         line-height: 1;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        caret-color: var(--codice-caret-color);
+        color: var(--codice-title-color);
       }
       :scope[data-codice-header] [data-codice-controls] {
         display: inline-flex;
@@ -296,6 +302,11 @@ describe('Code', () => {
         flex: 1 0;
         text-align: center;
         line-height: 1;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        caret-color: var(--codice-caret-color);
+        color: var(--codice-title-color);
       }
       :scope[data-codice-header] [data-codice-controls] {
         display: inline-flex;
@@ -319,12 +330,8 @@ describe('Code', () => {
         background-color: var(--codice-control-color);
       }
 
-      }</style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div><div data-codice-title="true">file.js</div></div><div data-codice-content="true"><div data-codice="code" data-codice-code="true" data-codice-line-numbers="true"><style data-codice-style="true">@scope {
+      }</style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div><input data-codice-title="true" value="file.js"/></div><div data-codice-content="true"><div data-codice="code" data-codice-code="true" data-codice-line-numbers="true"><style data-codice-style="true">@scope {
       :scope[data-codice-code] {
-        --codice-code-line-number-color: #a4a4a4;
-        --codice-code-highlight-color: #555555;
-        --codice-control-color: #8d8989;
-
         padding: calc(var(--codice-code-padding) / 2) 0;
       }
       :scope[data-codice-code] [data-codice-code-content] {
@@ -359,6 +366,11 @@ describe('Code', () => {
         flex: 1 0;
         text-align: center;
         line-height: 1;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        caret-color: var(--codice-caret-color);
+        color: var(--codice-title-color);
       }
       :scope[data-codice-header] [data-codice-controls] {
         display: inline-flex;
@@ -489,10 +501,6 @@ describe('Code', () => {
       }
       }</style><div data-codice-content="true"><div data-codice="code" data-codice-code="true" data-codice-line-numbers="true"><style data-codice-style="true">@scope {
       :scope[data-codice-code] {
-        --codice-code-line-number-color: #a4a4a4;
-        --codice-code-highlight-color: #555555;
-        --codice-control-color: #8d8989;
-
         padding: calc(var(--codice-code-padding) / 2) 0;
       }
       :scope[data-codice-code] [data-codice-code-content] {
@@ -527,6 +535,11 @@ describe('Code', () => {
         flex: 1 0;
         text-align: center;
         line-height: 1;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        caret-color: var(--codice-caret-color);
+        color: var(--codice-title-color);
       }
       :scope[data-codice-header] [data-codice-controls] {
         display: inline-flex;

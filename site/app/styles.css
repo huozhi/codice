@@ -11,6 +11,11 @@
   --codice-control-color: #8d8989;
   --codice-caret-color: #d5efea;
   --codice-title-color: hsla(0, 0%, 87%, 0.34);
+  --codice-code-line-number-color: #a4a4a4;
+  --codice-code-highlight-color: #555555;
+  --codice-control-color: #8d8989;
+
+  /* app color */
   --control-bg-color: #242424;
   --control-color: #c8c6c6;
 }
@@ -40,6 +45,7 @@ body {
   background-color: #343434;
   color: #ffeceb;
 }
+
 a, a:visited {
   color: inherit;
 }
@@ -111,28 +117,6 @@ input[type=radio] {
 #editor-canvas {
   padding: 0.5rem;
 }
-#editor-canvas[data-theme="dark"] {
-  background-color: #343434;
-}
-#editor-canvas[data-theme="light"] {
-  background-color: #f5f5f5;
-}
-
-/* Override for light theme */
-#editor-canvas[data-theme="light"] {
-   --sh-class: #366096;
-  --sh-identifier: #b2831d;
-  --sh-sign: #8996a3;
-  --sh-string: #598a86;
-  --sh-keyword: #f47067;
-  --sh-comment: #a19595;
-  --sh-jsxliterals: #989bed;
-  --sh-entity: #aab738;
-  --sh-property: #246f79;
-
-  --codice-control-color: #6c6c6c;
-  --codice-title-color: #272727;
-}
 
 .code-example__item {
   padding: 1rem;
@@ -141,6 +125,7 @@ input[type=radio] {
   margin: 2rem 0;
   border: 1px solid rgba(163, 169, 165, 0.2);
 }
+
 .code-example__item__title {
   margin: 0 0 2rem;
 }
@@ -259,20 +244,6 @@ input[type=radio] {
   border-color: rgba(163, 169, 165, 0.2);
 }
 
-/* TODO: move the title focus color change to lib */
-#editor-canvas[data-theme="dark"]:has([data-codice-title]) {
-  --codice-title-color: hsla(0, 0%, 87%, 0.34);
-}
-#editor-canvas[data-theme="dark"]:has([data-codice-title]:focus) {
-  --codice-title-color: hsla(0, 0%, 87%, 0.54);
-}
-#editor-canvas[data-theme="light"]:has([data-codice-title]) {
-  --codice-title-color: hsla(0, 0%, 13%, 0.34);
-}
-#editor-canvas[data-theme="light"]:has([data-codice-title]:focus) {
-  --codice-title-color: hsla(0, 0%, 13%, 0.54);
-}
-
 [data-codice-control] {
   transition: background-color 0.2s ease-in-out;
 }
@@ -292,9 +263,69 @@ input[type=radio] {
   }
 }
 
-#editor-canvas[data-theme="dark"] textarea:focus {
+
+/* TODO: move the title focus color change to lib */
+[data-theme="dark"]:has([data-codice-title]) {
+  --codice-title-color: hsla(0, 0%, 87%, 0.34);
+}
+[data-theme="dark"]:has([data-codice-title]:focus) {
+  --codice-title-color: hsla(0, 0%, 87%, 0.54);
+}
+[data-theme="light"]:has([data-codice-title]) {
+  --codice-title-color: hsla(0, 0%, 13%, 0.34);
+}
+[data-theme="light"]:has([data-codice-title]:focus) {
+  --codice-title-color: hsla(0, 0%, 13%, 0.54);
+}
+[data-theme="dark"] textarea:focus {
   color: rgba(240, 248, 255, 0.36);
 }
-#editor-canvas[data-theme="light"] textarea:focus {
+[data-theme="light"] textarea:focus {
   color: rgba(77, 63, 63, 0.16);
+}
+[data-theme="dark"] {
+  background-color: #343434;
+}
+[data-theme="light"] {
+  background-color: #f5f5f5;
+}
+
+/* Override for light theme */
+[data-theme="light"] {
+   --sh-class: #366096;
+  --sh-identifier: #b2831d;
+  --sh-sign: #8996a3;
+  --sh-string: #598a86;
+  --sh-keyword: #f47067;
+  --sh-comment: #a19595;
+  --sh-jsxliterals: #989bed;
+  --sh-entity: #aab738;
+  --sh-property: #246f79;
+
+  --codice-control-color: #6c6c6c;
+  --codice-title-color: #272727;
+  --control-bg-color: #f5f5f5;
+
+  --codice-code-highlight-color: #d5d5d5;
+
+  /* app style */
+  --control-color: #363434;
+  --control-bg-color: #d0d0d0;
+}
+
+[data-theme="light"] body {
+  background-color: #f5f5f5;
+  color: #272727;
+}
+[data-theme="light"] .code-install--bash {
+  background-color: #c5c5c5;
+  --sh-identifier: #645151;
+}
+[data-theme="light"] .code-example [data-codice-code] {
+  background-color: #f5f5f5;
+  color: #272727;
+}
+[data-theme="light"] .code-example__item {
+  border-color: rgba(163, 169, 165, 0.2);
+  background-color: #f5f5f5;
 }
