@@ -8,14 +8,16 @@ const defaultText = 'console.log("hello world")'
 
 export default function Page() {
   const [code, setCode] = useState(defaultText)
+  const [title, setTitle] = useState('index.js')
 
   return (
     <div>
       <Editor
         value={code}
         className='editor'
-        title='index.js'
+        title={title}
         onChange={(text) => setCode(text)}
+        onChangeTitle={(title) => setTitle(title)}
       />
     </div>
   )

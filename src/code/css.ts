@@ -47,6 +47,10 @@ ${H} [data-codice-title] {
   flex: 1 0;
   text-align: center;
   line-height: 1;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  caret-color: var(--codice-caret-color);
 }
 ${H} [data-codice-controls] {
   display: inline-flex;

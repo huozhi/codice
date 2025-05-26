@@ -33,6 +33,7 @@ export const Editor = forwardRef(function Editor(
     onChange = () => {},
     fontSize,
     fontFamily,
+    onChangeTitle = () => {},
     ...props
   }: {
     title?: string
@@ -42,6 +43,7 @@ export const Editor = forwardRef(function Editor(
     lineNumbersWidth?: string
     padding?: string
     extension?: string
+    onChangeTitle?: (title: string) => void
     onChange?: (code: string) => void
   } & {
     fontSize?: string | number
@@ -81,7 +83,7 @@ export const Editor = forwardRef(function Editor(
     >
       <ScopedStyle css={css({ fontSize, padding, lineNumbersWidth, fontFamily })} />
       {/* Display the header outside of the matched textarea and code, by default display controls */}
-      <CodeHeader title={title} controls={controls} />
+      <CodeHeader title={title} controls={controls} onChangeTitle={onChangeTitle} />
       <div data-codice-content>
         {/* hide controls component inside Code to keep content matched with textarea */}
         <Code

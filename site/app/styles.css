@@ -105,7 +105,7 @@ input[type=radio] {
 }
 
 #editor-canvas {
-  padding: 0 0.5rem 0.5rem;
+  padding: 0.5rem;
   background-color: #343434;
 }
 
@@ -198,6 +198,10 @@ input[type=radio] {
   display: none;
 }
 
+.editor {
+
+}
+
 .editor-layout {
   position: relative;
 }
@@ -225,11 +229,12 @@ input[type=radio] {
 .editor[data-codice="editor"] [data-codice-content] {
   border-radius: 8px;
   border: 1px solid;
-  border-color: rgba(163, 169, 165, 0.2);
   transition: border 0.2s ease-in-out;
+  border-color: transparent;
 }
-.editor[data-codice="editor"] textarea:focus {
-  border-color: hsla(137, 100.00%, 94.30%, 0.30);
+
+.editor[data-codice="editor"] [data-codice-content]:hover {
+  border-color: rgba(163, 169, 165, 0.2);
 }
 [data-codice-title] {
   color: hsla(0, 0%, 87%, 0.34);

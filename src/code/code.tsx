@@ -91,12 +91,35 @@ function generateHighlightedLines(
   return lines
 }
 
+function TitleInput({
+  title,
+  onChange,
+}: {
+  title?: string
+  onChange?: (title: string) => void
+}) {
+  return (
+    <input
+      data-codice-title
+      value={title}
+      readOnly={!onChange}
+      {...(onChange && {
+        onChange: (e) => {
+          onChange(e.target.value)
+        }
+      })}
+    />
+  )
+}
+
 export function CodeHeader({ 
   title, 
-  controls = false
+  controls = false,
+  onChangeTitle,
 }: {
   title?: string
   controls: boolean
+  onChangeTitle?: (title: string) => void
 }) {
   if (!title && !controls) return null
   return (
@@ -112,7 +135,7 @@ export function CodeHeader({
           <span data-codice-control />
         </div>
       ) : null}
-      {title ? <div data-codice-title>{title}</div> : null}
+      <TitleInput title={title} onChange={onChangeTitle} />
     </div>
   )
 }
