@@ -24,9 +24,8 @@ function ControlButton({
     <span className="control-button">
       <input id={id} type="checkbox" checked={checked} onChange={(event) => onChange?.(event.target.checked)} />
       <label className="controls-manager-label" data-checked={checked} htmlFor={id}>
-        {`${propName}={`}
+        {`${propName}: `}
         {content ? content : <span>{checked ? '●' : '○'}</span>}
-        {`}`}
       </label>
     </span>
   )
@@ -54,19 +53,44 @@ function RangeSelector({
     <div className={className}>
       {/* left decrease < button */}
       <button className="range-button" onClick={() => onChange(Math.max(min, value - step))} disabled={value <= min}>
-        {'<'}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          width={16}
+          height={16}
+          className="icon"
+        >
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
       </button>
       <label className="controls-manager-label controls-manager-label--checked" htmlFor={id}>
         {text}
-        {`={`}
+        {`:`}
         <b>
-          <span>{value}</span>
+          <span>{value.toFixed(1)}</span>
         </b>
-        {`}`}
       </label>
       {/* right increase button */}
       <button className="range-button" onClick={() => onChange(Math.min(max, value + step))} disabled={value >= max}>
-        {'>'}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          width={16}
+          height={16}
+          className="icon"
+        >
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
       </button>
     </div>
   )
@@ -164,7 +188,10 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<boolean>
       ) : currentState === 'error' ? (
         <span className="error-icon">✖</span>
       ) : (
-        <CameraIcon width={20} height={20} fill="none" stroke="currentColor" strokeWidth="1.5" />
+        <span className="flex items-center gap-1">
+          <CameraIcon width={20} height={20} fill="none" stroke="currentColor" strokeWidth="1.5" />
+          <span className="copy-image-text">Copy Editor Screenshot</span>
+        </span>
       )}
     </span>
   )
@@ -198,7 +225,7 @@ export function LiveEditor({
             id="control-line-numbers"
             checked={lineNumbers}
             onChange={setLineNumbers}
-            propName="lineNumbers"
+            propName="line numbers"
           />
           {/* control of theme: light/dark */}
           <ControlButton
@@ -211,10 +238,10 @@ export function LiveEditor({
         </div>
 
         <RangeSelector
-          text="fontSize"
+          text="font size"
           className="range-control"
           min={12}
-          max={24}
+          max={20}
           step={2}
           value={fontSize}
           onChange={setFontSize}
@@ -229,7 +256,7 @@ export function LiveEditor({
           onChange={setPadding}
         />
         <RangeSelector
-          text="lineNumbersWidth"
+          text="line numbers width"
           className="range-control"
           value={lineNumbersWidth}
           min={2}
@@ -237,10 +264,10 @@ export function LiveEditor({
           step={0.1}
           onChange={setLineNumbersWidth}
         />
+        <ScreenshotButton onCopyImage={() => handleCopyImage('#editor-canvas')} />
       </div>
 
       <div className="editor-layout">
-        <ScreenshotButton onCopyImage={() => handleCopyImage('#editor-canvas')} />
         <Editor
           id="editor-canvas"
           value={code}
