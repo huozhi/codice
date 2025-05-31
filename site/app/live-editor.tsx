@@ -4,7 +4,6 @@ import { Editor } from 'codice'
 import React, { startTransition, useActionState, useEffect, useId, useState } from 'react'
 import { toPng } from 'html-to-image'
 import { useTheme } from './theme-provider'
-import { Rnd } from 'react-rnd'
 
 const CODE_QUERY_KEY = 'c'
 
