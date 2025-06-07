@@ -279,6 +279,11 @@ input[type=radio] {
   position: relative;
   width: min(900px, 100vw);
   margin-left: calc(50% - min(900px, 100vw) / 2);
+  display: flex;
+  justify-content: center;
+}
+.editor-resize {
+  display: flex;
 }
 .copy-image {
   cursor: pointer;

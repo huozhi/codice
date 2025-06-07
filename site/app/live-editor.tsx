@@ -1,7 +1,7 @@
 'use client'
 
 import { Editor } from 'codice'
-import React, { startTransition, useActionState, useEffect, useId, useState } from 'react'
+import React, { startTransition, useActionState, useEffect, useId, useRef, useState } from 'react'
 import { toPng } from 'html-to-image'
 import { useTheme } from './theme-provider'
 
@@ -276,20 +276,60 @@ export function LiveEditor({
       </div>
 
       <div className="editor-layout">
-        <Editor
-          id="editor-canvas"
-          value={code}
-          className="editor"
-          title={title}
-          controls={controls}
-          fontSize={fontSize}
-          lineNumbers={lineNumbers}
-          lineNumbersWidth={`${lineNumbersWidth}rem`}
-          padding={`${padding}rem`}
-          onChange={(text) => setCode(text)}
-          onChangeTitle={(newTitle) => setTitle(newTitle)}
-        />
+        <Resizable className="editor-resize">
+          <Editor
+            id="editor-canvas"
+            value={code}
+            className="editor"
+            title={title}
+            controls={controls}
+            fontSize={fontSize}
+            lineNumbers={lineNumbers}
+            lineNumbersWidth={`${lineNumbersWidth}rem`}
+            padding={`${padding}rem`}
+            onChange={(text) => setCode(text)}
+            onChangeTitle={(newTitle) => setTitle(newTitle)}
+          />
+        </Resizable>
       </div>
+    </div>
+  )
+}
+
+function Resizable({
+  children,
+  ...props
+}: {
+  children: React.ReactNode
+} & React.HTMLAttributes<HTMLDivElement>) {
+  const containerRef = useRef(null)
+
+  const onMouseDown = (e) => {
+    const startX = e.clientX
+    const startWidth = containerRef.current.offsetWidth
+
+    const onMouseMove = (e) => {
+      const newWidth = startWidth + (e.clientX - startX)
+      containerRef.current.style.width = `${newWidth}px`
+    }
+
+    const onMouseUp = () => {
+      window.removeEventListener('mousemove', onMouseMove)
+      window.removeEventListener('mouseup', onMouseUp)
+    }
+
+    window.addEventListener('mousemove', onMouseMove)
+    window.addEventListener('mouseup', onMouseUp)
+  }
+
+  return (
+    <div {...props} ref={containerRef}>
+      {children}
+      <div
+        className="resizable-resizer"
+        onMouseDown={onMouseDown}
+        style={{ cursor: 'ew-resize', width: '10px', right: 0, top: 0, bottom: 0 }}
+      />
     </div>
   )
 }
