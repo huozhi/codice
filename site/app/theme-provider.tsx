@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react'
 
-const defaultTheme = 'dark'
+const defaultTheme = 'light'
 
 const ThemeContext = createContext({
   theme: defaultTheme,

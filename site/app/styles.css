@@ -132,9 +132,28 @@ input[type=radio] {
   font-weight: 500;
   font-size: 1.3rem;
 }
-
+.control-button {
+  display: inline-block;
+  padding: 0rem 0.8rem;
+  border-radius: 88px;
+  background-color: var(--control-bg-color);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+}
 .range-button {
+  width: 26px;
+  height: 26px;
   padding: 0.5rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.range-button:hover {
+  background-color: #a4a2a2;
+  cursor: pointer;
 }
 .range-button svg {
   vertical-align: middle;
@@ -178,12 +197,10 @@ input[type=radio] {
 }
 .controls-manager-label {
   display: inline-block;
-  padding: 0.2rem 0.5rem;
+  padding: 0.2rem 0;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  background-color: var(--control-bg-color);
   user-select: none;
-  border-radius: 6px;
+  border-radius: 66px;
 }
 .controls-manager-label--checked,
 .controls-manager label[data-checked="true"] {
@@ -207,13 +224,17 @@ input[type=radio] {
 .controls-manager-input::selection {
   background-color: #565656;
 }
+.range-selector-value {
+  display: inline-block;
+  min-width: 32px;
+  text-align: center;
+}
 .range-control {
   font-size: 14px;
   display: inline-flex;
-  align-items: stretch;
-  justify-content: stretch;
-  padding: 0 0.3rem;
-  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 88px;
   background-color: var(--control-bg-color);
 }
 .range-control button {
@@ -256,17 +277,16 @@ input[type=radio] {
 
 .editor-layout {
   position: relative;
-  max-width: 100vw;
-  /* float: left; ; */
+  width: min(900px, 100vw);
+  margin-left: calc(50% - min(900px, 100vw) / 2);
 }
 .copy-image {
-  transition: transform 0.2s ease-in-out;  
   cursor: pointer;
   background-color: #f87e68;
-  padding: 0.2rem 0.5rem;
-  border-radius: 6px;
+  padding: 0.2rem 0.8rem;
+  border-radius: 88px;
   font-size: 14px;
-  transition: opacity 0.15s ease-in-out;
+  transition: all 0.2s ease-in-out;  
 }
 .copy-image:hover {
   opacity: 0.8;
@@ -317,41 +337,39 @@ input[type=radio] {
 [data-theme="dark"]:has([data-codice-title]:focus) {
   --codice-title-color: hsla(0, 0%, 87%, 0.54);
 }
-[data-theme="light"]:has([data-codice-title]) {
+[data-theme]:not([data-theme="dark"]):has([data-codice-title]) {
   --codice-title-color: hsla(0, 0%, 13%, 0.34);
 }
-[data-theme="light"]:has([data-codice-title]:focus) {
+[data-theme]:not([data-theme="dark"]):has([data-codice-title]:focus) {
   --codice-title-color: hsla(0, 0%, 13%, 0.54);
 }
 [data-theme="dark"] textarea:focus {
   color: rgba(240, 248, 255, 0.36);
 }
-[data-theme="light"] textarea:focus {
+[data-theme]:not([data-theme="dark"]) textarea:focus {
   color: rgba(77, 63, 63, 0.16);
 }
-[data-theme="dark"] {
+
+[data-theme="dark"] body {
   background-color: #343434;
 }
-[data-theme="light"] {
-  background-color: #f5f5f5;
-}
-[data-theme="light"] body {
+[data-theme]:not([data-theme="dark"]) body {
   background-color: #f5f5f5;
   color: #272727;
 }
-[data-theme="light"] .code-install--bash {
+[data-theme]:not([data-theme="dark"]) .code-install--bash {
   background-color: #e8e8e8;
   --sh-identifier: #645151;
 }
-[data-theme="light"] .code-example [data-codice-code] {
+[data-theme]:not([data-theme="dark"]) .code-example [data-codice-code] {
   background-color: #f5f5f5;
   color: #272727;
 }
-[data-theme="light"] .code-example__item {
+[data-theme]:not([data-theme="dark"]) .code-example__item {
   border-color: rgba(163, 169, 165, 0.2);
   background-color: #f5f5f5;
 }
-[data-theme="light"] .copy-image {
+:not([data-theme="dark"]) .copy-image {
   background-color: #e4b4ab;
   color: #272727;
 }

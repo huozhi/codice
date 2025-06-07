@@ -32,7 +32,7 @@ export default async function Page(props: { searchParams: Promise<SearchParams> 
       </div>
 
       <div className='section'>
-        <h2>Editor Example</h2>
+        <h2>Editor & Screenshot</h2>
         <EditorExample searchParams={searchParams} />
       </div>
 

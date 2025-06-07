@@ -71,7 +71,7 @@ function RangeSelector({
       <label className="controls-manager-label controls-manager-label--checked" htmlFor={id}>
         {text}
         {`:`}
-        <b>
+        <b className="range-selector-value">
           <span>{value.toFixed(1)}</span>
         </b>
       </label>
@@ -183,16 +183,24 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<boolean>
 
   return (
     <span className="copy-image" onClick={copy}>
-      {currentState === 'succeed' ? (
-        <span className="success-icon">✔</span>
-      ) : currentState === 'error' ? (
-        <span className="error-icon">✖</span>
-      ) : (
-        <span className="flex items-center gap-1">
-          <CameraIcon width={20} height={20} fill="none" stroke="currentColor" strokeWidth="1.5" />
-          <span className="copy-image-text">Copy Editor Screenshot</span>
-        </span>
-      )}
+      <span className="flex items-center gap-1">
+        {currentState === 'succeed' ? (
+          <>
+            <span className="success-icon">✔</span>
+            <span className="copy-image-text">Copied</span>
+          </>
+        ) : currentState === 'error' ? (
+          <>
+            <span className="error-icon">✖</span>
+            <span className="copy-image-text">Failed to copy</span>
+          </>
+        ) : (
+          <>
+            <CameraIcon width={18} height={18} fill="none" stroke="currentColor" strokeWidth="1.5" />
+            <span className="copy-image-text">Copy Screenshot</span>
+          </>
+        )}
+      </span>
     </span>
   )
 }
