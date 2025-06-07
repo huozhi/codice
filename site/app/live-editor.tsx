@@ -4,6 +4,7 @@ import { Editor } from 'codice'
 import React, { startTransition, useActionState, useEffect, useId, useRef, useState } from 'react'
 import { toPng } from 'html-to-image'
 import { useTheme } from './theme-provider'
+import { ArrowIcon } from './arrow-icon'
 
 const CODE_QUERY_KEY = 'c'
 
@@ -21,15 +22,16 @@ function ControlButton({
   content?: React.ReactNode
 }) {
   return (
-    <span className="control-button">
+    <button className="control-button">
       <input id={id} type="checkbox" checked={checked} onChange={(event) => onChange?.(event.target.checked)} />
       <label className="controls-manager-label" data-checked={checked} htmlFor={id}>
-        {`${propName}: `}
+        {`${propName} = `}
         {content ? content : <span>{checked ? '●' : '○'}</span>}
       </label>
-    </span>
+    </button>
   )
 }
+
 
 function RangeSelector({
   value,
@@ -51,23 +53,9 @@ function RangeSelector({
   const id = useId()
   return (
     <div className={className}>
-      {/* left decrease < button */}
-      <button className="range-button" onClick={() => onChange(Math.max(min, value - step))} disabled={value <= min}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          width={16}
-          height={16}
-          className="icon"
-        >
-          <polyline points="15 18 9 12 15 6" />
-        </svg>
-      </button>
+      <span className="range-button" onClick={() => onChange(Math.max(min, value - step))}>
+        <ArrowIcon size={16} direction='left' />
+      </span>
       <label className="controls-manager-label controls-manager-label--checked" htmlFor={id}>
         {text}
         {`:`}
@@ -75,23 +63,9 @@ function RangeSelector({
           <span>{value.toFixed(1)}</span>
         </b>
       </label>
-      {/* right increase button */}
-      <button className="range-button" onClick={() => onChange(Math.min(max, value + step))} disabled={value >= max}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          width={16}
-          height={16}
-          className="icon"
-        >
-          <polyline points="9 18 15 12 9 6" />
-        </svg>
-      </button>
+      <span className="range-button" onClick={() => onChange(Math.min(max, value + step))}>
+        <ArrowIcon size={16} direction='right' />
+      </span>
     </div>
   )
 }
@@ -233,7 +207,7 @@ export function LiveEditor({
             id="control-line-numbers"
             checked={lineNumbers}
             onChange={setLineNumbers}
-            propName="line numbers"
+            propName="line no."
           />
           {/* control of theme: light/dark */}
           <ControlButton
@@ -264,7 +238,7 @@ export function LiveEditor({
           onChange={setPadding}
         />
         <RangeSelector
-          text="line numbers width"
+          text="line no. width"
           className="range-control"
           value={lineNumbersWidth}
           min={2}
