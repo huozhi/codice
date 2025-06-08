@@ -2,6 +2,9 @@
 
 import { Editor } from 'codice'
 import React, { startTransition, useActionState, useEffect, useId, useRef, useState } from 'react'
+import { format as prettierFormat } from 'prettier/standalone'
+import prettierPluginBabel from "prettier/plugins/babel"
+import prettierPluginEstree from "prettier/plugins/estree"
 import { toPng } from 'html-to-image'
 import { useTheme } from './theme'
 import { ArrowIcon } from './arrow-icon'
@@ -19,19 +22,19 @@ function ControlButton({
   checked,
   onChange,
   propName,
-  content,
+  prefix,
 }: {
   id: string
   checked: boolean
   onChange?: (checked: boolean) => void
   propName: string
-  content?: React.ReactNode
+  prefix?: React.ReactNode
 }) {
   return (
     <button className="control-button">
       <input id={id} type="checkbox" checked={checked} onChange={(event) => onChange?.(event.target.checked)} />
       <label className="controls-manager-label" data-checked={checked} htmlFor={id}>
-        <span className='mr-2'>{content ? content : checked ? '●' : '○'}</span>
+        <span className='mr-2'>{prefix ? prefix : checked ? '●' : '○'}</span>
         {` ${propName}`}
       </label>
     </button>
@@ -296,6 +299,7 @@ export function LiveEditor({
   const codeQuery = searchParams[CODE_QUERY_KEY]
   const initialCode = codeQuery ? atob(codeQuery) : defaultCode
   const [code, setCode] = useState(initialCode)
+  const [_f, setFormat] = useState(false)
   const [title, setTitle] = useState('Untitled')
   const { theme, setTheme } = useTheme()
   const { highlightTheme, setHighlightTheme } = useHighlightTheme()
@@ -323,13 +327,13 @@ export function LiveEditor({
                 checked={theme === 'dark'}
                 onChange={(checked) => setTheme(checked ? 'dark' : 'light')}
                 propName="theme"
-                content={<span>{theme === 'dark' ? '🌙' : '☀️'}</span>}
+                prefix={<span>{theme === 'dark' ? '🌙' : '☀️'}</span>}
               />
             </div>
             {/* row */}
             <div className='flex flex-wrap gap-2'>
               <RangeSelector
-                text="line no. w"
+                text="indent"
                 className="range-control"
                 value={lineNumbersWidth}
                 min={2}
@@ -340,7 +344,7 @@ export function LiveEditor({
               {/* selector highlight styling theme */}
               <DropdownMenu
                 className="dropdown-menu-highlight"
-                buttonText={`syntax = ${highlightTheme}`}
+                buttonText={`🎨 ${highlightTheme}`}
                 items={SYNTAX_THEMES.map((theme) => ({ text: theme }))}
                 onChange={(text) => {
                   setHighlightTheme(text)
@@ -350,6 +354,27 @@ export function LiveEditor({
                   const nextTheme = SYNTAX_THEMES[nextIndex % SYNTAX_THEMES.length]
                   setHighlightTheme(nextTheme)
                 }}
+              />
+
+              <ControlButton
+                id="control-title"
+                checked={_f}
+                onChange={() => {
+                  setFormat(!_f)
+                  prettierFormat(code, {
+                    parser: 'babel',
+                    plugins: [prettierPluginBabel, prettierPluginEstree],
+                    printWidth: 120,
+                    singleQuote: true,
+                    trailingComma: 'es5',
+                    semi: false,
+                    tabWidth: 2,
+                  }).then((formattedCode) => {
+                    setCode(formattedCode)
+                  })
+                }}
+                propName="format"
+                prefix={'🧹'}
               />
             </div>
           </div>
