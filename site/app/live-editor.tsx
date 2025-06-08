@@ -31,8 +31,8 @@ function ControlButton({
     <button className="control-button">
       <input id={id} type="checkbox" checked={checked} onChange={(event) => onChange?.(event.target.checked)} />
       <label className="controls-manager-label" data-checked={checked} htmlFor={id}>
-        {`${propName} = `}
-        {content ? content : <span>{checked ? '●' : '○'}</span>}
+        <span className='mr-2'>{content ? content : checked ? '●' : '○'}</span>
+        {` ${propName}`}
       </label>
     </button>
   )
@@ -82,7 +82,7 @@ export async function copyImageDataUrl(dataUrl: string) {
       const blob = await (await fetch(dataUrl)).blob()
       const item = new ClipboardItem({ 'image/png': blob })
       await navigator.clipboard.write([item])
-      return Promise.resolve()
+      return Promise.resolve(dataUrl)
     } else {
       return Promise.reject('Clipboard API not available')
     }
@@ -95,11 +95,9 @@ function handleCopyImage(selector: string) {
   const domNode: HTMLElement = document.querySelector(selector)
   return toPng(domNode).then((dataUrl) => {
     return copyImageDataUrl(dataUrl).then(
+      () => dataUrl,
       () => {
-        return true
-      },
-      () => {
-        return false
+        return null
       }
     )
   })
@@ -119,14 +117,17 @@ function CameraIcon({ ...props }: React.SVGProps<SVGSVGElement>) {
   )
 }
 
-function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<boolean> }) {
+function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string | null> }) {
+  const [dataUrl, setDataUrl] = useState<string | null>(null)
+  const buttonRef = useRef<HTMLSpanElement>(null)
   const [actionState, dispatch, isPending] = useActionState<{ state: 'idle' | 'succeed' | 'error' }, 'reset' | 'copy'>(
     (state, action) => {
       if (action === 'reset') {
         return { state: 'idle' }
       } else if (action === 'copy') {
-        return onCopyImage().then((succeed) => {
-          return { state: succeed ? 'succeed' : 'error' }
+        return onCopyImage().then((imageDataUrl) => {
+          setDataUrl(imageDataUrl)
+          return { state: imageDataUrl ? 'succeed' : 'error' }
         })
       }
       return state
@@ -153,7 +154,9 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<boolean>
     if (actionState.state === 'succeed' || actionState.state === 'error') {
       const timer = setTimeout(() => {
         reset()
-      }, 1500)
+        // Reset the dataUrl to remove the preview image
+        setDataUrl(null)
+      }, 2_000)
       return () => clearTimeout(timer)
     }
   }, [actionState, reset])
@@ -161,26 +164,40 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<boolean>
   const currentState = isPending ? 'loading' : actionState.state
 
   return (
-    <span className="copy-image" onClick={copy}>
-      <span className="flex items-center gap-1">
-        {currentState === 'succeed' ? (
-          <>
-            <span className="success-icon">✔</span>
-            <span className="copy-image-text">Copied</span>
-          </>
-        ) : currentState === 'error' ? (
-          <>
-            <span className="error-icon">✖</span>
-            <span className="copy-image-text">Failed to copy</span>
-          </>
-        ) : (
-          <>
-            <CameraIcon width={18} height={18} fill="none" stroke="currentColor" strokeWidth="1.5" />
-            <span className="copy-image-text">Copy Screenshot</span>
-          </>
-        )}
+    <>
+      <span className="copy-image" onClick={copy} ref={buttonRef}>
+        <span className="flex items-center gap-1">
+          {currentState === 'succeed' ? (
+            <>
+              <span className="success-icon">✔</span>
+              <span className="copy-image-text">Copied</span>
+            </>
+          ) : currentState === 'error' ? (
+            <>
+              <span className="error-icon">✖</span>
+              <span className="copy-image-text">Failed to copy</span>
+            </>
+          ) : (
+            <>
+              <CameraIcon width={18} height={18} fill="none" stroke="currentColor" strokeWidth="1.5" />
+              <span className="copy-image-text">Screenshot</span>
+            </>
+          )}
+        </span>
       </span>
-    </span>
+      {dataUrl && (
+        <div
+          className="fixed w-[120px] z-50 shadow-lg rounded-lg p-1"
+          // next right to the button
+          style={{
+            top: buttonRef.current?.getBoundingClientRect().top + 'px',
+            left: buttonRef.current?.getBoundingClientRect().right - window.scrollX + 8 + 'px',
+          }}
+        >
+          <img src={dataUrl} alt="Screenshot Preview" className='pointer-events-none select-none' />
+        </div>
+      )}      
+    </>
   )
 }
 
@@ -284,89 +301,76 @@ export function LiveEditor({
   const { highlightTheme, setHighlightTheme } = useHighlightTheme()
   const [controls, setControls] = useState(true)
   const [lineNumbers, setLineNumbers] = useState(true)
-  const [fontSize, setFontSize] = useState(14)
-  const [padding, setPadding] = useState(1) // rem
   const [lineNumbersWidth, setLineNumbersWidth] = useState(2.5) // rem
 
   return (
     <div>
-      {/* Controls to for displaying the `title`, `controls`, `lineNumbers` */}
-      <div className="controls">
-        <div className="controls-manager">
-          <ControlButton id="control-control" checked={controls} onChange={setControls} propName="controls" />
-          <ControlButton
-            id="control-line-numbers"
-            checked={lineNumbers}
-            onChange={setLineNumbers}
-            propName="line no."
-          />
-          {/* control of theme: light/dark */}
-          <ControlButton
-            id="control-theme"
-            checked={theme === 'dark'}
-            onChange={(checked) => setTheme(checked ? 'dark' : 'light')}
-            propName="theme"
-            content={<span>{theme === 'dark' ? '🌙' : '☀️'}</span>}
-          />
-        </div>
-
-        <RangeSelector
-          text="font size"
-          className="range-control"
-          min={12}
-          max={20}
-          step={2}
-          value={fontSize}
-          onChange={setFontSize}
-        />
-        <RangeSelector
-          text="padding"
-          className="range-control"
-          min={1}
-          max={2}
-          step={0.1}
-          value={padding}
-          onChange={setPadding}
-        />
-        <RangeSelector
-          text="line no. width"
-          className="range-control"
-          value={lineNumbersWidth}
-          min={2}
-          max={3}
-          step={0.1}
-          onChange={setLineNumbersWidth}
-        />
-        {/* selector highlight styling theme */}
-        <DropdownMenu
-          className="dropdown-menu-highlight"
-          buttonText={`syntax = ${highlightTheme}`}
-          items={SYNTAX_THEMES.map((theme) => ({ text: theme }))}
-          onChange={(text) => {
-            setHighlightTheme(text)
-          }}
-          onNext={() => {
-            const nextIndex = SYNTAX_THEMES.indexOf(highlightTheme) + 1
-            const nextTheme = SYNTAX_THEMES[nextIndex % SYNTAX_THEMES.length]
-            setHighlightTheme(nextTheme)
-          }}
-        />
-
-        <ScreenshotButton onCopyImage={() => handleCopyImage('#editor-canvas')} />
-      </div>
-
       <div className="editor-layout">
-        <Resizable className="editor-resize">
+        <div className="controls flex items-center justify-between">
+          {/* Left controls */}
+          <div className="flex flex-col gap-y-2 flex-wrap">
+            <div className="controls-manager">
+              <ControlButton id="control-control" checked={controls} onChange={setControls} propName="controls" />
+              <ControlButton
+                id="control-line-numbers"
+                checked={lineNumbers}
+                onChange={setLineNumbers}
+                propName="line no."
+              />
+              {/* control of theme: light/dark */}
+              <ControlButton
+                id="control-theme"
+                checked={theme === 'dark'}
+                onChange={(checked) => setTheme(checked ? 'dark' : 'light')}
+                propName="theme"
+                content={<span>{theme === 'dark' ? '🌙' : '☀️'}</span>}
+              />
+            </div>
+            {/* row */}
+            <div className='flex flex-wrap gap-2'>
+              <RangeSelector
+                text="line no. w"
+                className="range-control"
+                value={lineNumbersWidth}
+                min={2}
+                max={3}
+                step={0.1}
+                onChange={setLineNumbersWidth}
+              />
+              {/* selector highlight styling theme */}
+              <DropdownMenu
+                className="dropdown-menu-highlight"
+                buttonText={`syntax = ${highlightTheme}`}
+                items={SYNTAX_THEMES.map((theme) => ({ text: theme }))}
+                onChange={(text) => {
+                  setHighlightTheme(text)
+                }}
+                onNext={() => {
+                  const nextIndex = SYNTAX_THEMES.indexOf(highlightTheme) + 1
+                  const nextTheme = SYNTAX_THEMES[nextIndex % SYNTAX_THEMES.length]
+                  setHighlightTheme(nextTheme)
+                }}
+              />
+            </div>
+          </div>
+          {/* Right side screenshot button */}
+          <div className="flex items-center justify-end gap-2 self-end">
+            <ScreenshotButton 
+              onCopyImage={() => handleCopyImage('#editor-canvas')}
+            />
+          </div>
+        </div>
+        <Resizable className="editor-resizable">
           <Editor
             id="editor-canvas"
             value={code}
             className="editor"
             title={title}
             controls={controls}
-            fontSize={fontSize}
+            fontSize={14}
             lineNumbers={lineNumbers}
             lineNumbersWidth={`${lineNumbersWidth}rem`}
-            padding={`${padding}rem`}
+            padding={`1rem`}
             onChange={(text) => setCode(text)}
             onChangeTitle={(newTitle) => setTitle(newTitle)}
           />
@@ -390,7 +394,9 @@ function Resizable({
 
     const onMouseMove = (e) => {
       const newWidth = startWidth + (e.clientX - startX)
+
       containerRef.current.style.width = `${newWidth}px`
+      containerRef.current.style.transform = `translateX(${-((newWidth - 600) / 2)}px)` // Center the resizable container
     }
 
     const onMouseUp = () => {
@@ -405,7 +411,11 @@ function Resizable({
   return (
     <div {...props} ref={containerRef}>
       {children}
-      <div className="resizable-resizer" onMouseDown={onMouseDown} style={{ cursor: 'ew-resize' }} />
+      <div
+        className="resizable-resizer" 
+        onMouseDown={onMouseDown}
+        style={{ cursor: 'ew-resize' }}
+      />
     </div>
   )
 }

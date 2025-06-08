@@ -75,6 +75,7 @@ input[type='radio'] {
 .code-install--bash {
   padding: 0 0.5rem;
   background-color: #242424;
+  --sh-identifier: #c8ccd2;
 }
 
 ::selection {
@@ -288,9 +289,6 @@ input[type='radio'] {
 }
 
 .controls {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
   margin-top: 2rem;
   margin-bottom: 2.5rem;
 }
@@ -346,20 +344,16 @@ input[type='radio'] {
   transform: rotate(-30deg);
 }
 
-.editor-layout {
+.editor-resizable {
   position: relative;
-  width: min(900px, 100vw);
-  margin-left: calc(50% - min(900px, 100vw) / 2);
   display: flex;
   justify-content: center;
-}
-.editor-resize {
-  display: flex;
 }
 
 .dropdown-menu {
   position: relative;
   display: inline-block;
+  user-select: none;
 }
 .dropdown-menu .dropdown-menu-button {
   position: relative;
@@ -464,7 +458,7 @@ input[type='radio'] {
 }
 
 .resizable-resizer {
-  flex-shrink: 0;
+  float: right;
   width: 1.5rem;
 }
 
