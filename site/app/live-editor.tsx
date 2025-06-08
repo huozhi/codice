@@ -3,10 +3,16 @@
 import { Editor } from 'codice'
 import React, { startTransition, useActionState, useEffect, useId, useRef, useState } from 'react'
 import { toPng } from 'html-to-image'
-import { useTheme } from './theme-provider'
+import { useTheme } from './theme'
 import { ArrowIcon } from './arrow-icon'
+import { useHighlightTheme } from './highlight-theme'
+
+const cx = (...classes: (string | boolean | undefined)[]) => {
+  return classes.filter(Boolean).join(' ')
+}
 
 const CODE_QUERY_KEY = 'c'
+const SYNTAX_THEMES = ['default', 'solarized', 'dracula', 'monokai', 'base16', 'nord']
 
 function ControlButton({
   id,
@@ -32,7 +38,6 @@ function ControlButton({
   )
 }
 
-
 function RangeSelector({
   value,
   onChange,
@@ -54,17 +59,17 @@ function RangeSelector({
   return (
     <div className={className}>
       <span className="range-button" onClick={() => onChange(Math.max(min, value - step))}>
-        <ArrowIcon size={16} direction='left' />
+        <ArrowIcon size={16} direction="left" />
       </span>
       <label className="controls-manager-label controls-manager-label--checked" htmlFor={id}>
         {text}
-        {`:`}
+        {` =`}
         <b className="range-selector-value">
           <span>{value.toFixed(1)}</span>
         </b>
       </label>
       <span className="range-button" onClick={() => onChange(Math.min(max, value + step))}>
-        <ArrowIcon size={16} direction='right' />
+        <ArrowIcon size={16} direction="right" />
       </span>
     </div>
   )
@@ -179,6 +184,91 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<boolean>
   )
 }
 
+function DropdownMenu({
+  buttonText,
+  items,
+  onChange,
+  onNext,
+  ...props
+}: {
+  buttonText: string
+  items: { text: string }[]
+  onChange: (text: string) => void
+  onNext?: () => void
+} & React.HTMLAttributes<HTMLDivElement>) {
+  const nodeRef = useRef<HTMLDivElement>(null)
+  const [isOpen, setIsOpen] = useState(false)
+
+  // Close the dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const dropdown = nodeRef.current
+      if (dropdown && !dropdown.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
+  return (
+    <div {...props} ref={nodeRef} className={cx('dropdown-menu', props.className)}>
+      <span className={cx('dropdown-menu-button-group', !!onNext && 'dropdown-menu-button-group--merged')}>
+        <button className="dropdown-menu-button" onClick={() => setIsOpen(!isOpen)}>
+          {buttonText}
+        </button>
+        {!!onNext && (
+          <>
+            {/* divider */}
+            <span className="dropdown-menu-divider" />
+            {/* A button to go to the next */}
+
+            <button
+              className="dropdown-menu-button--next"
+              onClick={() => {
+                setIsOpen(false)
+                onNext()
+              }}
+            >
+              {/* right arrow svg */}
+              <svg
+                width="16"
+                height="16"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="dropdown-menu-next-icon"
+              >
+                <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </>
+        )}
+      </span>
+      {isOpen && (
+        <ul className="dropdown-menu-list">
+          {items.map((item, index) => (
+            <li
+              key={index}
+              className="dropdown-menu-list-item"
+              onClick={() => {
+                setIsOpen(false)
+                onChange(item.text)
+              }}
+            >
+              {item.text}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
+}
+
 export function LiveEditor({
   searchParams,
   defaultCode,
@@ -191,6 +281,7 @@ export function LiveEditor({
   const [code, setCode] = useState(initialCode)
   const [title, setTitle] = useState('Untitled')
   const { theme, setTheme } = useTheme()
+  const { highlightTheme, setHighlightTheme } = useHighlightTheme()
   const [controls, setControls] = useState(true)
   const [lineNumbers, setLineNumbers] = useState(true)
   const [fontSize, setFontSize] = useState(14)
@@ -246,6 +337,21 @@ export function LiveEditor({
           step={0.1}
           onChange={setLineNumbersWidth}
         />
+        {/* selector highlight styling theme */}
+        <DropdownMenu
+          className="dropdown-menu-highlight"
+          buttonText={`syntax = ${highlightTheme}`}
+          items={SYNTAX_THEMES.map((theme) => ({ text: theme }))}
+          onChange={(text) => {
+            setHighlightTheme(text)
+          }}
+          onNext={() => {
+            const nextIndex = SYNTAX_THEMES.indexOf(highlightTheme) + 1
+            const nextTheme = SYNTAX_THEMES[nextIndex % SYNTAX_THEMES.length]
+            setHighlightTheme(nextTheme)
+          }}
+        />
+
         <ScreenshotButton onCopyImage={() => handleCopyImage('#editor-canvas')} />
       </div>
 
@@ -299,11 +405,7 @@ function Resizable({
   return (
     <div {...props} ref={containerRef}>
       {children}
-      <div
-        className="resizable-resizer"
-        onMouseDown={onMouseDown}
-        style={{ cursor: 'ew-resize', width: '10px', right: 0, top: 0, bottom: 0 }}
-      />
+      <div className="resizable-resizer" onMouseDown={onMouseDown} style={{ cursor: 'ew-resize' }} />
     </div>
   )
 }
