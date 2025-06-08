@@ -303,7 +303,7 @@ input[type='radio'] {
   font-size: 12px;
 }
 
-.controls-manager input[type='checkbox'] {
+.control-button input[type='checkbox'] {
   /* make it looks fancy */
   display: none;
 }
