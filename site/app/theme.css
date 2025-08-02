@@ -1,55 +1,80 @@
-/* Default theme: dark */
-:root:not([data-highlight-theme]),
+/* SSR/Hydration theme - single color for all tokens */
 :root[data-highlight-theme="default"][data-theme='dark'] {
-  --sh-class: #96c3ff;
-  --sh-identifier: #e1e6d8;
-  --sh-sign: #8996a3;
-  --sh-string: #a9d8d4;
-  --sh-keyword: #f47067;
-  --sh-comment: #a19595;
-  --sh-jsxliterals: #989bed;
-  --sh-entity: #e9edc5;
-  --sh-property: #7be5f2;
+  --sh-class: #d4d4d4;
+  --sh-identifier: #d4d4d4;
+  --sh-sign: #d4d4d4;
+  --sh-string: #d4d4d4;
+  --sh-keyword: #d4d4d4;
+  --sh-comment: #d4d4d4;
+  --sh-jsxliterals: #d4d4d4;
+  --sh-entity: #d4d4d4;
+  --sh-property: #d4d4d4;
 }
 
-/* Default theme: light */
-:root:not([data-highlight-theme]),
 :root[data-highlight-theme="default"][data-theme='light'] {
-  --sh-class: #7a5ea2;
-  --sh-identifier: #6789bf;
-  --sh-sign: #8996a3;
-  --sh-string: #3ea198;
-  --sh-keyword: #f47067;
-  --sh-comment: #a19595;
-  --sh-jsxliterals: #989bed;
-  --sh-entity: #c3b031;
-  --sh-property: #b062c1;
+  --sh-class: #24292f;
+  --sh-identifier: #24292f;
+  --sh-sign: #24292f;
+  --sh-string: #24292f;
+  --sh-keyword: #24292f;
+  --sh-comment: #24292f;
+  --sh-jsxliterals: #24292f;
+  --sh-entity: #24292f;
+  --sh-property: #24292f;
 }
 
-/* Solarized theme: dark */
+/* VS Code Dark theme */
+:root:not([data-highlight-theme]),
+:root[data-highlight-theme="vscode"][data-theme='dark'] {
+  --sh-class: #4ec9b0;
+  --sh-identifier: #9cdcfe;
+  --sh-sign: #d4d4d4;
+  --sh-string: #ce9178;
+  --sh-keyword: #569cd6;
+  --sh-comment: #6a9955;
+  --sh-jsxliterals: #ff8c42;
+  --sh-entity: #dcdcaa;
+  --sh-property: #9cdcfe;
+}
+
+/* GitHub Light theme */
+:root:not([data-highlight-theme]),
+:root[data-highlight-theme="vscode"][data-theme='light'] {
+  --sh-class: #6f42c1;
+  --sh-identifier: #24292f;
+  --sh-sign: #24292f;
+  --sh-string: #032f62;
+  --sh-keyword: #cf222e;
+  --sh-comment: #6e7781;
+  --sh-jsxliterals: #8250df;
+  --sh-entity: #953800;
+  --sh-property: #0550ae;
+}
+
+/* One Dark Pro theme: dark */
 :root[data-highlight-theme="solarized"][data-theme='dark'] {
-  --sh-class: #268bd2;
-  --sh-identifier: #93a1a1;
-  --sh-sign: #657b83;
-  --sh-string: #2aa198;
-  --sh-keyword: #859900;
-  --sh-comment: #586e75;
-  --sh-jsxliterals: #6c71c4;
-  --sh-entity: #b58900;
-  --sh-property: #cb4b16;
+  --sh-class: #e06c75;
+  --sh-identifier: #abb2bf;
+  --sh-sign: #abb2bf;
+  --sh-string: #98c379;
+  --sh-keyword: #c678dd;
+  --sh-comment: #5c6370;
+  --sh-jsxliterals: #e5c07b;
+  --sh-entity: #61afef;
+  --sh-property: #56b6c2;
 }
 
-/* Solarized theme: light */
+/* One Dark Pro theme: light */
 :root[data-highlight-theme="solarized"][data-theme='light'] {
-  --sh-class: #268bd2;
-  --sh-identifier: #93a1a1;
-  --sh-sign: #657b83;
-  --sh-string: #2aa198;
-  --sh-keyword: #859900;
-  --sh-comment: #586e75;
-  --sh-jsxliterals: #6c71c4;
-  --sh-entity: #b58900;
-  --sh-property: #cb4b16;
+  --sh-class: #a626a4;
+  --sh-identifier: #383a42;
+  --sh-sign: #383a42;
+  --sh-string: #50a14f;
+  --sh-keyword: #a626a4;
+  --sh-comment: #a0a1a7;
+  --sh-jsxliterals: #c18401;
+  --sh-entity: #4078f2;
+  --sh-property: #0184bc;
 }
 
 /* Monokai theme: dark */
@@ -102,52 +127,52 @@
   --sh-entity: #c94848;
   --sh-property: #a9b85c;
 }
-/* Nord theme: dark */
+/* Gruvbox theme: dark */
 :root[data-highlight-theme="nord"][data-theme='dark'] {
-  --sh-class: #81a1c1;
-  --sh-identifier: #d8dee9;
-  --sh-sign: #5e81ac;
-  --sh-string: #a3be8c;
-  --sh-keyword: #88c0d0;
-  --sh-comment: #4c566a;
-  --sh-jsxliterals: #b48ead;
-  --sh-entity: #ebcb8b;
-  --sh-property: #bf616a;
+  --sh-class: #fabd2f;
+  --sh-identifier: #ebdbb2;
+  --sh-sign: #ebdbb2;
+  --sh-string: #b8bb26;
+  --sh-keyword: #fb4934;
+  --sh-comment: #928374;
+  --sh-jsxliterals: #fe8019;
+  --sh-entity: #8ec07c;
+  --sh-property: #83a598;
 }
-/* Nord theme: light */
+/* Gruvbox theme: light */
 :root[data-highlight-theme="nord"][data-theme='light'] {
-  --sh-class: #5e81ac;
-  --sh-identifier: #3b4252;
-  --sh-sign: #4c6d8c;
-  --sh-string: #6e8f6d;
-  --sh-keyword: #5e81ac;
-  --sh-comment: #a0a8b0;
-  --sh-jsxliterals: #9d78a0;
-  --sh-entity: #c2a753;
-  --sh-property: #a84a4a;
+  --sh-class: #b57614;
+  --sh-identifier: #3c3836;
+  --sh-sign: #3c3836;
+  --sh-string: #79740e;
+  --sh-keyword: #9d0006;
+  --sh-comment: #928374;
+  --sh-jsxliterals: #af3a03;
+  --sh-entity: #427b58;
+  --sh-property: #076678;
 }
 
-/* Base16 theme: dark */
+/* Tokyo Night theme: dark */
 :root[data-highlight-theme="base16"][data-theme='dark'] {
-  --sh-class: #c678dd;
-  --sh-identifier: #abb2bf;
-  --sh-sign: #56b6c2;
-  --sh-string: #98c379;
-  --sh-keyword: #e06c75;
-  --sh-comment: #5c6370;
-  --sh-jsxliterals: #d19a66;
-  --sh-entity: #e6c07b;
-  --sh-property: #61afef;
+  --sh-class: #bb9af7;
+  --sh-identifier: #c0caf5;
+  --sh-sign: #c0caf5;
+  --sh-string: #9ece6a;
+  --sh-keyword: #f7768e;
+  --sh-comment: #565f89;
+  --sh-jsxliterals: #e0af68;
+  --sh-entity: #7dcfff;
+  --sh-property: #73daca;
 }
-/* Base16 theme: light */
+/* Tokyo Night theme: light */
 :root[data-highlight-theme="base16"][data-theme='light'] {
-  --sh-class: #9c4dcf;
-  --sh-identifier: #5c6370;
-  --sh-sign: #3d7986;
-  --sh-string: #628f56;
-  --sh-keyword: #b25c61;
-  --sh-comment: #999ea4;
-  --sh-jsxliterals: #b47d4b;
-  --sh-entity: #b59c5d;
-  --sh-property: #3e7cbf;
+  --sh-class: #5a4a78;
+  --sh-identifier: #565a6e;
+  --sh-sign: #565a6e;
+  --sh-string: #485e30;
+  --sh-keyword: #8c4351;
+  --sh-comment: #848cb5;
+  --sh-jsxliterals: #8f5e15;
+  --sh-entity: #0f4b6e;
+  --sh-property: #166775;
 }

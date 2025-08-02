@@ -171,6 +171,9 @@ input[type='radio'] {
 .range-button svg {
   vertical-align: middle;
 }
+.range-button:hover {
+  background-color: var(--control-hover-color);
+}
 
 /* animate the polyline < and > icon, change the angle to smaller */
 .range-button svg:hover {
@@ -205,7 +208,7 @@ input[type='radio'] {
 }
 
 .code-example__item__title {
-  margin: 0 0 2rem;
+  margin: 0 0 1.2rem;
 }
 .controls-manager-label {
   display: inline-block;

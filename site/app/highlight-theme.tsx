@@ -4,31 +4,51 @@ import React, { useContext, useState, createContext, useEffect } from 'react'
 
 // write a highligh provide to change the highlight theme name
 
+const SSR_HIGHLIGHT_THEME = 'default' // Plain text theme for SSR/hydration
+
 const HighlightThemeContext = createContext({
-  highlightTheme: 'default',
+  highlightTheme: SSR_HIGHLIGHT_THEME,
   setHighlightTheme: (highlightTheme: string) => {},
 })
 
-export const HighlightThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [highlightTheme, setHighlightTheme] = useState('default')
+export const HighlightThemeProvider: React.FC<{ 
+  children: React.ReactNode
+  defaultTheme: string 
+}> = ({ children, defaultTheme }) => {
+  // Start with SSR theme for hydration safety
+  const [highlightTheme, setHighlightTheme] = useState(SSR_HIGHLIGHT_THEME)
 
   function updateHighlightTheme(theme: string) {
+    if (theme === SSR_HIGHLIGHT_THEME) {
+      return
+    }
+
     localStorage.setItem('highlightTheme', theme)
-    document.documentElement.setAttribute('data-highlight-theme', theme)
+    
+    // Update document attribute (client-side only)
+    if (typeof document !== 'undefined') {
+      document.documentElement.setAttribute('data-highlight-theme', theme)
+    }
     
     setHighlightTheme(theme)
   }
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem('highlightTheme')
-    if (storedTheme) {
-      setHighlightTheme(storedTheme)
-    } else {
-      localStorage.setItem('highlightTheme', 'default')
-      document.documentElement.setAttribute('data-highlight-theme', 'default')
-      setHighlightTheme('default')
+    // Load saved theme from localStorage after mount (client-side only)
+    const savedTheme = localStorage.getItem('highlightTheme')
+    const themeToUse = savedTheme || defaultTheme
+    
+    // Always update from SSR theme to the actual theme
+    setHighlightTheme(themeToUse)
+    
+    if (themeToUse === SSR_HIGHLIGHT_THEME) {
+      return
     }
-  }, [])
+    // Update document attribute (client-side only)
+    if (typeof document !== 'undefined') {
+      document.documentElement.setAttribute('data-highlight-theme', themeToUse)
+    }
+  }, [defaultTheme])
 
   return (
     <HighlightThemeContext.Provider value={{ highlightTheme, setHighlightTheme: updateHighlightTheme }}>

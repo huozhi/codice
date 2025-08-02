@@ -15,7 +15,9 @@ const cx = (...classes: (string | boolean | undefined)[]) => {
 }
 
 const CODE_QUERY_KEY = 'c'
-const SYNTAX_THEMES = ['default', 'solarized', 'dracula', 'monokai', 'base16', 'nord']
+// Theme mapping: nord=Gruvbox, vscode=VS Code/GitHub, solarized=One Dark, dracula=Dracula, monokai=Monokai, base16=Tokyo Night
+// Note: 'default' theme is used internally for SSR/hydration plain text styling and doesn't appear in this list
+const SYNTAX_THEMES = ['nord', 'vscode', 'solarized', 'dracula', 'monokai', 'base16']
 
 function ControlButton({
   id,
@@ -49,6 +51,7 @@ function RangeSelector({
   max,
   step,
   className,
+  displayValue = true,
 }: {
   value: number
   text: string
@@ -57,6 +60,7 @@ function RangeSelector({
   step: number
   onChange: (value: number) => void
   className: string
+  displayValue?: boolean
 }) {
   return (
     <div className={className}>
@@ -65,10 +69,14 @@ function RangeSelector({
       </span>
       <label className="controls-manager-label controls-manager-label--checked">
         {text}
-        {` =`}
-        <b className="range-selector-value">
-          <span>{value.toFixed(1)}</span>
-        </b>
+        {displayValue && (
+          <>
+            {` =`}
+            <b className="range-selector-value">
+              <span>{value.toFixed(1)}</span>
+            </b>
+          </>
+        )}
       </label>
       <span className="range-button" onClick={() => onChange(Math.min(max, value + step))}>
         <ArrowIcon size={16} direction="right" />
@@ -298,13 +306,12 @@ function DropdownMenu({
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
-              className="ml-auto transition-all duration-300 ease-out"
+              className={`ml-auto transition-transform duration-200 ease-out ${isOpen ? 'rotate-180' : ''}`}
             >
               <path 
-                d={isOpen ? "M8 10l4 2 4-2" : "M6 9l6 6 6-6"} 
+                d="M6 9l6 6 6-6"
                 strokeLinecap="round" 
                 strokeLinejoin="round"
-                className="transition-all duration-300 ease-out"
               />
             </svg>
           </span>
@@ -411,6 +418,7 @@ export function LiveEditor({
                 max={3}
                 step={0.1}
                 onChange={setLineNumbersWidth}
+                displayValue={false}
               />
               {/* selector highlight styling theme */}
               <DropdownMenu

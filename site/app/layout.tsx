@@ -4,6 +4,9 @@ import './theme.css'
 import { ThemeProvider } from './theme'
 import { HighlightThemeProvider } from './highlight-theme'
 
+// Default to the first available theme (Gruvbox)
+const DEFAULT_HIGHLIGHT_THEME = 'nord'
+
 function Html({ children }) {
   return (
     <html>
@@ -25,7 +28,7 @@ function Html({ children }) {
 export default function layout({ children }) {
   return (
     <ThemeProvider>
-      <HighlightThemeProvider>
+      <HighlightThemeProvider defaultTheme={DEFAULT_HIGHLIGHT_THEME}>
         <Html>{children}</Html>
       </HighlightThemeProvider>
     </ThemeProvider>
