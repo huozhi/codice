@@ -21,13 +21,13 @@ function ControlButton({
   id,
   checked,
   onChange,
-  propName,
+  text: propName,
   prefix,
 }: {
   id: string
   checked: boolean
   onChange?: (checked: boolean) => void
-  propName: string
+  text: string
   prefix?: React.ReactNode
 }) {
   return (
@@ -58,13 +58,12 @@ function RangeSelector({
   onChange: (value: number) => void
   className: string
 }) {
-  const id = useId()
   return (
     <div className={className}>
       <span className="range-button" onClick={() => onChange(Math.max(min, value - step))}>
         <ArrowIcon size={16} direction="left" />
       </span>
-      <label className="controls-manager-label controls-manager-label--checked" htmlFor={id}>
+      <label className="controls-manager-label controls-manager-label--checked">
         {text}
         {` =`}
         <b className="range-selector-value">
@@ -122,6 +121,7 @@ function CameraIcon({ ...props }: React.SVGProps<SVGSVGElement>) {
 
 function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string | null> }) {
   const [dataUrl, setDataUrl] = useState<string | null>(null)
+  const [animationPhase, setAnimationPhase] = useState<'entering' | 'settled' | 'exiting'>('entering')
   const buttonRef = useRef<HTMLSpanElement>(null)
   const [actionState, dispatch, isPending] = useActionState<{ state: 'idle' | 'succeed' | 'error' }, 'reset' | 'copy'>(
     (state, action) => {
@@ -130,6 +130,11 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string |
       } else if (action === 'copy') {
         return onCopyImage().then((imageDataUrl) => {
           setDataUrl(imageDataUrl)
+          if (imageDataUrl) {
+            setAnimationPhase('entering')
+            // Transition to settled state after animation
+            setTimeout(() => setAnimationPhase('settled'), 50)
+          }
           return { state: imageDataUrl ? 'succeed' : 'error' }
         })
       }
@@ -156,9 +161,14 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string |
   useEffect(() => {
     if (actionState.state === 'succeed' || actionState.state === 'error') {
       const timer = setTimeout(() => {
-        reset()
-        // Reset the dataUrl to remove the preview image
-        setDataUrl(null)
+        // Start exit animation
+        setAnimationPhase('exiting')
+        // Complete the exit after animation
+        setTimeout(() => {
+          reset()
+          setDataUrl(null)
+          setAnimationPhase('entering')
+        }, 300)
       }, 2_000)
       return () => clearTimeout(timer)
     }
@@ -190,16 +200,56 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string |
       </span>
       {dataUrl && (
         <div
-          className="fixed w-[120px] z-50 shadow-lg rounded-lg p-1"
-          // next right to the button
-          style={{
-            top: buttonRef.current?.getBoundingClientRect().top + 'px',
-            left: buttonRef.current?.getBoundingClientRect().right - window.scrollX + 8 + 'px',
-          }}
+          className="fixed z-50 shadow-lg rounded-lg p-1 transition-all duration-300 ease-out"
+          style={(() => {
+            const editorElement = document.querySelector('#editor-canvas') as HTMLElement
+            const buttonRect = buttonRef.current?.getBoundingClientRect()
+            
+            if (!editorElement || !buttonRect) {
+              return {
+                top: '50px',
+                left: '50px',
+                width: '120px',
+                opacity: 1,
+                transform: 'translateY(0px) scale(1)',
+              }
+            }
+
+            const editorRect = editorElement.getBoundingClientRect()
+            const finalLeft = buttonRect.right - window.scrollX + 8
+            const finalTop = buttonRect.top
+            const finalWidth = 120
+
+            if (animationPhase === 'entering') {
+              return {
+                top: editorRect.top + 'px',
+                left: editorRect.left + 'px',
+                width: editorRect.width + 'px',
+                opacity: 0.9,
+                transform: 'translateY(0px) scale(1)',
+              }
+            } else if (animationPhase === 'settled') {
+              return {
+                top: finalTop + 'px',
+                left: finalLeft + 'px',
+                width: finalWidth + 'px',
+                opacity: 1,
+                transform: 'translateY(0px) scale(1)',
+              }
+            } else { // exiting
+              return {
+                top: finalTop + 'px',
+                left: finalLeft + 'px',
+                width: finalWidth + 'px',
+                opacity: 0,
+                transform: 'translateY(20px) scale(0.8)',
+              }
+            }
+          })()}
         >
-          <img src={dataUrl} alt="Screenshot Preview" className='pointer-events-none select-none' />
+          <img src={dataUrl} alt="Screenshot Preview" className='pointer-events-none select-none w-full h-auto' />
         </div>
-      )}      
+      )}
     </>
   )
 }
@@ -234,10 +284,30 @@ function DropdownMenu({
   }, [])
 
   return (
-    <div {...props} ref={nodeRef} className={cx('dropdown-menu', props.className)}>
+    <div {...props} ref={nodeRef} className={cx('dropdown-menu relative', props.className)}>
       <span className={cx('dropdown-menu-button-group', !!onNext && 'dropdown-menu-button-group--merged')}>
-        <button className="dropdown-menu-button" onClick={() => setIsOpen(!isOpen)}>
-          {buttonText}
+        <button className="dropdown-menu-button flex-1" onClick={() => setIsOpen(!isOpen)}>
+          <span className="flex items-center gap-1">
+            {buttonText}
+            {/* dropdown indicator */}
+            <svg
+              width="14"
+              height="14"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="ml-auto transition-all duration-300 ease-out"
+            >
+              <path 
+                d={isOpen ? "M8 10l4 2 4-2" : "M6 9l6 6 6-6"} 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+                className="transition-all duration-300 ease-out"
+              />
+            </svg>
+          </span>
         </button>
         {!!onNext && (
           <>
@@ -251,11 +321,12 @@ function DropdownMenu({
                 setIsOpen(false)
                 onNext()
               }}
+              title="Next theme"
             >
-              {/* right arrow svg */}
+              {/* next/forward arrow icon */}
               <svg
-                width="16"
-                height="16"
+                width="12"
+                height="12"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="none"
@@ -270,7 +341,7 @@ function DropdownMenu({
         )}
       </span>
       {isOpen && (
-        <ul className="dropdown-menu-list">
+        <ul className="dropdown-menu-list absolute top-full left-0 w-full min-w-max">
           {items.map((item, index) => (
             <li
               key={index}
@@ -314,19 +385,19 @@ export function LiveEditor({
           {/* Left controls */}
           <div className="flex flex-col gap-y-2 flex-wrap">
             <div className="controls-manager">
-              <ControlButton id="control-control" checked={controls} onChange={setControls} propName="controls" />
+              <ControlButton id="control-control" checked={controls} onChange={setControls} text="controls" />
               <ControlButton
                 id="control-line-numbers"
                 checked={lineNumbers}
                 onChange={setLineNumbers}
-                propName="line no."
+                text="line no."
               />
               {/* control of theme: light/dark */}
               <ControlButton
                 id="control-theme"
                 checked={theme === 'dark'}
                 onChange={(checked) => setTheme(checked ? 'dark' : 'light')}
-                propName="theme"
+                text={theme === 'dark' ? 'dark' : 'light'}
                 prefix={<span>{theme === 'dark' ? '🌙' : '☀️'}</span>}
               />
             </div>
@@ -343,7 +414,7 @@ export function LiveEditor({
               />
               {/* selector highlight styling theme */}
               <DropdownMenu
-                className="dropdown-menu-highlight"
+                className="dropdown-menu-highlight w-36"
                 buttonText={`🎨 ${highlightTheme}`}
                 items={SYNTAX_THEMES.map((theme) => ({ text: theme }))}
                 onChange={(text) => {
@@ -373,7 +444,7 @@ export function LiveEditor({
                     setCode(formattedCode)
                   })
                 }}
-                propName="format"
+                text="format"
                 prefix={'🧹'}
               />
             </div>

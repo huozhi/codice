@@ -9,6 +9,7 @@
   /* app color */
   --control-bg-color: #242424;
   --control-color: #c8c6c6;
+  --control-hover-color: rgba(255, 255, 255, 0.1);
 
   /* app editor */
   --app-editor-bg-color: #3d3c3c;
@@ -25,6 +26,7 @@
   /* app style */
   --control-color: #363434;
   --control-bg-color: #e3e3e3;
+  --control-hover-color: rgba(0, 0, 0, 0.1);
 
   /* app editor */
   --app-editor-bg-color: #efefef;
@@ -124,13 +126,14 @@ input[type='radio'] {
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
+  border: none;
   transition: background-color 0.2s ease-in-out;
 }
 .control-button .controls-manager-label {
   cursor: pointer;
 }
 .control-button:hover {
-  opacity: 0.85;
+  background-color: var(--control-hover-color);
 }
 
 @keyframes shaking-a-little-oblique {
@@ -163,6 +166,7 @@ input[type='radio'] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.2s ease-in-out;
 }
 .range-button svg {
   vertical-align: middle;
@@ -170,7 +174,6 @@ input[type='radio'] {
 
 /* animate the polyline < and > icon, change the angle to smaller */
 .range-button svg:hover {
-  transform: scale(1.2);
   transition: transform 0.2s ease-in-out;
 }
 
@@ -269,6 +272,8 @@ input[type='radio'] {
   color: var(--control-color);
   cursor: pointer;
   padding: 0;
+  border-radius: 50%;
+  transition: background-color 0.2s ease-in-out;
 }
 .range-button label {
   letter-spacing: 0.02em;
@@ -359,6 +364,7 @@ input[type='radio'] {
   position: relative;
   display: inline-block;
   padding: 0.2rem 0.8rem;
+  padding-right: 0.2rem;
   border-radius: 88px;
   background-color: var(--control-bg-color);
   color: var(--control-color);
@@ -373,17 +379,21 @@ input[type='radio'] {
   right: 0;
   width: 1px;
   height: 26px;
-  background-color: var(--control-color);
+  background: var(--grey-200);
 }
 .dropdown-menu .dropdown-menu-button-group {
   position: relative;
   display: inline-flex;
   align-items: center;
 }
+.dropdown-menu .dropdown-menu-button-group--merged {
+  flex-grow: 1;
+  display: flex;
+}
 .dropdown-menu .dropdown-menu-button-group--merged .dropdown-menu-button {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  padding-right: 0.5rem;
+
 }
 .dropdown-menu .dropdown-menu-button--next {
   border-top-left-radius: 0;
@@ -395,13 +405,13 @@ input[type='radio'] {
   padding: 0.2rem 0.2rem 0.2rem 0;
   height: 26px;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
 }
 .dropdown-menu .dropdown-menu-button--next:hover {
-  filter: brightness(1.02);
+  background-color: var(--control-hover-color);
 }
-
 .dropdown-menu .dropdown-menu-button:hover {
-  filter: brightness(1.02);
+  background-color: var(--control-hover-color);
 }
 .dropdown-menu .dropdown-menu-list {
   position: absolute;
@@ -422,7 +432,7 @@ input[type='radio'] {
   font-weight: 600;
 }
 .dropdown-menu .dropdown-menu-list-item:hover {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: var(--control-hover-color);
 }
 
 .copy-image {
@@ -436,7 +446,7 @@ input[type='radio'] {
   user-select: none;
 }
 .copy-image:hover {
-  opacity: 0.8;
+  filter: brightness(0.9);
 }
 
 /* Codice Styling */
@@ -461,9 +471,8 @@ input[type='radio'] {
   float: right;
   width: 1.5rem;
 }
-
-.dropdown-menu-highlight .dropdown-menu-button {
-  min-width: 96px;
+.dropdown-menu-highlight {
+  display: flex;
 }
 
 [data-codice-control] {
@@ -517,7 +526,7 @@ input[type='radio'] {
   --sh-identifier: #645151;
 }
 [data-theme]:not([data-theme='dark']) .code-example [data-codice-code] {
-  background-color: #f5f5f5;
+  background-color: #efefef;
   color: #272727;
 }
 [data-theme]:not([data-theme='dark']) .code-example__item {
@@ -527,11 +536,4 @@ input[type='radio'] {
 [data-theme]:not([data-theme='dark']) .copy-image {
   background-color: #e4b4ab;
   color: #272727;
-}
-
-[data-theme]:not([data-theme='dark']) .range-button:hover {
-  background-color: #c0c0c0;
-}
-[data-theme='dark'] .range-button:hover {
-  background-color: #3d3939;
 }
