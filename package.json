@@ -24,7 +24,7 @@
     "@types/react": "^19.0.7",
     "bunchee": "^6.5.2",
     "html-to-image": "^1.11.13",
-    "next": "latest",
+    "next": "^15.4.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "typescript": "^5.7.3",
@@ -35,8 +35,7 @@
   },
   "resolutions": {
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.3.2"
+    "react-dom": "^19.0.0"
   },
   "packageManager": "pnpm@9.15.4",
   "dependencies": {
