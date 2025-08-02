@@ -197,6 +197,112 @@ input[type='radio'] {
 #editor-canvas {
   padding: 0.5rem;
   background-color: var(--app-editor-bg-color);
+  transition: background-color var(--sh-transition-duration, 300ms) var(--sh-transition-timing, ease-out);
+}
+
+/* Theme change animation effect */
+#editor-canvas.theme-changing {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add a secondary glow effect for stronger middle impact */
+#editor-canvas.theme-changing::after {
+  content: '';
+  position: absolute;
+  top: -30%;
+  left: -120%;
+  width: 160%;
+  height: 160%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.1) 10%,
+    rgba(255, 255, 255, 0.05) 20%,
+    transparent 70%
+  );
+  animation: theme-glow-oblique 400ms ease-in-out;
+  pointer-events: none;
+  transform-origin: center;
+}
+
+[data-theme='light'] #editor-canvas.theme-changing::after {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.05) 10%,
+    rgba(0, 0, 0, 0.02) 20%,
+    transparent 70%
+  );
+}
+
+@keyframes theme-glow-oblique {
+  0% {
+    transform: translateX(-80%) translateY(-40%) scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(0%) translateY(0%) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(80%) translateY(40%) scale(0.8);
+    opacity: 0;
+  }
+}
+
+#editor-canvas.theme-changing::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -150%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 20%,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.2) 30%,
+    rgba(255, 255, 255, 0.05) 45%,
+    transparent 80%,
+    transparent 100%
+  );
+  animation: theme-sweep-oblique 400ms ease-in-out;
+  pointer-events: none;
+  transform-origin: center;
+}
+
+[data-theme='light'] #editor-canvas.theme-changing::before {
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 20%,
+    rgba(0, 0, 0, 0.03) 35%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.03) 65%,
+    transparent 80%,
+    transparent 100%
+  );
+}
+
+@keyframes theme-sweep-oblique {
+  0% {
+    transform: translateX(-100%) translateY(-50%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(0%) translateY(0%);
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%) translateY(50%);
+    opacity: 0;
+  }
 }
 
 .code-example__item {
@@ -217,7 +323,7 @@ input[type='radio'] {
   border-radius: 66px;
 }
 .controls-manager-label--checked,
-.controls-manager label[data-checked='true'] {
+.control-button label[data-checked='true'] {
   color: var(--control-color);
 }
 .controls-manager-input {
@@ -416,6 +522,23 @@ input[type='radio'] {
 .dropdown-menu .dropdown-menu-button:hover {
   background-color: var(--control-hover-color);
 }
+
+/* Theme selection animation */
+.dropdown-menu .dropdown-menu-button.theme-selected {
+  animation: button-pulse 200ms ease-out;
+}
+
+@keyframes button-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 .dropdown-menu .dropdown-menu-list {
   position: absolute;
   top: calc(100% + 0.5rem);
@@ -450,6 +573,36 @@ input[type='radio'] {
 }
 .copy-image:hover {
   filter: brightness(0.9);
+}
+
+/* Smooth syntax highlighting transitions when theme changes */
+[data-codice-content] * {
+  transition: 
+    color var(--sh-transition-duration, 300ms) var(--sh-transition-timing, ease-out),
+    opacity var(--sh-transition-duration, 300ms) var(--sh-transition-timing, ease-out);
+}
+
+/* Brief fade effect during theme transition */
+#editor-canvas.theme-changing [data-codice-content] * {
+  animation: syntax-refresh-oblique 400ms ease-in-out;
+}
+
+@keyframes syntax-refresh-oblique {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  75% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Codice Styling */

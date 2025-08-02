@@ -1,3 +1,9 @@
+/* Smooth transitions for syntax highlighting theme changes */
+:root {
+  --sh-transition-duration: 300ms;
+  --sh-transition-timing: ease-out;
+}
+
 /* SSR/Hydration theme - single color for all tokens */
 :root[data-highlight-theme="default"][data-theme='dark'] {
   --sh-class: #d4d4d4;

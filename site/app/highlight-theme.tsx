@@ -28,6 +28,24 @@ export const HighlightThemeProvider: React.FC<{
     // Update document attribute (client-side only)
     if (typeof document !== 'undefined') {
       document.documentElement.setAttribute('data-highlight-theme', theme)
+      
+      // Add a brief animation effect on theme change
+      const editorElement = document.querySelector('#editor-canvas')
+      if (editorElement) {
+        editorElement.classList.add('theme-changing')
+        setTimeout(() => {
+          editorElement.classList.remove('theme-changing')
+        }, 400)
+      }
+      
+      // Add animation to the theme selector button
+      const themeButton = document.querySelector('.dropdown-menu-highlight .dropdown-menu-button')
+      if (themeButton) {
+        themeButton.classList.add('theme-selected')
+        setTimeout(() => {
+          themeButton.classList.remove('theme-selected')
+        }, 200)
+      }
     }
     
     setHighlightTheme(theme)
@@ -41,7 +59,7 @@ export const HighlightThemeProvider: React.FC<{
     // Always update from SSR theme to the actual theme
     setHighlightTheme(themeToUse)
     
-    if (themeToUse === SSR_HIGHLIGHT_THEME) {
+    if (savedTheme === SSR_HIGHLIGHT_THEME) {
       return
     }
     // Update document attribute (client-side only)

@@ -127,21 +127,60 @@ function CameraIcon({ ...props }: React.SVGProps<SVGSVGElement>) {
   )
 }
 
+interface ScreenshotItem {
+  id: string
+  dataUrl: string
+  phase: 'entering' | 'settled' | 'exiting'
+}
+
 function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string | null> }) {
-  const [dataUrl, setDataUrl] = useState<string | null>(null)
-  const [animationPhase, setAnimationPhase] = useState<'entering' | 'settled' | 'exiting'>('entering')
+  const [screenshots, setScreenshots] = useState<ScreenshotItem[]>([])
   const buttonRef = useRef<HTMLSpanElement>(null)
+  const timeoutsRef = useRef<Map<string, NodeJS.Timeout>>(new Map())
   const [actionState, dispatch, isPending] = useActionState<{ state: 'idle' | 'succeed' | 'error' }, 'reset' | 'copy'>(
     (state, action) => {
       if (action === 'reset') {
         return { state: 'idle' }
       } else if (action === 'copy') {
+        // Take screenshot and create new item
         return onCopyImage().then((imageDataUrl) => {
-          setDataUrl(imageDataUrl)
           if (imageDataUrl) {
-            setAnimationPhase('entering')
-            // Transition to settled state after animation
-            setTimeout(() => setAnimationPhase('settled'), 50)
+            const id = Date.now().toString()
+            
+            // Add new screenshot item
+            setScreenshots(prev => [...prev, {
+              id,
+              dataUrl: imageDataUrl,
+              phase: 'entering'
+            }])
+            
+            // Transition to settled after delay
+            const settledTimeout = setTimeout(() => {
+              setScreenshots(prev => prev.map(item => 
+                item.id === id ? { ...item, phase: 'settled' } : item
+              ))
+              
+              // Start exit animation 2 seconds after reaching settled state
+              const exitTimeout = setTimeout(() => {
+                setScreenshots(prev => prev.map(item => 
+                  item.id === id ? { ...item, phase: 'exiting' } : item
+                ))
+                
+                // Remove item after exit animation
+                const removeTimeout = setTimeout(() => {
+                  setScreenshots(prev => prev.filter(item => item.id !== id))
+                  timeoutsRef.current.delete(id)
+                  timeoutsRef.current.delete(id + '-exit')
+                  timeoutsRef.current.delete(id + '-remove')
+                }, 300)
+                
+                timeoutsRef.current.set(id + '-remove', removeTimeout)
+              }, 2000)
+              
+              timeoutsRef.current.set(id + '-exit', exitTimeout)
+            }, 50)
+            
+            timeoutsRef.current.set(id, settledTimeout)
           }
           return { state: imageDataUrl ? 'succeed' : 'error' }
         })
@@ -155,32 +194,25 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string |
 
   function copy() {
     startTransition(async () => {
-      if (isPending) return
+      // Always allow new screenshots, even if one is pending
       dispatch('copy')
     })
   }
 
-  function reset() {
+    function reset() {
     startTransition(() => {
       dispatch('reset')
     })
   }
-  // set a timeout 1.5s to reset the success or error state
+
+  // Cleanup on unmount
   useEffect(() => {
-    if (actionState.state === 'succeed' || actionState.state === 'error') {
-      const timer = setTimeout(() => {
-        // Start exit animation
-        setAnimationPhase('exiting')
-        // Complete the exit after animation
-        setTimeout(() => {
-          reset()
-          setDataUrl(null)
-          setAnimationPhase('entering')
-        }, 300)
-      }, 2_000)
-      return () => clearTimeout(timer)
+    return () => {
+      // Clear all timeouts
+      timeoutsRef.current.forEach(timeout => clearTimeout(timeout))
+      timeoutsRef.current.clear()
     }
-  }, [actionState, reset])
+  }, [])
 
   const currentState = isPending ? 'loading' : actionState.state
 
@@ -206,9 +238,10 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string |
           )}
         </span>
       </span>
-      {dataUrl && (
+      {screenshots.map((screenshot) => (
         <div
-          className="fixed z-50 shadow-lg rounded-lg p-1 transition-all duration-300 ease-out"
+          key={screenshot.id}
+          className="fixed z-50 shadow-lg rounded-lg transition-all duration-500 ease-out"
           style={(() => {
             const editorElement = document.querySelector('#editor-canvas') as HTMLElement
             const buttonRect = buttonRef.current?.getBoundingClientRect()
@@ -218,46 +251,62 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string |
                 top: '50px',
                 left: '50px',
                 width: '120px',
+                height: 'auto',
                 opacity: 1,
                 transform: 'translateY(0px) scale(1)',
+                padding: '4px',
               }
             }
 
             const editorRect = editorElement.getBoundingClientRect()
-            const finalLeft = buttonRect.right - window.scrollX + 8
+            // Use viewport coordinates (no scroll offset needed for fixed positioning)
+            // Stagger multiple screenshots horizontally
+            const index = screenshots.findIndex(s => s.id === screenshot.id)
+            const finalLeft = buttonRect.right + 8 + (index * 130) // 130px spacing between items
             const finalTop = buttonRect.top
             const finalWidth = 120
 
-            if (animationPhase === 'entering') {
+            if (screenshot.phase === 'entering') {
               return {
                 top: editorRect.top + 'px',
-                left: editorRect.left + 'px',
+                left: editorRect.left + 'px', 
                 width: editorRect.width + 'px',
+                height: editorRect.height + 'px',
                 opacity: 0.9,
                 transform: 'translateY(0px) scale(1)',
+                padding: '0px',
               }
-            } else if (animationPhase === 'settled') {
+            } else if (screenshot.phase === 'settled') {
               return {
                 top: finalTop + 'px',
                 left: finalLeft + 'px',
                 width: finalWidth + 'px',
+                height: 'auto',
                 opacity: 1,
                 transform: 'translateY(0px) scale(1)',
+                padding: '4px',
               }
             } else { // exiting
               return {
                 top: finalTop + 'px',
                 left: finalLeft + 'px',
                 width: finalWidth + 'px',
+                height: 'auto',
                 opacity: 0,
                 transform: 'translateY(20px) scale(0.8)',
+                padding: '4px',
               }
             }
           })()}
         >
-          <img src={dataUrl} alt="Screenshot Preview" className='pointer-events-none select-none w-full h-auto' />
+          <img 
+            src={screenshot.dataUrl} 
+            alt="Screenshot Preview" 
+            className='pointer-events-none select-none w-full h-full object-cover' 
+            style={{ borderRadius: 'inherit' }}
+          />
         </div>
-      )}
+      ))}
     </>
   )
 }
@@ -269,7 +318,7 @@ function DropdownMenu({
   onNext,
   ...props
 }: {
-  buttonText: string
+  buttonText: React.ReactNode
   items: { text: string }[]
   onChange: (text: string) => void
   onNext?: () => void
@@ -423,7 +472,12 @@ export function LiveEditor({
               {/* selector highlight styling theme */}
               <DropdownMenu
                 className="dropdown-menu-highlight w-36"
-                buttonText={`🎨 ${highlightTheme}`}
+                buttonText={
+                  <>
+                    <span className="mr-2">🎨</span>
+                    <span>{highlightTheme}</span>
+                  </>
+                }
                 items={SYNTAX_THEMES.map((theme) => ({ text: theme }))}
                 onChange={(text) => {
                   setHighlightTheme(text)
@@ -436,8 +490,8 @@ export function LiveEditor({
               />
 
               <ControlButton
-                id="control-title"
-                checked={_f}
+                id="control-format"
+                checked
                 onChange={() => {
                   setFormat(!_f)
                   prettierFormat(code, {
