@@ -154,6 +154,11 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string |
               phase: 'entering'
             }])
             
+            // Reset button state quickly after successful screenshot
+            const resetButtonTimeout = setTimeout(() => {
+              dispatch('reset')
+            }, 300)
+            
             // Transition to settled after delay
             const settledTimeout = setTimeout(() => {
               setScreenshots(prev => prev.map(item => 
@@ -172,6 +177,7 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string |
                   timeoutsRef.current.delete(id)
                   timeoutsRef.current.delete(id + '-exit')
                   timeoutsRef.current.delete(id + '-remove')
+                  timeoutsRef.current.delete(id + '-reset')
                 }, 300)
                 
                 timeoutsRef.current.set(id + '-remove', removeTimeout)
@@ -181,6 +187,12 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string |
             }, 50)
             
             timeoutsRef.current.set(id, settledTimeout)
+            timeoutsRef.current.set(id + '-reset', resetButtonTimeout)
+          } else {
+            // Reset button state quickly after failed screenshot
+            setTimeout(() => {
+              dispatch('reset')
+            }, 1000)
           }
           return { state: imageDataUrl ? 'succeed' : 'error' }
         })
