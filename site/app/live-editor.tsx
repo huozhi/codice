@@ -147,12 +147,12 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string |
           if (imageDataUrl) {
             const id = Date.now().toString()
             
-            // Add new screenshot item
-            setScreenshots(prev => [...prev, {
+            // Add new screenshot item to the top of the queue
+            setScreenshots(prev => [{
               id,
               dataUrl: imageDataUrl,
               phase: 'entering'
-            }])
+            }, ...prev])
             
             // Reset button state quickly after successful screenshot
             const resetButtonTimeout = setTimeout(() => {
@@ -272,10 +272,11 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string |
 
             const editorRect = editorElement.getBoundingClientRect()
             // Use viewport coordinates (no scroll offset needed for fixed positioning)
-            // Stagger multiple screenshots horizontally
+            // Stack screenshots vertically, newest at top
             const index = screenshots.findIndex(s => s.id === screenshot.id)
-            const finalLeft = buttonRect.right + 8 + (index * 130) // 130px spacing between items
-            const finalTop = buttonRect.top
+            const finalLeft = buttonRect.right + 8
+            const itemSpacing = 120 // Total space per item (includes height + gap)
+            const finalTop = buttonRect.top + (index * itemSpacing)
             const finalWidth = 120
 
             if (screenshot.phase === 'entering') {
@@ -298,14 +299,14 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string |
                 transform: 'translateY(0px) scale(1)',
                 padding: '4px',
               }
-            } else { // exiting
+            } else { // exiting - animate downward and fade out
               return {
                 top: finalTop + 'px',
                 left: finalLeft + 'px',
                 width: finalWidth + 'px',
                 height: 'auto',
                 opacity: 0,
-                transform: 'translateY(20px) scale(0.8)',
+                transform: 'translateY(60px) translateX(20px) scale(0.7)',
                 padding: '4px',
               }
             }
