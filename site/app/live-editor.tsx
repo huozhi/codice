@@ -311,7 +311,7 @@ function ScreenshotButton({ editorElementRef }: { editorElementRef: React.RefObj
           )}
         </span>
       </span>
-      {screenshots.map((screenshot) => (
+      {screenshots.map((screenshot, index) => (
         <div
           key={screenshot.id}
           className="fixed z-50 shadow-lg rounded-lg transition-all duration-300 ease-out"
@@ -349,6 +349,7 @@ function ScreenshotButton({ editorElementRef }: { editorElementRef: React.RefObj
                 opacity: 0.9,
                 transform: 'translateY(0px) scale(1)',
                 padding: '0px',
+                zIndex: screenshots.length - index,
               }
             } else if (screenshot.phase === 'settled') {
               return {
@@ -359,6 +360,7 @@ function ScreenshotButton({ editorElementRef }: { editorElementRef: React.RefObj
                 opacity: 1,
                 transform: 'translateY(0px) scale(1)',
                 padding: '4px',
+                zIndex: screenshots.length - index,
               }
             } else {
               // exiting - animate downward and fade out
@@ -370,6 +372,7 @@ function ScreenshotButton({ editorElementRef }: { editorElementRef: React.RefObj
                 opacity: 0,
                 transform: 'translateY(60px) translateX(20px) scale(0.7)',
                 padding: '4px',
+                zIndex: screenshots.length - index,
               }
             }
           })()}
