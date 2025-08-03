@@ -124,6 +124,7 @@ input[type='radio'] {
 }
 .control-button .controls-manager-label {
   cursor: pointer;
+  white-space: nowrap;
 }
 .control-button:hover {
   background-color: var(--control-hover-color);
