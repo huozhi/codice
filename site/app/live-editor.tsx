@@ -3,8 +3,8 @@
 import { Editor } from 'codice'
 import React, { startTransition, useActionState, useEffect, useId, useRef, useState } from 'react'
 import { format as prettierFormat } from 'prettier/standalone'
-import prettierPluginBabel from "prettier/plugins/babel"
-import prettierPluginEstree from "prettier/plugins/estree"
+import prettierPluginBabel from 'prettier/plugins/babel'
+import prettierPluginEstree from 'prettier/plugins/estree'
 import { toPng } from 'html-to-image'
 import { useTheme } from './theme'
 import { ArrowIcon } from './arrow-icon'
@@ -36,7 +36,7 @@ function ControlButton({
     <button className="control-button">
       <input id={id} type="checkbox" checked={checked} onChange={(event) => onChange?.(event.target.checked)} />
       <label className="controls-manager-label" data-checked={checked} htmlFor={id}>
-        <span className='mr-2'>{prefix ? prefix : checked ? '●' : '○'}</span>
+        <span className="mr-2">{prefix ? prefix : checked ? '●' : '○'}</span>
         {` ${propName}`}
       </label>
     </button>
@@ -101,18 +101,6 @@ export async function copyImageDataUrl(dataUrl: string) {
   }
 }
 
-function handleCopyImage(selector: string) {
-  const domNode: HTMLElement = document.querySelector(selector)
-  return toPng(domNode).then((dataUrl) => {
-    return copyImageDataUrl(dataUrl).then(
-      () => dataUrl,
-      () => {
-        return null
-      }
-    )
-  })
-}
-
 function CameraIcon({ ...props }: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" {...props}>
@@ -133,65 +121,79 @@ interface ScreenshotItem {
   phase: 'entering' | 'settled' | 'exiting'
 }
 
-function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string | null> }) {
+function ScreenshotButton({ editorElementRef }: { editorElementRef: React.RefObject<HTMLElement> }) {
   const [screenshots, setScreenshots] = useState<ScreenshotItem[]>([])
   const buttonRef = useRef<HTMLSpanElement>(null)
   const timeoutsRef = useRef<Map<string, NodeJS.Timeout>>(new Map())
+
+  const handleCopyImage = () => {
+    if (!editorElementRef.current) {
+      return Promise.resolve(null)
+    }
+    return toPng(editorElementRef.current).then((dataUrl) => {
+      return copyImageDataUrl(dataUrl).then(
+        () => dataUrl,
+        () => {
+          return null
+        }
+      )
+    })
+  }
+
   const [actionState, dispatch, isPending] = useActionState<{ state: 'idle' | 'succeed' | 'error' }, 'reset' | 'copy'>(
     (state, action) => {
       if (action === 'reset') {
         return { state: 'idle' }
       } else if (action === 'copy') {
         // Take screenshot and create new item
-        return onCopyImage().then((imageDataUrl) => {
+        return handleCopyImage().then((imageDataUrl) => {
           if (imageDataUrl) {
             const id = Date.now().toString()
-            
+
             // Add new screenshot item to the top of the queue
-            setScreenshots(prev => [{
-              id,
-              dataUrl: imageDataUrl,
-              phase: 'entering'
-            }, ...prev])
-            
+            setScreenshots((prev) => [
+              {
+                id,
+                dataUrl: imageDataUrl,
+                phase: 'entering',
+              },
+              ...prev,
+            ])
+
             // Reset button state quickly after successful screenshot
             const resetButtonTimeout = setTimeout(() => {
-              dispatch('reset')
+              reset()
             }, 300)
-            
+
             // Transition to settled after delay
             const settledTimeout = setTimeout(() => {
-              setScreenshots(prev => prev.map(item => 
-                item.id === id ? { ...item, phase: 'settled' } : item
-              ))
-              
+              setScreenshots((prev) => prev.map((item) => (item.id === id ? { ...item, phase: 'settled' } : item)))
+
               // Start exit animation 2 seconds after reaching settled state
               const exitTimeout = setTimeout(() => {
-                setScreenshots(prev => prev.map(item => 
-                  item.id === id ? { ...item, phase: 'exiting' } : item
-                ))
-                
+                setScreenshots((prev) => prev.map((item) => (item.id === id ? { ...item, phase: 'exiting' } : item)))
+
                 // Remove item after exit animation
                 const removeTimeout = setTimeout(() => {
-                  setScreenshots(prev => prev.filter(item => item.id !== id))
+                  setScreenshots((prev) => prev.filter((item) => item.id !== id))
                   timeoutsRef.current.delete(id)
                   timeoutsRef.current.delete(id + '-exit')
                   timeoutsRef.current.delete(id + '-remove')
                   timeoutsRef.current.delete(id + '-reset')
                 }, 300)
-                
+
                 timeoutsRef.current.set(id + '-remove', removeTimeout)
-              }, 2000)
-              
+              }, 1500)
+
               timeoutsRef.current.set(id + '-exit', exitTimeout)
             }, 50)
-            
+
             timeoutsRef.current.set(id, settledTimeout)
             timeoutsRef.current.set(id + '-reset', resetButtonTimeout)
           } else {
             // Reset button state quickly after failed screenshot
             setTimeout(() => {
-              dispatch('reset')
+              reset()
             }, 1000)
           }
           return { state: imageDataUrl ? 'succeed' : 'error' }
@@ -211,7 +213,7 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string |
     })
   }
 
-    function reset() {
+  function reset() {
     startTransition(() => {
       dispatch('reset')
     })
@@ -221,7 +223,7 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string |
   useEffect(() => {
     return () => {
       // Clear all timeouts
-      timeoutsRef.current.forEach(timeout => clearTimeout(timeout))
+      timeoutsRef.current.forEach((timeout) => clearTimeout(timeout))
       timeoutsRef.current.clear()
     }
   }, [])
@@ -253,11 +255,11 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string |
       {screenshots.map((screenshot) => (
         <div
           key={screenshot.id}
-          className="fixed z-50 shadow-lg rounded-lg transition-all duration-500 ease-out"
+          className="fixed z-50 shadow-lg rounded-lg transition-all duration-300 ease-out"
           style={(() => {
-            const editorElement = document.querySelector('#editor-canvas') as HTMLElement
+            const editorElement = editorElementRef.current
             const buttonRect = buttonRef.current?.getBoundingClientRect()
-            
+
             if (!editorElement || !buttonRect) {
               return {
                 top: '50px',
@@ -273,16 +275,16 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string |
             const editorRect = editorElement.getBoundingClientRect()
             // Use viewport coordinates (no scroll offset needed for fixed positioning)
             // Stack screenshots vertically, newest at top
-            const index = screenshots.findIndex(s => s.id === screenshot.id)
+            const index = screenshots.findIndex((s) => s.id === screenshot.id)
             const finalLeft = buttonRect.right + 8
             const itemSpacing = 120 // Total space per item (includes height + gap)
-            const finalTop = buttonRect.top + (index * itemSpacing)
+            const finalTop = buttonRect.top + index * itemSpacing
             const finalWidth = 120
 
             if (screenshot.phase === 'entering') {
               return {
                 top: editorRect.top + 'px',
-                left: editorRect.left + 'px', 
+                left: editorRect.left + 'px',
                 width: editorRect.width + 'px',
                 height: editorRect.height + 'px',
                 opacity: 0.9,
@@ -299,7 +301,8 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string |
                 transform: 'translateY(0px) scale(1)',
                 padding: '4px',
               }
-            } else { // exiting - animate downward and fade out
+            } else {
+              // exiting - animate downward and fade out
               return {
                 top: finalTop + 'px',
                 left: finalLeft + 'px',
@@ -312,10 +315,10 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string |
             }
           })()}
         >
-          <img 
-            src={screenshot.dataUrl} 
-            alt="Screenshot Preview" 
-            className='pointer-events-none select-none w-full h-full object-cover' 
+          <img
+            src={screenshot.dataUrl}
+            alt="Screenshot Preview"
+            className="pointer-events-none select-none w-full h-full object-cover"
             style={{ borderRadius: 'inherit' }}
           />
         </div>
@@ -329,12 +332,14 @@ function DropdownMenu({
   items,
   onChange,
   onNext,
+  buttonRef,
   ...props
 }: {
   buttonText: React.ReactNode
   items: { text: string }[]
   onChange: (text: string) => void
   onNext?: () => void
+  buttonRef?: React.RefObject<HTMLButtonElement>
 } & React.HTMLAttributes<HTMLDivElement>) {
   const nodeRef = useRef<HTMLDivElement>(null)
   const [isOpen, setIsOpen] = useState(false)
@@ -356,7 +361,7 @@ function DropdownMenu({
   return (
     <div {...props} ref={nodeRef} className={cx('dropdown-menu relative', props.className)}>
       <span className={cx('dropdown-menu-button-group', !!onNext && 'dropdown-menu-button-group--merged')}>
-        <button className="dropdown-menu-button flex-1" onClick={() => setIsOpen(!isOpen)}>
+        <button ref={buttonRef} className="dropdown-menu-button flex-1" onClick={() => setIsOpen(!isOpen)}>
           <span className="flex items-center gap-1">
             {buttonText}
             {/* dropdown indicator */}
@@ -370,11 +375,7 @@ function DropdownMenu({
               strokeWidth="2"
               className={`ml-auto transition-transform duration-200 ease-out ${isOpen ? 'rotate-180' : ''}`}
             >
-              <path 
-                d="M6 9l6 6 6-6"
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              />
+              <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </span>
         </button>
@@ -447,6 +448,33 @@ export function LiveEditor({
   const [lineNumbers, setLineNumbers] = useState(true)
   const [lineNumbersWidth, setLineNumbersWidth] = useState(2.5) // rem
 
+  // Refs for theme change animations
+  const editorElementRef = useRef<HTMLDivElement | null>(null)
+  const themeButtonRef = useRef<HTMLButtonElement | null>(null)
+
+  // Handle theme change animations
+  useEffect(() => {
+    if (highlightTheme === 'default') return // Skip animations for SSR theme
+
+    // Add animation to editor
+    const editorElement = editorElementRef.current
+    if (editorElement) {
+      editorElement.classList.add('theme-changing')
+      setTimeout(() => {
+        editorElement.classList.remove('theme-changing')
+      }, 400)
+    }
+
+    // Add animation to theme button
+    const themeButton = themeButtonRef.current
+    if (themeButton) {
+      themeButton.classList.add('theme-selected')
+      setTimeout(() => {
+        themeButton.classList.remove('theme-selected')
+      }, 200)
+    }
+  }, [highlightTheme])
+
   return (
     <div>
       <div className="editor-layout">
@@ -471,7 +499,7 @@ export function LiveEditor({
               />
             </div>
             {/* row */}
-            <div className='flex flex-wrap gap-2'>
+            <div className="flex flex-wrap gap-2">
               <RangeSelector
                 text="indent"
                 className="range-control"
@@ -485,6 +513,7 @@ export function LiveEditor({
               {/* selector highlight styling theme */}
               <DropdownMenu
                 className="dropdown-menu-highlight w-36"
+                buttonRef={themeButtonRef}
                 buttonText={
                   <>
                     <span className="mr-2">🎨</span>
@@ -526,14 +555,13 @@ export function LiveEditor({
           </div>
           {/* Right side screenshot button */}
           <div className="flex items-center justify-end gap-2 self-end">
-            <ScreenshotButton 
-              onCopyImage={() => handleCopyImage('#editor-canvas')}
-            />
+            <ScreenshotButton editorElementRef={editorElementRef} />
           </div>
         </div>
         <Resizable className="editor-resizable">
           <Editor
             id="editor-canvas"
+            ref={editorElementRef}
             value={code}
             className="editor"
             title={title}
@@ -582,11 +610,7 @@ function Resizable({
   return (
     <div {...props} ref={containerRef}>
       {children}
-      <div
-        className="resizable-resizer" 
-        onMouseDown={onMouseDown}
-        style={{ cursor: 'ew-resize' }}
-      />
+      <div className="resizable-resizer" onMouseDown={onMouseDown} style={{ cursor: 'ew-resize' }} />
     </div>
   )
 }

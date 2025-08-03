@@ -1,25 +1,9 @@
 'use client'
 
-import { useEffect, useState, useRef, forwardRef } from 'react'
+import { useEffect, useState, forwardRef } from 'react'
 import { CodeHeader, getExtension, Code } from '../code/code'
 import { ScopedStyle } from '../style'
 import { css } from './css'
-
-function composeRefs(...refs: React.Ref<HTMLElement>[]) {
-  return (node: HTMLElement | null) => {
-    refs.forEach((ref) => {
-      if (typeof ref === 'function') {
-        if (node) {
-          ref(node)
-        }
-      } else if (ref) {
-        if (node) {
-          ref.current = node
-        }
-      }
-    })
-  }
-}
 
 export const Editor = forwardRef(function Editor(
   {
@@ -34,6 +18,7 @@ export const Editor = forwardRef(function Editor(
     fontSize,
     fontFamily,
     onChangeTitle = () => {},
+    textareaRef,
     ...props
   }: {
     title?: string
@@ -45,6 +30,7 @@ export const Editor = forwardRef(function Editor(
     extension?: string
     onChangeTitle?: (title: string) => void
     onChange?: (code: string) => void
+    textareaRef?: React.Ref<HTMLTextAreaElement>
   } & {
     fontSize?: string | number
     fontFamily?: string
@@ -52,7 +38,6 @@ export const Editor = forwardRef(function Editor(
   ref: React.Ref<HTMLDivElement>
 ) {
   const [code, setCode] = useState(value)
-  const textareaRef = useRef(null)
 
   function update(textContent: string) {
     setCode(textContent)
@@ -72,6 +57,7 @@ export const Editor = forwardRef(function Editor(
 
   return (
     <div
+      ref={ref}
       {...props}
       data-codice="editor"
       data-codice-editor
@@ -98,7 +84,7 @@ export const Editor = forwardRef(function Editor(
         >
           {code}
         </Code>
-        <textarea ref={composeRefs(ref, textareaRef)} value={code} onChange={onInput} />
+        <textarea ref={textareaRef} value={code} onChange={onInput} />
       </div>
     </div>
   )

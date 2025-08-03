@@ -36,6 +36,7 @@ The following props are supported by the `Editor` component:
 - `lineNumbersWidth` (optional): A string representing the width of the line numbers column. The default value is `2.5rem`.
 - `padding` (optional): A string representing the padding of the code block. The default value is `1rem`.
 - `fontSize` (optional): A string representing the font size of the editor. The default value is `inherit`.
+- `textareaRef` (optional): A React ref object to access the underlying textarea element directly for advanced use cases.
 
 Additionally, you can pass any other props to the `Editor` component, which will be applied to the root `div` element.
 

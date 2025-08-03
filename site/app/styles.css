@@ -67,13 +67,6 @@ a:visited {
 input[type='radio'] {
   display: none;
 }
-.description {
-  margin: 2rem 0;
-}
-.description .code-install {
-  margin-top: 2rem;
-  border-radius: 8px;
-}
 .code-install--bash {
   padding: 0 0.5rem;
   background-color: #242424;
@@ -511,7 +504,7 @@ input[type='radio'] {
   border-top-right-radius: 88px;
   border-bottom-right-radius: 88px;
   line-height: 20px;
-  padding: 0.2rem 0.2rem 0.2rem 0;
+  padding: 0.2rem 0.4rem;
   height: 26px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
@@ -524,7 +517,7 @@ input[type='radio'] {
 }
 
 /* Theme selection animation */
-.dropdown-menu .dropdown-menu-button.theme-selected {
+.dropdown-menu .dropdown-menu-button.button-pulsed {
   animation: button-pulse 200ms ease-out;
 }
 
