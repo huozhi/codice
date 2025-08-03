@@ -230,8 +230,8 @@ function ScreenshotButton({ onCopyImage }: { onCopyImage: () => Promise<string |
 
   return (
     <>
-      <span className="copy-image" onClick={copy} ref={buttonRef}>
-        <span className="flex items-center gap-1">
+      <span className="copy-image w-32 inline-flex justify-center" onClick={copy} ref={buttonRef}>
+        <span className="inline-flex items-center gap-1">
           {currentState === 'succeed' ? (
             <>
               <span className="success-icon">✔</span>
