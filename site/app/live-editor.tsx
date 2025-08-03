@@ -87,17 +87,52 @@ function RangeSelector({
 
 export async function copyImageDataUrl(dataUrl: string) {
   try {
-    if (navigator.clipboard && window.ClipboardItem) {
-      // Modern browsers: Use Clipboard API
-      const blob = await (await fetch(dataUrl)).blob()
-      const item = new ClipboardItem({ 'image/png': blob })
-      await navigator.clipboard.write([item])
-      return Promise.resolve(dataUrl)
-    } else {
+    if (!navigator.clipboard || !window.ClipboardItem) {
       return Promise.reject('Clipboard API not available')
     }
+
+    const blob = await (await fetch(dataUrl)).blob()
+    
+    // Safari compatibility: Check if the format is supported
+    const mimeType = 'image/png'
+    
+    // Use ClipboardItem.supports() if available (modern browsers)
+    if (typeof ClipboardItem.supports === 'function') {
+      if (!ClipboardItem.supports(mimeType)) {
+        return Promise.reject(`Format ${mimeType} not supported`)
+      }
+    }
+
+    // Safari-specific: Create ClipboardItem with promise-based blob for better compatibility
+    const clipboardItem = new ClipboardItem({ 
+      [mimeType]: Promise.resolve(blob)
+    })
+
+    // Safari requires user gesture - this should be called within a user interaction
+    await navigator.clipboard.write([clipboardItem])
+    return Promise.resolve(dataUrl)
+    
   } catch (error) {
-    return Promise.reject(error)
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Clipboard error:', error)
+    }
+    
+    // Safari-specific error handling with better messages
+    if (error instanceof Error) {
+      if (error.name === 'NotAllowedError') {
+        // This is the most common Safari issue
+        return Promise.reject('Safari blocked clipboard access. Try clicking the screenshot button again.')
+      }
+      if (error.name === 'DataError') {
+        return Promise.reject('Invalid image data format.')
+      }
+      if (error.name === 'SecurityError') {
+        return Promise.reject('Security policy prevented clipboard access.')
+      }
+    }
+    
+    // Generic error fallback
+    return Promise.reject('Failed to copy image to clipboard. Please try again.')
   }
 }
 
@@ -126,78 +161,100 @@ function ScreenshotButton({ editorElementRef }: { editorElementRef: React.RefObj
   const buttonRef = useRef<HTMLSpanElement>(null)
   const timeoutsRef = useRef<Map<string, NodeJS.Timeout>>(new Map())
 
-  const handleCopyImage = () => {
+  const handleCopyImage = async () => {
     if (!editorElementRef.current) {
       return Promise.resolve(null)
     }
-    return toPng(editorElementRef.current).then((dataUrl) => {
-      return copyImageDataUrl(dataUrl).then(
-        () => dataUrl,
-        () => {
-          return null
-        }
-      )
-    })
+    
+    try {
+      // Safari fix: Create clipboard promise immediately to preserve user gesture
+      if (!navigator.clipboard || !window.ClipboardItem) {
+        throw new Error('Clipboard API not available')
+      }
+
+      // Create the clipboard item with a promise that resolves to the blob
+      // This preserves Safari's user gesture context
+      const clipboardItem = new ClipboardItem({
+        'image/png': toPng(editorElementRef.current).then(async (dataUrl) => {
+          const response = await fetch(dataUrl)
+          return response.blob()
+        })
+      })
+
+      // Start clipboard write immediately (synchronously from user event)
+      await navigator.clipboard.write([clipboardItem])
+      
+      // Generate dataUrl for return (can be done after clipboard operation)
+      const dataUrl = await toPng(editorElementRef.current)
+      return dataUrl
+    } catch (error) {
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Screenshot or clipboard error:', error)
+      }
+      return null
+    }
   }
 
-  const [actionState, dispatch, isPending] = useActionState<{ state: 'idle' | 'succeed' | 'error' }, 'reset' | 'copy'>(
+  const [actionState, dispatch, isPending] = useActionState<
+    { state: 'idle' | 'succeed' | 'error'; dataUrl?: string }, 
+    { type: 'reset' } | { type: 'copy'; dataUrl: string | null }
+  >(
     (state, action) => {
-      if (action === 'reset') {
+      if (action.type === 'reset') {
         return { state: 'idle' }
-      } else if (action === 'copy') {
-        // Take screenshot and create new item
-        return handleCopyImage().then((imageDataUrl) => {
-          if (imageDataUrl) {
-            const id = Date.now().toString()
+      } else if (action.type === 'copy') {
+        const imageDataUrl = action.dataUrl
+        
+        if (imageDataUrl) {
+          const id = Date.now().toString()
 
-            // Add new screenshot item to the top of the queue
-            setScreenshots((prev) => [
-              {
-                id,
-                dataUrl: imageDataUrl,
-                phase: 'entering',
-              },
-              ...prev,
-            ])
+          // Add new screenshot item to the top of the queue
+          setScreenshots((prev) => [
+            {
+              id,
+              dataUrl: imageDataUrl,
+              phase: 'entering',
+            },
+            ...prev,
+          ])
 
-            // Reset button state quickly after successful screenshot
-            const resetButtonTimeout = setTimeout(() => {
-              reset()
-            }, 300)
+          // Reset button state quickly after successful screenshot
+          const resetButtonTimeout = setTimeout(() => {
+            reset()
+          }, 300)
 
-            // Transition to settled after delay
-            const settledTimeout = setTimeout(() => {
-              setScreenshots((prev) => prev.map((item) => (item.id === id ? { ...item, phase: 'settled' } : item)))
+          // Transition to settled after delay
+          const settledTimeout = setTimeout(() => {
+            setScreenshots((prev) => prev.map((item) => (item.id === id ? { ...item, phase: 'settled' } : item)))
 
-              // Start exit animation 2 seconds after reaching settled state
-              const exitTimeout = setTimeout(() => {
-                setScreenshots((prev) => prev.map((item) => (item.id === id ? { ...item, phase: 'exiting' } : item)))
+            // Start exit animation 2 seconds after reaching settled state
+            const exitTimeout = setTimeout(() => {
+              setScreenshots((prev) => prev.map((item) => (item.id === id ? { ...item, phase: 'exiting' } : item)))
 
-                // Remove item after exit animation
-                const removeTimeout = setTimeout(() => {
-                  setScreenshots((prev) => prev.filter((item) => item.id !== id))
-                  timeoutsRef.current.delete(id)
-                  timeoutsRef.current.delete(id + '-exit')
-                  timeoutsRef.current.delete(id + '-remove')
-                  timeoutsRef.current.delete(id + '-reset')
-                }, 300)
+              // Remove item after exit animation
+              const removeTimeout = setTimeout(() => {
+                setScreenshots((prev) => prev.filter((item) => item.id !== id))
+                timeoutsRef.current.delete(id)
+                timeoutsRef.current.delete(id + '-exit')
+                timeoutsRef.current.delete(id + '-remove')
+                timeoutsRef.current.delete(id + '-reset')
+              }, 300)
 
-                timeoutsRef.current.set(id + '-remove', removeTimeout)
-              }, 1500)
+              timeoutsRef.current.set(id + '-remove', removeTimeout)
+            }, 1500)
 
-              timeoutsRef.current.set(id + '-exit', exitTimeout)
-            }, 50)
+            timeoutsRef.current.set(id + '-exit', exitTimeout)
+          }, 50)
 
-            timeoutsRef.current.set(id, settledTimeout)
-            timeoutsRef.current.set(id + '-reset', resetButtonTimeout)
-          } else {
-            // Reset button state quickly after failed screenshot
-            setTimeout(() => {
-              reset()
-            }, 1000)
-          }
-          return { state: imageDataUrl ? 'succeed' : 'error' }
-        })
+          timeoutsRef.current.set(id, settledTimeout)
+          timeoutsRef.current.set(id + '-reset', resetButtonTimeout)
+        } else {
+          // Reset button state quickly after failed screenshot
+          setTimeout(() => {
+            reset()
+          }, 1000)
+        }
+        return { state: imageDataUrl ? 'succeed' : 'error', dataUrl: imageDataUrl || undefined }
       }
       return state
     },
@@ -208,14 +265,16 @@ function ScreenshotButton({ editorElementRef }: { editorElementRef: React.RefObj
 
   function copy() {
     startTransition(async () => {
-      // Always allow new screenshots, even if one is pending
-      dispatch('copy')
+      // Perform clipboard operation immediately to maintain Safari user gesture context
+      const imageDataUrl = await handleCopyImage()
+      // Then dispatch the action with the result
+      dispatch({ type: 'copy', dataUrl: imageDataUrl })
     })
   }
 
   function reset() {
     startTransition(() => {
-      dispatch('reset')
+      dispatch({ type: 'reset' })
     })
   }
 
@@ -242,7 +301,7 @@ function ScreenshotButton({ editorElementRef }: { editorElementRef: React.RefObj
           ) : currentState === 'error' ? (
             <>
               <span className="error-icon">✖</span>
-              <span className="copy-image-text">Failed to copy</span>
+              <span className="copy-image-text">Copy Failed</span>
             </>
           ) : (
             <>

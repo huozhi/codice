@@ -22,9 +22,8 @@ export default async function Page(props: { searchParams: Promise<SearchParams> 
           <span className="subtitle">The Story of Code Presentation</span>
         </p>
         <p className="mt-[2rem]">
-          Codice is a lightweight, zero-dependency React library for beautiful code editing and display. It delivers a
-          powerful yet minimal code editor and syntax-highlighted code blocks, with full styling control through CSS
-          variables and seamless customization.
+          Codice is a simple code editor and code block component for React.
+          It is a zero-dependency library that provides a slim code editor and code block component.
         </p>
 
         <Code className="mt-[1rem] rounded-lg code-install--bash">{`npm install codice`}</Code>
