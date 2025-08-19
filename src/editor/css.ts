@@ -35,6 +35,7 @@ ${R} code {
   display: inline-block;
   width: 100%;
   margin-left: calc(var(--codice-code-line-number-width) - 2.5rem); ${/* 2.5rem is the default line number width */''}
+  padding-right: calc(var(--codice-code-padding) * 0.5);
 }
 ${R} textarea::-webkit-scrollbar,
 ${R} textarea:focus::-webkit-scrollbar,
@@ -58,7 +59,7 @@ ${R} textarea {
   overflow: hidden;
 }
 ${R}[data-codice-line-numbers="true"] textarea {
-  padding-left: calc(var(--codice-code-line-number-width) + 2px);
+  padding-left: calc(var(--codice-code-line-number-width));
 }
 ${R}[data-codice-line-numbers="false"] textarea {
   padding-left: var(--codice-code-padding);

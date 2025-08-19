@@ -42,6 +42,7 @@ describe('Code', () => {
         display: inline-block;
         width: 100%;
         margin-left: calc(var(--codice-code-line-number-width) - 2.5rem); 
+        padding-right: calc(var(--codice-code-padding) * 0.5);
       }
       :scope[data-codice-editor] textarea::-webkit-scrollbar,
       :scope[data-codice-editor] textarea:focus::-webkit-scrollbar,
@@ -65,7 +66,7 @@ describe('Code', () => {
         overflow: hidden;
       }
       :scope[data-codice-editor][data-codice-line-numbers="true"] textarea {
-        padding-left: calc(var(--codice-code-line-number-width) + 2px);
+        padding-left: calc(var(--codice-code-line-number-width));
       }
       :scope[data-codice-editor][data-codice-line-numbers="false"] textarea {
         padding-left: var(--codice-code-padding);
@@ -253,6 +254,7 @@ describe('Code', () => {
         display: inline-block;
         width: 100%;
         margin-left: calc(var(--codice-code-line-number-width) - 2.5rem); 
+        padding-right: calc(var(--codice-code-padding) * 0.5);
       }
       :scope[data-codice-editor] textarea::-webkit-scrollbar,
       :scope[data-codice-editor] textarea:focus::-webkit-scrollbar,
@@ -276,7 +278,7 @@ describe('Code', () => {
         overflow: hidden;
       }
       :scope[data-codice-editor][data-codice-line-numbers="true"] textarea {
-        padding-left: calc(var(--codice-code-line-number-width) + 2px);
+        padding-left: calc(var(--codice-code-line-number-width));
       }
       :scope[data-codice-editor][data-codice-line-numbers="false"] textarea {
         padding-left: var(--codice-code-padding);
@@ -464,6 +466,7 @@ describe('Code', () => {
         display: inline-block;
         width: 100%;
         margin-left: calc(var(--codice-code-line-number-width) - 2.5rem); 
+        padding-right: calc(var(--codice-code-padding) * 0.5);
       }
       :scope[data-codice-editor] textarea::-webkit-scrollbar,
       :scope[data-codice-editor] textarea:focus::-webkit-scrollbar,
@@ -487,7 +490,7 @@ describe('Code', () => {
         overflow: hidden;
       }
       :scope[data-codice-editor][data-codice-line-numbers="true"] textarea {
-        padding-left: calc(var(--codice-code-line-number-width) + 2px);
+        padding-left: calc(var(--codice-code-line-number-width));
       }
       :scope[data-codice-editor][data-codice-line-numbers="false"] textarea {
         padding-left: var(--codice-code-padding);
