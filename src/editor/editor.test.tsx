@@ -66,7 +66,7 @@ describe('Code', () => {
         overflow: hidden;
       }
       :scope[data-codice-editor][data-codice-line-numbers="true"] textarea {
-        padding-left: calc(var(--codice-code-line-number-width));
+        padding-left: calc(var(--codice-code-line-number-width) + 2px);
       }
       :scope[data-codice-editor][data-codice-line-numbers="false"] textarea {
         padding-left: var(--codice-code-padding);
@@ -278,7 +278,7 @@ describe('Code', () => {
         overflow: hidden;
       }
       :scope[data-codice-editor][data-codice-line-numbers="true"] textarea {
-        padding-left: calc(var(--codice-code-line-number-width));
+        padding-left: calc(var(--codice-code-line-number-width) + 2px);
       }
       :scope[data-codice-editor][data-codice-line-numbers="false"] textarea {
         padding-left: var(--codice-code-padding);
@@ -490,7 +490,7 @@ describe('Code', () => {
         overflow: hidden;
       }
       :scope[data-codice-editor][data-codice-line-numbers="true"] textarea {
-        padding-left: calc(var(--codice-code-line-number-width));
+        padding-left: calc(var(--codice-code-line-number-width) + 2px);
       }
       :scope[data-codice-editor][data-codice-line-numbers="false"] textarea {
         padding-left: var(--codice-code-padding);

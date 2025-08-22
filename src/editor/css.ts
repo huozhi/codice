@@ -59,7 +59,7 @@ ${R} textarea {
   overflow: hidden;
 }
 ${R}[data-codice-line-numbers="true"] textarea {
-  padding-left: calc(var(--codice-code-line-number-width));
+  padding-left: calc(var(--codice-code-line-number-width) + 2px);
 }
 ${R}[data-codice-line-numbers="false"] textarea {
   padding-left: var(--codice-code-padding);
