@@ -5,7 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  next: ^16.0.1
   react: ^19.0.0
   react-dom: ^19.0.0
 
@@ -20,6 +19,9 @@ importers:
       '@tailwindcss/postcss':
         specifier: ^4.1.8
         version: 4.1.8
+      '@types/node':
+        specifier: ^22.10.7
+        version: 22.10.7
       '@types/react':
         specifier: ^19.0.7
         version: 19.0.7
@@ -30,11 +32,14 @@ importers:
         specifier: ^1.11.13
         version: 1.11.13
       next:
-        specifier: ^16.0.1
+        specifier: 16.0.1
         version: 16.0.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       postcss:
         specifier: ^8.5.4
         version: 8.5.4
+      prettier:
+        specifier: ^3.6.2
+        version: 3.6.2
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -54,27 +59,27 @@ importers:
   site:
     dependencies:
       codice:
-        specifier: link:../
+        specifier: workspace:*
         version: link:..
-      next:
-        specifier: ^16.0.1
-        version: 16.0.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      prettier:
+        specifier: ^3.6.2
+        version: 3.6.2
       react:
         specifier: ^19.0.0
         version: 19.0.0
       react-dom:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
-      sugar-high:
-        specifier: ^0.9.3
-        version: 0.9.3
     devDependencies:
       '@types/node':
-        specifier: 22.10.7
+        specifier: ^22.10.7
         version: 22.10.7
-      prettier:
-        specifier: ^3.5.3
-        version: 3.5.3
+      '@types/react':
+        specifier: ^19.0.7
+        version: 19.0.7
+      next:
+        specifier: 16.0.1
+        version: 16.0.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       typescript:
         specifier: ^5.7.3
         version: 5.7.3
@@ -1338,8 +1343,8 @@ packages:
     resolution: {integrity: sha512-QSa9EBe+uwlGTFmHsPKokv3B/oEMQZxfqW0QqNCyhpa6mB1afzulwn8hihglqAb2pOw+BJgNlmXQ8la2VeHB7w==}
     engines: {node: ^10 || ^12 || >=14}
 
-  prettier@3.5.3:
-    resolution: {integrity: sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw==}
+  prettier@3.6.2:
+    resolution: {integrity: sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -1476,9 +1481,6 @@ packages:
         optional: true
       babel-plugin-macros:
         optional: true
-
-  sugar-high@0.9.3:
-    resolution: {integrity: sha512-sjJH8J76D1dRMU3QINnsYr1wfQyXbyEVQQvdgzJvIer6mkgM8ahB9fNrb+FDWzRKsLuITiBOR0ZbbhDZDUbqjg==}
 
   sugar-high@0.9.5:
     resolution: {integrity: sha512-eirwp9p7QcMg6EFCD6zrGh4H30uFx2YtfiMJUavagceP6/YUUjLeiQmis7QuwqKB3nXrWXlLaRumCqOd9AKpSA==}
@@ -2595,7 +2597,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  prettier@3.5.3: {}
+  prettier@3.6.2: {}
 
   pretty-bytes@5.6.0: {}
 
@@ -2777,8 +2779,6 @@ snapshots:
     dependencies:
       client-only: 0.0.1
       react: 19.0.0
-
-  sugar-high@0.9.3: {}
 
   sugar-high@0.9.5: {}
 
