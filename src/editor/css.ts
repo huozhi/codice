@@ -15,7 +15,7 @@ ${R} {
   justify-content: stretch;
   scrollbar-width: none;
 }
-${R} textarea {
+${R} textarea:not(:placeholder-shown) {
   padding: calc(var(--codice-code-padding) * 0.75) calc(var(--codice-code-padding) * 0.5);
 }
 ${R} code,
