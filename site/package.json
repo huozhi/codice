@@ -1,6 +1,5 @@
 {
   "name": "site",
-  "type": "commonjs",
   "private": true,
   "scripts": {
     "dev": "next dev",

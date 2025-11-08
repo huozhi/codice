@@ -189,6 +189,7 @@ input[type='radio'] {
 }
 
 #editor-canvas {
+  min-width: 360px;
   padding: 0.5rem;
   background-color: var(--app-editor-bg-color);
   transition: background-color var(--sh-transition-duration, 300ms) var(--sh-transition-timing, ease-out);
