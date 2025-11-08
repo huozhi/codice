@@ -22,7 +22,7 @@ describe('Code', () => {
         justify-content: stretch;
         scrollbar-width: none;
       }
-      :scope[data-codice-editor] textarea {
+      :scope[data-codice-editor] textarea:not(:placeholder-shown) {
         padding: calc(var(--codice-code-padding) * 0.75) calc(var(--codice-code-padding) * 0.5);
       }
       :scope[data-codice-editor] code,
@@ -234,7 +234,7 @@ describe('Code', () => {
         justify-content: stretch;
         scrollbar-width: none;
       }
-      :scope[data-codice-editor] textarea {
+      :scope[data-codice-editor] textarea:not(:placeholder-shown) {
         padding: calc(var(--codice-code-padding) * 0.75) calc(var(--codice-code-padding) * 0.5);
       }
       :scope[data-codice-editor] code,
@@ -446,7 +446,7 @@ describe('Code', () => {
         justify-content: stretch;
         scrollbar-width: none;
       }
-      :scope[data-codice-editor] textarea {
+      :scope[data-codice-editor] textarea:not(:placeholder-shown) {
         padding: calc(var(--codice-code-padding) * 0.75) calc(var(--codice-code-padding) * 0.5);
       }
       :scope[data-codice-editor] code,
