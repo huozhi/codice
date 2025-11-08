@@ -81,7 +81,7 @@ describe('Code', () => {
         display: inline-block;
         min-width: calc(2rem - 6px);
         margin-left: calc(var(--codice-code-line-number-width) * -1);
-        margin-right: 16px;
+        margin-right: 14px;
         text-align: right;
         user-select: none;
         color: var(--codice-code-line-number-color);
@@ -178,7 +178,7 @@ describe('Code', () => {
         display: inline-block;
         min-width: calc(2rem - 6px);
         margin-left: calc(var(--codice-code-line-number-width) * -1);
-        margin-right: 16px;
+        margin-right: 14px;
         text-align: right;
         user-select: none;
         color: var(--codice-code-line-number-color);
@@ -317,7 +317,7 @@ describe('Code', () => {
         display: inline-block;
         min-width: calc(2rem - 6px);
         margin-left: calc(var(--codice-code-line-number-width) * -1);
-        margin-right: 16px;
+        margin-right: 14px;
         text-align: right;
         user-select: none;
         color: var(--codice-code-line-number-color);
@@ -456,7 +456,7 @@ describe('Code', () => {
         display: inline-block;
         min-width: calc(2rem - 6px);
         margin-left: calc(var(--codice-code-line-number-width) * -1);
-        margin-right: 16px;
+        margin-right: 14px;
         text-align: right;
         user-select: none;
         color: var(--codice-code-line-number-color);
@@ -551,7 +551,7 @@ describe('Code', () => {
         display: inline-block;
         min-width: calc(2rem - 6px);
         margin-left: calc(var(--codice-code-line-number-width) * -1);
-        margin-right: 16px;
+        margin-right: 14px;
         text-align: right;
         user-select: none;
         color: var(--codice-code-line-number-color);
