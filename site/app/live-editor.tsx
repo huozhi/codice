@@ -540,7 +540,7 @@ export function LiveEditor({
   return (
     <div>
       <div className="editor-layout">
-        <div className="controls flex flex-col md:flex-row mt-4 md:mt-0 items-center justify-between">
+        <div className="controls flex flex-col md:flex-row mt-4 md:mt-0 items-start md:items-center justify-start md:justify-between">
           {/* Left controls */}
           <div className="flex flex-col gap-y-2 flex-wrap">
             <div className="controls-manager">
@@ -616,7 +616,7 @@ export function LiveEditor({
             </div>
           </div>
           {/* Right side screenshot button */}
-          <div className="flex items-center justify-end gap-2 self-end mt-4 md:mt-0">
+          <div className="flex items-center justify-end gap-2 mt-4 md:mt-0 md:self-end">
             <ScreenshotButton editorElementRef={editorElementRef} />
           </div>
         </div>
