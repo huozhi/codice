@@ -13,9 +13,9 @@ const cx = (...classes: (string | boolean | undefined)[]) => {
 }
 
 const CODE_QUERY_KEY = 'c'
-// Theme mapping: nord=Gruvbox, vscode=VS Code/GitHub, solarized=One Dark, dracula=Dracula, monokai=Monokai, base16=Tokyo Night
+// Theme mapping: nord=Gruvbox, vscode=VS Code/GitHub, solarized=One Dark, minimal=Minimal, monokai=Monokai, base16=Tokyo Night
 // Note: 'default' theme is used internally for SSR/hydration plain text styling and doesn't appear in this list
-const SYNTAX_THEMES = ['nord', 'vscode', 'solarized', 'dracula', 'monokai', 'base16']
+const SYNTAX_THEMES = ['nord', 'vscode', 'solarized', 'minimal', 'monokai', 'base16']
 
 function ControlButton({
   id,
@@ -144,6 +144,27 @@ function CameraIcon({ ...props }: React.SVGProps<SVGSVGElement>) {
         d="M3 18V9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
       />
       <circle cx="12" cy="13" r="3" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+    </svg>
+  )
+}
+
+function FormatIcon({ className, ...props }: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className={`inline-block ${className || ''}`} {...props}>
+      {/* Mop handle */}
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M12 2v14"
+      />
+      {/* Mop bristles */}
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M8 16l-2 4M12 16l-2 4M16 16l-2 4"
+      />
     </svg>
   )
 }
@@ -289,8 +310,8 @@ function ScreenshotButton({ editorElementRef }: { editorElementRef: React.RefObj
 
   return (
     <>
-      <span className="copy-image w-32 inline-flex justify-center" onClick={copy} ref={buttonRef}>
-        <span className="inline-flex items-center gap-1">
+      <span className="copy-image w-32 inline-flex shrink-0 justify-center rounded-l-none rounded-r-lg whitespace-nowrap" onClick={copy} ref={buttonRef}>
+        <span className="inline-flex flex-col items-center gap-1">
           {currentState === 'succeed' ? (
             <>
               <span className="success-icon">✔</span>
@@ -303,8 +324,8 @@ function ScreenshotButton({ editorElementRef }: { editorElementRef: React.RefObj
             </>
           ) : (
             <>
-              <CameraIcon width={18} height={18} fill="none" stroke="currentColor" strokeWidth="1.5" />
-              <span className="copy-image-text">Screenshot</span>
+              <CameraIcon width={32} height={32} fill="none" stroke="currentColor" strokeWidth="1.5" />
+              <span className="copy-image-text hidden md:inline">Screenshot</span>
             </>
           )}
         </span>
@@ -507,6 +528,7 @@ export function LiveEditor({
   const [controls, setControls] = useState(true)
   const [lineNumbers, setLineNumbers] = useState(true)
   const [lineNumbersWidth, setLineNumbersWidth] = useState(2.5) // rem
+  const [isFormatting, setIsFormatting] = useState(false)
 
   // Refs for theme change animations
   const editorElementRef = useRef<HTMLDivElement | null>(null)
@@ -538,9 +560,9 @@ export function LiveEditor({
   return (
     <div>
       <div className="editor-layout">
-        <div className="controls flex flex-col md:flex-row mt-4 md:mt-0 items-start md:items-center justify-start md:justify-between">
+        <div className="controls flex flex-row md:flex-nowrap mt-8 md:mt-8 mb-4 md:mb-4 items-start md:items-center justify-start md:justify-center">
           {/* Left controls */}
-          <div className="flex flex-col gap-y-2 flex-wrap p-4 rounded-lg bg-[var(--app-editor-bg-color)]">
+          <div className="inline-flex flex-col gap-y-2 flex-wrap p-4 rounded-lg bg-[var(--app-editor-bg-color)] controls-left-panel">
             <div className="controls-manager">
               <ControlButton id="control-control" checked={controls} onChange={setControls} text="controls" />
               <ControlButton
@@ -596,6 +618,7 @@ export function LiveEditor({
                 checked
                 onChange={async () => {
                   setFormat(!_f)
+                  setIsFormatting(true)
                   try {
                     const [prettierPluginBabel, prettierPluginEstree] = await Promise.all([
                       import('prettier/plugins/babel'),
@@ -613,15 +636,17 @@ export function LiveEditor({
                     setCode(formattedCode)
                   } catch (error) {
                     console.error('Formatting error:', error)
+                  } finally {
+                    setTimeout(() => setIsFormatting(false), 600)
                   }
                 }}
                 text="format"
-                prefix={'🧹'}
+                prefix={<FormatIcon width={14} height={14} stroke="currentColor" strokeWidth="2" className={isFormatting ? 'mop-animate' : ''} />}
               />
             </div>
           </div>
           {/* Right side screenshot button */}
-          <div className="flex items-center justify-end gap-2 mt-4 md:mt-0 md:self-end">
+          <div className="inline-flex items-center self-stretch gap-2 flex-shrink-0">
             <ScreenshotButton editorElementRef={editorElementRef} />
           </div>
         </div>

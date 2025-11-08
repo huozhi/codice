@@ -124,7 +124,6 @@ input[type='radio'] {
 }
 .control-button .controls-manager-label {
   cursor: pointer;
-  white-space: nowrap;
 }
 .control-button:hover {
   background-color: var(--control-hover-color);
@@ -398,10 +397,6 @@ input[type='radio'] {
   transition: background-color 0.2s ease-in-out;
 }
 
-.controls {
-  margin-top: 2rem;
-  margin-bottom: 2.5rem;
-}
 .controls-manager {
   display: flex;
   font-size: 14px;
@@ -557,18 +552,49 @@ input[type='radio'] {
   background-color: var(--control-hover-color);
 }
 
+.controls-left-panel {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
 .copy-image {
   cursor: pointer;
   background-color: #f87e68;
   padding: 0.2rem 0.8rem;
-  border-radius: 88px;
   font-size: 14px;
   transition: all 0.2s ease-in-out;
   font-weight: 600;
   user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 .copy-image:hover {
   filter: brightness(0.9);
+}
+
+@keyframes mop-sweep {
+  0% {
+    transform: rotate(0deg) translateX(0);
+  }
+  25% {
+    transform: rotate(-15deg) translateX(2px);
+  }
+  50% {
+    transform: rotate(15deg) translateX(-2px);
+  }
+  75% {
+    transform: rotate(-10deg) translateX(1px);
+  }
+  100% {
+    transform: rotate(0deg) translateX(0);
+  }
+}
+
+.mop-animate {
+  animation: mop-sweep 0.6s ease-in-out;
+  transform-origin: top center;
 }
 
 /* Smooth syntax highlighting transitions when theme changes */

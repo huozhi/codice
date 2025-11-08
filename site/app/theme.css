@@ -109,29 +109,29 @@
   --sh-property: #6b8e23;
 }
 
-/* Dracula theme: dark */
-:root[data-highlight-theme="dracula"][data-theme='dark'] {
-  --sh-class: #ff79c6;
-  --sh-identifier: #f8f8f2;
-  --sh-sign: #bd93f9;
-  --sh-string: #50fa7b;
-  --sh-keyword: #ff79c6;
-  --sh-comment: #6272a4;
-  --sh-jsxliterals: #ffb86c;
-  --sh-entity: #ff5555;
-  --sh-property: #f1fa8c;
+/* Minimal theme: dark - 3 colors (keywords lighter, strings/comments gray) */
+:root[data-highlight-theme="minimal"][data-theme='dark'] {
+  --sh-class: #909090;
+  --sh-identifier: #909090;
+  --sh-sign: #909090;
+  --sh-string: #808080;
+  --sh-keyword: #b0b0b0;
+  --sh-comment: #a0a0a0;
+  --sh-jsxliterals: #909090;
+  --sh-entity: #909090;
+  --sh-property: #909090;
 }
-/* Dracula theme: light */
-:root[data-highlight-theme="dracula"][data-theme='light'] {
-  --sh-class: #d1479c;
-  --sh-identifier: #44475a;
-  --sh-sign: #8c7cc9;
-  --sh-string: #50a56b;
-  --sh-keyword: #d1479c;
-  --sh-comment: #999ebf;
-  --sh-jsxliterals: #c78e5c;
-  --sh-entity: #c94848;
-  --sh-property: #a9b85c;
+/* Minimal theme: light - 3 colors (keywords lighter, strings/comments gray) */
+:root[data-highlight-theme="minimal"][data-theme='light'] {
+  --sh-class: #404040;
+  --sh-identifier: #404040;
+  --sh-sign: #404040;
+  --sh-string: #808080;
+  --sh-keyword: #606060;
+  --sh-comment: #999999;
+  --sh-jsxliterals: #404040;
+  --sh-entity: #404040;
+  --sh-property: #404040;
 }
 /* Gruvbox theme: dark */
 :root[data-highlight-theme="nord"][data-theme='dark'] {
