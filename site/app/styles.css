@@ -90,7 +90,7 @@ input[type='radio'] {
   transition: text-shadow 0.1s ease-in-out;
 }
 .huge-title:hover {
-  text-shadow: 0 0 10px #f47067;
+  text-shadow: -2px 1px 6px #5c5c5ca4, 0 0 10px #f47067;
 }
 .subtitle {
   font-size: 2rem;
@@ -309,6 +309,7 @@ input[type='radio'] {
 
 .code-example__item__title {
   margin: 0 0 1.2rem;
+  font-weight: 500;
 }
 .controls-manager-label {
   display: inline-block;
@@ -672,7 +673,7 @@ input[type='radio'] {
   color: #272727;
 }
 [data-theme]:not([data-theme='dark']) .code-install--bash {
-  background-color: #e8e8e8;
+  background-color: var(--app-editor-bg-color);
   --sh-identifier: #645151;
 }
 [data-theme]:not([data-theme='dark']) .code-example [data-codice-code] {

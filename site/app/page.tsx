@@ -43,56 +43,99 @@ export default async function Page(props: { searchParams: Promise<SearchParams> 
         <div className="space-y-6">
           <div>
             <h3 className="text-lg font-semibold mb-3">Core Editor Variables</h3>
-            <div className="space-y-2 text-sm">
-              <div>
-                <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-text-color</code> - Editor text color
-                (default: transparent)
-              </div>
-              <div>
-                <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-background-color</code> - Editor
-                background color (default: transparent)
-              </div>
-              <div>
-                <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-caret-color</code> - Text cursor color
-                (default: inherit)
-              </div>
-              <div>
-                <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-font-family</code> - Code font family
-                (default: Consolas, Monaco, monospace)
-              </div>
-              <div>
-                <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-font-size</code> - Font size (default:
-                inherit)
-              </div>
-              <div>
-                <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-code-padding</code> - Content padding
-                (default: 1rem)
-              </div>
-              <div>
-                <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-code-line-number-width</code> - Line
-                numbers column width (default: 2.5rem)
-              </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm border-collapse">
+                <thead>
+                  <tr className="border-b border-gray-300/40">
+                    <th className="text-left py-2 px-3 font-semibold">Variable</th>
+                    <th className="text-left py-2 px-3 font-semibold">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-gray-300/40">
+                    <td className="py-2 px-3 whitespace-nowrap">
+                      <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-text-color</code>
+                    </td>
+                    <td className="py-2 px-3">Editor text color (default: transparent)</td>
+                  </tr>
+                  <tr className="border-b border-gray-300/40">
+                    <td className="py-2 px-3 whitespace-nowrap">
+                      <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-background-color</code>
+                    </td>
+                    <td className="py-2 px-3">Editor background color (default: transparent)</td>
+                  </tr>
+                  <tr className="border-b border-gray-300/40">
+                    <td className="py-2 px-3 whitespace-nowrap">
+                      <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-caret-color</code>
+                    </td>
+                    <td className="py-2 px-3">Text cursor color (default: inherit)</td>
+                  </tr>
+                  <tr className="border-b border-gray-300/40">
+                    <td className="py-2 px-3 whitespace-nowrap">
+                      <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-font-family</code>
+                    </td>
+                    <td className="py-2 px-3">Code font family (default: Consolas, Monaco, monospace)</td>
+                  </tr>
+                  <tr className="border-b border-gray-300/40">
+                    <td className="py-2 px-3 whitespace-nowrap">
+                      <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-font-size</code>
+                    </td>
+                    <td className="py-2 px-3">Font size (default: inherit)</td>
+                  </tr>
+                  <tr className="border-b border-gray-300/40">
+                    <td className="py-2 px-3 whitespace-nowrap">
+                      <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-code-padding</code>
+                    </td>
+                    <td className="py-2 px-3">Content padding (default: 1rem)</td>
+                  </tr>
+                  <tr className="border-b border-gray-300/40">
+                    <td className="py-2 px-3 whitespace-nowrap">
+                      <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-code-line-number-width</code>
+                    </td>
+                    <td className="py-2 px-3">Line numbers column width (default: 2.5rem)</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
 
           <div>
             <h3 className="text-lg font-semibold mb-3">UI Controls Variables</h3>
-            <div className="space-y-2 text-sm">
-              <div>
-                <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-control-color</code> - Control dots and
-                UI elements color
-              </div>
-              <div>
-                <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-title-color</code> - Title text color
-              </div>
-              <div>
-                <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-code-line-number-color</code> - Line
-                numbers color
-              </div>
-              <div>
-                <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-code-highlight-color</code> -
-                Highlighted lines background
-              </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm border-collapse">
+                <thead>
+                  <tr className="border-b border-gray-300/40">
+                    <th className="text-left py-2 px-3 font-semibold">Variable</th>
+                    <th className="text-left py-2 px-3 font-semibold">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-gray-300/40">
+                    <td className="py-2 px-3 whitespace-nowrap">
+                      <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-control-color</code>
+                    </td>
+                    <td className="py-2 px-3">Control dots and UI elements color</td>
+                  </tr>
+                  <tr className="border-b border-gray-300/40">
+                    <td className="py-2 px-3 whitespace-nowrap">
+                      <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-title-color</code>
+                    </td>
+                    <td className="py-2 px-3">Title text color</td>
+                  </tr>
+                  <tr className="border-b border-gray-300/40">
+                    <td className="py-2 px-3 whitespace-nowrap">
+                      <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-code-line-number-color</code>
+                    </td>
+                    <td className="py-2 px-3">Line numbers color</td>
+                  </tr>
+                  <tr className="border-b border-gray-300/40">
+                    <td className="py-2 px-3 whitespace-nowrap">
+                      <code className="text-xs bg-[var(--control-bg-color)] px-2 py-1 rounded">--codice-code-highlight-color</code>
+                    </td>
+                    <td className="py-2 px-3">Highlighted lines background</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
 

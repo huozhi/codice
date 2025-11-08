@@ -542,7 +542,7 @@ export function LiveEditor({
       <div className="editor-layout">
         <div className="controls flex flex-col md:flex-row mt-4 md:mt-0 items-start md:items-center justify-start md:justify-between">
           {/* Left controls */}
-          <div className="flex flex-col gap-y-2 flex-wrap">
+          <div className="flex flex-col gap-y-2 flex-wrap p-4 rounded-lg bg-[var(--app-editor-bg-color)]">
             <div className="controls-manager">
               <ControlButton id="control-control" checked={controls} onChange={setControls} text="controls" />
               <ControlButton
