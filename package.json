@@ -22,11 +22,13 @@
   "license": "MIT",
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.8",
+    "@types/node": "^22.10.7",
     "@types/react": "^19.0.7",
     "bunchee": "^6.5.2",
     "html-to-image": "^1.11.13",
-    "next": "^16.0.1",
+    "next": "16.0.1",
     "postcss": "^8.5.4",
+    "prettier": "^3.6.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwindcss": "^4.1.8",
@@ -34,7 +36,6 @@
     "vitest": "^3.0.2"
   },
   "resolutions": {
-    "next": "^16.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

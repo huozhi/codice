@@ -1,10 +1,8 @@
 'use client'
 
 import { Editor } from 'codice'
-import React, { startTransition, useActionState, useEffect, useId, useRef, useState } from 'react'
+import React, { startTransition, useActionState, useEffect, useRef, useState } from 'react'
 import { format as prettierFormat } from 'prettier/standalone'
-import prettierPluginBabel from 'prettier/plugins/babel'
-import prettierPluginEstree from 'prettier/plugins/estree'
 import { toPng } from 'html-to-image'
 import { useTheme } from './theme'
 import { ArrowIcon } from './arrow-icon'
@@ -596,19 +594,26 @@ export function LiveEditor({
               <ControlButton
                 id="control-format"
                 checked
-                onChange={() => {
+                onChange={async () => {
                   setFormat(!_f)
-                  prettierFormat(code, {
-                    parser: 'babel',
-                    plugins: [prettierPluginBabel, prettierPluginEstree],
-                    printWidth: 120,
-                    singleQuote: true,
-                    trailingComma: 'es5',
-                    semi: false,
-                    tabWidth: 2,
-                  }).then((formattedCode) => {
+                  try {
+                    const [prettierPluginBabel, prettierPluginEstree] = await Promise.all([
+                      import('prettier/plugins/babel'),
+                      import('prettier/plugins/estree'),
+                    ])
+                    const formattedCode = await prettierFormat(code, {
+                      parser: 'babel',
+                      plugins: [prettierPluginBabel.default, prettierPluginEstree.default],
+                      printWidth: 120,
+                      singleQuote: true,
+                      trailingComma: 'es5',
+                      semi: false,
+                      tabWidth: 2,
+                    })
                     setCode(formattedCode)
-                  })
+                  } catch (error) {
+                    console.error('Formatting error:', error)
+                  }
                 }}
                 text="format"
                 prefix={'🧹'}
