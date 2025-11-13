@@ -597,30 +597,6 @@ export function LiveEditor({
         <div className="controls flex flex-row md:flex-nowrap mt-8 md:mt-8 mb-4 md:mb-4 items-start md:items-center justify-start md:justify-center w-full">
           {/* Left controls */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-2 p-4 rounded-lg bg-[var(--app-editor-bg-color)] controls-left-panel flex-1">
-            <ControlButton id="control-control" checked={controls} onChange={setControls} text="controls" />
-            <ControlButton
-              id="control-line-numbers"
-              checked={lineNumbers}
-              onChange={setLineNumbers}
-              text="line no."
-            />
-            <ControlButton
-              id="control-theme"
-              checked={theme === 'dark'}
-              onChange={(checked) => setTheme(checked ? 'dark' : 'light')}
-              text={theme === 'dark' ? 'dark' : 'light'}
-              prefix={<span>{theme === 'dark' ? '🌙' : '☀️'}</span>}
-            />
-            <RangeSelector
-              text="indent"
-              className="range-control"
-              value={lineNumbersWidth}
-              min={2}
-              max={3}
-              step={0.1}
-              onChange={setLineNumbersWidth}
-              displayValue={false}
-            />
             <DropdownMenu
               className="dropdown-menu-highlight"
               buttonRef={themeButtonRef}
@@ -634,6 +610,29 @@ export function LiveEditor({
                 const nextTheme = SYNTAX_THEMES[nextIndex % SYNTAX_THEMES.length]
                 setHighlightTheme(nextTheme)
               }}
+            />
+            <ControlButton
+              id="control-theme"
+              checked={theme === 'dark'}
+              onChange={(checked) => setTheme(checked ? 'dark' : 'light')}
+              text={theme === 'dark' ? 'dark' : 'light'}
+              prefix={<span>{theme === 'dark' ? '🌙' : '☀️'}</span>}
+            />
+            <ControlButton
+              id="control-line-numbers"
+              checked={lineNumbers}
+              onChange={setLineNumbers}
+              text="line no."
+            />
+            <RangeSelector
+              text="indent"
+              className="range-control"
+              value={lineNumbersWidth}
+              min={2}
+              max={3}
+              step={0.1}
+              onChange={setLineNumbersWidth}
+              displayValue={false}
             />
             <ControlButton
               id="control-format"
@@ -665,6 +664,7 @@ export function LiveEditor({
               text="format"
               prefix={<FormatIcon width={14} height={14} stroke="currentColor" strokeWidth="2" className={isFormatting ? 'mop-animate' : ''} />}
             />
+            <ControlButton id="control-control" checked={controls} onChange={setControls} text="controls" />
           </div>
           {/* Right side screenshot button */}
           <div className="inline-flex items-center self-stretch gap-2 flex-shrink-0">
