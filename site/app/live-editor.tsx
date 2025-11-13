@@ -17,6 +17,26 @@ const CODE_QUERY_KEY = 'c'
 // Note: 'default' theme is used internally for SSR/hydration plain text styling and doesn't appear in this list
 const SYNTAX_THEMES = ['nord', 'vscode', 'solarized', 'minimal', 'monokai', 'base16']
 
+// Theme color representatives (2 colors per theme)
+const THEME_COLORS: Record<string, [string, string]> = {
+  nord: ['#fabd2f', '#fb4934'], // Gruvbox: yellow and red
+  vscode: ['#569cd6', '#ce9178'], // VS Code: blue and orange
+  solarized: ['#c678dd', '#98c379'], // One Dark: purple and green
+  minimal: ['#b0b0b0', '#808080'], // Minimal: light gray and medium gray
+  monokai: ['#f92672', '#a6e22e'], // Monokai: pink and green
+  base16: ['#bb9af7', '#9ece6a'], // Tokyo Night: purple and green
+}
+
+function ThemeColorBlocks({ theme }: { theme: string }) {
+  const colors = THEME_COLORS[theme] || ['#000000', '#000000']
+  return (
+    <span className="flex items-center justify-center gap-1">
+      <span className="w-3 h-3 rounded-sm" style={{ backgroundColor: colors[0] }} />
+      <span className="w-3 h-3 rounded-sm" style={{ backgroundColor: colors[1] }} />
+    </span>
+  )
+}
+
 function ControlButton({
   id,
   checked,
@@ -33,7 +53,7 @@ function ControlButton({
   return (
     <button className="control-button">
       <input id={id} type="checkbox" checked={checked} onChange={(event) => onChange?.(event.target.checked)} />
-      <label className="controls-manager-label" data-checked={checked} htmlFor={id}>
+      <label className="controls-manager-label whitespace-nowrap" data-checked={checked} htmlFor={id}>
         <span className="mr-2">{prefix ? prefix : checked ? '●' : '○'}</span>
         {` ${propName}`}
       </label>
@@ -424,85 +444,99 @@ function DropdownMenu({
 } & React.HTMLAttributes<HTMLDivElement>) {
   const nodeRef = useRef<HTMLDivElement>(null)
   const [isOpen, setIsOpen] = useState(false)
+  const openTimeRef = useRef(0)
 
   // Close the dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handlePointerDownOutside = (event: PointerEvent) => {
+      // Prevent closing immediately after opening (mobile touch issue)
+      if (Date.now() - openTimeRef.current < 100) {
+        return
+      }
+      
       const dropdown = nodeRef.current
       if (dropdown && !dropdown.contains(event.target as Node)) {
         setIsOpen(false)
       }
     }
-    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener('pointerdown', handlePointerDownOutside)
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('pointerdown', handlePointerDownOutside)
     }
   }, [])
 
+  const arrowRef = useRef<SVGSVGElement>(null)
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLButtonElement>) => {
+    const arrowElement = arrowRef.current
+    if (!arrowElement) {
+      const newState = !isOpen
+      setIsOpen(newState)
+      if (newState) {
+        openTimeRef.current = Date.now()
+      }
+      return
+    }
+
+    const arrowRect = arrowElement.getBoundingClientRect()
+    const arrowLeft = arrowRect.left
+    const clientX = e.clientX
+    
+    // Check if pointer is on the arrow (right side) - use a wider touch target
+    const touchPadding = e.pointerType === 'touch' ? 12 : 8 // Extra padding for touch
+    if (clientX >= arrowLeft - touchPadding) {
+      // Pointer on arrow area - toggle dropdown
+      e.preventDefault()
+      const newState = !isOpen
+      setIsOpen(newState)
+      if (newState) {
+        openTimeRef.current = Date.now()
+      }
+    } else if (onNext) {
+      // Pointer on left side (not arrow) - switch theme
+      e.preventDefault()
+      setIsOpen(false)
+      onNext()
+    }
+  }
+
   return (
     <div {...props} ref={nodeRef} className={cx('dropdown-menu relative', props.className)}>
-      <span className={cx('dropdown-menu-button-group', !!onNext && 'dropdown-menu-button-group--merged')}>
-        <button ref={buttonRef} className="dropdown-menu-button flex-1" onClick={() => setIsOpen(!isOpen)}>
-          <span className="flex items-center gap-1">
-            {buttonText}
-            {/* dropdown indicator */}
-            <svg
-              width="14"
-              height="14"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              className={`ml-auto transition-transform duration-200 ease-out ${isOpen ? 'rotate-180' : ''}`}
-            >
-              <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </span>
-        </button>
-        {!!onNext && (
-          <>
-            {/* divider */}
-            <span className="dropdown-menu-divider" />
-            {/* A button to go to the next */}
-
-            <button
-              className="dropdown-menu-button--next"
-              onClick={() => {
-                setIsOpen(false)
-                onNext()
-              }}
-              title="Next theme"
-            >
-              {/* next/forward arrow icon */}
-              <svg
-                width="12"
-                height="12"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="dropdown-menu-next-icon"
-              >
-                <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-          </>
-        )}
-      </span>
+      <button 
+        ref={buttonRef} 
+        className="dropdown-menu-button relative w-full" 
+        onPointerDown={handlePointerDown}
+      >
+        <span className="flex items-center gap-1 min-w-0 w-full relative">
+          <span className="flex-1 flex items-center justify-center">{buttonText}</span>
+          {/* dropdown indicator */}
+          <svg
+            ref={arrowRef}
+            width="14"
+            height="14"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            className={`flex-shrink-0 transition-transform duration-200 ease-out pointer-events-none ${isOpen ? 'rotate-180' : ''}`}
+          >
+            <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </span>
+      </button>
       {isOpen && (
         <ul className="dropdown-menu-list absolute top-full left-0 w-full min-w-max">
           {items.map((item, index) => (
             <li
               key={index}
-              className="dropdown-menu-list-item"
+              className="dropdown-menu-list-item flex items-center gap-2"
               onClick={() => {
                 setIsOpen(false)
                 onChange(item.text)
               }}
             >
-              {item.text}
+              <ThemeColorBlocks theme={item.text} />
             </li>
           ))}
         </ul>
@@ -560,90 +594,77 @@ export function LiveEditor({
   return (
     <div>
       <div className="editor-layout">
-        <div className="controls flex flex-row md:flex-nowrap mt-8 md:mt-8 mb-4 md:mb-4 items-start md:items-center justify-start md:justify-center">
+        <div className="controls flex flex-row md:flex-nowrap mt-8 md:mt-8 mb-4 md:mb-4 items-start md:items-center justify-start md:justify-center w-full">
           {/* Left controls */}
-          <div className="inline-flex flex-col gap-y-2 flex-wrap p-4 rounded-lg bg-[var(--app-editor-bg-color)] controls-left-panel">
-            <div className="controls-manager">
-              <ControlButton id="control-control" checked={controls} onChange={setControls} text="controls" />
-              <ControlButton
-                id="control-line-numbers"
-                checked={lineNumbers}
-                onChange={setLineNumbers}
-                text="line no."
-              />
-              {/* control of theme: light/dark */}
-              <ControlButton
-                id="control-theme"
-                checked={theme === 'dark'}
-                onChange={(checked) => setTheme(checked ? 'dark' : 'light')}
-                text={theme === 'dark' ? 'dark' : 'light'}
-                prefix={<span>{theme === 'dark' ? '🌙' : '☀️'}</span>}
-              />
-            </div>
-            {/* row */}
-            <div className="flex flex-wrap gap-2">
-              <RangeSelector
-                text="indent"
-                className="range-control"
-                value={lineNumbersWidth}
-                min={2}
-                max={3}
-                step={0.1}
-                onChange={setLineNumbersWidth}
-                displayValue={false}
-              />
-              {/* selector highlight styling theme */}
-              <DropdownMenu
-                className="dropdown-menu-highlight w-36"
-                buttonRef={themeButtonRef}
-                buttonText={
-                  <>
-                    <span className="mr-2">🎨</span>
-                    <span>{highlightTheme}</span>
-                  </>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 p-4 rounded-lg bg-[var(--app-editor-bg-color)] controls-left-panel flex-1">
+            <ControlButton id="control-control" checked={controls} onChange={setControls} text="controls" />
+            <ControlButton
+              id="control-line-numbers"
+              checked={lineNumbers}
+              onChange={setLineNumbers}
+              text="line no."
+            />
+            <ControlButton
+              id="control-theme"
+              checked={theme === 'dark'}
+              onChange={(checked) => setTheme(checked ? 'dark' : 'light')}
+              text={theme === 'dark' ? 'dark' : 'light'}
+              prefix={<span>{theme === 'dark' ? '🌙' : '☀️'}</span>}
+            />
+            <RangeSelector
+              text="indent"
+              className="range-control"
+              value={lineNumbersWidth}
+              min={2}
+              max={3}
+              step={0.1}
+              onChange={setLineNumbersWidth}
+              displayValue={false}
+            />
+            <DropdownMenu
+              className="dropdown-menu-highlight"
+              buttonRef={themeButtonRef}
+              buttonText={<ThemeColorBlocks theme={highlightTheme} />}
+              items={SYNTAX_THEMES.map((theme) => ({ text: theme }))}
+              onChange={(text) => {
+                setHighlightTheme(text)
+              }}
+              onNext={() => {
+                const nextIndex = SYNTAX_THEMES.indexOf(highlightTheme) + 1
+                const nextTheme = SYNTAX_THEMES[nextIndex % SYNTAX_THEMES.length]
+                setHighlightTheme(nextTheme)
+              }}
+            />
+            <ControlButton
+              id="control-format"
+              checked
+              onChange={async () => {
+                setFormat(!_f)
+                setIsFormatting(true)
+                try {
+                  const [prettierPluginBabel, prettierPluginEstree] = await Promise.all([
+                    import('prettier/plugins/babel'),
+                    import('prettier/plugins/estree'),
+                  ])
+                  const formattedCode = await prettierFormat(code, {
+                    parser: 'babel',
+                    plugins: [prettierPluginBabel.default, prettierPluginEstree.default],
+                    printWidth: 120,
+                    singleQuote: true,
+                    trailingComma: 'es5',
+                    semi: false,
+                    tabWidth: 2,
+                  })
+                  setCode(formattedCode)
+                } catch (error) {
+                  console.error('Formatting error:', error)
+                } finally {
+                  setTimeout(() => setIsFormatting(false), 600)
                 }
-                items={SYNTAX_THEMES.map((theme) => ({ text: theme }))}
-                onChange={(text) => {
-                  setHighlightTheme(text)
-                }}
-                onNext={() => {
-                  const nextIndex = SYNTAX_THEMES.indexOf(highlightTheme) + 1
-                  const nextTheme = SYNTAX_THEMES[nextIndex % SYNTAX_THEMES.length]
-                  setHighlightTheme(nextTheme)
-                }}
-              />
-
-              <ControlButton
-                id="control-format"
-                checked
-                onChange={async () => {
-                  setFormat(!_f)
-                  setIsFormatting(true)
-                  try {
-                    const [prettierPluginBabel, prettierPluginEstree] = await Promise.all([
-                      import('prettier/plugins/babel'),
-                      import('prettier/plugins/estree'),
-                    ])
-                    const formattedCode = await prettierFormat(code, {
-                      parser: 'babel',
-                      plugins: [prettierPluginBabel.default, prettierPluginEstree.default],
-                      printWidth: 120,
-                      singleQuote: true,
-                      trailingComma: 'es5',
-                      semi: false,
-                      tabWidth: 2,
-                    })
-                    setCode(formattedCode)
-                  } catch (error) {
-                    console.error('Formatting error:', error)
-                  } finally {
-                    setTimeout(() => setIsFormatting(false), 600)
-                  }
-                }}
-                text="format"
-                prefix={<FormatIcon width={14} height={14} stroke="currentColor" strokeWidth="2" className={isFormatting ? 'mop-animate' : ''} />}
-              />
-            </div>
+              }}
+              text="format"
+              prefix={<FormatIcon width={14} height={14} stroke="currentColor" strokeWidth="2" className={isFormatting ? 'mop-animate' : ''} />}
+            />
           </div>
           {/* Right side screenshot button */}
           <div className="inline-flex items-center self-stretch gap-2 flex-shrink-0">

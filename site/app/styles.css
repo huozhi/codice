@@ -464,7 +464,6 @@ input[type='radio'] {
   position: relative;
   display: inline-block;
   padding: 0.2rem 0.8rem;
-  padding-right: 0.2rem;
   border-radius: 88px;
   background-color: var(--control-bg-color);
   color: var(--control-color);
@@ -472,6 +471,7 @@ input[type='radio'] {
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
+  line-height: 1.5;
 }
 /* virtual divider of two merged buttons */
 .dropdown-menu .dropdown-menu-divider {
