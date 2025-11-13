@@ -16,7 +16,7 @@ export default async function Page(props: { searchParams: Promise<SearchParams> 
       </a>
       <div className="titles">
         <h1>
-          <span className="huge-title">Codice</span>
+          <span className="huge-title">Codice<span className="cursor-blink">_</span></span>
         </h1>
         <p>
           <span className="subtitle">The Story of Code Presentation</span>

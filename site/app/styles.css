@@ -79,21 +79,38 @@ input[type='radio'] {
 
 /* Components */
 .titles {
-  margin-bottom: 6rem;
+  margin-bottom: 4rem;
 }
 .huge-title {
-  font-size: 6rem;
+  font-size: 3rem;
   font-weight: 700;
   color: #f47067;
   margin-bottom: 1rem;
-  text-shadow: -2px 1px 6px #5c5c5c;
+  text-shadow: -1px 0.5px 3px rgba(92, 92, 92, 0.4);
   transition: text-shadow 0.1s ease-in-out;
 }
+
+.cursor-blink {
+  animation: blink 1s infinite;
+  display: inline-block;
+  vertical-align: 0.05em;
+  transform: translateY(-0.05em);
+  margin-left: 0.1em;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
 .huge-title:hover {
-  text-shadow: -2px 1px 6px #5c5c5ca4, 0 0 10px #f47067;
+  text-shadow: -1px 0.5px 3px rgba(92, 92, 92, 0.3), 0 0 6px rgba(244, 112, 103, 0.6);
 }
 .subtitle {
-  font-size: 2rem;
+  font-size: 1.25rem;
   font-weight: 400;
   margin-bottom: 1rem;
   transition: text-shadow 0.1s ease-in-out;
