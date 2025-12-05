@@ -26,7 +26,7 @@
     "@types/react": "^19.0.7",
     "bunchee": "^6.5.2",
     "html-to-image": "^1.11.13",
-    "next": "16.0.7",
+    "next": "^16.0.7",
     "postcss": "^8.5.4",
     "prettier": "^3.6.2",
     "react": "^19.2.1",
