@@ -28,7 +28,7 @@ export function EditorManager({ editor, onUpdate, editorRef, onTakeScreenshot }:
             </label>
           </div>
           <button onClick={onTakeScreenshot} className="control-button">
-            Screenshot
+            Add to Canvas
           </button>
         </div>
         <div className="editor-preview" ref={editorRef}>

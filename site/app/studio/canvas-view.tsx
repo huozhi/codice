@@ -26,6 +26,8 @@ export function CanvasView({ screenshots, onUpdateScreenshots }: CanvasViewProps
   const [resizeHandle, setResizeHandle] = useState<'se' | 'sw' | 'ne' | 'nw' | null>(null)
   const [loadedImages, setLoadedImages] = useState<Record<string, HTMLImageElement>>({})
   const [cursor, setCursor] = useState<string>('default')
+  const [canvasBgColor, setCanvasBgColor] = useState<string>('#1a1a1a')
+  const [showColorPicker, setShowColorPicker] = useState(false)
 
   const CANVAS_WIDTH = 800
   const CANVAS_HEIGHT = 600
@@ -45,8 +47,50 @@ export function CanvasView({ screenshots, onUpdateScreenshots }: CanvasViewProps
   }, [screenshots])
 
   useEffect(() => {
+    setupCanvas()
+  }, [])
+
+  useEffect(() => {
     drawCanvas()
-  }, [screenshots, selectedScreenshot, loadedImages])
+  }, [screenshots, selectedScreenshot, loadedImages, canvasBgColor])
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement
+      const wrapper = document.querySelector('.canvas-color-picker-wrapper')
+      if (showColorPicker && wrapper && !wrapper.contains(target)) {
+        setShowColorPicker(false)
+      }
+    }
+
+    if (showColorPicker) {
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
+    }
+  }, [showColorPicker])
+
+  const setupCanvas = () => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const dpr = window.devicePixelRatio || 1
+
+    // Set actual size in memory (scaled for DPI)
+    canvas.width = CANVAS_WIDTH * dpr
+    canvas.height = CANVAS_HEIGHT * dpr
+
+    // Scale the canvas back down using CSS
+    canvas.style.width = `${CANVAS_WIDTH}px`
+    canvas.style.height = `${CANVAS_HEIGHT}px`
+
+    // Set up the context scale once
+    const ctx = canvas.getContext('2d')
+    if (ctx) {
+      ctx.scale(dpr, dpr)
+    }
+  }
 
   const drawCanvas = () => {
     const canvas = canvasRef.current
@@ -56,7 +100,7 @@ export function CanvasView({ screenshots, onUpdateScreenshots }: CanvasViewProps
     if (!ctx) return
 
     // Clear canvas
-    ctx.fillStyle = '#1a1a1a'
+    ctx.fillStyle = canvasBgColor
     ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
 
     // Draw grid
@@ -231,7 +275,6 @@ export function CanvasView({ screenshots, onUpdateScreenshots }: CanvasViewProps
         onUpdateScreenshots(
           screenshots.map((s) => (s.id === selectedScreenshot ? { ...s, x: newX, y: newY } : s))
         )
-        drawCanvas()
       }
     } else if (isResizing && selectedScreenshot && resizeHandle) {
       const screenshot = screenshots.find((s) => s.id === selectedScreenshot)
@@ -268,7 +311,6 @@ export function CanvasView({ screenshots, onUpdateScreenshots }: CanvasViewProps
             s.id === selectedScreenshot ? { ...s, x: newX, y: newY, width: newWidth, height: newHeight } : s
           )
         )
-        drawCanvas()
       }
     }
   }
@@ -305,8 +347,69 @@ export function CanvasView({ screenshots, onUpdateScreenshots }: CanvasViewProps
   return (
     <div className="canvas-view">
       <div className="canvas-toolbar">
-        <h3>Canvas</h3>
         <div className="canvas-actions">
+          <div className="canvas-color-picker-wrapper">
+            <div
+              className="canvas-bg-indicator"
+              onClick={() => setShowColorPicker(!showColorPicker)}
+              style={{ backgroundColor: canvasBgColor }}
+            />
+            {showColorPicker && (
+              <div
+                className="canvas-color-picker"
+                onClick={(e) => e.stopPropagation()}
+                onMouseDown={(e) => e.stopPropagation()}
+              >
+                <input
+                  type="color"
+                  value={canvasBgColor}
+                  onChange={(e) => {
+                    setCanvasBgColor(e.target.value)
+                  }}
+                  className="canvas-color-input"
+                  onClick={(e) => e.stopPropagation()}
+                />
+                <div className="canvas-color-presets">
+                  <div
+                    className="canvas-color-preset"
+                    style={{ backgroundColor: '#1a1a1a' }}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setCanvasBgColor('#1a1a1a')
+                      setShowColorPicker(false)
+                    }}
+                  />
+                  <div
+                    className="canvas-color-preset"
+                    style={{ backgroundColor: '#ffffff' }}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setCanvasBgColor('#ffffff')
+                      setShowColorPicker(false)
+                    }}
+                  />
+                  <div
+                    className="canvas-color-preset"
+                    style={{ backgroundColor: '#f5f5f5' }}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setCanvasBgColor('#f5f5f5')
+                      setShowColorPicker(false)
+                    }}
+                  />
+                  <div
+                    className="canvas-color-preset"
+                    style={{ backgroundColor: '#000000' }}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setCanvasBgColor('#000000')
+                      setShowColorPicker(false)
+                    }}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
           <button onClick={copyCanvasAsImage} className="control-button">
             Copy
           </button>
@@ -316,8 +419,6 @@ export function CanvasView({ screenshots, onUpdateScreenshots }: CanvasViewProps
       <div className="canvas-container">
         <canvas
           ref={canvasRef}
-          width={CANVAS_WIDTH}
-          height={CANVAS_HEIGHT}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
@@ -327,6 +428,8 @@ export function CanvasView({ screenshots, onUpdateScreenshots }: CanvasViewProps
           }}
           style={{
             cursor: isDragging || isResizing ? 'grabbing' : cursor,
+            width: `${CANVAS_WIDTH}px`,
+            height: `${CANVAS_HEIGHT}px`,
           }}
         />
       </div>

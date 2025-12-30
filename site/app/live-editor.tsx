@@ -110,10 +110,10 @@ export async function copyImageDataUrl(dataUrl: string) {
     }
 
     const blob = await (await fetch(dataUrl)).blob()
-    
+
     // Safari compatibility: Check if the format is supported
     const mimeType = 'image/png'
-    
+
     // Use ClipboardItem.supports() if available (modern browsers)
     if (typeof ClipboardItem.supports === 'function') {
       if (!ClipboardItem.supports(mimeType)) {
@@ -122,19 +122,19 @@ export async function copyImageDataUrl(dataUrl: string) {
     }
 
     // Safari-specific: Create ClipboardItem with promise-based blob for better compatibility
-    const clipboardItem = new ClipboardItem({ 
+    const clipboardItem = new ClipboardItem({
       [mimeType]: Promise.resolve(blob)
     })
 
     // Safari requires user gesture - this should be called within a user interaction
     await navigator.clipboard.write([clipboardItem])
     return Promise.resolve(dataUrl)
-    
+
   } catch (error) {
     if (process.env.NODE_ENV === 'development') {
       console.error('Clipboard error:', error)
     }
-    
+
     // Safari-specific error handling with better messages
     if (error instanceof Error) {
       if (error.name === 'NotAllowedError') {
@@ -148,7 +148,7 @@ export async function copyImageDataUrl(dataUrl: string) {
         return Promise.reject('Security policy prevented clipboard access.')
       }
     }
-    
+
     // Generic error fallback
     return Promise.reject('Failed to copy image to clipboard. Please try again.')
   }
@@ -204,7 +204,7 @@ function ScreenshotButton({ editorElementRef }: { editorElementRef: React.RefObj
     if (!editorElementRef.current) {
       return Promise.resolve(null)
     }
-    
+
     try {
       // Safari fix: Create clipboard promise immediately to preserve user gesture
       if (!navigator.clipboard || !window.ClipboardItem) {
@@ -222,7 +222,7 @@ function ScreenshotButton({ editorElementRef }: { editorElementRef: React.RefObj
 
       // Start clipboard write immediately (synchronously from user event)
       await navigator.clipboard.write([clipboardItem])
-      
+
       // Generate dataUrl for return (can be done after clipboard operation)
       const dataUrl = await toPng(editorElementRef.current)
       return dataUrl
@@ -235,7 +235,7 @@ function ScreenshotButton({ editorElementRef }: { editorElementRef: React.RefObj
   }
 
   const [actionState, dispatch, isPending] = useActionState<
-    { state: 'idle' | 'succeed' | 'error'; dataUrl?: string }, 
+    { state: 'idle' | 'succeed' | 'error'; dataUrl?: string },
     { type: 'reset' } | { type: 'copy'; dataUrl: string | null }
   >(
     (state, action) => {
@@ -243,7 +243,7 @@ function ScreenshotButton({ editorElementRef }: { editorElementRef: React.RefObj
         return { state: 'idle' }
       } else if (action.type === 'copy') {
         const imageDataUrl = action.dataUrl
-        
+
         if (imageDataUrl) {
           const id = Date.now().toString()
 
@@ -453,7 +453,7 @@ function DropdownMenu({
       if (Date.now() - openTimeRef.current < 100) {
         return
       }
-      
+
       const dropdown = nodeRef.current
       if (dropdown && !dropdown.contains(event.target as Node)) {
         setIsOpen(false)
@@ -481,7 +481,7 @@ function DropdownMenu({
     const arrowRect = arrowElement.getBoundingClientRect()
     const arrowLeft = arrowRect.left
     const clientX = e.clientX
-    
+
     // Check if pointer is on the arrow (right side) - use a wider touch target
     const touchPadding = e.pointerType === 'touch' ? 12 : 8 // Extra padding for touch
     if (clientX >= arrowLeft - touchPadding) {
@@ -502,9 +502,9 @@ function DropdownMenu({
 
   return (
     <div {...props} ref={nodeRef} className={cx('dropdown-menu relative', props.className)}>
-      <button 
-        ref={buttonRef} 
-        className="dropdown-menu-button relative w-full" 
+      <button
+        ref={buttonRef}
+        className="dropdown-menu-button relative w-full"
         onPointerDown={handlePointerDown}
       >
         <span className="flex items-center gap-1 min-w-0 w-full relative">

@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { Editor } from 'codice'
 import { EditorManager } from './editor-manager'
 import { CanvasView } from './canvas-view'
 import './studio.css'
@@ -44,6 +43,8 @@ export default function StudioPage() {
     width: number
     height: number
   } | null>(null)
+  const [editorPanelWidth, setEditorPanelWidth] = useState<number>(640)
+  const [isResizingPanel, setIsResizingPanel] = useState(false)
 
   const selectedEditor = editors.find((e) => e.id === selectedEditorId) || editors[0]
 
@@ -54,16 +55,39 @@ export default function StudioPage() {
     }
   }, [])
 
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (isResizingPanel) {
+        const newWidth = Math.min(640, Math.max(300, e.clientX - 60)) // 60px is sidebar width
+        setEditorPanelWidth(newWidth)
+      }
+    }
+
+    const handleMouseUp = () => {
+      setIsResizingPanel(false)
+    }
+
+    if (isResizingPanel) {
+      document.addEventListener('mousemove', handleMouseMove)
+      document.addEventListener('mouseup', handleMouseUp)
+      return () => {
+        document.removeEventListener('mousemove', handleMouseMove)
+        document.removeEventListener('mouseup', handleMouseUp)
+      }
+    }
+  }, [isResizingPanel])
+
   const updateEditor = (id: string, updates: Partial<EditorConfig>) => {
     setEditors((prev) => prev.map((e) => (e.id === id ? { ...e, ...updates } : e)))
   }
 
   const addEditor = () => {
     const newId = String(Date.now())
+    const defaultTitle = `file-${editors.length + 1}.js`
     const newEditor: EditorConfig = {
       id: newId,
-      title: `file-${editors.length + 1}.js`,
-      code: '',
+      title: defaultTitle,
+      code: '// <code>',
       fontSize: 14,
       fontFamily: 'Consolas, Monaco, monospace',
       padding: '1rem',
@@ -72,6 +96,23 @@ export default function StudioPage() {
     }
     setEditors((prev) => [...prev, newEditor])
     setSelectedEditorId(newId)
+
+    // Focus the title input after a short delay to ensure it's rendered
+    setTimeout(() => {
+      const editorElement = editorRefs.current[newId]
+      if (editorElement) {
+        const titleInput = editorElement.querySelector(`[data-codice-title]`) as HTMLInputElement
+        if (titleInput && titleInput instanceof HTMLInputElement) {
+          titleInput.focus()
+          if (typeof titleInput.select === 'function') {
+            titleInput.select()
+          } else {
+            // Fallback for browsers that don't support select()
+            titleInput.setSelectionRange(0, titleInput.value.length)
+          }
+        }
+      }
+    }, 100)
   }
 
   const deleteEditor = (id: string) => {
@@ -96,7 +137,8 @@ export default function StudioPage() {
       const { toPng } = await import('html-to-image')
       const dataUrl = await toPng(editorElement, {
         backgroundColor: 'transparent',
-        pixelRatio: 2,
+        pixelRatio: 4,
+        quality: 1,
       })
 
       const img = new Image()
@@ -111,8 +153,8 @@ export default function StudioPage() {
         dataUrl,
         x: 100 + screenshots.length * 20,
         y: 100 + screenshots.length * 20,
-        width: img.width / 2, // Divide by 2 because pixelRatio is 2
-        height: img.height / 2,
+        width: img.width / 4, // Divide by 4 because pixelRatio is 4
+        height: img.height / 4,
       }
 
       // Trigger animation
@@ -143,20 +185,16 @@ export default function StudioPage() {
   return (
     <div className="studio-container">
       <div className="studio-sidebar">
-        <div className="studio-sidebar-header">
-          <h2>Editors</h2>
-          <button onClick={addEditor} className="control-button">
-            + code
-          </button>
-        </div>
+
         <div className="studio-editor-list">
           {editors.map((editor) => (
             <div
               key={editor.id}
               className={`studio-editor-item ${selectedEditorId === editor.id ? 'active' : ''}`}
               onClick={() => setSelectedEditorId(editor.id)}
+              title={editor.title}
             >
-              <span className="studio-editor-title">{editor.title}</span>
+              <div className="studio-editor-dot" />
               {editors.length > 1 && (
                 <button
                   onClick={(e) => {
@@ -170,12 +208,18 @@ export default function StudioPage() {
               )}
             </div>
           ))}
+          <button onClick={addEditor} className="studio-add-button">
+            +
+          </button>
         </div>
       </div>
 
       <div className="studio-main">
         <div className="studio-content">
-          <div className="studio-editor-panel">
+          <div
+            className="studio-editor-panel"
+            style={{ width: `${editorPanelWidth}px` }}
+          >
             <EditorManager
               editor={selectedEditor}
               onUpdate={(updates) => updateEditor(selectedEditorId, updates)}
@@ -185,7 +229,13 @@ export default function StudioPage() {
               onTakeScreenshot={takeScreenshot}
             />
           </div>
-
+          <div
+            className="studio-resize-handle"
+            onMouseDown={(e) => {
+              setIsResizingPanel(true)
+              e.preventDefault()
+            }}
+          />
           <div className="studio-canvas-panel">
             <CanvasView screenshots={screenshots} onUpdateScreenshots={setScreenshots} />
           </div>
