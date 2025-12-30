@@ -48,6 +48,7 @@ ${H} [data-codice-title] {
   border: none;
   caret-color: var(--codice-caret-color);
   color: var(--codice-title-color);
+  font-family: var(--codice-font-family);
 }
 ${H} [data-codice-controls] {
   display: inline-flex;
