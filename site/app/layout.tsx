@@ -1,4 +1,4 @@
-import './globals.css'
+import './tailwind.css'
 import './styles.css'
 import './theme.css'
 import { ThemeProvider } from './theme'

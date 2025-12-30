@@ -53,7 +53,7 @@ html {
 }
 body {
   max-width: 600px;
-  margin: auto;
+  margin: auto !important;
   padding: 0;
   background-color: #343434;
   color: #ffeceb;
@@ -616,7 +616,7 @@ input[type='radio'] {
 
 /* Smooth syntax highlighting transitions when theme changes */
 [data-codice-content] * {
-  transition: 
+  transition:
     color var(--sh-transition-duration, 300ms) var(--sh-transition-timing, ease-out),
     opacity var(--sh-transition-duration, 300ms) var(--sh-transition-timing, ease-out);
 }
