@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "codice": "workspace:*",
+    "html-to-image": "^1.11.13",
     "prettier": "^3.6.2",
     "react": "^19.2.1",
     "react-dom": "^19.2.1"
