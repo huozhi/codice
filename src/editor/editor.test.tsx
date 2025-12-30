@@ -97,6 +97,7 @@ describe('Code', () => {
         border: none;
         caret-color: var(--codice-caret-color);
         color: var(--codice-title-color);
+        font-family: var(--codice-font-family);
       }
       :scope[data-codice-header] [data-codice-controls] {
         display: inline-flex;
@@ -161,6 +162,7 @@ describe('Code', () => {
         border: none;
         caret-color: var(--codice-caret-color);
         color: var(--codice-title-color);
+        font-family: var(--codice-font-family);
       }
       :scope[data-codice-header] [data-codice-controls] {
         display: inline-flex;
@@ -309,6 +311,7 @@ describe('Code', () => {
         border: none;
         caret-color: var(--codice-caret-color);
         color: var(--codice-title-color);
+        font-family: var(--codice-font-family);
       }
       :scope[data-codice-header] [data-codice-controls] {
         display: inline-flex;
@@ -373,6 +376,7 @@ describe('Code', () => {
         border: none;
         caret-color: var(--codice-caret-color);
         color: var(--codice-title-color);
+        font-family: var(--codice-font-family);
       }
       :scope[data-codice-header] [data-codice-controls] {
         display: inline-flex;
@@ -543,6 +547,7 @@ describe('Code', () => {
         border: none;
         caret-color: var(--codice-caret-color);
         color: var(--codice-title-color);
+        font-family: var(--codice-font-family);
       }
       :scope[data-codice-header] [data-codice-controls] {
         display: inline-flex;
