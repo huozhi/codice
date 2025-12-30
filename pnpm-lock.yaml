@@ -28,9 +28,6 @@ importers:
       bunchee:
         specifier: ^6.5.2
         version: 6.5.2(typescript@5.7.3)
-      html-to-image:
-        specifier: ^1.11.13
-        version: 1.11.13
       next:
         specifier: ^16.0.7
         version: 16.0.7(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
@@ -61,6 +58,9 @@ importers:
       codice:
         specifier: workspace:*
         version: link:..
+      html-to-image:
+        specifier: ^1.11.13
+        version: 1.11.13
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
