@@ -13,6 +13,24 @@
 
   /* app editor */
   --app-editor-bg-color: #3d3c3c;
+
+  /* studio colors */
+  --studio-bg-color: #343434;
+  --studio-text-color: #ffeceb;
+  --studio-sidebar-bg: #242424;
+  --studio-sidebar-border: rgba(255, 255, 255, 0.1);
+  --studio-canvas-panel-bg: #2a2a2a;
+  --studio-canvas-panel-border: rgba(255, 255, 255, 0.1);
+  --studio-resize-handle-bg: rgba(255, 255, 255, 0.1);
+  --studio-resize-handle-hover: rgba(255, 255, 255, 0.2);
+  --studio-dot-color: rgba(255, 255, 255, 0.3);
+  --studio-dot-hover: rgba(255, 255, 255, 0.5);
+  --studio-close-btn-color: rgba(255, 255, 255, 0.4);
+  --studio-close-btn-hover: rgba(255, 255, 255, 0.7);
+  --studio-canvas-bg: #1a1a1a;
+  --studio-canvas-border: rgba(255, 255, 255, 0.1);
+  --studio-color-picker-border: rgba(255, 255, 255, 0.2);
+  --studio-bg-indicator-border: rgba(255, 255, 255, 0.2);
 }
 
 /* Override for light theme */
@@ -30,6 +48,24 @@
 
   /* app editor */
   --app-editor-bg-color: #efefef;
+
+  /* studio colors */
+  --studio-bg-color: #ffffff;
+  --studio-text-color: #272727;
+  --studio-sidebar-bg: #f5f5f5;
+  --studio-sidebar-border: rgba(0, 0, 0, 0.1);
+  --studio-canvas-panel-bg: #f9f9f9;
+  --studio-canvas-panel-border: rgba(0, 0, 0, 0.1);
+  --studio-resize-handle-bg: rgba(0, 0, 0, 0.1);
+  --studio-resize-handle-hover: rgba(0, 0, 0, 0.2);
+  --studio-dot-color: rgba(0, 0, 0, 0.3);
+  --studio-dot-hover: rgba(0, 0, 0, 0.5);
+  --studio-close-btn-color: rgba(0, 0, 0, 0.4);
+  --studio-close-btn-hover: rgba(0, 0, 0, 0.7);
+  --studio-canvas-bg: #ffffff;
+  --studio-canvas-border: rgba(0, 0, 0, 0.1);
+  --studio-color-picker-border: rgba(0, 0, 0, 0.2);
+  --studio-bg-indicator-border: rgba(0, 0, 0, 0.2);
 }
 
 * {
@@ -132,12 +168,13 @@ input[type='radio'] {
   padding: 0rem 0.8rem;
   border-radius: 88px;
   background-color: var(--control-bg-color);
+  color: var(--control-color);
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
   border: none;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 .control-button .controls-manager-label {
   cursor: pointer;

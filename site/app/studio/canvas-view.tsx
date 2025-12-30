@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { useTheme } from '../theme'
 import './studio.css'
 
 interface Screenshot {
@@ -19,6 +20,7 @@ interface CanvasViewProps {
 
 export function CanvasView({ screenshots, onUpdateScreenshots }: CanvasViewProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const { theme, setTheme } = useTheme()
   const [selectedScreenshot, setSelectedScreenshot] = useState<string | null>(null)
   const [isDragging, setIsDragging] = useState(false)
   const [isResizing, setIsResizing] = useState(false)
@@ -26,8 +28,33 @@ export function CanvasView({ screenshots, onUpdateScreenshots }: CanvasViewProps
   const [resizeHandle, setResizeHandle] = useState<'se' | 'sw' | 'ne' | 'nw' | null>(null)
   const [loadedImages, setLoadedImages] = useState<Record<string, HTMLImageElement>>({})
   const [cursor, setCursor] = useState<string>('default')
-  const [canvasBgColor, setCanvasBgColor] = useState<string>('#1a1a1a')
+  const [canvasBgColor, setCanvasBgColor] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      const theme = document.documentElement.getAttribute('data-theme')
+      return theme === 'light' ? '#ffffff' : '#1a1a1a'
+    }
+    return '#1a1a1a'
+  })
   const [showColorPicker, setShowColorPicker] = useState(false)
+
+  useEffect(() => {
+    const updateCanvasColor = () => {
+      const theme = document.documentElement.getAttribute('data-theme')
+      if (theme === 'light' && canvasBgColor === '#1a1a1a') {
+        setCanvasBgColor('#ffffff')
+      } else if (theme === 'dark' && canvasBgColor === '#ffffff') {
+        setCanvasBgColor('#1a1a1a')
+      }
+    }
+
+    const observer = new MutationObserver(updateCanvasColor)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    })
+
+    return () => observer.disconnect()
+  }, [canvasBgColor])
 
   const CANVAS_WIDTH = 800
   const CANVAS_HEIGHT = 600
@@ -410,6 +437,14 @@ export function CanvasView({ screenshots, onUpdateScreenshots }: CanvasViewProps
               </div>
             )}
           </div>
+          <button
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className="canvas-theme-toggle"
+            title={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+            style={{
+              backgroundColor: theme === 'dark' ? '#ffffff' : '#1a1a1a'
+            }}
+          />
           <button onClick={copyCanvasAsImage} className="control-button">
             Copy
           </button>
