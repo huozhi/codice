@@ -121,7 +121,7 @@ describe('Code', () => {
         background-color: var(--codice-control-color);
       }
 
-      }</style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div><input data-codice-title="true"/></div><div data-codice-content="true"><div data-codice="code" data-codice-code="true" data-codice-line-numbers="true"><style data-codice-style="true">@scope {
+      }</style><div data-codice-controls="true"><span data-codice-control="true"></span><span data-codice-control="true"></span><span data-codice-control="true"></span></div></div><div data-codice-content="true"><div data-codice="code" data-codice-code="true" data-codice-line-numbers="true"><style data-codice-style="true">@scope {
       :scope[data-codice-code] {
         padding: calc(var(--codice-code-padding) / 2) 0;
       }

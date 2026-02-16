@@ -16,7 +16,7 @@ const getPresetByExt = (ext: string) => {
     case 'py':
       return presets.python
     case 'rs':
-      return presets.rust 
+      return presets.rust
     default:
       return undefined
   }
@@ -63,19 +63,19 @@ function generateHighlightedLines(
         .map((child, childIndex) => {
           const { tagName: Token, type, children, properties } = child
           return (
-            <Token 
+            <Token
               data-sh-token-type={type}
-              key={childIndex} 
+              key={childIndex}
               {...properties}
             >
               {(children[0].value)}
             </Token>
           )
         })
-        
+
 
       return (
-        <Line 
+        <Line
           {...lineProperties}
           // Add data-highlight attribute if line is highlighted
           {...(isHighlighted ? {'data-highlight': true} : {})}
@@ -112,18 +112,18 @@ function TitleInput({
   )
 }
 
-export function CodeHeader({ 
-  title, 
+export function CodeHeader({
+  title,
   controls = false,
   onChangeTitle,
 }: {
-  title?: string
+  title?: string | null
   controls: boolean
   onChangeTitle?: (title: string) => void
 }) {
   if (!title && !controls) return null
   return (
-    <div 
+    <div
       data-codice-header
       data-codice-header-controls={controls}
     >
@@ -135,16 +135,16 @@ export function CodeHeader({
           <span data-codice-control />
         </div>
       ) : null}
-      <TitleInput title={title} onChange={onChangeTitle} />
+      {title ? <TitleInput title={title} onChange={onChangeTitle} /> : null}
     </div>
   )
 }
 
-function CodeFrame({ 
-  children, 
+function CodeFrame({
+  children,
   preformatted,
   asMarkup,
-}: { 
+}: {
   children: React.ReactNode
   preformatted: boolean
   asMarkup: boolean
@@ -186,8 +186,8 @@ export function Code({
   asMarkup?: boolean
   extension?: string
 } & React.HTMLAttributes<HTMLDivElement>) {
-  const lineElements = useMemo(() => 
-    asMarkup 
+  const lineElements = useMemo(() =>
+    asMarkup
       ? code
       : generateHighlightedLines(code, highlightLines, lineNumbers, title, extension),
     [code, highlightLines, lineNumbers, title, extension, asMarkup]
@@ -196,9 +196,9 @@ export function Code({
   return (
     // Add both attribute because it's both root component and child component (of editor)
     <div
-      {...props} 
-      data-codice="code" 
-      data-codice-code 
+      {...props}
+      data-codice="code"
+      data-codice-code
       data-codice-line-numbers={lineNumbers}
     >
       <ScopedStyle css={css({ fontSize, lineNumbersWidth, padding })} />

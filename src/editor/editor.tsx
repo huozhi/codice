@@ -21,7 +21,7 @@ export const Editor = forwardRef(function Editor(
     textareaRef,
     ...props
   }: {
-    title?: string
+    title?: string | null
     value?: string
     controls?: boolean
     lineNumbers?: boolean
