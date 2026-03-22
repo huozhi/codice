@@ -13,8 +13,8 @@ importers:
   .:
     dependencies:
       sugar-high:
-        specifier: ^0.9.5
-        version: 0.9.5
+        specifier: ^1.0.0
+        version: 1.0.0
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4.1.8
@@ -1288,6 +1288,7 @@ packages:
   next@16.0.7:
     resolution: {integrity: sha512-3mBRJyPxT4LOxAJI6IsXeFtKfiJUbjCLgvXO02fV8Wy/lIhPvP94Fe7dGhUgHXcQy4sSuYwQNcOLhIfOm0rL0A==}
     engines: {node: '>=20.9.0'}
+    deprecated: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
     hasBin: true
     peerDependencies:
       '@opentelemetry/api': ^1.1.0
@@ -1494,8 +1495,8 @@ packages:
       babel-plugin-macros:
         optional: true
 
-  sugar-high@0.9.5:
-    resolution: {integrity: sha512-eirwp9p7QcMg6EFCD6zrGh4H30uFx2YtfiMJUavagceP6/YUUjLeiQmis7QuwqKB3nXrWXlLaRumCqOd9AKpSA==}
+  sugar-high@1.0.0:
+    resolution: {integrity: sha512-QXI5DHWxBI4kph38jBgfq0a8859NxA1fZMpkbiUmd332/SMdBKOQ+8f6gdCfEWg0ZY2216Oh8OqS5lC0IOTQmA==}
 
   supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
@@ -2829,7 +2830,7 @@ snapshots:
       client-only: 0.0.1
       react: 19.2.1
 
-  sugar-high@0.9.5: {}
+  sugar-high@1.0.0: {}
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
