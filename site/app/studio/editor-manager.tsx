@@ -1,6 +1,6 @@
 'use client'
 
-import { Editor } from 'codice'
+import { Editor } from '@sugar-high/react'
 import { EditorConfig } from './page'
 import './studio.css'
 
@@ -49,4 +49,3 @@ export function EditorManager({ editor, onUpdate, editorRef, onTakeScreenshot }:
     </div>
   )
 }
-

@@ -55,9 +55,9 @@ importers:
 
   site:
     dependencies:
-      codice:
-        specifier: workspace:*
-        version: link:..
+      '@sugar-high/react':
+        specifier: ^1.0.0
+        version: 1.0.0(react@19.0.0)(sugar-high@2.0.0)
       html-to-image:
         specifier: ^1.11.13
         version: 1.11.13
@@ -70,6 +70,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
+      sugar-high:
+        specifier: ^2.0.0
+        version: 2.0.0
     devDependencies:
       '@types/node':
         specifier: ^22.10.7
@@ -799,6 +802,12 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@sugar-high/react@1.0.0':
+    resolution: {integrity: sha512-ExYFFuhHPQAjkaThzhCv5Uiktr0/Lpd7V/tfIB86Ottg21Z/rDxU7DmhjR/OIg1XvqRMPhqs2S6c8k0vbFx9qw==}
+    peerDependencies:
+      react: ^19.0.0
+      sugar-high: ^2.0.0
+
   '@swc/core-darwin-arm64@1.15.21':
     resolution: {integrity: sha512-SA8SFg9dp0qKRH8goWsax6bptFE2EdmPf2YRAQW9WoHGf3XKM1bX0nd5UdwxmC5hXsBUZAYf7xSciCler6/oyA==}
     engines: {node: '>=10'}
@@ -1510,6 +1519,9 @@ packages:
   sugar-high@1.0.0:
     resolution: {integrity: sha512-QXI5DHWxBI4kph38jBgfq0a8859NxA1fZMpkbiUmd332/SMdBKOQ+8f6gdCfEWg0ZY2216Oh8OqS5lC0IOTQmA==}
 
+  sugar-high@2.0.0:
+    resolution: {integrity: sha512-qZQaa+3vbmKSx00G465bY1LqVUU0RaUkY/7xDV63cQzezD6dF/DJCthztRQqYLGA7HXdObvCEtcCRpvoIrrbCg==}
+
   supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
@@ -2111,6 +2123,11 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.60.0':
     optional: true
+
+  '@sugar-high/react@1.0.0(react@19.0.0)(sugar-high@2.0.0)':
+    dependencies:
+      react: 19.0.0
+      sugar-high: 2.0.0
 
   '@swc/core-darwin-arm64@1.15.21':
     optional: true
@@ -2809,6 +2826,8 @@ snapshots:
       react: 19.2.1
 
   sugar-high@1.0.0: {}
+
+  sugar-high@2.0.0: {}
 
   supports-preserve-symlinks-flag@1.0.0: {}
 

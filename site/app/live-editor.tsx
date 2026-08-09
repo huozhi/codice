@@ -1,6 +1,6 @@
 'use client'
 
-import { Editor } from 'codice'
+import { Editor } from '@sugar-high/react'
 import React, { startTransition, useActionState, useEffect, useRef, useState } from 'react'
 import { format as prettierFormat } from 'prettier/standalone'
 import { toPng } from 'html-to-image'

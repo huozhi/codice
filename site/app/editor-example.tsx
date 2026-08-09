@@ -2,7 +2,7 @@ import { LiveEditor } from './live-editor'
 
 const defaultCode = `\
 import { useState } from 'react'
-import { Editor } from 'codice'
+import { Editor } from '@sugar-high/react'
 
 const defaultText = 'console.log("hello world")'
 

@@ -1,4 +1,4 @@
-import { Code } from 'codice'
+import { Code } from '@sugar-high/react'
 
 const CODE_SIMPLE_SNIPPET_HTML = `\
 # Here is a simple function
@@ -10,7 +10,7 @@ hello()
 `
 
 const CODE_ULTIMATE_SNIPPET_HTML = `\
-import { Code } from 'codice'
+import { Code } from '@sugar-high/react'
 import { highlight } from 'sugar-high'
 
 function renderMarkup() {

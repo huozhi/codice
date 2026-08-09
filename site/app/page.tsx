@@ -1,6 +1,6 @@
 import { EditorExample } from './editor-example'
 import { CodeExamples } from './code-example'
-import { Code } from 'codice'
+import { Code } from '@sugar-high/react'
 
 type SearchParams = {
   c?: string // default code
