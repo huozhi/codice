@@ -1,20 +1,25 @@
-# Codice
+# Codice (deprecated)
 
-Codice is a slim React components suite for code editing and displaying story. It provides an editor component and a code block component with syntax highlighting. Styling customization is enabled through CSS variables and HTML attributes.
+Codice has moved to the Sugar High project and is no longer maintained as a separate package.
 
+For React code blocks and editors, use **[`@sugar-high/react`](https://www.npmjs.com/package/@sugar-high/react)**. For framework-independent syntax highlighting, use **[`sugar-high`](https://www.npmjs.com/package/sugar-high)**.
+
+See the [Sugar High React documentation](https://sugar-high.vercel.app/react) for the latest API and examples.
 
 ## Installation
 
 ```bash
-npm install codice
+npm install @sugar-high/react sugar-high
 ```
+
+`sugar-high` is a peer dependency of `@sugar-high/react`.
 
 ## Usage
 
 ### Editor
 
 ```tsx
-import { Editor } from 'codice'
+import { Editor } from '@sugar-high/react'
 
 <Editor
   title="My Code Editor"
@@ -44,7 +49,7 @@ Additionally, you can pass any other props to the `Editor` component, which will
 ### Code Block
 
 ```tsx
-import { Code } from 'codice'
+import { Code } from '@sugar-high/react'
 
 <Code 
   title="app/index.js"
@@ -99,15 +104,21 @@ You can also customize the appearance of the code frame by overriding the CSS at
 - `[data-codice-control]`: The class name of control items, there're 3 of them.
   - `[data-codice-control]:nth-child(<number>) { background-color: <color> }` can be used to style each control item.
 
-### **Projects Powered by Codice**
+## Migrating from Codice
 
-Codice serves as the backbone for a growing ecosystem of packages that rely on its code editing and presenting capabilities. These projects showcase the versatility and performance Codice brings to modern development workflows:
+Replace the package dependency and update imports:
 
-- **[sugar-high](https://sugar-high.vercel.app/)**: A fast and lightweight syntax highlighter, leveraging Codice for live editing integration on website.
-- **[remark-sugar-high](https://remark-sugar-high.vercel.app/)**: A Remark plugin for adding syntax-highlighted code blocks to Markdown content, powered by Codice for precise and visually appealing outputs.  
-- **[devjar](https://devjar.vercel.app/)**: A tool for bundling interactive React code sandbox, using Codice to running the editor experience on website..  
+```bash
+npm uninstall codice
+npm install @sugar-high/react sugar-high
+```
 
-These projects and many more are built on Codice, demonstrating its ability to adapt to a wide range of use cases, from syntax highlighting in Markdown to powering interactive coding experiences. Codice isn’t just a library—it’s a foundation for modern, code-first solutions.
+```diff
+- import { Code, Editor } from 'codice'
++ import { Code, Editor } from '@sugar-high/react'
+```
+
+The `Code` and `Editor` components retain the Codice API and existing `data-codice-*` styling hooks, so most applications only need to change their dependency and import path.
 
 ## License
 
