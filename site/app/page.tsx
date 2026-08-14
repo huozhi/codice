@@ -12,9 +12,6 @@ export default async function Page(props: { searchParams: Promise<SearchParams> 
   return (
     <div>
       <div className="absolute top-4 right-4 flex gap-4">
-        <a href="/studio" className="text-[#f47067] hover:underline">
-          Studio →
-        </a>
         <a href="https://github.com/huozhi/codice">
           Source Code ↗
         </a>
