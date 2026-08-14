@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://sugar-high.vercel.app/react",
+      "permanent": true
+    }
+  ]
+}
